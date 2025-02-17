@@ -11,8 +11,9 @@ const ROWS = 4  # 4 rows
 @onready var delete_button = $CanvasLayer/Panel/Delete
 @onready var add_button = $"CanvasLayer/Panel/Add Item"
 
+var inventory = InventoryManager.inventory
+
 # Inventory data structure
-var inventory = []
 var selected_slot = null  # Track selected item slot
 
 # Item types
@@ -25,13 +26,22 @@ var item = { "type": ItemType.ITEM, "texture": preload("res://Inventory/assets/i
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
 	setup_inventory()
-	
 	add_button.connect("pressed", Callable(self, "add_item"))
 	delete_button.connect("pressed", Callable(self, "delete_item"))
 
+func toggle_inventory():
+	var panel = $CanvasLayer/Panel
+	panel.visible = !panel.visible  # Toggle visibility
+
+	# Update inventory UI when opening
+	if panel.visible:
+		update_inventory()
+		print("Inventory opened.")
+	else:
+		print("Inventory closed.")
+		
 # Function to generate inventory slots dynamically
 func setup_inventory():
-	inventory.clear()
 	# Clear any existing slots
 	for child in grid_container.get_children():
 		child.queue_free()
@@ -46,6 +56,9 @@ func setup_inventory():
 		slot.connect("pressed", Callable(self, "select_item").bind(i))
 		grid_container.add_child(slot)
 		inventory.append(null)  # Initialize inventory with empty slots
+	inventory = InventoryManager.inventory  # Use global inventory reference
+	update_inventory()  # Show existing items
+		
 	print("Inventory setup complete")
 
 # Function to add an item to the inventory
@@ -74,20 +87,36 @@ func add_item():
 func update_inventory():
 	for i in range(SLOT_COUNT):
 		var slot = grid_container.get_child(i)
-		if inventory[i] != null:
-			slot.icon = inventory[i]["texture"]
-			slot.expand_icon = true  # Ensures the icon fits inside the button properly
-			slot.text = str(inventory[i]["count"]) if inventory[i]["stackable"] else ""
-		else:
-			slot.icon = preload("res://Inventory/assets/empty_slot1.png")
-			slot.text = ""  # Clear text if slot is empty
+		if slot is Button:  # Ensure it's a Button before assigning an icon
+			if inventory[i] != null:
+				slot.icon = inventory[i]["texture"]
+				slot.expand_icon = true  # Ensures the icon fits inside the button properly
+				slot.text = str(inventory[i]["count"]) if inventory[i]["stackable"] else ""
+			else:
+				slot.icon = preload("res://Inventory/assets/empty_slot1.png")
+				slot.text = ""  # Clear text if slot is empty
 
 # Function to select an item slot
 func select_item(slot_index):
-	selected_slot = slot_index
-	print("Selected slot:", slot_index)
-	
-	# Highlight selected slot
+	# If no item is selected, pick up the item
+	if selected_slot == null:
+		if inventory[slot_index] != null:
+			selected_slot = slot_index
+			print("Picked up item from slot:", slot_index)
+	else:
+		# If an item is already selected, move or swap it
+		if selected_slot != slot_index:
+			# Swap items if destination slot is occupied
+			var temp = inventory[slot_index]
+			inventory[slot_index] = inventory[selected_slot]
+			inventory[selected_slot] = temp
+			print("Moved item from slot", selected_slot, "to slot", slot_index)
+
+		# Reset selection after moving
+		selected_slot = null
+		update_inventory()
+
+	# Highlight selected slot (only if still selected)
 	for i in range(SLOT_COUNT):
 		var slot = grid_container.get_child(i)
 		slot.modulate = Color(1, 1, 1, 1) if i != selected_slot else Color(1, 1, 0.5, 1)  # Yellow highlight
