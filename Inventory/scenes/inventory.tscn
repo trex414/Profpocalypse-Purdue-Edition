@@ -27,22 +27,12 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Delete" type="Button" parent="CanvasLayer/Panel"]
-layout_mode = 2
-offset_left = 400.0
-offset_top = -204.0
-offset_right = 521.0
-offset_bottom = -145.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "DELETE"
-
 [node name="Add Item" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 400.0
-offset_top = -140.0
-offset_right = 545.0
-offset_bottom = -81.0
+offset_left = 304.0
+offset_top = -148.0
+offset_right = 449.0
+offset_bottom = -89.0
 text = "Add Item"
 
 [node name="BackpackBG" type="TextureRect" parent="CanvasLayer/Panel"]
@@ -59,10 +49,10 @@ size_flags_vertical = 4
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
-offset_left = -72.0
-offset_top = -84.0
-offset_right = -48.0
-offset_bottom = -72.0
+offset_left = -80.0
+offset_top = -92.0
+offset_right = 408.0
+offset_bottom = 244.0
 columns = 4
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/GridContainer"]
@@ -100,3 +90,40 @@ layout_mode = 2
 
 [node name="TextureRect12" type="TextureRect" parent="CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
+
+[node name="Use Usable" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 2
+offset_left = 128.0
+offset_top = 124.0
+offset_right = 202.0
+offset_bottom = 183.0
+text = "Use"
+
+[node name="Delete" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 2
+offset_left = -8.0
+offset_top = 124.0
+offset_right = 113.0
+offset_bottom = 183.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "DELETE"
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -44.0
+offset_right = 176.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Panel/Label"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.647059)

@@ -10,6 +10,9 @@ const ROWS = 4  # 4 rows
 @onready var backpack_bg = $CanvasLayer/Panel/BackpackBG  # Reference to TextureRect
 @onready var delete_button = $CanvasLayer/Panel/Delete
 @onready var add_button = $"CanvasLayer/Panel/Add Item"
+@onready var message_label = $CanvasLayer/Panel/Label  # Add a Label node to UI
+@onready var use_button = $"CanvasLayer/Panel/Use Usable"
+
 
 var inventory = InventoryManager.inventory
 
@@ -17,17 +20,28 @@ var inventory = InventoryManager.inventory
 var selected_slot = null  # Track selected item slot
 
 # Item types
-enum ItemType { HEAL, ITEM }
+enum ItemType {ITEM , SPELL}
+
+var spell_messages = {
+	"HEAL": "You have been healed",
+	"SPEED": "You are faster"
+}
 
 # Sample items (for testing)
-var heal_item = { "type": ItemType.HEAL, "texture": preload("res://Inventory/assets/heal.png"), "stackable": true, "count": 1 }
-var item = { "type": ItemType.ITEM, "texture": preload("res://Inventory/assets/item.jpg"), "stackable": false, "count": 1 }
-
+var item_items = [
+	{ "type": ItemType.ITEM, "name": "ITEM1", "texture": preload("res://Inventory/assets/Pickaxe.jpg"), "stackable": false, "count": 1 },
+	{ "type": ItemType.ITEM, "name": "ITEM2", "texture": preload("res://Inventory/assets/Axe.png"), "stackable": false, "count": 1 }
+]
+var spell_items = [
+	{ "type": ItemType.SPELL, "name": "HEAL", "texture": preload("res://Inventory/assets/heal.png"), "stackable": true, "count": 1 },
+	{ "type": ItemType.SPELL, "name": "SPEED", "texture": preload("res://Inventory/assets/speed.png"), "stackable": true, "count": 1 }
+]
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
 	setup_inventory()
 	add_button.connect("pressed", Callable(self, "add_item"))
 	delete_button.connect("pressed", Callable(self, "delete_item"))
+	use_button.connect("pressed", Callable(self, "use_item"))
 
 func toggle_inventory():
 	var panel = $CanvasLayer/Panel
@@ -63,12 +77,19 @@ func setup_inventory():
 
 # Function to add an item to the inventory
 func add_item():
-	var new_item = heal_item if randi() % 2 == 0 else item  # Randomly choose an item type
-	
+	# Randomly choose whether to add an ITEM or SPELL
+	var category = randi() % 2  # 0 for ITEM, 1 for SPELL
+	var new_item = null
+
+	if category == 0:
+		new_item = item_items[randi() % item_items.size()]  # Pick a random item
+	else:
+		new_item = spell_items[randi() % spell_items.size()]  # Pick a random spell
+
 	# Try to stack if item is stackable
 	if new_item["stackable"]:
 		for i in range(SLOT_COUNT):
-			if inventory[i] != null and inventory[i]["type"] == new_item["type"]:
+			if inventory[i] != null and inventory[i]["name"] == new_item["name"]:
 				inventory[i]["count"] += 1
 				update_inventory()
 				print("Stacked item in slot", i, "new count:", inventory[i]["count"])
@@ -79,7 +100,7 @@ func add_item():
 		if inventory[i] == null:
 			inventory[i] = new_item.duplicate()  # Assign a copy of the item
 			update_inventory()
-			print("Added new item to slot", i)
+			print("Added new item:", new_item["name"], "to slot", i)
 			return
 	
 	print("Inventory full! Cannot add more items.")
@@ -121,10 +142,54 @@ func select_item(slot_index):
 		var slot = grid_container.get_child(i)
 		slot.modulate = Color(1, 1, 1, 1) if i != selected_slot else Color(1, 1, 0.5, 1)  # Yellow highlight
 
+func deselect_item():
+	if selected_slot != null:
+		# Reset all slots to default color
+		for i in range(SLOT_COUNT):
+			var slot = grid_container.get_child(i)
+			slot.modulate = Color(1, 1, 1, 1)  # Reset to normal color
+
+		selected_slot = null  # Deselect item
+		update_inventory()  # Refresh UI
+
 # Function to delete selected item
 func delete_item():
 	if selected_slot != null and inventory[selected_slot] != null:
 		inventory[selected_slot] = null
 		update_inventory()
 		print("Deleted item from slot", selected_slot)
-		selected_slot = null
+		deselect_item()
+		
+func use_item():
+	if selected_slot == null or inventory[selected_slot] == null:
+		print("No item selected.")
+		return
+	
+	var item = inventory[selected_slot]
+	
+	# Check if the item is a spell
+	if item["type"] == ItemType.SPELL:
+		var spell_name = item["name"]
+		if spell_name in spell_messages:
+			print_centered(spell_messages[spell_name])  # Show the message
+			item["count"] -= 1  # Reduce stack by 1
+			if item["count"] <= 0:
+				inventory[selected_slot] = null  # Remove if no more left
+			
+			update_inventory()
+		else:
+			print("Unknown spell.")
+	else:
+		print_centered("NOT USABLE")
+		print("NOT USABLE")  # Item is not a spell
+	deselect_item()
+		
+
+func print_centered(message):
+	message_label.text = message
+	message_label.visible = true
+
+	# Hide message after 2 seconds
+	$CanvasLayer/Panel/Label.get_tree().create_timer(2).timeout.connect(func():
+		message_label.visible = false
+	)
