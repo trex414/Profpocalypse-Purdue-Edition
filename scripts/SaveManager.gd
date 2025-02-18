@@ -1,0 +1,40 @@
+# Player / Game state information needs to be stored in a Dictionary (Godot equivalent of an object). These functions save/load/delete this data as a JSON when called.
+
+extends Node
+
+var save_path = "user://save_game.json"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func save(data):
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(data, "\t"))
+		file.close()
+		print("Successful game save.")
+	else:
+		print("Unsuccessful game save (Failed to open file).")
+		
+
+func load():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		var data = file.get_as_text()
+		file.close()
+		var parsed_data = JSON.parse_string(data)
+		if parsed_data != null:
+			print("Successful game load.")
+			return parsed_data
+		else:
+			print("Unsuccessful game load.")
+	else:
+		print("No save found.")
+	
+	return null

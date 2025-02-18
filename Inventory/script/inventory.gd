@@ -85,6 +85,10 @@ func add_item():
 		new_item = item_items[randi() % item_items.size()]  # Pick a random item
 	else:
 		new_item = spell_items[randi() % spell_items.size()]  # Pick a random spell
+	
+	# Adds new item to the inventory array in Player Data
+	PlayerData.inventory.append(new_item)
+	print(PlayerData.get_game_state()) # Print for testing (confirm item is in inventory)
 
 	# Try to stack if item is stackable
 	if new_item["stackable"]:
