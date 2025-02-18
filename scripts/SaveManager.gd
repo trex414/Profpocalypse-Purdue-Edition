@@ -13,10 +13,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func save(data):
+func save():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(data, "\t"))
+		file.store_string(JSON.stringify(PlayerData.get_game_state(), "\t"))
 		file.close()
 		print("Successful game save.")
 	else:
@@ -28,13 +28,14 @@ func load():
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		var data = file.get_as_text()
 		file.close()
+
 		var parsed_data = JSON.parse_string(data)
 		if parsed_data != null:
 			print("Successful game load.")
-			return parsed_data
+			PlayerData.apply_game_state(parsed_data)
 		else:
 			print("Unsuccessful game load.")
 	else:
 		print("No save found.")
-	
-	return null
+		# Could choose to create a new game here, if there is no save file found.
+		# PlayerData.set_default_values()
