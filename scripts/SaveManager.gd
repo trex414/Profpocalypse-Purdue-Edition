@@ -39,3 +39,10 @@ func load():
 		print("No save found.")
 		# Could choose to create a new game here, if there is no save file found.
 		# PlayerData.set_default_values()
+
+func delete():
+	if FileAccess.file_exists(save_path):
+		DirAccess.remove_absolute(save_path) # Be careful removing... deletes absolute path to given file/directory (if dir is empty)
+		print("Save successfully deleted.")
+	else:
+		print("Failed to delete save. (No file)")
