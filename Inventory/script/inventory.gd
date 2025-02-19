@@ -44,6 +44,7 @@ func _ready():
 	add_button.connect("pressed", Callable(self, "add_item"))
 	delete_button.connect("pressed", Callable(self, "delete_item"))
 	use_button.connect("pressed", Callable(self, "use_item"))
+	toggle_inventory()
 
 func toggle_inventory():
 	var panel = $CanvasLayer/Panel
@@ -130,6 +131,9 @@ func select_item(slot_index):
 		if inventory[slot_index] != null:
 			selected_slot = slot_index
 			print("Picked up item from slot:", slot_index)
+		if inventory[slot_index] != null:
+			selected_slot = slot_index
+
 	else:
 		# If an item is already selected, move or swap it
 		if selected_slot != slot_index:
@@ -203,3 +207,19 @@ func print_centered(message):
 	$CanvasLayer/Panel/Label/ColorRect.get_tree().create_timer(2).timeout.connect(func():
 		$CanvasLayer/Panel/Label/ColorRect.visible = false
 	)
+	
+func move_item_to_item_bar(slot_index, hud, bar_slot):
+	if inventory[slot_index] != null:
+		hud.move_to_item_bar(inventory[slot_index], bar_slot)  # Move to HUD
+		inventory[slot_index] = null  # Remove from inventory
+		selected_slot = null  # Clear selection
+		update_inventory()
+
+func move_item_to_potion_bar(slot_index, hud, bar_slot):
+	if inventory[slot_index] != null and inventory[slot_index]["type"] == ItemType.SPELL:
+		hud.move_to_potion_bar(inventory[slot_index], bar_slot)
+		inventory[slot_index] = null
+		selected_slot = null
+		update_inventory()
+	else:
+		print("Only potions can go here!")
