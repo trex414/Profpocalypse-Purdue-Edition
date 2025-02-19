@@ -14,6 +14,7 @@ const ROWS = 4  # 4 rows
 @onready var use_button = $"CanvasLayer/Panel/Use Usable"
 
 
+
 var inventory = InventoryManager.inventory
 
 # Inventory data structure
@@ -38,6 +39,7 @@ var spell_items = [
 ]
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
+	$CanvasLayer/Panel/Label/ColorRect.visible = false
 	setup_inventory()
 	add_button.connect("pressed", Callable(self, "add_item"))
 	delete_button.connect("pressed", Callable(self, "delete_item"))
@@ -192,8 +194,12 @@ func use_item():
 func print_centered(message):
 	message_label.text = message
 	message_label.visible = true
+	$CanvasLayer/Panel/Label/ColorRect.visible = true
 
 	# Hide message after 2 seconds
 	$CanvasLayer/Panel/Label.get_tree().create_timer(2).timeout.connect(func():
 		message_label.visible = false
+	)
+	$CanvasLayer/Panel/Label/ColorRect.get_tree().create_timer(2).timeout.connect(func():
+		$CanvasLayer/Panel/Label/ColorRect.visible = false
 	)

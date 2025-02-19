@@ -21,6 +21,10 @@ InventoryManager="*res://Inventory/script/inventory_manager.gd"
 PlayerData="*res://scripts/PlayerData.gd"
 SaveManager="*res://scripts/SaveManager.gd"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 inventory={
