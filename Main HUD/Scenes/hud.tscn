@@ -4,59 +4,66 @@
 
 [node name="Control - HUD" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.014
+anchor_bottom = 1.061
+offset_left = 10.0
+offset_top = 11.0
+offset_right = -6.0
+offset_bottom = -28.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3f0v0")
 
-[node name="Item Bar" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 360.0
-offset_top = 612.0
-offset_right = 696.0
-offset_bottom = 724.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="Item Bar"]
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="Item Bar"]
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="Item Bar"]
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Item Bar"]
-layout_mode = 2
-
-[node name="Button5" type="Button" parent="Item Bar"]
-layout_mode = 2
-text = "HIIII"
-
-[node name="Potion Bar" type="HBoxContainer" parent="."]
-layout_mode = 1
+[node name="Item Bar" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 768.0
-offset_top = 608.0
-offset_right = 920.0
-offset_bottom = 720.0
+offset_left = -176.0
+offset_top = -64.0
+offset_right = 176.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="Potion Bar"]
+[node name="Button" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="Potion Bar"]
+[node name="Button2" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button5" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Potion Bar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Potion Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="CanvasLayer/Potion Bar"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2

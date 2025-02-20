@@ -1,8 +1,8 @@
 extends Control
 
 # References to Item and Potion bars
-@onready var item_bar = $"Item Bar"  # Ensure this matches your scene
-@onready var potion_bar = $"Potion Bar"
+@onready var item_bar = $"CanvasLayer/Item Bar"  # Ensure this matches your scene
+@onready var potion_bar = $"CanvasLayer/Potion Bar"
 var inventory
 
 

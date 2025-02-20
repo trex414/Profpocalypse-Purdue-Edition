@@ -28,14 +28,21 @@ var spell_messages = {
 	"SPEED": "You are faster"
 }
 
+func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
+	var image = original_texture.get_image()
+	image.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)  # High-quality resizing
+	var new_texture = ImageTexture.create_from_image(image)
+	return new_texture
+
 # Sample items (for testing)
 var item_items = [
-	{ "type": ItemType.ITEM, "name": "ITEM1", "texture": preload("res://Inventory/assets/Pickaxe.jpg"), "stackable": false, "count": 1 },
-	{ "type": ItemType.ITEM, "name": "ITEM2", "texture": preload("res://Inventory/assets/Axe.png"), "stackable": false, "count": 1 }
+	{ "type": ItemType.ITEM, "name": "ITEM1", "texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)), "stackable": false, "count": 1 },
+	{ "type": ItemType.ITEM, "name": "ITEM2", "texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)), "stackable": false, "count": 1 }
 ]
+
 var spell_items = [
-	{ "type": ItemType.SPELL, "name": "HEAL", "texture": preload("res://Inventory/assets/heal.png"), "stackable": true, "count": 1 },
-	{ "type": ItemType.SPELL, "name": "SPEED", "texture": preload("res://Inventory/assets/speed.png"), "stackable": true, "count": 1 }
+	{ "type": ItemType.SPELL, "name": "HEAL", "texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
+	{ "type": ItemType.SPELL, "name": "SPEED", "texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
 ]
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
@@ -223,3 +230,5 @@ func move_item_to_potion_bar(slot_index, hud, bar_slot):
 		update_inventory()
 	else:
 		print("Only potions can go here!")
+		
+		
