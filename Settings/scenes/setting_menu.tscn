@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca3fmoi36r3x6"]
+[gd_scene load_steps=3 format=3 uid="uid://ca3fmoi36r3x6"]
 
 [ext_resource type="Script" path="res://Settings/scenes/control_settings.gd" id="1_48vij"]
+[ext_resource type="Texture2D" uid="uid://cbm3do06va5xi" path="res://Settings/assets/pixel-art-ancient-scroll.jpg" id="2_xc3l3"]
 
 [node name="Control - Settings" type="Control"]
 visible = false
@@ -12,6 +13,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_48vij")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xc3l3")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 1
@@ -20,10 +35,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 

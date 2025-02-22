@@ -22,6 +22,8 @@ func _ready():
 	var window = get_viewport().get_window()
 	if window:
 		window.size = Vector2(1280, 720)
+		
+	PlayerData.ready
 
 
 func _process(delta):

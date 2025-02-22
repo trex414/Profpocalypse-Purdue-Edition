@@ -42,7 +42,7 @@ func load_on_start():
 		#var file = FileAccess.open(save_path, FileAccess.READ)
 		#var content = file.get_as_text()
 		#file.close()
-		 #
+		#
 		#var parsed_data = JSON.parse_string(content)
 		#if parsed_data != null:
 			#apply_game_state(parsed_data)  # Load saved data
