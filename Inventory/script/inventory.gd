@@ -231,4 +231,28 @@ func move_item_to_potion_bar(slot_index, hud, bar_slot):
 	else:
 		print("Only potions can go here!")
 		
+func get_selected_item():
+	if selected_slot != null and inventory[selected_slot] != null:
+		return inventory[selected_slot]  # Return the actual item dictionary
+	return null
+	
+func get_item_count(item_name):
+	var count = 0
+	for item in inventory:
+		if item != null and item["name"] == item_name:
+			count += item["count"]  # Sum up all instances
+	return count
+
+# Function to remove a specific amount of an item
+func remove_item(item_name, amount):
+	for i in range(SLOT_COUNT):
+		if inventory[i] != null and inventory[i]["name"] == item_name:
+			if inventory[i]["count"] > amount:
+				inventory[i]["count"] -= amount
+				return true  # Successful removal
+			elif inventory[i]["count"] == amount:
+				inventory[i] = null  # Remove completely if zero left
+				return true
+	return false  # Not enough items to remove
+		
 		
