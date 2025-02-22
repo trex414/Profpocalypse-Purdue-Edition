@@ -33,3 +33,4 @@ func _process(delta):
 			print("Inventory opened.")
 		else:
 			inventory.toggle_inventory()  # Toggle visibility
+			

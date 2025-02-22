@@ -41,6 +41,7 @@ func load():
 		# PlayerData.set_default_values()
 
 func delete():
+	# TODO: Make delete game force user back to main menu.
 	if FileAccess.file_exists(save_path):
 		DirAccess.remove_absolute(save_path) # Be careful removing... deletes absolute path to given file/directory (if dir is empty)
 		print("Save successfully deleted.")
