@@ -6,4 +6,6 @@
 [node name="TestMain" type="Node2D"]
 script = ExtResource("1_8ptka")
 
-[node name="Control - Settings" parent="." instance=ExtResource("2_xaqyt")]
+[node name="Menu UI" type="CanvasLayer" parent="."]
+
+[node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_xaqyt")]
