@@ -1,9 +1,17 @@
 extends Control
 
 var classes = [
-	{"name": "CS 180", "professor": "Dr. Evil", "location": "CL1950", "time": "10 AM", "description": "Learn suffering", "progress": 50},
-	{"name": "CS 240", "professor": "Ms. Doom", "location": "Room 102", "time": "1 PM", "description": "Survive pop quizzes", "progress": 75},
-	{"name": "CS 182", "professor": "Ms. Doom", "location": "Room 102", "time": "1 PM", "description": "Survive pop quizzes", "progress": 75}
+	{"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "time": "10 AM", "description": "Learn suffering", "completed": false},
+	{"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}, 
+	{"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
+	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
 ]
 # Reference to the GridContainer (assign this in the editor or find it dynamically)
 @onready var grid = $GridContainer
