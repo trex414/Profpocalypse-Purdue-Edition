@@ -13,6 +13,8 @@ const ROWS = 4  # 4 rows
 @onready var message_label = $CanvasLayer/Panel/Label  # Add a Label node to UI
 @onready var use_button = $"CanvasLayer/Panel/Use Usable"
 
+var main_hud = null 
+
 
 
 var inventory = InventoryManager.inventory
@@ -56,6 +58,7 @@ func _ready():
 func toggle_inventory():
 	var panel = $CanvasLayer/Panel
 	panel.visible = !panel.visible  # Toggle visibility
+	deselect_item()
 
 	# Update inventory UI when opening
 	if panel.visible:
@@ -63,6 +66,9 @@ func toggle_inventory():
 		print("Inventory opened.")
 	else:
 		print("Inventory closed.")
+#so it can see what the hud is doing
+func set_main_hud(hud):
+	main_hud = hud
 		
 # Function to generate inventory slots dynamically
 func setup_inventory():
@@ -95,6 +101,12 @@ func add_item():
 		new_item = item_items[randi() % item_items.size()]  # Pick a random item
 	else:
 		new_item = spell_items[randi() % spell_items.size()]  # Pick a random spell
+		
+	#if the item is in the hot bar it will be added there instead of inventory slot (potions)
+	if main_hud != null and new_item["type"] == ItemType.SPELL and main_hud.check_potion(new_item):
+		return
+		
+
 	
 	# Adds new item to the inventory array in Player Data
 	PlayerData.inventory.append(new_item)
@@ -216,6 +228,7 @@ func print_centered(message):
 	)
 	
 func move_item_to_item_bar(slot_index, hud, bar_slot):
+	deselect_item()
 	if inventory[slot_index] != null:
 		hud.move_to_item_bar(inventory[slot_index], bar_slot)  # Move to HUD
 		inventory[slot_index] = null  # Remove from inventory
@@ -223,6 +236,7 @@ func move_item_to_item_bar(slot_index, hud, bar_slot):
 		update_inventory()
 
 func move_item_to_potion_bar(slot_index, hud, bar_slot):
+	deselect_item()
 	if inventory[slot_index] != null and inventory[slot_index]["type"] == ItemType.SPELL:
 		hud.move_to_potion_bar(inventory[slot_index], bar_slot)
 		inventory[slot_index] = null
@@ -254,5 +268,49 @@ func remove_item(item_name, amount):
 				inventory[i] = null  # Remove completely if zero left
 				return true
 	return false  # Not enough items to remove
-		
-		
+	
+func add_item_from_hotbar(item) -> bool:
+	deselect_item()
+	for i in range(SLOT_COUNT):
+		if inventory[i] == null:  # Find first empty slot
+			inventory[i] = item.duplicate()  # Assign a copy of the item
+			update_inventory()  # Refresh UI
+			print("Added", item["name"], "to inventory slot", i)
+			return true  # Successfully added item
+	return false  # Inventory full
+	
+func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
+	deselect_item()
+	# Try to stack potion if it already exists in inventory
+	for i in range(SLOT_COUNT):
+		if inventory[i] != null and inventory[i]["name"] == potion_name:
+			inventory[i]["count"] += potion_count
+			update_inventory()
+			print("Stacked", potion_count, potion_name, "in inventory slot", i)
+			return true
+
+	# Find the first empty slot
+	for i in range(SLOT_COUNT):
+		if inventory[i] == null:
+			inventory[i] = {
+				"type": ItemType.SPELL,
+				"name": potion_name,
+				"texture": potion_texture,  # Preserve the potion's texture
+				"stackable": true,
+				"count": potion_count
+			}
+			update_inventory()
+			print("Added new potion:", potion_name, "x", potion_count, "to slot", i)
+			return true
+
+	return false  # Inventory full
+
+func is_inventory_open() -> bool:
+	var panel = $CanvasLayer/Panel
+	return panel.visible  # Returns true if inventory is open, false otherwise
+	
+func has_space_for_item() -> bool:
+	for i in range(SLOT_COUNT):
+		if inventory[i] == null:
+			return true  # At least one slot is free
+	return false  # Inventory is full

@@ -26,6 +26,7 @@ func _ready():
 	for i in range(potion_bar.get_child_count()):
 		var button = potion_bar.get_child(i)
 		button.connect("pressed", Callable(self, "hotbar_potion_slot_clicked").bind(i))
+		
 
 func setup_hotbars():
 	# Ensure Item Bar slots are set up correctly
@@ -65,20 +66,41 @@ func set_inventory(inv):
 
 # When clicking an Item Bar slot, try moving the selected inventory item
 func hotbar_slot_clicked(slot_index):
-	if inventory and inventory.selected_slot != null:
-		var selected_item = inventory.get_selected_item()  # Now this returns item data, not an index
+	if inventory == null:
+		print("ERROR: Inventory not assigned to HUD!")
+		return
+
+	# Check if the slot is already occupied
+	if item_bar_slots[slot_index] != null:
+		# Move item back to inventory
+		move_from_hotbar_to_inventory(slot_index)
+	elif inventory.selected_slot != null:
+		# Otherwise, move selected item from inventory to hotbar
+		var selected_item = inventory.get_selected_item()
 		if selected_item["type"] == inventory.ItemType.SPELL:
 			print("Potions cannot be placed in the Item Bar!")
 			return
 		inventory.move_item_to_item_bar(inventory.selected_slot, self, slot_index)
 
+
 func hotbar_potion_slot_clicked(slot_index):
-	if inventory and inventory.selected_slot != null:
-		var selected_item = inventory.get_selected_item()  # Now this returns item data, not an index
+	if inventory == null:
+		print("ERROR: Inventory not assigned to HUD!")
+		return
+
+	# Check if the slot is occupied
+	if potion_bar_slots[slot_index] != null:
+		# Move potion back to inventory
+		move_potion_from_hotbar_to_inventory(slot_index)
+	elif inventory.selected_slot != null:
+		# Move selected potion from inventory to hotbar
+		var selected_item = inventory.get_selected_item()
 		if selected_item["type"] == inventory.ItemType.ITEM:
 			print("Items cannot be placed in the Potion Bar!")
 			return
 		inventory.move_item_to_potion_bar(inventory.selected_slot, self, slot_index)
+
+
 
 # Function to move an item from inventory to item bar
 func move_to_item_bar(item, slot_index):
@@ -173,3 +195,96 @@ func update_potion_display():
 				
 				# Display count only if > 1
 				button.text = str(potion_bar_slots[i]["count"]) if potion_bar_slots[i]["count"] > 1 else ""
+			else:
+				button.icon = null  # Clear icon
+				button.text = ""  # Clear count text
+
+func check_potion(item) -> bool:
+	# Ensure the item is valid and is a potion
+	if item == null or item["type"] != inventory.ItemType.SPELL:
+		return false  # Not a potion, so let it be added normally
+
+	var potion_name = item["name"]
+	
+	# Loop through potion bar slots
+	for i in range(potion_bar_slots.size()):
+		var slot = potion_bar_slots[i]
+		
+		# If the same potion is already in the slot, increment the count
+		if slot != null and slot["name"] == potion_name:
+			slot["count"] += item["count"]  # Increase the count
+			update_potion_display()  # Update the UI to reflect changes
+			return true  # Indicate that it was handled
+
+	return false  # Potion was not in the hotbar, allow inventory to handle it
+	
+func move_from_hotbar_to_inventory(slot_index):
+	if inventory == null:
+		print("ERROR: Inventory not assigned to HUD!")
+		return
+
+	# Check if inventory is open
+	if not inventory.is_inventory_open():
+		print("Inventory is closed. Cannot move item.")
+		return
+
+	var item = item_bar_slots[slot_index]  # Get the item from the hotbar
+	if item == null:
+		print("No item in hotbar slot", slot_index)
+		return  # No item to move
+
+	# Check if the inventory has space before removing the item
+	if not inventory.has_space_for_item():
+		print("Inventory full! Item remains in hotbar.")
+		return  # Do not move the item, keep it in the hotbar
+
+	# Remove item from hotbar
+	item_bar_slots[slot_index] = null
+	var button = item_bar.get_child(slot_index)
+	button.icon = null  # Clear the hotbar slot
+
+	# Add item to inventory
+	var success = inventory.add_item_from_hotbar(item)
+	if not success:
+		print("Inventory full! Cannot move item from hotbar.")
+
+	print("Moved", item["name"], "from hotbar slot", slot_index, "to inventory")
+
+
+	
+func move_potion_from_hotbar_to_inventory(slot_index):
+	if inventory == null:
+		print("ERROR: Inventory not assigned to HUD!")
+		return
+
+	# Check if inventory is open
+	if not inventory.is_inventory_open():
+		print("Inventory is closed. Cannot move potion.")
+		return
+
+	var potion = potion_bar_slots[slot_index]  # Get the potion from the hotbar
+	if potion == null:
+		print("No potion in hotbar slot", slot_index)
+		return  # No potion to move
+
+	var potion_name = potion["name"]
+	var potion_count = potion["count"]
+	var potion_texture = potion["texture"]  # Preserve potion texture
+
+	# Check if the inventory has space before removing the potion
+	if not inventory.has_space_for_item():
+		print("Inventory full! Potion remains in hotbar.")
+		return  # Do not move the potion, keep it in the hotbar
+
+	# Remove potion from potion bar
+	potion_bar_slots[slot_index] = null
+	var button = potion_bar.get_child(slot_index)
+	button.icon = null  # Clear the potion icon
+	button.text = ""  # Clear the potion count text
+
+	# Add potion back to inventory with correct count and texture
+	var success = inventory.add_potion_from_hotbar(potion_name, potion_count, potion_texture)
+	if not success:
+		print("Inventory full! Cannot move potion from hotbar.")
+
+	print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
