@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://cvrxgp7n4t4jb"]
+[gd_scene load_steps=3 format=3 uid="uid://cvrxgp7n4t4jb"]
+
+[ext_resource type="Script" path="res://MajorInformation/Script/majorInformation.gd" id="1_6ocl2"]
+
+[sub_resource type="Theme" id="Theme_tiob2"]
 
 [node name="Control-MajorInformation" type="Control"]
 layout_mode = 3
@@ -7,3 +11,78 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6ocl2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 340.0
+offset_top = 16.0
+offset_right = 810.0
+offset_bottom = 621.0
+theme = SubResource("Theme_tiob2")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 40.0
+offset_top = 208.0
+offset_right = 438.0
+offset_bottom = 570.0
+columns = 2
+
+[node name="firstClassName" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "CS 180"
+horizontal_alignment = 1
+
+[node name="secondClassName" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "None"
+
+[node name="firstProfName" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Professor Dunsmore"
+horizontal_alignment = 1
+
+[node name="secondProfName" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="firstLocation" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "sdfknwlekngflwknglwkng
+sdkfgnaskgnlaknglk
+slkdfnlsknflk"
+horizontal_alignment = 1
+
+[node name="secondLocation" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="firstTime" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="secondTime" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="firstDescription" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="secondDescription" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 114.0
+offset_right = 382.0
+offset_bottom = 141.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 113.0
+offset_right = 206.0
+offset_bottom = 136.0
+text = "Percent Complete:"
