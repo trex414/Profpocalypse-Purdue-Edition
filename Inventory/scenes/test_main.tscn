@@ -16,6 +16,6 @@ script = ExtResource("1_8ptka")
 script = ExtResource("3_yselg")
 
 [node name="Sprite2D" type="Sprite2D" parent="TemporaryPlayer"]
-position = Vector2(582, 302)
+position = Vector2(580, 302)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_7uwot")

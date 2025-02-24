@@ -3,6 +3,8 @@ extends Control
 @onready var save_button = $"Panel/VBoxContainer/Save Button"
 @onready var delete_button = $"Panel/VBoxContainer/Delete Button"
 @onready var close_button = $"Panel/VBoxContainer/Close Menu"
+@onready var keybind_menu_button = $"Panel/VBoxContainer/Key Binds Button"
+@onready var keybind_menu = $"Panel/VBoxContainer/Key Binds Button/Control-Key Binds"
 
 var is_open = false
 
@@ -12,6 +14,8 @@ func _ready():
 	save_button.pressed.connect(_on_save)
 	delete_button.pressed.connect(_on_delete)
 	close_button.pressed.connect(toggle_menu)
+	keybind_menu_button.pressed.connect(toggle_keybind_menu)
+
 
 
 func _input(event):
@@ -29,3 +33,10 @@ func _on_save():
 	
 func _on_delete():
 	SaveManager.delete()
+	
+func toggle_keybind_menu():
+	keybind_menu.visibile = true
+	
+func _on_CloseMenuButton_pressed():
+	keybind_menu.visible = false
+	
