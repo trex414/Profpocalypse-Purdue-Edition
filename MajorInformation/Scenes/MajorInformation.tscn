@@ -24,30 +24,50 @@ theme = SubResource("Theme_tiob2")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 231.0
-offset_top = 55.0
-offset_right = 378.0
-offset_bottom = 82.0
+offset_left = 213.0
+offset_top = 64.0
+offset_right = 425.0
+offset_bottom = 91.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+[node name="PercentComplete" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 55.0
-offset_right = 192.0
-offset_bottom = 78.0
+offset_left = 53.0
+offset_top = 64.0
+offset_right = 196.0
+offset_bottom = 87.0
 text = "Percent Complete:"
+
+[node name="PrerequisiteFlowchart2" type="Button" parent="CanvasLayer/Panel"]
+offset_left = 21.0
+offset_top = 563.0
+offset_right = 250.0
+offset_bottom = 594.0
+text = "Show Prerequistie Flowchart"
+
+[node name="CompleteCourse" type="Button" parent="CanvasLayer/Panel"]
+offset_left = 290.0
+offset_top = 563.0
+offset_right = 450.0
+offset_bottom = 594.0
+text = "Complete Semester"
+
+[node name="PrerequisiteFlowchart" type="Button" parent="CanvasLayer/Panel"]
+offset_left = 19.0
+offset_top = 14.0
+offset_right = 80.0
+offset_bottom = 45.0
+text = "Back"
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 153.0
-offset_right = 417.0
-offset_bottom = 565.0
+offset_left = 52.0
+offset_top = 136.0
+offset_right = 429.0
+offset_bottom = 548.0
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
 [node name="Current Semester" type="GridContainer" parent="CanvasLayer/Panel/TabContainer"]
-visible = false
 layout_mode = 2
 columns = 2
 metadata/_tab_index = 0
@@ -71,9 +91,6 @@ layout_mode = 2
 
 [node name="firstLocation" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
 layout_mode = 2
-text = "sdfknwlekngflwknglwkng
-sdkfgnaskgnlaknglk
-slkdfnlsknflk"
 horizontal_alignment = 1
 
 [node name="secondLocation" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
@@ -94,6 +111,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="Plan of Study" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -146,14 +164,35 @@ text = "CS 252"
 layout_mode = 2
 text = "Junior Fall"
 
+[node name="CS354" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
+layout_mode = 2
+text = "CS 354"
+
 [node name="Junior Spring" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
 layout_mode = 2
 text = "Junior Spring"
+
+[node name="CS307" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
+layout_mode = 2
+text = "CS 307"
 
 [node name="Senior Fall" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
 layout_mode = 2
 text = "Senior Fall"
 
+[node name="CS381" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
+layout_mode = 2
+text = "CS 381"
+
 [node name="Senior Spring" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
 layout_mode = 2
 text = "Senior Spring"
+
+[node name="CS408" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
+layout_mode = 2
+text = "CS 408"
+
+[node name="CS407" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
+layout_mode = 2
+text = "CS 407
+"
