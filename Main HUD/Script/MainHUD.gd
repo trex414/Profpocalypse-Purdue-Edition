@@ -88,17 +88,50 @@ func hotbar_potion_slot_clicked(slot_index):
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
-	# Check if the slot is occupied
-	if potion_bar_slots[slot_index] != null:
-		# Move potion back to inventory
-		move_potion_from_hotbar_to_inventory(slot_index)
-	elif inventory.selected_slot != null:
-		# Move selected potion from inventory to hotbar
-		var selected_item = inventory.get_selected_item()
-		if selected_item["type"] == inventory.ItemType.ITEM:
-			print("Items cannot be placed in the Potion Bar!")
-			return
-		inventory.move_item_to_potion_bar(inventory.selected_slot, self, slot_index)
+	# If inventory is open, move potion as before
+	if inventory.is_inventory_open():
+		if potion_bar_slots[slot_index] != null:
+			move_potion_from_hotbar_to_inventory(slot_index)
+		elif inventory.selected_slot != null:
+			var selected_item = inventory.get_selected_item()
+			if selected_item["type"] == inventory.ItemType.ITEM:
+				print("Items cannot be placed in the Potion Bar!")
+				return
+			inventory.move_item_to_potion_bar(inventory.selected_slot, self, slot_index)
+		return  # Stop function execution here, don't use the potion
+
+	# If inventory is closed, use the potion instead
+	var item = potion_bar_slots[slot_index]
+	if item == null:
+		print("No potion in hotbar slot", slot_index)
+		return  # No potion to use
+
+	var potion_name = item["name"]
+
+	# Check if it's a health potion
+	if potion_name == "HEAL":  # Change this to match your potion name
+		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")  # Ensure correct path
+
+		if health_manager != null and health_manager.current_health < health_manager.max_health:
+			health_manager.add_health(20)  # Adjust healing amount if needed
+			
+			# Reduce potion count
+			if item["count"] > 1:
+				item["count"] -= 1
+			else:
+				potion_bar_slots[slot_index] = null  # Remove if no more left
+
+			print("Potion used! Health increased.")
+
+		else:
+			print("Health is already full. Cannot use potion.")
+
+	else:
+		print("This is not a Health Potion.")
+
+	update_potion_display()
+
+
 
 
 
@@ -288,3 +321,4 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 		print("Inventory full! Cannot move potion from hotbar.")
 
 	print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
+	

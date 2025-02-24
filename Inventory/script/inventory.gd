@@ -199,19 +199,46 @@ func use_item():
 	# Check if the item is a spell
 	if item["type"] == ItemType.SPELL:
 		var spell_name = item["name"]
-		if spell_name in spell_messages:
+
+		# If it's a HEAL potion, apply health recovery
+		if spell_name == "HEAL":
+			if main_hud == null:
+				print("ERROR: Main HUD reference is missing!")
+				return
+
+			var health_manager = main_hud.get_node_or_null("CanvasLayer/Health_Bar")  # Ensure correct path
+			if health_manager != null:
+				if health_manager.current_health < health_manager.max_health:
+					health_manager.add_health(20)  # Adjust healing amount if needed
+					print("Potion used! Health increased.")
+
+					# Reduce potion count
+					item["count"] -= 1
+					if item["count"] <= 0:
+						inventory[selected_slot] = null  # Remove if no more left
+
+					update_inventory()  # Refresh UI
+				else:
+					print("Health is already full. Cannot use potion.")
+			else:
+				print("ERROR: HealthContainer node not found in HUD.")
+
+		# Handle other spells
+		elif spell_name in spell_messages:
 			print_centered(spell_messages[spell_name])  # Show the message
 			item["count"] -= 1  # Reduce stack by 1
 			if item["count"] <= 0:
 				inventory[selected_slot] = null  # Remove if no more left
-			
 			update_inventory()
 		else:
 			print("Unknown spell.")
+	
 	else:
 		print_centered("NOT USABLE")
 		print("NOT USABLE")  # Item is not a spell
+	
 	deselect_item()
+
 		
 
 func print_centered(message):

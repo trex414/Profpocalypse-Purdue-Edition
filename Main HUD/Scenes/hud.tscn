@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ixadnea0fvxk"]
+[gd_scene load_steps=4 format=3 uid="uid://ixadnea0fvxk"]
 
 [ext_resource type="Script" path="res://Main HUD/Script/MainHUD.gd" id="1_3f0v0"]
+[ext_resource type="Script" path="res://Main HUD/Script/health_bar.gd" id="2_613hy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vvx0"]
 
 [node name="Control - HUD" type="Control"]
 layout_mode = 3
@@ -67,3 +70,34 @@ layout_mode = 2
 [node name="Button2" type="Button" parent="CanvasLayer/Potion Bar"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+
+[node name="Health_Bar" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_613hy")
+
+[node name="Health" type="ProgressBar" parent="CanvasLayer/Health_Bar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_right = 376.0
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4vvx0")
+step = 1.0
+
+[node name="Lose_Health" type="Button" parent="CanvasLayer/Health_Bar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+offset_right = 179.0
+offset_bottom = -53.0
+grow_vertical = 0
+text = "Lose Health"
