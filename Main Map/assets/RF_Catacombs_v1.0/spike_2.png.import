@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p1yi1kvhjr6t"
-path="res://.godot/imported/candleB_03.png-46eef02ff44eb8cea5ede4d5683329e8.ctex"
+uid="uid://olpeh4vtfpha"
+path="res://.godot/imported/spike_2.png-7c873807fa3ba0e0234507e6c0f6853c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RF_Catacombs_v1.0/candleB_03.png"
-dest_files=["res://.godot/imported/candleB_03.png-46eef02ff44eb8cea5ede4d5683329e8.ctex"]
+source_file="res://Main Map/assets/RF_Catacombs_v1.0/spike_2.png"
+dest_files=["res://.godot/imported/spike_2.png-7c873807fa3ba0e0234507e6c0f6853c.ctex"]
 
 [params]
 

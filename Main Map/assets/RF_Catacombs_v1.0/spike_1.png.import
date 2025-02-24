@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0yjw0ue4gpii"
-path="res://.godot/imported/torch_4.png-ca768b3e3acf29ad188088c42ab5fe2e.ctex"
+uid="uid://djin1crcfitgn"
+path="res://.godot/imported/spike_1.png-c3e845bfab34fa68134fb2f1e1a75852.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RF_Catacombs_v1.0/torch_4.png"
-dest_files=["res://.godot/imported/torch_4.png-ca768b3e3acf29ad188088c42ab5fe2e.ctex"]
+source_file="res://Main Map/assets/RF_Catacombs_v1.0/spike_1.png"
+dest_files=["res://.godot/imported/spike_1.png-c3e845bfab34fa68134fb2f1e1a75852.ctex"]
 
 [params]
 
