@@ -14,6 +14,7 @@ var current_health: int = max_health
 
 # initilize the Health bar as well as ignoring mouse so we can interact with other layers
 func _ready():
+	current_health = PlayerData.health
 	health_bar.value = current_health
 	update_health_color()
 	lose_health_button.connect("pressed", Callable(self, "on_lose_health_pressed"))
@@ -35,6 +36,9 @@ func lose_health(amount: int):
 		#DEBUG
 		print("You died and cannot lose more.")
 	update_health_bar()
+	
+	# Update PlayerData
+	PlayerData.health = current_health
 
 # Function to increase health
 func add_health(amount: int):
@@ -46,6 +50,9 @@ func add_health(amount: int):
 	if current_health > max_health:
 		current_health = max_health
 	update_health_bar()
+	
+	# Update PlayerData
+	PlayerData.health = current_health
 
 # Function to update the health bar UI
 func update_health_bar():

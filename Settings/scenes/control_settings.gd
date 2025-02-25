@@ -35,7 +35,7 @@ func _on_delete():
 	SaveManager.delete()
 	
 func toggle_keybind_menu():
-	keybind_menu.visibile = true
+	keybind_menu.visible = true
 	
 func _on_CloseMenuButton_pressed():
 	keybind_menu.visible = false
