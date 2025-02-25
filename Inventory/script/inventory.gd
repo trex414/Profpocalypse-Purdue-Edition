@@ -44,7 +44,9 @@ var item_items = [
 
 var spell_items = [
 	{ "type": ItemType.SPELL, "name": "HEAL", "texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
-	{ "type": ItemType.SPELL, "name": "SPEED", "texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
+	{ "type": ItemType.SPELL, "name": "SPEED", "texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
+	{ "type": ItemType.SPELL, "name": "EXP", "texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
+
 ]
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
@@ -106,8 +108,6 @@ func add_item():
 	if main_hud != null and new_item["type"] == ItemType.SPELL and main_hud.check_potion(new_item):
 		return
 		
-
-	
 	# Adds new item to the inventory array in Player Data
 	PlayerData.inventory.append(new_item)
 	print(PlayerData.get_game_state()) # Print for testing (confirm item is in inventory)
@@ -223,6 +223,26 @@ func use_item():
 			else:
 				print("ERROR: HealthContainer node not found in HUD.")
 
+		# EXP
+		elif spell_name == "EXP":
+			if main_hud == null:
+				print("ERROR: Main HUD reference is missing!")
+				return
+
+			var exp_manager = main_hud.get_node_or_null("CanvasLayer/EXP_Bar")  # Ensure correct path
+			if exp_manager != null:
+				exp_manager.add_exp(1)  # Adjust EXP amount if needed
+				print("EXP Potion used! Experience increased.")
+
+				# Reduce potion count
+				item["count"] -= 1
+				if item["count"] <= 0:
+					inventory[selected_slot] = null  # Remove if no more left
+
+				update_inventory()  # Refresh UI
+			else:
+				print("ERROR: EXPContainer node not found in HUD.")
+
 		# Handle other spells
 		elif spell_name in spell_messages:
 			print_centered(spell_messages[spell_name])  # Show the message
@@ -238,6 +258,7 @@ func use_item():
 		print("NOT USABLE")  # Item is not a spell
 	
 	deselect_item()
+
 
 		
 

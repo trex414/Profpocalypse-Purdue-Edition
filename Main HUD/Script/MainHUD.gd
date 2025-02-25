@@ -108,12 +108,12 @@ func hotbar_potion_slot_clicked(slot_index):
 
 	var potion_name = item["name"]
 
-	# Check if it's a health potion
-	if potion_name == "HEAL":  # Change this to match your potion name
-		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")  # Ensure correct path
+	# Handle Health Potion
+	if potion_name == "HEAL":  # Ensure the correct potion name
+		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")  # Adjust to match scene structure
 
 		if health_manager != null and health_manager.current_health < health_manager.max_health:
-			health_manager.add_health(20)  # Adjust healing amount if needed
+			health_manager.add_health(20)  # Adjust healing amount
 			
 			# Reduce potion count
 			if item["count"] > 1:
@@ -121,15 +121,34 @@ func hotbar_potion_slot_clicked(slot_index):
 			else:
 				potion_bar_slots[slot_index] = null  # Remove if no more left
 
-			print("Potion used! Health increased.")
+			print("Health Potion used! Health increased.")
 
 		else:
 			print("Health is already full. Cannot use potion.")
 
+	# Handle EXP Potion
+	elif potion_name == "EXP":  # Ensure the correct potion name
+		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")  # Ensure correct path to EXP system
+
+		if exp_manager != null:
+			exp_manager.add_exp(1)  # Adjust EXP amount
+			
+			# Reduce potion count
+			if item["count"] > 1:
+				item["count"] -= 1
+			else:
+				potion_bar_slots[slot_index] = null  # Remove if no more left
+
+			print("EXP Potion used! Gained experience.")
+
+		else:
+			print("ERROR: ExpContainer not found in HUD.")
+
 	else:
-		print("This is not a Health Potion.")
+		print("This is not a valid potion.")
 
 	update_potion_display()
+
 
 
 

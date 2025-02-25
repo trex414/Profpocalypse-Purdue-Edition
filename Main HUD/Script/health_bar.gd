@@ -48,11 +48,13 @@ func update_health_bar():
 
 # Function to change the health bar color based on health level
 func update_health_color():
-	if stylebox:  # Ensure the stylebox exists
-		if current_health > 50:
-			stylebox.bg_color = Color(0, .5, 0)  # Green
-		elif current_health > 20:
-			stylebox.bg_color = Color(.6, .5, 0)  # Yellow
-		else:
-			stylebox.bg_color = Color(.5, 0, 0)  # Red
+	var new_stylebox = StyleBoxFlat.new()  # Ensure separate instance
+	if current_health > 50:
+		new_stylebox.bg_color = Color(0.1, 0.7, 0.1)  # Green
+	elif current_health > 20:
+		new_stylebox.bg_color = Color(0.7, 0.7, 0.1)  # Yellow
+	else:
+		new_stylebox.bg_color = Color(0.7, 0.1, 0.1)  # Red
+
+	health_bar.add_theme_stylebox_override("fill", new_stylebox)  # Apply new instance
 	
