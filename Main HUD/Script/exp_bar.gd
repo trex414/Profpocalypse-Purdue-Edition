@@ -1,23 +1,31 @@
+# exp_bar.gd
+# This script manages the experience system for the player
+# This includes gaining EXP, losing EXP, leveling up
 extends Control
 
-@export var base_exp: int = 5  # EXP required for the first level
-@export var growth_factor: float = 1.5  # How much EXP increases per level
-var current_exp: int = 0  # Current EXP
-var current_level: int = 1  # Starting level
+# Build the leveling variable to make it more difficult each level
+@export var base_exp: int = 5  
+@export var growth_factor: float = 1.5  
+var current_exp: int = 0  
+var current_level: int = 1
 
-@onready var exp_bar = $EXP  # Reference to ProgressBar (Ensure it exists)
-@onready var level_label = $LevelLabel  # Reference to Label showing level
+# Call the required scene items
+@onready var exp_bar = $EXP
+@onready var level_label = $LevelLabel
 @onready var stylebox = exp_bar.get("theme_override_styles/fill")
 
+# initilize the EXP bar as well as ignoring mouse so we can interact with other layers
 func _ready():
-	update_exp_bar()  # Update UI to reflect loaded data
-	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	update_exp_bar()
 	reset_exp_data()
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
+# Function to bring the EXP bar back to the start of level 1
 func reset_exp_data():
 	current_exp = 0
 	current_level = 1
 	update_exp_bar()
+	# DEBUG
 	print("EXP data reset.")
 
 # Function to calculate EXP required for the next level
@@ -31,17 +39,18 @@ func add_exp(amount: int):
 
 	# Check for level up
 	while current_exp >= get_exp_to_next_level(current_level):
-		current_exp -= get_exp_to_next_level(current_level)  # Deduct required EXP
-		current_level += 1  # Increase level
+		current_exp -= get_exp_to_next_level(current_level)  
+		current_level += 1  
+		#DEBUG
 		print("Leveled up! New level:", current_level)
-
 	update_exp_bar()
 
 # Function to lose EXP
 func lose_exp(amount: int):
 	current_exp -= amount
 	if current_exp < 0:
-		current_exp = 0  # Prevent negative EXP
+		current_exp = 0
+	#DEBUG
 	print("Lost", amount, "EXP. Current EXP:", current_exp)
 	
 	update_exp_bar()
@@ -57,11 +66,10 @@ func update_exp_bar():
 	# Display Level and EXP as a fraction
 	level_label.text = "Level: " + str(current_level) + "             EXP: " + str(current_exp) + "/" + str(exp_needed)
 
-	update_exp_color()  # Adjust color based on level
+	update_exp_color() 
 
 # Function to adjust EXP bar color based on level
 func update_exp_color():
-	var new_stylebox = StyleBoxFlat.new()  # Create a NEW instance
-	new_stylebox.bg_color = Color(0, 0.5, 1)  # Set EXP bar color (Blue)
-
-	exp_bar.add_theme_stylebox_override("fill", new_stylebox)  # Apply to EXP Bar
+	var new_stylebox = StyleBoxFlat.new()  
+	new_stylebox.bg_color = Color(0, 0.5, 1)  
+	exp_bar.add_theme_stylebox_override("fill", new_stylebox)  

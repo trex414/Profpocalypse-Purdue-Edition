@@ -1,40 +1,34 @@
+# inventory.gd
+# This script manages the inventory system, including adding, removing, selecting, 
+# and using items. It also integrates with the HUD for potion usage.
 extends Control
 
 # Number of inventory slots
 const SLOT_COUNT = 12
-const COLUMNS = 3  # 3 slots per column
-const ROWS = 4  # 4 rows
+const COLUMNS = 3 
+const ROWS = 4
 
 # Slot container reference
-@onready var grid_container = $CanvasLayer/Panel/GridContainer  # Ensure you have a GridContainer in your scene
-@onready var backpack_bg = $CanvasLayer/Panel/BackpackBG  # Reference to TextureRect
+@onready var grid_container = $CanvasLayer/Panel/GridContainer
+@onready var backpack_bg = $CanvasLayer/Panel/BackpackBG
 @onready var delete_button = $CanvasLayer/Panel/Delete
 @onready var add_button = $"CanvasLayer/Panel/Add Item"
-@onready var message_label = $CanvasLayer/Panel/Label  # Add a Label node to UI
+@onready var message_label = $CanvasLayer/Panel/Label
 @onready var use_button = $"CanvasLayer/Panel/Use Usable"
 
+# Variables
 var main_hud = null 
-
-
-
 var inventory = InventoryManager.inventory
-
 # Inventory data structure
-var selected_slot = null  # Track selected item slot
+var selected_slot = null
 
 # Item types
 enum ItemType {ITEM , SPELL}
-
+# create messages when used to call 
 var spell_messages = {
 	"HEAL": "You have been healed",
 	"SPEED": "You are faster"
 }
-
-func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
-	var image = original_texture.get_image()
-	image.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)  # High-quality resizing
-	var new_texture = ImageTexture.create_from_image(image)
-	return new_texture
 
 # Sample items (for testing)
 var item_items = [
@@ -48,6 +42,15 @@ var spell_items = [
 	{ "type": ItemType.SPELL, "name": "EXP", "texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
 
 ]
+
+# Function to fix the sizing of the item images
+func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
+	var image = original_texture.get_image()
+	image.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)  # High-quality resizing
+	var new_texture = ImageTexture.create_from_image(image)
+	return new_texture
+
+# Inisilize 
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
 	$CanvasLayer/Panel/Label/ColorRect.visible = false
@@ -57,9 +60,14 @@ func _ready():
 	use_button.connect("pressed", Callable(self, "use_item"))
 	toggle_inventory()
 
+# Function to be able to global call main hud
+func set_main_hud(hud):
+	main_hud = hud
+
+# Function Allows inventory to open and close
 func toggle_inventory():
 	var panel = $CanvasLayer/Panel
-	panel.visible = !panel.visible  # Toggle visibility
+	panel.visible = !panel.visible
 	deselect_item()
 
 	# Update inventory UI when opening
@@ -68,10 +76,7 @@ func toggle_inventory():
 		print("Inventory opened.")
 	else:
 		print("Inventory closed.")
-#so it can see what the hud is doing
-func set_main_hud(hud):
-	main_hud = hud
-		
+
 # Function to generate inventory slots dynamically
 func setup_inventory():
 	# Clear any existing slots
@@ -81,17 +86,15 @@ func setup_inventory():
 	# Create new slots
 	for i in range(SLOT_COUNT):
 		var slot = Button.new()
-		slot.custom_minimum_size = Vector2(64, 64)  # Adjust slot size
-		slot.icon = preload("res://Inventory/assets/empty_slot1.png")  # Set button icon
-		slot.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER  # Center the icon
-		slot.expand_icon = true  # Ensure it resizes properly
+		slot.custom_minimum_size = Vector2(64, 64)
+		slot.icon = preload("res://Inventory/assets/empty_slot1.png")
+		slot.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		slot.expand_icon = true
 		slot.connect("pressed", Callable(self, "select_item").bind(i))
 		grid_container.add_child(slot)
-		inventory.append(null)  # Initialize inventory with empty slots
-	inventory = InventoryManager.inventory  # Use global inventory reference
-	update_inventory()  # Show existing items
-		
-	print("Inventory setup complete")
+		inventory.append(null)
+	inventory = InventoryManager.inventory
+	update_inventory()
 
 # Function to add an item to the inventory
 func add_item():
@@ -100,11 +103,11 @@ func add_item():
 	var new_item = null
 
 	if category == 0:
-		new_item = item_items[randi() % item_items.size()]  # Pick a random item
+		new_item = item_items[randi() % item_items.size()]
 	else:
-		new_item = spell_items[randi() % spell_items.size()]  # Pick a random spell
+		new_item = spell_items[randi() % spell_items.size()]
 		
-	#if the item is in the hot bar it will be added there instead of inventory slot (potions)
+	# if the item is in the hot bar it will be added there instead of inventory slot (potions)
 	if main_hud != null and new_item["type"] == ItemType.SPELL and main_hud.check_potion(new_item):
 		return
 		
@@ -124,24 +127,25 @@ func add_item():
 	# Find the first empty slot
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null:
-			inventory[i] = new_item.duplicate()  # Assign a copy of the item
+			inventory[i] = new_item.duplicate()  
 			update_inventory()
 			print("Added new item:", new_item["name"], "to slot", i)
 			return
 	
 	print("Inventory full! Cannot add more items.")
 
+# Function to update ui and reflect changes
 func update_inventory():
 	for i in range(SLOT_COUNT):
 		var slot = grid_container.get_child(i)
-		if slot is Button:  # Ensure it's a Button before assigning an icon
+		if slot is Button:
 			if inventory[i] != null:
 				slot.icon = inventory[i]["texture"]
-				slot.expand_icon = true  # Ensures the icon fits inside the button properly
+				slot.expand_icon = true
 				slot.text = str(inventory[i]["count"]) if inventory[i]["stackable"] else ""
 			else:
 				slot.icon = preload("res://Inventory/assets/empty_slot1.png")
-				slot.text = ""  # Clear text if slot is empty
+				slot.text = ""
 
 # Function to select an item slot
 func select_item(slot_index):
@@ -169,17 +173,44 @@ func select_item(slot_index):
 	# Highlight selected slot (only if still selected)
 	for i in range(SLOT_COUNT):
 		var slot = grid_container.get_child(i)
-		slot.modulate = Color(1, 1, 1, 1) if i != selected_slot else Color(1, 1, 0.5, 1)  # Yellow highlight
+		slot.modulate = Color(1, 1, 1, 1) if i != selected_slot else Color(1, 1, 0.5, 1)  
 
+# Function to un-select a specific slot
 func deselect_item():
 	if selected_slot != null:
 		# Reset all slots to default color
 		for i in range(SLOT_COUNT):
 			var slot = grid_container.get_child(i)
-			slot.modulate = Color(1, 1, 1, 1)  # Reset to normal color
+			slot.modulate = Color(1, 1, 1, 1)  
 
-		selected_slot = null  # Deselect item
-		update_inventory()  # Refresh UI
+		selected_slot = null 
+		update_inventory()  
+	
+	# Function to get selected item so we know the clicked item
+func get_selected_item():
+	if selected_slot != null and inventory[selected_slot] != null:
+		return inventory[selected_slot]  # Return the actual item dictionary
+	return null
+
+# Function to get stackables count to move it or use it
+func get_item_count(item_name):
+	var count = 0
+	for item in inventory:
+		if item != null and item["name"] == item_name:
+			count += item["count"]  
+	return count
+
+# Function to remove a specific amount of an item
+func remove_item(item_name, amount):
+	for i in range(SLOT_COUNT):
+		if inventory[i] != null and inventory[i]["name"] == item_name:
+			if inventory[i]["count"] > amount:
+				inventory[i]["count"] -= amount
+				return true 
+			elif inventory[i]["count"] == amount:
+				inventory[i] = null 
+				return true
+	return false  
 
 # Function to delete selected item
 func delete_item():
@@ -188,7 +219,8 @@ func delete_item():
 		update_inventory()
 		print("Deleted item from slot", selected_slot)
 		deselect_item()
-		
+
+# Function to use potions ((NED to USE Potion.gd later)
 func use_item():
 	if selected_slot == null or inventory[selected_slot] == null:
 		print("No item selected.")
@@ -206,18 +238,18 @@ func use_item():
 				print("ERROR: Main HUD reference is missing!")
 				return
 
-			var health_manager = main_hud.get_node_or_null("CanvasLayer/Health_Bar")  # Ensure correct path
+			var health_manager = main_hud.get_node_or_null("CanvasLayer/Health_Bar")  
 			if health_manager != null:
 				if health_manager.current_health < health_manager.max_health:
-					health_manager.add_health(20)  # Adjust healing amount if needed
+					health_manager.add_health(20)  
 					print("Potion used! Health increased.")
 
 					# Reduce potion count
 					item["count"] -= 1
 					if item["count"] <= 0:
-						inventory[selected_slot] = null  # Remove if no more left
+						inventory[selected_slot] = null  
 
-					update_inventory()  # Refresh UI
+					update_inventory() 
 				else:
 					print("Health is already full. Cannot use potion.")
 			else:
@@ -229,39 +261,36 @@ func use_item():
 				print("ERROR: Main HUD reference is missing!")
 				return
 
-			var exp_manager = main_hud.get_node_or_null("CanvasLayer/EXP_Bar")  # Ensure correct path
+			var exp_manager = main_hud.get_node_or_null("CanvasLayer/EXP_Bar")  
 			if exp_manager != null:
-				exp_manager.add_exp(1)  # Adjust EXP amount if needed
+				exp_manager.add_exp(1) 
 				print("EXP Potion used! Experience increased.")
 
 				# Reduce potion count
 				item["count"] -= 1
 				if item["count"] <= 0:
-					inventory[selected_slot] = null  # Remove if no more left
+					inventory[selected_slot] = null
 
-				update_inventory()  # Refresh UI
+				update_inventory()
 			else:
 				print("ERROR: EXPContainer node not found in HUD.")
 
 		# Handle other spells
 		elif spell_name in spell_messages:
-			print_centered(spell_messages[spell_name])  # Show the message
-			item["count"] -= 1  # Reduce stack by 1
+			print_centered(spell_messages[spell_name])
+			item["count"] -= 1
 			if item["count"] <= 0:
-				inventory[selected_slot] = null  # Remove if no more left
+				inventory[selected_slot] = null 
 			update_inventory()
 		else:
 			print("Unknown spell.")
 	
 	else:
-		print_centered("NOT USABLE")
-		print("NOT USABLE")  # Item is not a spell
+		print_centered("NOT USABLE") # Item is not a spell
 	
 	deselect_item()
 
-
-		
-
+# Function print a message in the center of the inventory
 func print_centered(message):
 	message_label.text = message
 	message_label.visible = true
@@ -275,6 +304,7 @@ func print_centered(message):
 		$CanvasLayer/Panel/Label/ColorRect.visible = false
 	)
 	
+# Function to move an item from inventory to the item bar
 func move_item_to_item_bar(slot_index, hud, bar_slot):
 	deselect_item()
 	if inventory[slot_index] != null:
@@ -283,6 +313,7 @@ func move_item_to_item_bar(slot_index, hud, bar_slot):
 		selected_slot = null  # Clear selection
 		update_inventory()
 
+# Function to move potion from inventory to potion bar
 func move_item_to_potion_bar(slot_index, hud, bar_slot):
 	deselect_item()
 	if inventory[slot_index] != null and inventory[slot_index]["type"] == ItemType.SPELL:
@@ -292,41 +323,19 @@ func move_item_to_potion_bar(slot_index, hud, bar_slot):
 		update_inventory()
 	else:
 		print("Only potions can go here!")
-		
-func get_selected_item():
-	if selected_slot != null and inventory[selected_slot] != null:
-		return inventory[selected_slot]  # Return the actual item dictionary
-	return null
-	
-func get_item_count(item_name):
-	var count = 0
-	for item in inventory:
-		if item != null and item["name"] == item_name:
-			count += item["count"]  # Sum up all instances
-	return count
 
-# Function to remove a specific amount of an item
-func remove_item(item_name, amount):
-	for i in range(SLOT_COUNT):
-		if inventory[i] != null and inventory[i]["name"] == item_name:
-			if inventory[i]["count"] > amount:
-				inventory[i]["count"] -= amount
-				return true  # Successful removal
-			elif inventory[i]["count"] == amount:
-				inventory[i] = null  # Remove completely if zero left
-				return true
-	return false  # Not enough items to remove
-	
+# Function move item from item bar to inventory
 func add_item_from_hotbar(item) -> bool:
 	deselect_item()
 	for i in range(SLOT_COUNT):
-		if inventory[i] == null:  # Find first empty slot
-			inventory[i] = item.duplicate()  # Assign a copy of the item
-			update_inventory()  # Refresh UI
+		if inventory[i] == null: 
+			inventory[i] = item.duplicate()  
+			update_inventory()
 			print("Added", item["name"], "to inventory slot", i)
-			return true  # Successfully added item
-	return false  # Inventory full
-	
+			return true 
+	return false
+
+# Function move potion from potion bar to inventory
 func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
 	deselect_item()
 	# Try to stack potion if it already exists in inventory
@@ -343,7 +352,7 @@ func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
 			inventory[i] = {
 				"type": ItemType.SPELL,
 				"name": potion_name,
-				"texture": potion_texture,  # Preserve the potion's texture
+				"texture": potion_texture,  
 				"stackable": true,
 				"count": potion_count
 			}
@@ -351,14 +360,14 @@ func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
 			print("Added new potion:", potion_name, "x", potion_count, "to slot", i)
 			return true
 
-	return false  # Inventory full
+	return false  
 
 func is_inventory_open() -> bool:
 	var panel = $CanvasLayer/Panel
-	return panel.visible  # Returns true if inventory is open, false otherwise
+	return panel.visible 
 	
 func has_space_for_item() -> bool:
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null:
-			return true  # At least one slot is free
-	return false  # Inventory is full
+			return true  
+	return false 

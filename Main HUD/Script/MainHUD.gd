@@ -1,22 +1,22 @@
+# MainHUD.gd
+# This script manages the plaers HUD( heads up display), handling the item bar and potion bar,
+# as well as controlling potiona usage, and interactions with the inventory 
 extends Control
 
-# References to Item and Potion bars
-@onready var item_bar = $"CanvasLayer/Item Bar"  # Ensure this matches your scene
+# Call the required scene items
+@onready var item_bar = $"CanvasLayer/Item Bar"
 @onready var potion_bar = $"CanvasLayer/Potion Bar"
+@onready var potions_manager = preload("res://Main HUD/Script/potion.gd").new()
+
 var inventory
-
-
 # Storage for HUD items
-var item_bar_slots = [null, null, null, null, null]  # 5 item slots
-var potion_bar_slots = [null, null]  # Only 2 potion slots
-var potion_counts = {}  # Dictionary to track potion counts separately
+var item_bar_slots = [null, null, null, null, null]
+var potion_bar_slots = [null, null]
 
+# initilize the main hud along with the hot bars
 func _ready():
-	# Ensure nodes exist
-	if not is_instance_valid(item_bar) or not is_instance_valid(potion_bar):
-		print("Error: HUD item or potion bar is missing! Check node names in the scene.")
-		return
 	setup_hotbars()
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	# Connect Item Bar Slots to a function for clicking
 	for i in range(item_bar.get_child_count()):
@@ -26,58 +26,48 @@ func _ready():
 	for i in range(potion_bar.get_child_count()):
 		var button = potion_bar.get_child(i)
 		button.connect("pressed", Callable(self, "hotbar_potion_slot_clicked").bind(i))
-		
 
+# Function to make sure inventory is a global call for main hud
+func set_inventory(inv):
+	inventory = inv
+
+# Function to make sure the item bar is set up correctly with sizing and nodes
 func setup_hotbars():
-	# Ensure Item Bar slots are set up correctly
 	for i in range(item_bar.get_child_count()):
 		var button = item_bar.get_child(i)
-		
-		# Ensure fixed size
-		button.custom_minimum_size = Vector2(64, 64)  
-		button.set_size(Vector2(64, 64))  
-		button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER  
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER  
-		button.expand_icon = false  # Prevent icon from stretching
-
-		# Force size anchoring
-		button.set_anchors_preset(Control.PRESET_CENTER)
-		button.size = Vector2(64, 64)
+		setup_hotbar_button(button)
 
 	# Ensure Potion Bar slots are set up correctly
 	for i in range(potion_bar.get_child_count()):
 		var button = potion_bar.get_child(i)
-		
-		# Ensure fixed size
-		button.custom_minimum_size = Vector2(64, 64)  
-		button.set_size(Vector2(64, 64))  
-		button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER  
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER  
-		button.expand_icon = false  # Prevent icon from stretching
+		setup_hotbar_button(button)
 
-		# Force size anchoring
-		button.set_anchors_preset(Control.PRESET_CENTER)
-		button.size = Vector2(64, 64)
-		print("Hotbars initialized with strictly fixed sizes.")
-	
-func set_inventory(inv):
-	inventory = inv
+# Function to set fixed size for each button
+func setup_hotbar_button(button):
+	button.custom_minimum_size = Vector2(64, 64)
+	button.set_size(Vector2(64, 64))
+	button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	button.expand_icon = false
+	button.set_anchors_preset(Control.PRESET_CENTER)
+	button.size = Vector2(64, 64)
 	
 
 # When clicking an Item Bar slot, try moving the selected inventory item
 func hotbar_slot_clicked(slot_index):
 	if inventory == null:
+		#DEBUG
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
 	# Check if the slot is already occupied
 	if item_bar_slots[slot_index] != null:
-		# Move item back to inventory
 		move_from_hotbar_to_inventory(slot_index)
 	elif inventory.selected_slot != null:
 		# Otherwise, move selected item from inventory to hotbar
 		var selected_item = inventory.get_selected_item()
 		if selected_item["type"] == inventory.ItemType.SPELL:
+			#DEBUG
 			print("Potions cannot be placed in the Item Bar!")
 			return
 		inventory.move_item_to_item_bar(inventory.selected_slot, self, slot_index)
@@ -85,6 +75,7 @@ func hotbar_slot_clicked(slot_index):
 
 func hotbar_potion_slot_clicked(slot_index):
 	if inventory == null:
+		#DEBUG
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
@@ -95,11 +86,22 @@ func hotbar_potion_slot_clicked(slot_index):
 		elif inventory.selected_slot != null:
 			var selected_item = inventory.get_selected_item()
 			if selected_item["type"] == inventory.ItemType.ITEM:
+				#DEBUG
 				print("Items cannot be placed in the Potion Bar!")
 				return
 			inventory.move_item_to_potion_bar(inventory.selected_slot, self, slot_index)
-		return  # Stop function execution here, don't use the potion
+		return
+	use_potion_bar(slot_index)
+	
+#Function to be able to use items when we can
+func use_item_bar(slot_index):
+	if item_bar_slots[slot_index] != null:
+		print("Used", item_bar_slots[slot_index]["name"])
+		item_bar_slots[slot_index] = null
+		item_bar.get_child(slot_index).icon = null
 
+#Function if the inventoy is closed you can click potions on potion bar and will be used
+func use_potion_bar(slot_index):
 	# If inventory is closed, use the potion instead
 	var item = potion_bar_slots[slot_index]
 	if item == null:
@@ -111,146 +113,27 @@ func hotbar_potion_slot_clicked(slot_index):
 	# Handle Health Potion
 	if potion_name == "HEAL":  # Ensure the correct potion name
 		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")  # Adjust to match scene structure
-
-		if health_manager != null and health_manager.current_health < health_manager.max_health:
-			health_manager.add_health(20)  # Adjust healing amount
-			
-			# Reduce potion count
-			if item["count"] > 1:
-				item["count"] -= 1
-			else:
-				potion_bar_slots[slot_index] = null  # Remove if no more left
-
-			print("Health Potion used! Health increased.")
-
-		else:
-			print("Health is already full. Cannot use potion.")
+		if potions_manager.use_health_potion(health_manager, item):
+			remove_potion(slot_index)
 
 	# Handle EXP Potion
 	elif potion_name == "EXP":  # Ensure the correct potion name
 		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")  # Ensure correct path to EXP system
-
-		if exp_manager != null:
-			exp_manager.add_exp(1)  # Adjust EXP amount
-			
-			# Reduce potion count
-			if item["count"] > 1:
-				item["count"] -= 1
-			else:
-				potion_bar_slots[slot_index] = null  # Remove if no more left
-
-			print("EXP Potion used! Gained experience.")
-
-		else:
-			print("ERROR: ExpContainer not found in HUD.")
-
+		if potions_manager.use_exp_potion(exp_manager, item):
+			remove_potion(slot_index)
 	else:
 		print("This is not a valid potion.")
 
 	update_potion_display()
-
-
-
-
-
-
-# Function to move an item from inventory to item bar
-func move_to_item_bar(item, slot_index):
-	if slot_index < item_bar_slots.size():
-		item_bar_slots[slot_index] = item
-		var button = item_bar.get_child(slot_index)
-		
-		# Set icon and prevent stretching
-		button.icon = item["texture"]
-		button.expand_icon = false  # Ensure icon does not stretch
-		button.custom_minimum_size = Vector2(64, 64)  
-		button.set_size(Vector2(64, 64))  
-		print("Moved", item["name"], "to Item Bar slot", slot_index)
-
-func move_to_potion_bar(item, slot_index):
-	if slot_index < potion_bar_slots.size():
-		var potion_name = item["name"]
-		var potion_count = inventory.get_item_count(potion_name)  # Get count from InventoryManager
-
-		if potion_count == 0:
-			print("No potions available in inventory.")
-			return
-
-		# If slot already has the same potion, update the count
-		if potion_bar_slots[slot_index] != null and potion_bar_slots[slot_index]["name"] == potion_name:
-			potion_bar_slots[slot_index]["count"] += potion_count
-		else:
-			if potion_bar_slots[slot_index] == null:
-				# Assign new potion with correct count
-				potion_bar_slots[slot_index] = { 
-					"name": potion_name, 
-					"texture": resize_texture(item["texture"], Vector2(64, 64)),  # Resize here
-					"count": potion_count 
-				}
-			else:
-				print("Potion slot is already occupied!")
-				return
-		
-		# Remove from inventory since it's now in HUD
-		inventory.remove_item(potion_name, potion_count)
-
-		# Update button UI with locked icon size
-		var button = potion_bar.get_child(slot_index)
-		button.icon = resize_texture(item["texture"], Vector2(64, 64))  # Apply resized texture
-		button.expand_icon = false  # Prevent automatic scaling
-		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER  # Center the icon
-		button.custom_minimum_size = Vector2(64, 64)  # Lock button size
-		button.set_size(Vector2(64, 64))  # Lock size
-		
-		update_potion_display()
-
-		
-func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
-	var image = original_texture.get_image()
-	image.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)  # High-quality resizing
-	var new_texture = ImageTexture.create_from_image(image)
-	return new_texture
-
-
-
-
-func use_potion_bar(slot_index):
+	
+func remove_potion(slot_index):
 	var item = potion_bar_slots[slot_index]
-	if item != null:
-		print("Used potion:", item["name"])
+	if item["count"] > 1:
+		item["count"] -= 1
+	else:
+		potion_bar_slots[slot_index] = null
 
-		# Reduce count
-		if item["count"] > 1:
-			item["count"] -= 1
-		else:
-			potion_bar_slots[slot_index] = null  # Remove if no more left
-		update_potion_display()
-
-# Use an item from the item bar
-func use_item_bar(slot_index):
-	if item_bar_slots[slot_index] != null:
-		print("Used", item_bar_slots[slot_index]["name"])
-		item_bar_slots[slot_index] = null  # Remove after use
-		item_bar.get_child(slot_index).icon = null  # Clear icon
-
-# Use a potion from the potion bar
-func update_potion_display():
-	for i in range(potion_bar_slots.size()):
-		var button = potion_bar.get_child(i)  # Get the potion button
-		if button is Button:  # Ensure it's a button before modifying
-			if potion_bar_slots[i] != null:
-				button.icon = resize_texture(potion_bar_slots[i]["texture"], Vector2(64, 64))  # Apply fixed-size texture
-				button.expand_icon = false  # Prevent stretching
-				button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER  # Keep icon centered
-				button.custom_minimum_size = Vector2(64, 64)  # Keep button size
-				button.set_size(Vector2(64, 64))  # Keep icon fixed
-				
-				# Display count only if > 1
-				button.text = str(potion_bar_slots[i]["count"]) if potion_bar_slots[i]["count"] > 1 else ""
-			else:
-				button.icon = null  # Clear icon
-				button.text = ""  # Clear count text
-
+#Function to check what type of potion is being added to the potion bar
 func check_potion(item) -> bool:
 	# Ensure the item is valid and is a potion
 	if item == null or item["type"] != inventory.ItemType.SPELL:
@@ -269,7 +152,8 @@ func check_potion(item) -> bool:
 			return true  # Indicate that it was handled
 
 	return false  # Potion was not in the hotbar, allow inventory to handle it
-	
+
+#Function to move items from item bar to inventory
 func move_from_hotbar_to_inventory(slot_index):
 	if inventory == null:
 		print("ERROR: Inventory not assigned to HUD!")
@@ -280,15 +164,15 @@ func move_from_hotbar_to_inventory(slot_index):
 		print("Inventory is closed. Cannot move item.")
 		return
 
-	var item = item_bar_slots[slot_index]  # Get the item from the hotbar
+	var item = item_bar_slots[slot_index]
 	if item == null:
 		print("No item in hotbar slot", slot_index)
-		return  # No item to move
+		return
 
 	# Check if the inventory has space before removing the item
 	if not inventory.has_space_for_item():
 		print("Inventory full! Item remains in hotbar.")
-		return  # Do not move the item, keep it in the hotbar
+		return
 
 	# Remove item from hotbar
 	item_bar_slots[slot_index] = null
@@ -302,8 +186,7 @@ func move_from_hotbar_to_inventory(slot_index):
 
 	print("Moved", item["name"], "from hotbar slot", slot_index, "to inventory")
 
-
-	
+# Function to move potions from protion bar to inventory
 func move_potion_from_hotbar_to_inventory(slot_index):
 	if inventory == null:
 		print("ERROR: Inventory not assigned to HUD!")
@@ -314,30 +197,100 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 		print("Inventory is closed. Cannot move potion.")
 		return
 
-	var potion = potion_bar_slots[slot_index]  # Get the potion from the hotbar
+	var potion = potion_bar_slots[slot_index]
 	if potion == null:
 		print("No potion in hotbar slot", slot_index)
-		return  # No potion to move
+		return
 
 	var potion_name = potion["name"]
 	var potion_count = potion["count"]
-	var potion_texture = potion["texture"]  # Preserve potion texture
+	var potion_texture = potion["texture"]
 
 	# Check if the inventory has space before removing the potion
 	if not inventory.has_space_for_item():
 		print("Inventory full! Potion remains in hotbar.")
-		return  # Do not move the potion, keep it in the hotbar
+		return 
 
 	# Remove potion from potion bar
 	potion_bar_slots[slot_index] = null
 	var button = potion_bar.get_child(slot_index)
-	button.icon = null  # Clear the potion icon
-	button.text = ""  # Clear the potion count text
+	button.icon = null
+	button.text = ""
 
 	# Add potion back to inventory with correct count and texture
 	var success = inventory.add_potion_from_hotbar(potion_name, potion_count, potion_texture)
 	if not success:
 		print("Inventory full! Cannot move potion from hotbar.")
-
-	print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
 	
+#	DEBUG
+	print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
+
+# Function to move an item from inventory to item bar
+func move_to_item_bar(item, slot_index):
+	if slot_index < item_bar_slots.size():
+		item_bar_slots[slot_index] = item
+		var button = item_bar.get_child(slot_index)
+		# Set icon and prevent stretching
+		button.icon = item["texture"]
+		setup_hotbar_button(button)
+		#Debug
+		print("Moved", item["name"], "to Item Bar slot", slot_index)
+
+# Function to move potion from inventory to portion bar
+func move_to_potion_bar(item, slot_index):
+	if slot_index < potion_bar_slots.size():
+		var potion_name = item["name"]
+		var potion_count = inventory.get_item_count(potion_name)  
+
+		if potion_count == 0:
+			print("No potions available in inventory.")
+			return
+
+		# If slot already has the same potion, update the count
+		if potion_bar_slots[slot_index] != null and potion_bar_slots[slot_index]["name"] == potion_name:
+			potion_bar_slots[slot_index]["count"] += potion_count
+		else:
+			if potion_bar_slots[slot_index] == null:
+				# Assign new potion with correct count
+				potion_bar_slots[slot_index] = { 
+					"name": potion_name, 
+					"texture": resize_texture(item["texture"], Vector2(64, 64)),
+					"count": potion_count 
+				}
+			else:
+				print("Potion slot is already occupied!")
+				return
+		
+		# Remove from inventory since it's now in HUD
+		inventory.remove_item(potion_name, potion_count)
+
+		# Update button UI with locked icon size
+		var button = potion_bar.get_child(slot_index)
+		button.icon = resize_texture(item["texture"], Vector2(64, 64))  # Apply resized texture
+		setup_hotbar_button(button)
+		update_potion_display()
+
+# Use a potion from the potion bar
+func update_potion_display():
+	for i in range(potion_bar_slots.size()):
+		var button = potion_bar.get_child(i)
+		if button is Button:
+			if potion_bar_slots[i] != null:
+				button.icon = resize_texture(potion_bar_slots[i]["texture"], Vector2(64, 64))
+				button.expand_icon = false
+				button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				button.custom_minimum_size = Vector2(64, 64)
+				button.set_size(Vector2(64, 64))
+				
+				# Display count only if > 1
+				button.text = str(potion_bar_slots[i]["count"]) if potion_bar_slots[i]["count"] > 1 else ""
+			else:
+				button.icon = null
+				button.text = ""
+
+#Function to fix textures on the item and potion displays
+func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
+	var image = original_texture.get_image()
+	image.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)
+	var new_texture = ImageTexture.create_from_image(image)
+	return new_texture

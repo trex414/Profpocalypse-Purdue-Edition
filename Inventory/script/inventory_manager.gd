@@ -1,7 +1,10 @@
+# inventory_manager.gd
+# This script is built to inisilize the inventory
 extends Node
 
-const SLOT_COUNT = 12  # Ensure it matches your main script
-var inventory = []  # Stores inventory items in memory
+# inventory variables
+const SLOT_COUNT = 12
+var inventory = []
 
 func _ready():
 	# Initialize empty inventory if not already set
