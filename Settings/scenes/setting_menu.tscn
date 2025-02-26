@@ -77,12 +77,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Key Bindings"
 
-[node name="Control-Key Binds" type="Control" parent="Panel/VBoxContainer/Key Binds Button"]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
@@ -91,3 +85,41 @@ custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "CLOSE"
+
+[node name="Control - Key Bind Menu" type="Control" parent="Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Control - Key Bind Menu"]
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xc3l3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer/Control - Key Bind Menu"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Close Keybind Menu" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Close Menu"
