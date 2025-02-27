@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0mcfe40m7h7i"]
+
+[ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
+[ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
+[ext_resource type="Script" path="res://Inventory/scenes/temporary_player.gd" id="3_wfrby"]
+[ext_resource type="Texture2D" uid="uid://da60ixcyfybjq" path="res://CharacterImages/WhiteSquare.png" id="4_oclj6"]
+
+[node name="TestMain" type="Node2D"]
+script = ExtResource("1_nsodu")
+
+[node name="Menu UI" type="CanvasLayer" parent="."]
+
+[node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_2ypww")]
+
+[node name="TemporaryPlayer" type="CharacterBody2D" parent="."]
+script = ExtResource("3_wfrby")
+
+[node name="Sprite2D" type="Sprite2D" parent="TemporaryPlayer"]
+position = Vector2(580, 302)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_oclj6")
