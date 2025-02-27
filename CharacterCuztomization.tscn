@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwfmcu06okyh6"]
+
+[ext_resource type="Theme" uid="uid://bb6vwl0h1flws" path="res://FlatUI4/kenneyUI-blue.tres" id="1_6m514"]
+[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://FlatUI4/kenneyUI-yellow.tres" id="2_7ehhi"]
+[ext_resource type="Script" path="res://change_face.gd" id="3_gce06"]
+
+[sub_resource type="GDScript" id="GDScript_cb5r0"]
+script/source = "extends MenuButton
+
+
+
+
+
+
+
+func _on_pressed() -> void:
+	
+	get_tree().quit()
+"
+
+[node name="CharacterCuztomization" type="Node2D"]
+
+[node name="name" type="TextEdit" parent="."]
+anchors_preset = -1
+anchor_left = -3.053
+anchor_top = -4.719
+anchor_right = -3.053
+anchor_bottom = -4.719
+offset_left = 388.0
+offset_top = 483.0
+offset_right = 797.0
+offset_bottom = 533.0
+placeholder_text = "name your character!"
+
+[node name="save" type="MenuButton" parent="."]
+offset_left = 493.0
+offset_top = 567.0
+offset_right = 656.324
+offset_bottom = 609.251
+theme = ExtResource("1_6m514")
+text = "SAVE"
+flat = false
+
+[node name="header" type="MenuButton" parent="."]
+offset_left = 417.0
+offset_top = 47.0
+offset_right = 735.324
+offset_bottom = 89.251
+theme = ExtResource("1_6m514")
+text = "CUSTOMIZE YOUR CHARACTER"
+flat = false
+script = SubResource("GDScript_cb5r0")
+
+[node name="change face" type="MenuButton" parent="."]
+offset_left = 51.0
+offset_top = 385.0
+offset_right = 369.324
+offset_bottom = 427.251
+theme = ExtResource("2_7ehhi")
+text = "change face"
+flat = false
+script = ExtResource("3_gce06")
+
+[node name="change features" type="MenuButton" parent="."]
+offset_left = 431.0
+offset_top = 383.0
+offset_right = 749.324
+offset_bottom = 425.251
+theme = ExtResource("2_7ehhi")
+text = "change features"
+flat = false
+script = SubResource("GDScript_cb5r0")
+
+[node name="change hair" type="MenuButton" parent="."]
+offset_left = 825.0
+offset_top = 379.0
+offset_right = 1143.32
+offset_bottom = 421.251
+theme = ExtResource("2_7ehhi")
+text = "change hair"
+flat = false
+script = SubResource("GDScript_cb5r0")
+
+[node name="face" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(572, 239)
+scale = Vector2(0.75, 0.708333)
+
+[node name="features" type="Sprite2D" parent="face"]
+texture_filter = 1
+position = Vector2(-2.66669, 3.52942)
+scale = Vector2(1.11565, 1.18954)
+
+[node name="hair" type="Sprite2D" parent="face/features"]
+texture_filter = 1
+position = Vector2(11.3733, -44.1924)
+scale = Vector2(0.992712, 1.05621)
+
+[node name="pants" type="Sprite2D" parent="."]
+position = Vector2(362, 549)
+
+[node name="shirt" type="Sprite2D" parent="."]
+position = Vector2(362, 549)
+
+[node name="shoes" type="Sprite2D" parent="."]
+position = Vector2(362, 549)
+
+[connection signal="pressed" from="change face" to="change face" method="_on_change_face_pressed"]
+[connection signal="pressed" from="change features" to="change face" method="_on_change_features_pressed"]
+[connection signal="pressed" from="change hair" to="change face" method="_on_change_hair_pressed"]
