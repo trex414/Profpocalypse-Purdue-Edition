@@ -1,0 +1,17 @@
+{
+	"arm2_texture": "res://kenney_modular-characters/PNG/Skin/Tint 6/tint6_arm.png",
+	"arm_texture": "res://kenney_modular-characters/PNG/Skin/Tint 6/tint6_arm.png",
+	"belt_texture": "kenney_modular-characters/PNG/belt.png",
+	"face_texture": "res://kenney_modular-characters/PNG/Skin/Tint 6/tint6_head.png",
+	"features_texture": "res://kenney_modular-characters/PNG/Face/face3.png",
+	"hair_texture": "res://kenney_modular-characters/PNG/Hair/Blonde/blondeMan5.png",
+	"hand2_texture": "res://kenney_modular-characters/PNG/Skin/Tint 6/tint6_hand.png",
+	"hand_texture": "res://kenney_modular-characters/PNG/Skin/Tint 6/tint6_hand.png",
+	"name": "soham",
+	"neck_texture": "res://kenney_modular-characters/PNG/Skin/Tint 6/tint6_neck.png",
+	"pant2_texture": "res://kenney_modular-characters/PNG/Pants/pantsPine_long.png",
+	"pant_texture": "res://kenney_modular-characters/PNG/Pants/pantsPine_long.png",
+	"shirt_texture": "res://kenney_modular-characters/PNG/Shirts/redShirt7.png",
+	"shoe1_texture": "res://kenney_modular-characters/PNG/Shoes/BlueShoe3.png",
+	"shoe2_texture": "res://kenney_modular-characters/PNG/Shoes/BlueShoe3.png"
+}
