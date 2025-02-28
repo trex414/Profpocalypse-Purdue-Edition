@@ -20,6 +20,8 @@ func _ready():
 	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
 	add_child(QuestMenuScene)
 	
+	QuestMenuScene.inventory = inventory
+	
 
 	# Pass inventory reference to HUD
 	hud.set_inventory(inventory)

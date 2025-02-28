@@ -428,3 +428,102 @@ func has_space_for_item() -> bool:
 		if inventory[i] == null:
 			return true  
 	return false 
+	
+#
+# TEST TO ADD ITEMS 
+#
+#
+func add_named_item(item_name: String) -> bool:
+	var item_data = null
+
+	# Lookup table - match quest reward names to actual item definitions
+	match item_name:
+		"Health Potion":
+			item_data = {
+				"type": ItemType.SPELL,
+				"name": "HEAL",
+				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": 1
+			}
+		"Speed Potion":
+			item_data = {
+				"type": ItemType.SPELL,
+				"name": "SPEED",
+				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": 1
+			}
+		"EXP Potion":
+			item_data = {
+				"type": ItemType.SPELL,
+				"name": "EXP",
+				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": 1
+			}
+		"Pickaxe":
+			item_data = {
+				"type": ItemType.ITEM,
+				"name": "ITEM1",
+				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
+				"stackable": false,
+				"count": 1
+			}
+		"Axe":
+			item_data = {
+				"type": ItemType.ITEM,
+				"name": "ITEM2",
+				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
+				"stackable": false,
+				"count": 1
+			}
+		_:
+			print("Unknown item name:", item_name)
+			return false
+
+	# Handle potions going directly to the potion bar if there’s space
+	if main_hud != null and item_data["type"] == ItemType.SPELL:
+		if main_hud.check_potion(item_data):
+			return true  # Added to potion bar, don't need to add to inventory
+
+	# Try to stack if item already exists and is stackable
+	if item_data["stackable"]:
+		for i in range(SLOT_COUNT):
+			if inventory[i] != null and inventory[i]["name"] == item_data["name"]:
+				inventory[i]["count"] += 1
+				
+				PlayerData.inventory = inventory.duplicate(true)
+				update_inventory()
+				print("Stacked item:", item_data["name"], "new count:", inventory[i]["count"])
+				return true
+
+	# If no stack found, find first empty slot in inventory
+	for i in range(SLOT_COUNT):
+		if inventory[i] == null:
+			inventory[i] = item_data.duplicate()
+			
+			PlayerData.inventory = inventory.duplicate(true)
+			update_inventory()
+			print("Added new item:", item_data["name"], "to slot", i)
+			return true
+
+	# --- NEW LOGIC ---
+	# If inventory is full, check the item bar or potion bar (depending on type)
+	if main_hud != null:
+		if item_data["type"] == ItemType.SPELL:
+			for j in range(PlayerData.potion_bar.size()):
+				if PlayerData.potion_bar[j] == null:
+					main_hud.move_to_potion_bar(item_data, j)
+					print("Added to potion bar slot", j)
+					return true
+		elif item_data["type"] == ItemType.ITEM:
+			for j in range(PlayerData.item_bar.size()):
+				if PlayerData.item_bar[j] == null:
+					main_hud.move_to_item_bar(item_data, j)
+					print("Added to item bar slot", j)
+					return true
+
+	# If nothing worked, inventory AND hotbar are full
+	print("Inventory and item/potion bars are full! Cannot add item:", item_data["name"])
+	return false

@@ -28,15 +28,16 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 60
 
 [node name="QuestListContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
 [node name="QuestListLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 2
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 24
 text = "Available Quests"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer"]
@@ -46,18 +47,35 @@ size_flags_vertical = 3
 [node name="QuestListContent" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer/ScrollContainer"]
 layout_mode = 2
 
+[node name="QuestLocked" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 24
+text = "Locked Quests"
+
+[node name="ScrollContainerLocked" type="ScrollContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuestListContent" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer/ScrollContainerLocked"]
+layout_mode = 2
+
 [node name="QuestDetailsContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 30
 
 [node name="CurrentQuestLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 
 [node name="RewardPreview" type="VBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 
 [node name="DescriptionLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 
 [node name="ButtonContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer"]
 layout_mode = 2
