@@ -54,6 +54,7 @@ func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
 func _ready():
 	backpack_bg.texture = preload("res://Inventory/assets/Backpack.png")  # Load backpack image
 	$CanvasLayer/Panel/Label/ColorRect.visible = false
+	inventory = PlayerData.inventory.duplicate(true)
 	setup_inventory()
 	add_button.connect("pressed", Callable(self, "add_item"))
 	delete_button.connect("pressed", Callable(self, "delete_item"))
@@ -112,7 +113,8 @@ func add_item():
 		return
 		
 	# Adds new item to the inventory array in Player Data
-	PlayerData.inventory.append(new_item)
+	PlayerData.inventory = inventory.duplicate(true)
+	
 	print(PlayerData.get_game_state()) # Print for testing (confirm item is in inventory)
 
 	# Try to stack if item is stackable
@@ -120,6 +122,9 @@ func add_item():
 		for i in range(SLOT_COUNT):
 			if inventory[i] != null and inventory[i]["name"] == new_item["name"]:
 				inventory[i]["count"] += 1
+				
+				PlayerData.inventory = inventory.duplicate(true)
+				
 				update_inventory()
 				print("Stacked item in slot", i, "new count:", inventory[i]["count"])
 				return
@@ -127,7 +132,10 @@ func add_item():
 	# Find the first empty slot
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null:
-			inventory[i] = new_item.duplicate()  
+			inventory[i] = new_item.duplicate()
+			
+			PlayerData.inventory = inventory.duplicate(true)
+			
 			update_inventory()
 			print("Added new item:", new_item["name"], "to slot", i)
 			return
@@ -168,6 +176,9 @@ func select_item(slot_index):
 
 		# Reset selection after moving
 		selected_slot = null
+		
+		PlayerData.inventory = inventory.duplicate(true)
+		
 		update_inventory()
 
 	# Highlight selected slot (only if still selected)
@@ -210,12 +221,18 @@ func remove_item(item_name, amount):
 			elif inventory[i]["count"] == amount:
 				inventory[i] = null 
 				return true
-	return false  
+	return false
+	
+	PlayerData.inventory = inventory.duplicate(true)
+
 
 # Function to delete selected item
 func delete_item():
 	if selected_slot != null and inventory[selected_slot] != null:
 		inventory[selected_slot] = null
+		
+		PlayerData.inventory = inventory.duplicate(true)
+		
 		update_inventory()
 		print("Deleted item from slot", selected_slot)
 		deselect_item()
@@ -249,6 +266,8 @@ func use_item():
 					if item["count"] <= 0:
 						inventory[selected_slot] = null  
 
+					PlayerData.inventory = inventory.duplicate(true)
+
 					update_inventory() 
 				else:
 					print("Health is already full. Cannot use potion.")
@@ -271,6 +290,8 @@ func use_item():
 				if item["count"] <= 0:
 					inventory[selected_slot] = null
 
+					PlayerData.inventory = inventory.duplicate(true)
+
 				update_inventory()
 			else:
 				print("ERROR: EXPContainer node not found in HUD.")
@@ -280,7 +301,10 @@ func use_item():
 			print_centered(spell_messages[spell_name])
 			item["count"] -= 1
 			if item["count"] <= 0:
-				inventory[selected_slot] = null 
+				inventory[selected_slot] = null
+				
+			PlayerData.inventory = inventory.duplicate(true)
+			
 			update_inventory()
 		else:
 			print("Unknown spell.")
@@ -309,8 +333,12 @@ func move_item_to_item_bar(slot_index, hud, bar_slot):
 	deselect_item()
 	if inventory[slot_index] != null:
 		hud.move_to_item_bar(inventory[slot_index], bar_slot)  # Move to HUD
+		PlayerData.item_bar[bar_slot] = inventory[slot_index]
 		inventory[slot_index] = null  # Remove from inventory
 		selected_slot = null  # Clear selection
+		
+		PlayerData.inventory = inventory.duplicate(true)
+		
 		update_inventory()
 
 # Function to move potion from inventory to potion bar
@@ -318,8 +346,12 @@ func move_item_to_potion_bar(slot_index, hud, bar_slot):
 	deselect_item()
 	if inventory[slot_index] != null and inventory[slot_index]["type"] == ItemType.SPELL:
 		hud.move_to_potion_bar(inventory[slot_index], bar_slot)
+		PlayerData.potion_bar[bar_slot] = inventory[slot_index]
 		inventory[slot_index] = null
 		selected_slot = null
+		
+		PlayerData.inventory = inventory.duplicate(true)
+		
 		update_inventory()
 	else:
 		print("Only potions can go here!")
@@ -329,7 +361,14 @@ func add_item_from_hotbar(item) -> bool:
 	deselect_item()
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null: 
-			inventory[i] = item.duplicate()  
+			inventory[i] = item.duplicate()
+			
+			for j in range(PlayerData.item_bar.size()):
+				if PlayerData.item_bar[j] == item:
+					PlayerData.item_bar[j] = null
+			
+			PlayerData.inventory = inventory.duplicate()
+			
 			update_inventory()
 			print("Added", item["name"], "to inventory slot", i)
 			return true 
@@ -342,6 +381,16 @@ func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
 	for i in range(SLOT_COUNT):
 		if inventory[i] != null and inventory[i]["name"] == potion_name:
 			inventory[i]["count"] += potion_count
+			
+			for j in range(PlayerData.potion_bar.size()):
+				if PlayerData.potion_bar[j].name == potion_name:
+					if PlayerData.potion_bar[j].count > potion_count:
+						PlayerData.potion_bar[j].count -= potion_count
+					else:
+						PlayerData.potion_bar[j] = null
+			
+			PlayerData.inventory = inventory.duplicate(true)
+			
 			update_inventory()
 			print("Stacked", potion_count, potion_name, "in inventory slot", i)
 			return true
@@ -356,6 +405,14 @@ func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
 				"stackable": true,
 				"count": potion_count
 			}
+			for j in range(PlayerData.potion_bar.size()):
+				if PlayerData.potion_bar[j] == null || PlayerData.potion_bar[j].is_empty():
+					continue
+				if PlayerData.potion_bar[j].name == potion_name:
+					PlayerData.potion_bar[j] = null
+			
+			PlayerData.inventory = inventory.duplicate(true)
+			
 			update_inventory()
 			print("Added new potion:", potion_name, "x", potion_count, "to slot", i)
 			return true

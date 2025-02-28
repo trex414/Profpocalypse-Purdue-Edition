@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d00ws7wljnit4"
-path="res://.godot/imported/UIpack_vector.svg-d242c3f23e0dd1a7d173000f14b2a618.ctex"
+path="res://.godot/imported/UIpack_vector.svg-137fe684f3034203db452ee2db8c8ccd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://FlatUI4/UIpack_vector.svg"
-dest_files=["res://.godot/imported/UIpack_vector.svg-d242c3f23e0dd1a7d173000f14b2a618.ctex"]
+source_file="res://CharacterCustomization/UIpack_vector.svg"
+dest_files=["res://.godot/imported/UIpack_vector.svg-137fe684f3034203db452ee2db8c8ccd.ctex"]
 
 [params]
 

@@ -2,6 +2,8 @@
 
 extends Node
 
+signal save_data_loaded # Signal so "inventory" waits for save to load
+
 var save_path = "user://save_game.json"
 
 # Called when the node enters the scene tree for the first time.
@@ -36,9 +38,8 @@ func load():
 		else:
 			print("Unsuccessful game load.")
 	else:
-		print("No save found.")
-		# Could choose to create a new game here, if there is no save file found.
-		# PlayerData.set_default_values()
+		print("File does not exist")
+		PlayerData.set_default_values()
 
 func delete():
 	# TODO: Make delete game force user back to main menu.

@@ -16,11 +16,11 @@ var current_level: int = 1
 
 # initilize the EXP bar as well as ignoring mouse so we can interact with other layers
 func _ready():
-	update_exp_bar()
-	reset_exp_data()
-	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	current_level = PlayerData.level
 	current_exp = PlayerData.exp
+	update_exp_bar()
+	#reset_exp_data()
+	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 # Function to bring the EXP bar back to the start of level 1
 func reset_exp_data():
@@ -47,11 +47,12 @@ func add_exp(amount: int):
 		current_level += 1
 		#DEBUG
 		print("Leveled up! New level:", current_level)
-	update_exp_bar()
-	
+		
 	# Update PlayerData
 	PlayerData.exp = current_exp
 	PlayerData.level = current_level
+	
+	update_exp_bar()
 
 # Function to lose EXP
 func lose_exp(amount: int):
@@ -61,10 +62,11 @@ func lose_exp(amount: int):
 	#DEBUG
 	print("Lost", amount, "EXP. Current EXP:", current_exp)
 	
-	update_exp_bar()
-	
 	# Update PlayerData
 	PlayerData.exp = current_exp
+	
+	update_exp_bar()
+
 
 # Function to update the EXP bar UI
 func update_exp_bar():
