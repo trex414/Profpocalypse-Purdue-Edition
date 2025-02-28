@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://cepj55ggdtxwj"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_rd2i5"]
+
+[resource]
+script = ExtResource("1_rd2i5")
+quest_name = "OpenInventory"
+description = "The player needs to open the inventory"
+prerequisites = Array[String]([])
+rewards = Array[String](["Health Potion"])
+is_completed = false

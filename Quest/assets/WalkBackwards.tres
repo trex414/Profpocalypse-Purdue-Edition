@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://dfyo4d63y76eb"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_pwrcx"]
+
+[resource]
+script = ExtResource("1_pwrcx")
+quest_name = "Walk Forward"
+description = "The  Player needs to move forward for 1 second"
+prerequisites = Array[String](["WalkForward"])
+rewards = Array[String](["Health Potion"])
+is_completed = false

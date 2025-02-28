@@ -2,6 +2,7 @@ extends Node2D
 
 var inventory = null
 var hud = null
+var QuestMenuScene = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -14,6 +15,11 @@ func _ready():
 	# Load HUD
 	hud = load("res://Main HUD/Scenes/hud.tscn").instantiate()
 	add_child(hud)
+	
+	# Load Quest Screen
+	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
+	add_child(QuestMenuScene)
+	
 
 	# Pass inventory reference to HUD
 	hud.set_inventory(inventory)
@@ -36,4 +42,12 @@ func _process(delta):
 			print("Inventory opened.")
 		else:
 			inventory.toggle_inventory()  # Toggle visibility
+	if Input.is_action_just_pressed("QuestMenu"):
+		if QuestMenuScene == null:
+			QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
+			add_child(QuestMenuScene)
+			print("QuestMenu opened.")
+		else:
+			QuestMenuScene.toggle_questmenu()
+			
 			
