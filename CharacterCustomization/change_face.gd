@@ -4,7 +4,7 @@ extends MenuButton
 
 @onready var face_sprite = $/root/CharacterCuztomization/face  
 @onready var features_sprite = $/root/CharacterCuztomization/face/features
-@onready var hair_sprite = $/root/CharacterCuztomization/face/features/hair
+@onready var hair_sprite = $/root/CharacterCuztomization/face/hair
 
 
 var current_tint_index = 0  # Tracks the current tint selection
