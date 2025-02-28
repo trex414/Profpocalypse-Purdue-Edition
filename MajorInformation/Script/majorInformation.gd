@@ -29,31 +29,38 @@ extends Control
 	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
 	]}
 ]
-# Reference to the GridContainer (assign this in the editor or find it dynamically)
-@onready var grid = $GridContainer
-@onready var class_template = $GridContainer/ClassTemplate  # A pre-made template
+
+var current_semester: String = "Freshman Fall"  # Change this to switch displayed semester
+
+@onready var grid_container = $CanvasLayer/Panel/TabContainer/CurrentSemester
 
 func _ready():
-	populate_classes()
+	update_display()
 
-func populate_classes():
-	for i in range(len(course_list)):
-		if course_list[i].in_progress == false:
-			var class_data = course_list[i]
-		
-			# Duplicate the template for each class
-			var class_entry = class_template.duplicate()
-			grid.add_child(class_entry)  
+func update_display():
+	# Clear previous labels
+	clear_current_semester()
 
-			# Assign values to labels
-			class_entry.get_node("Label").text = class_data["name"]
-			class_entry.get_node("Professor").text = "Prof: " + class_data["professor"]
-			class_entry.get_node("Location").text = "Location: " + class_data["location"]
-			class_entry.get_node("Time").text = "Time: " + class_data["time"]
-			class_entry.get_node("Description").text = class_data["description"]
-		
-			# Set progress bar value
-			class_entry.get_node("ProgressBar").value = class_data["progress"]
+	# Find the selected semester
+	for semester in course_list:
+		if semester["semester"] == current_semester:
+			var courses = semester["courses"]
+			for course in courses:
+				var vbox = VBoxContainer.new()  # Create a column for each course
+				
+				# Add labels for each course field
+				for field in ["name", "professor", "location", "time", "description"]:
+					var label = Label.new()
+					label.text = field.capitalize() + ": " + course[field]
+					vbox.add_child(label)
 
-		# Hide the original template (so it doesn’t appear)
-	class_template.hide()
+					grid_container.add_child(vbox)  # Add the column to the gri
+			break  # Stop searching once we find the semester
+
+func set_semester(semester_name: String):
+	current_semester = semester_name
+	update_display()  # Refresh the UI
+	
+func clear_current_semester():
+	for child in grid_container.get_children():
+		child.queue_free()

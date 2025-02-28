@@ -70,47 +70,38 @@ offset_bottom = 548.0
 tab_alignment = 1
 current_tab = 0
 
-[node name="Current Semester" type="GridContainer" parent="CanvasLayer/Panel/TabContainer"]
+[node name="CurrentSemester" type="GridContainer" parent="CanvasLayer/Panel/TabContainer"]
 layout_mode = 2
 columns = 2
 metadata/_tab_index = 0
 
-[node name="firstClassName" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
-layout_mode = 2
-text = "CS 180"
-horizontal_alignment = 1
-
-[node name="secondClassName" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
-layout_mode = 2
-text = "None"
-
-[node name="firstProfName" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
+[node name="firstProfName" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
 layout_mode = 2
 text = "Professor Dunsmore"
 horizontal_alignment = 1
 
-[node name="secondProfName" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
+[node name="secondProfName" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
 layout_mode = 2
 
-[node name="firstLocation" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="secondLocation" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
-layout_mode = 2
-
-[node name="firstTime" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
+[node name="firstLocation" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="secondTime" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
+[node name="secondLocation" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
 layout_mode = 2
 
-[node name="firstDescription" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
+[node name="firstTime" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="secondDescription" type="Label" parent="CanvasLayer/Panel/TabContainer/Current Semester"]
+[node name="secondTime" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
+layout_mode = 2
+
+[node name="firstDescription" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="secondDescription" type="Label" parent="CanvasLayer/Panel/TabContainer/CurrentSemester"]
 layout_mode = 2
 
 [node name="Plan of Study" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
