@@ -7,6 +7,7 @@ extends Control
 @onready var keybind_menu = $"Panel/VBoxContainer/Control - Key Bind Menu"
 @onready var close_keybind_button = $"Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/Close Keybind Menu"
 @onready var delete_confirm_dialog = $DeleteConfirmation
+@onready var HUD_settings_button = $"../Menu Button"
 
 var is_open = false
 var keybind_menu_open = false
@@ -29,8 +30,20 @@ func _input(event):
 		
 
 func toggle_menu():
+	if self.visible:
+		# Close the menu first, then toggle the HUD button
+		self.visible = false
+		
+		# Now hide the HUD button
+		HUD_settings_button.visible = true
+	else:
+		# Show the menu first
+		self.visible = true
+		
+		# Hide the HUD button
+		HUD_settings_button.visible = false
+
 	is_open = !is_open
-	visible = is_open
 	#get_tree().paused = is_open    # ADD THIS TO PAUSE GAME WHEN SETTINGS IS OPEN
 	
 	if not is_open:

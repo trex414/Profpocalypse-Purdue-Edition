@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://bds2pxxjnh57o"]
+[gd_scene load_steps=7 format=3 uid="uid://bds2pxxjnh57o"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
 [ext_resource type="Script" path="res://Inventory/scenes/temporary_player.gd" id="3_wfrby"]
 [ext_resource type="Texture2D" uid="uid://da60ixcyfybjq" path="res://CharacterImages/WhiteSquare.png" id="4_oclj6"]
+[ext_resource type="Texture2D" uid="uid://4ou77xvelse5" path="res://menu-bars.svg" id="5_l84qr"]
+[ext_resource type="Script" path="res://menu_button.gd" id="6_75fvt"]
 
 [node name="TestMain" type="Node2D"]
 script = ExtResource("1_nsodu")
 
 [node name="Menu UI" type="CanvasLayer" parent="."]
+
+[node name="Menu Button" type="Button" parent="Menu UI"]
+offset_right = 83.0
+offset_bottom = 83.0
+icon = ExtResource("5_l84qr")
+script = ExtResource("6_75fvt")
 
 [node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_2ypww")]
 
