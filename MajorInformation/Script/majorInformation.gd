@@ -31,13 +31,20 @@ extends Control
 ]
 
 var current_semester: String = "Freshman Fall"  # Change this to switch displayed semester
+var semester_index: int = 0  # Tracks which semester we're on
 
+@onready var flowchart = $CanvasLayer/Panel/PrerequisiteFlowchartTexture
 @onready var grid_container = $CanvasLayer/Panel/TabContainer/CurrentSemester
 @onready var CompleteSemester = $CanvasLayer/Panel/CompleteSemester
+@onready var progress_bar = $CanvasLayer/Panel/ProgressBar
+@onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchartButton
 
 func _ready():
 	update_display()
 	CompleteSemester.pressed.connect(_on_complete_semester_pressed)
+	progress_bar.value = semester_index
+	flowchart.visible = false
+	PrerequisiteFlowchartButton.pressed.connect(toggle_flowchart)
 	toggle_MajorInfo()
 
 func update_display():
@@ -54,6 +61,9 @@ func update_display():
 				# Add labels for each course field
 				for field in ["name", "professor", "location", "time", "description"]:
 					var label = Label.new()
+					label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
+					label.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # Allows resizing to fit container
+					label.custom_minimum_size.x = 150  # Set a fixed width (adjust as needed)
 					label.text = field.capitalize() + ": " + course[field]
 					vbox.add_child(label)
 
@@ -77,6 +87,7 @@ func toggle_MajorInfo():
 		update_display()
 		print("Major Info opened.")
 	else:
+		flowchart.visible = false
 		print("Major Info closed.")
 		
 
@@ -84,12 +95,18 @@ func _on_complete_semester_pressed():
 	var next_semester = get_next_semester()
 	if next_semester:
 		current_semester = next_semester
+		semester_index += 1  # Increment semester index
+		progress_bar.value = semester_index  # Update progress bar
 		update_display()
 	else:
 		print("No more semesters!")  # Debug message
+		clear_current_semester()
+		progress_bar.value = 8  # Update progress bar
 
 func get_next_semester() -> String:
-	for i in range(course_list.size()):
-		if course_list[i]["semester"] == current_semester and i + 1 < course_list.size():
-			return course_list[i + 1]["semester"]
+	if semester_index + 1 < course_list.size():
+		return course_list[semester_index + 1]["semester"]
 	return ""  # No more semesters
+
+func toggle_flowchart():
+	flowchart.visible = !flowchart.visible  # Toggle visibility
