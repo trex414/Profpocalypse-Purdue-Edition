@@ -11,7 +11,6 @@ func _ready():
 	#print("Waiting for SaveManager to load...")
 	print("SaveManager finished loading, now initializing inventory.")
 	inventory = PlayerData.inventory.duplicate(true)
-	print("========1 inventory: ", inventory)
 	
 	# Initialize empty inventory if not already set
 	if inventory.size() == 0:
@@ -23,10 +22,10 @@ func _ready():
 		for i in range(SLOT_COUNT):
 			inventory.append(PlayerData.inventory[i])
 
+# Trying to change load order of scripts by using a signal, did not work first attempt
 func _on_save_data_loaded():
 	print("SaveManager finished loading, now initializing inventory.")
 	inventory = PlayerData.inventory.duplicate(true)
-	print("========1 inventory: ", inventory)
 	
 	# Initialize empty inventory if not already set
 	if inventory.size() == 0:

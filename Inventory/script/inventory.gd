@@ -345,8 +345,9 @@ func move_item_to_item_bar(slot_index, hud, bar_slot):
 func move_item_to_potion_bar(slot_index, hud, bar_slot):
 	deselect_item()
 	if inventory[slot_index] != null and inventory[slot_index]["type"] == ItemType.SPELL:
-		hud.move_to_potion_bar(inventory[slot_index], bar_slot)
 		PlayerData.potion_bar[bar_slot] = inventory[slot_index]
+		print("Added this potion to bar: ", inventory[slot_index])
+		hud.move_to_potion_bar(inventory[slot_index], bar_slot)
 		inventory[slot_index] = null
 		selected_slot = null
 		

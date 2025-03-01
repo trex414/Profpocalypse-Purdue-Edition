@@ -11,11 +11,6 @@ func _ready() -> void:
 	print("Potion Bar after load: ", potion_bar)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 # Player data variables (initialized but not hardcoded)
 var position: Vector2
 var inventory: Array
@@ -26,6 +21,8 @@ var exp: int
 var health: int
 var semester_index: int
 var current_semester: String
+var current_quests: Dictionary
+var completed_quests: Array
 
 
 # Function to get current game state (pass this to the save function when saving)
@@ -40,7 +37,9 @@ func get_game_state():
 			"exp": exp,
 			"health": health,
 			"semester_index": semester_index,
-			"current_semester": current_semester
+			"current_semester": current_semester,
+			"current_quests": current_quests,
+			"completed_quests": completed_quests,
 		}
 	}
 
@@ -75,6 +74,12 @@ func apply_game_state(data):
 			
 		if "current_semester" in player_data:
 			current_semester = player_data.current_semester
+			
+		if "current_quests" in player_data:
+			current_quests = player_data.current_quests
+			
+		if "completed_quests" in player_data:
+			completed_quests = player_data.completed_quests
 
 
 	# Function to load data on startup
@@ -94,11 +99,15 @@ func set_default_values():
 	
 	potion_bar = []
 	potion_bar.clear()
-	potion_bar.resize(5)
+	potion_bar.resize(2)
 	potion_bar.fill({})
 	
 	level = 1
 	exp = 0
 	health = 100
-	semester_index = 0;
+	semester_index = 0
 	current_semester = "Freshman Fall"
+	
+	current_quests = {}
+	completed_quests = []
+	completed_quests.clear()
