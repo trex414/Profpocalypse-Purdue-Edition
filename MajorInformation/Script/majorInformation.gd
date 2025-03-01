@@ -36,6 +36,7 @@ var semester_index: int = 0  # Tracks which semester we're on
 @onready var flowchart = $CanvasLayer/Panel/PrerequisiteFlowchartTexture
 @onready var grid_container = $CanvasLayer/Panel/TabContainer/CurrentSemester
 @onready var CompleteSemester = $CanvasLayer/Panel/CompleteSemester
+@onready var NewSemester = $CanvasLayer/Panel/NewSemester
 @onready var progress_bar = $CanvasLayer/Panel/ProgressBar
 @onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchart
 
@@ -44,6 +45,7 @@ func _ready():
 	current_semester = PlayerData.current_semester
 	update_display()
 	CompleteSemester.pressed.connect(_on_complete_semester_pressed)
+	NewSemester.pressed.connect(_on_new_semester_pressed)
 	progress_bar.value = semester_index
 	flowchart.visible = false
 	PrerequisiteFlowchartButton.pressed.connect(toggle_flowchart)
@@ -93,7 +95,10 @@ func toggle_MajorInfo():
 		print("Major Info closed.")
 		
 
-func _on_complete_semester_pressed():
+
+# this one is the entire process of completing a semester and gaining a new one
+# the next two are split up for the purpose of the requirements I set during planning
+func complete_current_semester():
 	var next_semester = get_next_semester()
 	PlayerData.current_semester = next_semester
 	if next_semester:
@@ -108,6 +113,25 @@ func _on_complete_semester_pressed():
 		print("No more semesters!")  # Debug message
 		clear_current_semester()
 		progress_bar.value = 8  # Update progress bar
+
+func _on_complete_semester_pressed():
+	if semester_index < 8:
+		var next_semester = get_next_semester()
+		PlayerData.current_semester = next_semester
+		current_semester = next_semester
+		semester_index += 1  # Increment semester index
+		PlayerData.semester_index = semester_index
+		progress_bar.value = semester_index  # Update progress bar
+		clear_current_semester()
+
+
+		
+func _on_new_semester_pressed():
+	if semester_index < 8:
+		update_display()
+	else:
+		print("No more semesters!")  # Debug message
+
 
 func get_next_semester() -> String:
 	if semester_index + 1 < course_list.size():
