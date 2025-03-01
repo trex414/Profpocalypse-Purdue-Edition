@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3t7su8rr3a3o"
-path="res://.godot/imported/whiteMan7.png-68a32dbb58ea7d2e96e06b403ef20582.ctex"
+path="res://.godot/imported/whiteMan7.png-d8414f2cc620fa3647563887fff63efa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Hair/White/whiteMan7.png"
-dest_files=["res://.godot/imported/whiteMan7.png-68a32dbb58ea7d2e96e06b403ef20582.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Hair/White/whiteMan7.png"
+dest_files=["res://.godot/imported/whiteMan7.png-d8414f2cc620fa3647563887fff63efa.ctex"]
 
 [params]
 

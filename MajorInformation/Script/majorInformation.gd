@@ -40,6 +40,8 @@ var semester_index: int = 0  # Tracks which semester we're on
 @onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchart
 
 func _ready():
+	semester_index = PlayerData.semester_index
+	current_semester = PlayerData.current_semester
 	update_display()
 	CompleteSemester.pressed.connect(_on_complete_semester_pressed)
 	progress_bar.value = semester_index
@@ -93,10 +95,14 @@ func toggle_MajorInfo():
 
 func _on_complete_semester_pressed():
 	var next_semester = get_next_semester()
+	PlayerData.current_semester = next_semester
 	if next_semester:
 		current_semester = next_semester
 		semester_index += 1  # Increment semester index
 		progress_bar.value = semester_index  # Update progress bar
+		
+		PlayerData.semester_index = semester_index
+		
 		update_display()
 	else:
 		print("No more semesters!")  # Debug message

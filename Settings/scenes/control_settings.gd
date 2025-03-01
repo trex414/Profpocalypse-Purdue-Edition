@@ -6,6 +6,7 @@ extends Control
 @onready var keybind_menu_button = $"Panel/VBoxContainer/Key Binds Button"
 @onready var keybind_menu = $"Panel/VBoxContainer/Control - Key Bind Menu"
 @onready var close_keybind_button = $"Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/Close Keybind Menu"
+@onready var delete_confirm_dialog = $DeleteConfirmation
 
 var is_open = false
 var keybind_menu_open = false
@@ -40,7 +41,12 @@ func _on_save():
 	SaveManager.save()
 	
 func _on_delete():
+	delete_confirm_dialog.popup_centered()
+	#SaveManager.delete()
+
+func _on_delete_confirmation_confirmed():
 	SaveManager.delete()
+	get_tree().quit()  # Close the game
 	
 func toggle_keybind_menu():
 	keybind_menu_open = !keybind_menu_open

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bl6qi0dbtl57x"
-path="res://.godot/imported/blondeMan7.png-b31ecf2bfdcbda646619ae2a7c713c02.ctex"
+path="res://.godot/imported/blondeMan7.png-590761064321348c1b62d2d3eb26043c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Hair/Blonde/blondeMan7.png"
-dest_files=["res://.godot/imported/blondeMan7.png-b31ecf2bfdcbda646619ae2a7c713c02.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Blonde/blondeMan7.png"
+dest_files=["res://.godot/imported/blondeMan7.png-590761064321348c1b62d2d3eb26043c.ctex"]
 
 [params]
 

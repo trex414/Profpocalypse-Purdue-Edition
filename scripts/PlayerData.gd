@@ -24,6 +24,8 @@ var potion_bar: Array
 var level: int
 var exp: int
 var health: int
+var semester_index: int
+var current_semester: String
 
 
 # Function to get current game state (pass this to the save function when saving)
@@ -37,6 +39,8 @@ func get_game_state():
 			"level": level,
 			"exp": exp,
 			"health": health,
+			"semester_index": semester_index,
+			"current_semester": current_semester
 		}
 	}
 
@@ -65,6 +69,12 @@ func apply_game_state(data):
 		
 		if "health" in player_data:
 			health = player_data.health
+			
+		if "semester_index" in player_data:
+			semester_index = player_data.semester_index
+			
+		if "current_semester" in player_data:
+			current_semester = player_data.current_semester
 
 
 	# Function to load data on startup
@@ -90,3 +100,5 @@ func set_default_values():
 	level = 1
 	exp = 0
 	health = 100
+	semester_index = 0;
+	current_semester = "Freshman Fall"

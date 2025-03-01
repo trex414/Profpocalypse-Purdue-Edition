@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://df6j0m2uso4nr"
-path="res://.godot/imported/tint8_hand.png-66ec1de77747e4b3373d4a61cf25440b.ctex"
+path="res://.godot/imported/tint8_hand.png-7fd8241c85239172d276262b1d70490c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Skin/Tint 8/tint8_hand.png"
-dest_files=["res://.godot/imported/tint8_hand.png-66ec1de77747e4b3373d4a61cf25440b.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 8/tint8_hand.png"
+dest_files=["res://.godot/imported/tint8_hand.png-7fd8241c85239172d276262b1d70490c.ctex"]
 
 [params]
 

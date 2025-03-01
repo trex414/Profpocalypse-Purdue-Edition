@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brs74pqkd3oar"
-path="res://.godot/imported/tint7_neck.png-e809eb07abce9e36fa4c82ed3939c482.ctex"
+path="res://.godot/imported/tint7_neck.png-7a218006eead27a1264038d14763e1ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_neck.png"
-dest_files=["res://.godot/imported/tint7_neck.png-e809eb07abce9e36fa4c82ed3939c482.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_neck.png"
+dest_files=["res://.godot/imported/tint7_neck.png-7a218006eead27a1264038d14763e1ce.ctex"]
 
 [params]
 
