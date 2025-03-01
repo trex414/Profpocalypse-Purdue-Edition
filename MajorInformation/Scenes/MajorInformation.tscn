@@ -52,7 +52,7 @@ text = "Percent
 Complete:"
 label_settings = SubResource("LabelSettings_42e1n")
 
-[node name="PrerequisiteFlowchart2" type="Button" parent="CanvasLayer/Panel"]
+[node name="PrerequisiteFlowchart" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_left = 59.0
 offset_top = 370.0
@@ -67,14 +67,6 @@ offset_top = 402.0
 offset_right = 249.0
 offset_bottom = 433.0
 text = "Complete Semester"
-
-[node name="PrerequisiteFlowchartButton" type="Button" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = -45.0
-offset_right = 81.0
-offset_bottom = -14.0
-text = "Back"
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0

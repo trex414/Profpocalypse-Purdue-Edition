@@ -37,7 +37,7 @@ var semester_index: int = 0  # Tracks which semester we're on
 @onready var grid_container = $CanvasLayer/Panel/TabContainer/CurrentSemester
 @onready var CompleteSemester = $CanvasLayer/Panel/CompleteSemester
 @onready var progress_bar = $CanvasLayer/Panel/ProgressBar
-@onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchartButton
+@onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchart
 
 func _ready():
 	update_display()
