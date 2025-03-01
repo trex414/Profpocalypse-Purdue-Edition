@@ -33,9 +33,12 @@ extends Control
 var current_semester: String = "Freshman Fall"  # Change this to switch displayed semester
 
 @onready var grid_container = $CanvasLayer/Panel/TabContainer/CurrentSemester
+@onready var CompleteSemester = $CanvasLayer/Panel/CompleteSemester
 
 func _ready():
 	update_display()
+	CompleteSemester.pressed.connect(_on_complete_semester_pressed)
+	toggle_MajorInfo()
 
 func update_display():
 	# Clear previous labels
@@ -64,3 +67,29 @@ func set_semester(semester_name: String):
 func clear_current_semester():
 	for child in grid_container.get_children():
 		child.queue_free()
+
+func toggle_MajorInfo():
+	var panel = $CanvasLayer/Panel
+	panel.visible = !panel.visible
+
+	# Update inventory UI when opening
+	if panel.visible:
+		update_display()
+		print("Major Info opened.")
+	else:
+		print("Major Info closed.")
+		
+
+func _on_complete_semester_pressed():
+	var next_semester = get_next_semester()
+	if next_semester:
+		current_semester = next_semester
+		update_display()
+	else:
+		print("No more semesters!")  # Debug message
+
+func get_next_semester() -> String:
+	for i in range(course_list.size()):
+		if course_list[i]["semester"] == current_semester and i + 1 < course_list.size():
+			return course_list[i + 1]["semester"]
+	return ""  # No more semesters

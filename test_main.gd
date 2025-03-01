@@ -3,6 +3,7 @@ extends Node2D
 var inventory = null
 var hud = null
 var QuestMenuScene = null
+var majorInformation = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -19,6 +20,9 @@ func _ready():
 	# Load Quest Screen
 	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
 	add_child(QuestMenuScene)
+	
+	majorInformation = load("res://MajorInformation/Scenes/MajorInformation.tscn").instantiate()
+	add_child(majorInformation)
 	
 	QuestMenuScene.inventory = inventory
 	
@@ -51,5 +55,12 @@ func _process(delta):
 			print("QuestMenu opened.")
 		else:
 			QuestMenuScene.toggle_questmenu()
+	if Input.is_action_just_pressed("courses_information"):
+		if majorInformation == null:
+			majorInformation = load("res://MajorInformation/Scenes/MajorInformation.tscn").instantiate()
+			add_child(majorInformation)
+			print("Courses Information opened.")
+		else:
+			majorInformation.toggle_MajorInfo()
 			
 			
