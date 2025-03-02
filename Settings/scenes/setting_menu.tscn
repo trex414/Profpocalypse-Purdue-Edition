@@ -119,6 +119,21 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Inventory Button" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Left" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Right" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Up" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Move Down" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+layout_mode = 2
+
 [node name="Close Keybind Menu" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
