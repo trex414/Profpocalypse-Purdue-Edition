@@ -11,9 +11,11 @@ var inventory = null
 
 var hud = null
 
+var volume = 1.0
+
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	load_volume()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,3 +81,20 @@ func delete():
 		print("Save successfully deleted.")
 	else:
 		print("Failed to delete save. (No file)")
+		
+
+func set_volume(value):
+	volume = value
+	AudioServer.set_bus_volume_db(0, linear_to_db(volume))
+	save_volume()
+
+func save_volume():
+	var config = ConfigFile.new()
+	config.set_value("audio", "volume", volume)
+	config.save("user://settings.cfg")
+
+func load_volume():
+	var config = ConfigFile.new()
+	if config.load("user://settings.cfg") == OK:
+		volume = config.get_value("audio", "volume", 1.0)
+		AudioServer.set_bus_volume_db(0, linear_to_db(volume))

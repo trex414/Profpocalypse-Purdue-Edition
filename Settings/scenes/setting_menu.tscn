@@ -72,6 +72,11 @@ theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Delete Game"
 
+[node name="Preferences Button" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Preferences"
+
 [node name="Key Binds Button" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2

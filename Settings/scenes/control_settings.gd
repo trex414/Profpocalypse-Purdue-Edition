@@ -8,9 +8,12 @@ extends Control
 @onready var close_keybind_button = $"Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/Close Keybind Menu"
 @onready var delete_confirm_dialog = $DeleteConfirmation
 @onready var HUD_settings_button = $"../Menu Button"
+#@onready var volume_slider = $"Panel/VBoxContainer/Volume Slider"
+@onready var preferences_button = $"Panel/VBoxContainer/Preferences Button"
 
 var is_open = false
 var keybind_menu_open = false
+var preferences_menu = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +24,10 @@ func _ready():
 	close_button.pressed.connect(toggle_menu)
 	keybind_menu_button.pressed.connect(toggle_keybind_menu)
 	close_keybind_button.pressed.connect(_on_CloseMenuButton_pressed)
-
+	preferences_button.pressed.connect(_on_preferences_button_pressed)
+	#volume_slider.value = SaveManager.volume 
+	#volume_slider.connect("value_changed", _on_volume_changed)
+	
 
 
 func _input(event):
@@ -69,3 +75,12 @@ func _on_CloseMenuButton_pressed():
 	keybind_menu.visible = false
 	keybind_menu_open = !keybind_menu_open
 	
+
+#func _on_volume_changed(value):
+#	AudioServer.set_bus_volume_db(0, linear_to_db(value))
+#	SaveManager.set_volume(value)
+	
+func _on_preferences_button_pressed():
+	if preferences_menu == null:
+		preferences_menu = load("res://Settings/scenes/preferences_menu.tscn").instantiate()
+		add_child(preferences_menu)  # Add it to the scene
