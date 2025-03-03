@@ -1,5 +1,6 @@
 extends Node2D
 
+var map = null
 var inventory = null
 var hud = null
 var QuestMenuScene = null
@@ -8,6 +9,9 @@ var majorInformation = null
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("Game started. Press E to open inventory.")
+	
+	map = load("res://Main Map/scenes/Profpocalypse Main Map.tscn").instantiate()
+	add_child(map)
 
 	# Load Inventory
 	inventory = load("res://Inventory/scenes/inventory.tscn").instantiate()
