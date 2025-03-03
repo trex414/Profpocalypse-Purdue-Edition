@@ -91,92 +91,14 @@ layout_mode = 2
 columns = 2
 metadata/_tab_index = 0
 
-[node name="Plan of Study" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
+[node name="ScrollPlanOfStudy" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Plan of Study" type="VBoxContainer" parent="CanvasLayer/Panel/TabContainer/Plan of Study"]
+[node name="VboxPlanOfStudy" type="VBoxContainer" parent="CanvasLayer/Panel/TabContainer/ScrollPlanOfStudy"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Freshman Fall" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Freshman Fall"
-vertical_alignment = 1
-
-[node name="CS180" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 180"
-
-[node name="Freshman Spring" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Freshman Spring"
-
-[node name="CS240" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 240"
-
-[node name="CS182" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 182"
-
-[node name="Sophmore Fall" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Sophmore Fall"
-
-[node name="CS250" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 250"
-
-[node name="CS251" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 251"
-
-[node name="Sophmore Spring" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Sophmore Spring"
-
-[node name="CS252" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 252"
-
-[node name="Junior Fall" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Junior Fall"
-
-[node name="CS354" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 354"
-
-[node name="Junior Spring" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Junior Spring"
-
-[node name="CS307" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 307"
-
-[node name="Senior Fall" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Senior Fall"
-
-[node name="CS381" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 381"
-
-[node name="Senior Spring" type="Label" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "Senior Spring"
-
-[node name="CS408" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 408"
-
-[node name="CS407" type="Button" parent="CanvasLayer/Panel/TabContainer/Plan of Study/Plan of Study"]
-layout_mode = 2
-text = "CS 407
-"
 
 [node name="PrerequisiteFlowchartTexture" type="TextureRect" parent="CanvasLayer/Panel"]
 visible = false
@@ -187,3 +109,14 @@ offset_right = 325.0
 offset_bottom = 297.0
 texture = ExtResource("2_o3dfs")
 expand_mode = 1
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer/Panel"]
+position = Vector2i(440, 250)
+size = Vector2i(250, 200)
+visible = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 246.0
+offset_bottom = 196.0

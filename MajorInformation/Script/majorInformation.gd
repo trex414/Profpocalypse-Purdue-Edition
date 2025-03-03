@@ -39,6 +39,8 @@ var semester_index: int = 0  # Tracks which semester we're on
 @onready var NewSemester = $CanvasLayer/Panel/NewSemester
 @onready var progress_bar = $CanvasLayer/Panel/ProgressBar
 @onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchart
+@onready var vbox = $CanvasLayer/Panel/TabContainer/ScrollPlanOfStudy/VboxPlanOfStudy
+@onready var popup = $CanvasLayer/Panel/PopupPanel  # Reference to the PopupPanel
 
 func _ready():
 	semester_index = PlayerData.semester_index
@@ -49,19 +51,18 @@ func _ready():
 	progress_bar.value = semester_index
 	flowchart.visible = false
 	PrerequisiteFlowchartButton.pressed.connect(toggle_flowchart)
+	fill_vbox()
 	toggle_MajorInfo()
 
 func update_display():
 	# Clear previous labels
 	clear_current_semester()
-
 	# Find the selected semester
 	for semester in course_list:
 		if semester["semester"] == current_semester:
 			var courses = semester["courses"]
 			for course in courses:
 				var vbox = VBoxContainer.new()  # Create a column for each course
-				
 				# Add labels for each course field
 				for field in ["name", "professor", "location", "time", "description"]:
 					var label = Label.new()
@@ -70,22 +71,39 @@ func update_display():
 					label.custom_minimum_size.x = 150  # Set a fixed width (adjust as needed)
 					label.text = field.capitalize() + ": " + course[field]
 					vbox.add_child(label)
-
 					grid_container.add_child(vbox)  # Add the column to the gri
 			break  # Stop searching once we find the semester
 
-func set_semester(semester_name: String):
-	current_semester = semester_name
-	update_display()  # Refresh the UI
-	
 func clear_current_semester():
 	for child in grid_container.get_children():
 		child.queue_free()
 
+func fill_vbox():
+	for semester_data in course_list:
+		# Create a Label for the semester
+		var semester_label = Label.new()
+		semester_label.text = semester_data["semester"]
+		vbox.add_child(semester_label)
+
+		# Loop through courses and add buttons
+		for course in semester_data["courses"]:
+			var course_button = Button.new()
+			course_button.text = course["name"]
+			course_button.pressed.connect(_on_course_button_pressed.bind(course))
+			vbox.add_child(course_button)
+
+func set_semester(semester_name: String):
+	current_semester = semester_name
+	update_display()  # Refresh the UI
+
+func get_next_semester() -> String:
+	if semester_index + 1 < course_list.size():
+		return course_list[semester_index + 1]["semester"]
+	return ""  # No more semesters
+
 func toggle_MajorInfo():
 	var panel = $CanvasLayer/Panel
 	panel.visible = !panel.visible
-
 	# Update inventory UI when opening
 	if panel.visible:
 		update_display()
@@ -93,8 +111,9 @@ func toggle_MajorInfo():
 	else:
 		flowchart.visible = false
 		print("Major Info closed.")
-		
 
+func toggle_flowchart():
+	flowchart.visible = !flowchart.visible  # Toggle visibility
 
 # this one is the entire process of completing a semester and gaining a new one
 # the next two are split up for the purpose of the requirements I set during planning
@@ -124,19 +143,26 @@ func _on_complete_semester_pressed():
 		progress_bar.value = semester_index  # Update progress bar
 		clear_current_semester()
 
-
-		
 func _on_new_semester_pressed():
 	if semester_index < 8:
 		update_display()
 	else:
 		print("No more semesters!")  # Debug message
-
-
-func get_next_semester() -> String:
-	if semester_index + 1 < course_list.size():
-		return course_list[semester_index + 1]["semester"]
-	return ""  # No more semesters
-
-func toggle_flowchart():
-	flowchart.visible = !flowchart.visible  # Toggle visibility
+		
+func _on_course_button_pressed(course):
+	# Get references to popup elements
+	var title_label = popup.get_node("TitleLabel")
+	var professor_label = popup.get_node("ProfessorLabel")
+	var location_label = popup.get_node("LocationLabel")
+	var time_label = popup.get_node("TimeLabel")
+	var description_label = popup.get_node("DescriptionLabel")
+	
+	# Update popup content
+	title_label.text = "Course: " + course["name"]
+	professor_label.text = "Professor: " + course["professor"]
+	location_label.text = "Location: " + course["location"]
+	time_label.text = "Time: " + course["time"]
+	description_label.text = "Description: " + course["description"]
+	
+	# Show the popup
+	popup.show()
