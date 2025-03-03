@@ -9,6 +9,10 @@ func _ready() -> void:
 	print("Item Bar after load: ", item_bar)
 	print("=================")
 	print("Potion Bar after load: ", potion_bar)
+	print("=================")
+	print("current quests: ", current_quests)
+	print("=================")
+	print("completed quests: ", completed_quests)
 
 
 # Player data variables (initialized but not hardcoded)
@@ -23,7 +27,8 @@ var health: int
 var semester_index: int
 var current_semester: String
 var current_quests: Dictionary
-var completed_quests: Array
+static var completed_quests = []
+
 
 
 # Function to get current game state (pass this to the save function when saving)
@@ -83,6 +88,7 @@ func apply_game_state(data):
 			completed_quests = player_data.completed_quests
 
 
+
 	# Function to load data on startup
 func load_on_start():
 	SaveManager.load()
@@ -112,3 +118,6 @@ func set_default_values():
 	current_quests = {}
 	completed_quests = []
 	completed_quests.clear()
+	
+static func is_quest_completed(quest_id: String) -> bool:
+	return quest_id in completed_quests

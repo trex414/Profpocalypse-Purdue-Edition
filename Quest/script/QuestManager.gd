@@ -17,6 +17,11 @@ func _ready():
 	add_quest(walk_forward_quest)
 	add_quest(open_inventory_quest)
 	add_quest(walk_backwards_quest)
+	
+	for quest in all_quests.values():
+		if quest.quest_name in PlayerData.completed_quests:
+			quest.is_completed = true
+
 
 
 func add_quest(quest: Quest):
@@ -33,6 +38,7 @@ func complete_quest(name: String):
 		quest_completed.emit(name)
 		
 		PlayerData.completed_quests = completed_quests.duplicate(true)
+		
 
 		# Unlock any quests that depended on this one
 		for quest in all_quests.values():
