@@ -32,6 +32,7 @@ extends Control
 
 var current_semester: String = "Freshman Fall"  # Change this to switch displayed semester
 var semester_index: int = 0  # Tracks which semester we're on
+var last_pressed = 0
 
 @onready var flowchart = $CanvasLayer/Panel/PrerequisiteFlowchartTexture
 @onready var grid_container = $CanvasLayer/Panel/TabContainer/CurrentSemester
@@ -39,8 +40,10 @@ var semester_index: int = 0  # Tracks which semester we're on
 @onready var NewSemester = $CanvasLayer/Panel/NewSemester
 @onready var progress_bar = $CanvasLayer/Panel/ProgressBar
 @onready var PrerequisiteFlowchartButton = $CanvasLayer/Panel/PrerequisiteFlowchart
-@onready var vbox = $CanvasLayer/Panel/TabContainer/ScrollPlanOfStudy/VboxPlanOfStudy
+@onready var vbox = $CanvasLayer/Panel/TabContainer/PlanOfStudy/VboxPlanOfStudy
 @onready var popup = $CanvasLayer/Panel/PopupPanel  # Reference to the PopupPanel
+@onready var popup_vbox = popup.get_node("VBoxContainer")  # Get the VBox inside the popup
+
 
 func _ready():
 	semester_index = PlayerData.semester_index
@@ -84,7 +87,6 @@ func fill_vbox():
 		var semester_label = Label.new()
 		semester_label.text = semester_data["semester"]
 		vbox.add_child(semester_label)
-
 		# Loop through courses and add buttons
 		for course in semester_data["courses"]:
 			var course_button = Button.new()
@@ -110,10 +112,14 @@ func toggle_MajorInfo():
 		print("Major Info opened.")
 	else:
 		flowchart.visible = false
+		popup.visible = false
 		print("Major Info closed.")
 
 func toggle_flowchart():
 	flowchart.visible = !flowchart.visible  # Toggle visibility
+
+func toggle_popup():
+	popup.visible = !popup.visible  # Toggle visibility
 
 # this one is the entire process of completing a semester and gaining a new one
 # the next two are split up for the purpose of the requirements I set during planning
@@ -124,9 +130,7 @@ func complete_current_semester():
 		current_semester = next_semester
 		semester_index += 1  # Increment semester index
 		progress_bar.value = semester_index  # Update progress bar
-		
 		PlayerData.semester_index = semester_index
-		
 		update_display()
 	else:
 		print("No more semesters!")  # Debug message
@@ -134,35 +138,52 @@ func complete_current_semester():
 		progress_bar.value = 8  # Update progress bar
 
 func _on_complete_semester_pressed():
-	if semester_index < 8:
-		var next_semester = get_next_semester()
-		PlayerData.current_semester = next_semester
-		current_semester = next_semester
-		semester_index += 1  # Increment semester index
-		PlayerData.semester_index = semester_index
-		progress_bar.value = semester_index  # Update progress bar
-		clear_current_semester()
+	if last_pressed == 0:
+		if semester_index < 8:
+			var next_semester = get_next_semester()
+			PlayerData.current_semester = next_semester
+			current_semester = next_semester
+			semester_index += 1  # Increment semester index
+			PlayerData.semester_index = semester_index
+			progress_bar.value = semester_index  # Update progress bar
+			clear_current_semester()
+			last_pressed = 1
 
 func _on_new_semester_pressed():
-	if semester_index < 8:
-		update_display()
-	else:
-		print("No more semesters!")  # Debug message
+	if last_pressed == 1:
+		if semester_index < 8:
+			update_display()
+		else:
+			print("No more semesters!")  # Debug message
+		last_pressed = 0
 		
 func _on_course_button_pressed(course):
-	# Get references to popup elements
-	var title_label = popup.get_node("TitleLabel")
-	var professor_label = popup.get_node("ProfessorLabel")
-	var location_label = popup.get_node("LocationLabel")
-	var time_label = popup.get_node("TimeLabel")
-	var description_label = popup.get_node("DescriptionLabel")
-	
-	# Update popup content
+	# Clear previous popup content
+	for child in popup_vbox.get_children():
+		child.queue_free()
+	# Add new labels dynamically
+	var title_label = Label.new()
 	title_label.text = "Course: " + course["name"]
+	popup_vbox.add_child(title_label)
+	var professor_label = Label.new()
 	professor_label.text = "Professor: " + course["professor"]
+	popup_vbox.add_child(professor_label)
+	var location_label = Label.new()
 	location_label.text = "Location: " + course["location"]
+	popup_vbox.add_child(location_label)
+	var time_label = Label.new()
 	time_label.text = "Time: " + course["time"]
+	popup_vbox.add_child(time_label)
+	var description_label = Label.new()
 	description_label.text = "Description: " + course["description"]
-	
+	popup_vbox.add_child(description_label)
+	# Add Close Button
+	var close_button = Button.new()
+	close_button.text = "Close"
+	close_button.pressed.connect(_on_close_button_pressed)
+	popup_vbox.add_child(close_button)
 	# Show the popup
 	popup.show()
+
+func _on_close_button_pressed():
+	popup.hide()  # Hide popup
