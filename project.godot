@@ -26,6 +26,10 @@ QuestManager="*res://Quest/script/QuestManager.gd"
 
 import/blender/enabled=false
 
+[gui]
+
+theme/custom="label font"
+
 [input]
 
 inventory={
