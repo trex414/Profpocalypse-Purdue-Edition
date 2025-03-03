@@ -30,6 +30,10 @@ func _ready():
 	# Pass inventory reference to HUD
 	hud.set_inventory(inventory)
 	inventory.set_main_hud(hud)
+	SaveManager.set_inventory(inventory)
+	SaveManager.set_main_hud(hud)
+	
+	SaveManager.load()
 
 	# Set the window size to 1280x720 (720p resolution)
 	var window = get_viewport().get_window()

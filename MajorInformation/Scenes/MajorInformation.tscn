@@ -28,6 +28,7 @@ offset_bottom = 529.0
 theme = SubResource("Theme_tiob2")
 
 [node name="PhoneBackground" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
 offset_left = -295.0
 offset_top = -144.0
 offset_right = 621.0
@@ -179,6 +180,7 @@ text = "CS 407
 
 [node name="PrerequisiteFlowchartTexture" type="TextureRect" parent="CanvasLayer/Panel"]
 visible = false
+layout_mode = 0
 offset_left = -1.0
 offset_top = 113.0
 offset_right = 325.0

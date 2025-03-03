@@ -128,3 +128,4 @@ func toggle_questmenu():
 	if panel.visible:
 		update_quest()
 		close_quest_details()
+		

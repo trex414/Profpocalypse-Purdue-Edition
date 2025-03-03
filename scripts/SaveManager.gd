@@ -6,6 +6,11 @@ signal save_data_loaded # Signal so "inventory" waits for save to load
 
 var save_path = "user://save_game.json"
 
+#call inventory functions easy fix
+var inventory = null
+
+var hud = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -24,6 +29,11 @@ func save():
 	else:
 		print("Unsuccessful game save (Failed to open file).")
 		
+func set_inventory(inv):
+	inventory = inv
+
+func set_main_hud(hud_ref):
+	hud = hud_ref
 
 func load():
 	if FileAccess.file_exists(save_path):
@@ -32,9 +42,30 @@ func load():
 		file.close()
 
 		var parsed_data = JSON.parse_string(data)
+		
+		
 		if parsed_data != null:
 			print("Successful game load.")
 			PlayerData.apply_game_state(parsed_data)
+					# add items back in easy fix
+			if inventory != null:
+				for i in range(PlayerData.inventory.size()):
+					var saved_item = PlayerData.inventory[i]
+					if saved_item != null:
+						inventory.restore_item_at_slot(i, saved_item)
+			if hud != null:
+				for i in range(PlayerData.item_bar.size()):
+					var saved_item = PlayerData.item_bar[i]
+					if saved_item != null:
+						hud.restore_item_bar(i, saved_item)
+
+				# Restore potion bar directly into HUD
+				for i in range(PlayerData.potion_bar.size()):
+					var saved_potion = PlayerData.potion_bar[i]
+					if saved_potion != null:
+						hud.restore_potion_bar(i, saved_potion)
+
+			
 		else:
 			print("Unsuccessful game load.")
 	else:

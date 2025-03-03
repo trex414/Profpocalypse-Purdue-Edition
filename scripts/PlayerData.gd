@@ -13,9 +13,10 @@ func _ready() -> void:
 
 # Player data variables (initialized but not hardcoded)
 var position: Vector2
-var inventory: Array
-var item_bar: Array
-var potion_bar: Array
+#initialize player spots
+var inventory = [null, null, null, null, null, null, null, null, null, null, null, null]
+var potion_bar = [null, null, null, null, null]
+var item_bar = [null, null]
 var level: int
 var exp: int
 var health: int

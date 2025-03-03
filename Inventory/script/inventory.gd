@@ -32,14 +32,14 @@ var spell_messages = {
 
 # Sample items (for testing)
 var item_items = [
-	{ "type": ItemType.ITEM, "name": "ITEM1", "texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)), "stackable": false, "count": 1 },
-	{ "type": ItemType.ITEM, "name": "ITEM2", "texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)), "stackable": false, "count": 1 }
+	{ "type": ItemType.ITEM, "name": "Pickaxe", "texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)), "stackable": false, "count": 1 },
+	{ "type": ItemType.ITEM, "name": "Axe", "texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)), "stackable": false, "count": 1 }
 ]
 
 var spell_items = [
-	{ "type": ItemType.SPELL, "name": "HEAL", "texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
-	{ "type": ItemType.SPELL, "name": "SPEED", "texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
-	{ "type": ItemType.SPELL, "name": "EXP", "texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
+	{ "type": ItemType.SPELL, "name": "Health Potion", "texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
+	{ "type": ItemType.SPELL, "name": "Speed Potion", "texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
+	{ "type": ItemType.SPELL, "name": "EXP Potion", "texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
 
 ]
 
@@ -124,6 +124,7 @@ func add_item():
 				inventory[i]["count"] += 1
 				
 				PlayerData.inventory = inventory.duplicate(true)
+				main_hud.save_potion_count()
 				
 				update_inventory()
 				print("Stacked item in slot", i, "new count:", inventory[i]["count"])
@@ -135,8 +136,10 @@ func add_item():
 			inventory[i] = new_item.duplicate()
 			
 			PlayerData.inventory = inventory.duplicate(true)
-			
+			main_hud.save_potion_count()
+
 			update_inventory()
+			
 			print("Added new item:", new_item["name"], "to slot", i)
 			return
 	
@@ -250,7 +253,7 @@ func use_item():
 		var spell_name = item["name"]
 
 		# If it's a HEAL potion, apply health recovery
-		if spell_name == "HEAL":
+		if spell_name == "Health Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
@@ -275,7 +278,7 @@ func use_item():
 				print("ERROR: HealthContainer node not found in HUD.")
 
 		# EXP
-		elif spell_name == "EXP":
+		elif spell_name == "EXP Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
@@ -442,7 +445,7 @@ func add_named_item(item_name: String) -> bool:
 		"Health Potion":
 			item_data = {
 				"type": ItemType.SPELL,
-				"name": "HEAL",
+				"name": "Health Potion",
 				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
 				"stackable": true,
 				"count": 1
@@ -450,7 +453,7 @@ func add_named_item(item_name: String) -> bool:
 		"Speed Potion":
 			item_data = {
 				"type": ItemType.SPELL,
-				"name": "SPEED",
+				"name": "Speed Potion",
 				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
 				"stackable": true,
 				"count": 1
@@ -458,7 +461,7 @@ func add_named_item(item_name: String) -> bool:
 		"EXP Potion":
 			item_data = {
 				"type": ItemType.SPELL,
-				"name": "EXP",
+				"name": "EXP Potion",
 				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
 				"stackable": true,
 				"count": 1
@@ -466,7 +469,7 @@ func add_named_item(item_name: String) -> bool:
 		"Pickaxe":
 			item_data = {
 				"type": ItemType.ITEM,
-				"name": "ITEM1",
+				"name": "Pickaxe",
 				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
 				"stackable": false,
 				"count": 1
@@ -474,12 +477,13 @@ func add_named_item(item_name: String) -> bool:
 		"Axe":
 			item_data = {
 				"type": ItemType.ITEM,
-				"name": "ITEM2",
+				"name": "Axe",
 				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
 				"stackable": false,
 				"count": 1
 			}
 		_:
+			update_inventory()
 			print("Unknown item name:", item_name)
 			return false
 
@@ -528,3 +532,56 @@ func add_named_item(item_name: String) -> bool:
 	# If nothing worked, inventory AND hotbar are full
 	print("Inventory and item/potion bars are full! Cannot add item:", item_data["name"])
 	return false
+	
+func restore_item_at_slot(slot_index: int, saved_item: Dictionary):
+	var item_data = null
+
+	# Lookup table - match saved item names to full definitions
+	match saved_item["name"]:
+		"Health Potion":
+			item_data = {
+				"type": ItemType.SPELL,
+				"name": "Health Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_item["count"]
+			}
+		"Speed Potion":
+			item_data = {
+				"type": ItemType.SPELL,
+				"name": "Speed Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_item["count"]
+			}
+		"EXP Potion":
+			item_data = {
+				"type": ItemType.SPELL,
+				"name": "EXP Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_item["count"]
+			}
+		"Pickaxe":
+			item_data = {
+				"type": ItemType.ITEM,
+				"name": "Pickaxe",
+				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
+				"stackable": false,
+				"count": saved_item["count"]
+			}
+		"Axe":
+			item_data = {
+				"type": ItemType.ITEM,
+				"name": "Axe",
+				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
+				"stackable": false,
+				"count": saved_item["count"]
+			}
+		_:
+			print("Unknown item during restore:", saved_item["name"])
+			return
+
+	# Set in inventory
+	inventory[slot_index] = item_data
+	update_inventory()

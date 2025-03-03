@@ -30,6 +30,10 @@ func _ready():
 # Function to make sure inventory is a global call for main hud
 func set_inventory(inv):
 	inventory = inv
+	
+func save_potion_count():
+	PlayerData.potion_bar = potion_bar_slots.duplicate(true)
+
 
 # Function to make sure the item bar is set up correctly with sizing and nodes
 func setup_hotbars():
@@ -111,18 +115,19 @@ func use_potion_bar(slot_index):
 	var potion_name = item["name"]
 
 	# Handle Health Potion
-	if potion_name == "HEAL":  # Ensure the correct potion name
+	if potion_name == "Health Potion":  # Ensure the correct potion name
 		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")  # Adjust to match scene structure
 		if potions_manager.use_health_potion(health_manager, item):
 			remove_potion(slot_index)
 
 	# Handle EXP Potion
-	elif potion_name == "EXP":  # Ensure the correct potion name
+	elif potion_name == "EXP Potion":  # Ensure the correct potion name
 		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")  # Ensure correct path to EXP system
 		if potions_manager.use_exp_potion(exp_manager, item):
 			remove_potion(slot_index)
 	else:
 		print("This is not a valid potion.")
+	PlayerData.potion_bar = potion_bar_slots.duplicate(true)
 
 	update_potion_display()
 	
@@ -263,6 +268,7 @@ func move_to_potion_bar(item, slot_index):
 		
 		# Remove from inventory since it's now in HUD
 		inventory.remove_item(potion_name, potion_count)
+		PlayerData.potion_bar = potion_bar_slots.duplicate(true)
 
 		# Update button UI with locked icon size
 		var button = potion_bar.get_child(slot_index)
@@ -294,3 +300,110 @@ func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
 	image.resize(size.x, size.y, Image.INTERPOLATE_LANCZOS)
 	var new_texture = ImageTexture.create_from_image(image)
 	return new_texture
+	
+enum ItemType { ITEM, SPELL }
+
+	
+func restore_item_bar(slot_index: int, saved_item: Dictionary):
+	var item_data = null
+	
+	if saved_item.is_empty() or not saved_item.has("name"):
+		print("Skipping empty/invalid item bar slot", slot_index)
+		return
+
+	match saved_item["name"]:
+		"Health Potion":
+			item_data = {
+				"type": inventory.ItemType.SPELL,
+				"name": "Health Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_item["count"]
+			}
+		"Speed Potion":
+			item_data = {
+				"type": inventory.ItemType.SPELL,
+				"name": "Speed Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_item["count"]
+			}
+		"EXP Potion":
+			item_data = {
+				"type": inventory.ItemType.SPELL,
+				"name": "EXP Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_item["count"]
+			}
+		"Pickaxe":
+			item_data = {
+				"type": inventory.ItemType.ITEM,
+				"name": "Pickaxe",
+				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
+				"stackable": false,
+				"count": saved_item["count"]
+			}
+		"Axe":
+			item_data = {
+				"type": inventory.ItemType.ITEM,
+				"name": "Axe",
+				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
+				"stackable": false,
+				"count": saved_item["count"]
+			}
+		_:
+			print("Unknown item in item bar:", saved_item["name"])
+			return
+
+	item_bar_slots[slot_index] = item_data
+	var button = item_bar.get_child(slot_index)
+	button.icon = item_data["texture"]
+	button.tooltip_text = item_data["name"]
+	setup_hotbar_button(button)
+	print("Restored item to Item Bar:", item_data["name"], "at slot", slot_index)
+
+
+func restore_potion_bar(slot_index: int, saved_potion: Dictionary):
+	var potion_data = null
+	
+	if saved_potion.is_empty() or not saved_potion.has("name"):
+		print("Skipping empty/invalid item bar slot", slot_index)
+		return
+
+	match saved_potion["name"]:
+		"Health Potion":
+			potion_data = {
+				"type": inventory.ItemType.SPELL,
+				"name": "Health Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_potion["count"]
+			}
+		"Speed Potion":
+			potion_data = {
+				"type": inventory.ItemType.SPELL,
+				"name": "Speed Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_potion["count"]
+			}
+		"EXP Potion":
+			potion_data = {
+				"type": inventory.ItemType.SPELL,
+				"name": "EXP Potion",
+				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
+				"stackable": true,
+				"count": saved_potion["count"]
+			}
+		_:
+			print("Unknown potion in potion bar:", saved_potion["name"])
+			return
+
+	potion_bar_slots[slot_index] = potion_data
+	var button = potion_bar.get_child(slot_index)
+	button.icon = potion_data["texture"]
+	button.tooltip_text = potion_data["name"]
+	setup_hotbar_button(button)
+	update_potion_display()
+	print("Restored potion to Potion Bar:", potion_data["name"], " at slot", slot_index)
