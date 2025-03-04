@@ -8,8 +8,9 @@ extends Control
 @onready var close_keybind_button = $"Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/Close Keybind Menu"
 @onready var delete_confirm_dialog = $DeleteConfirmation
 @onready var HUD_settings_button = $"../Menu Button"
-#@onready var volume_slider = $"Panel/VBoxContainer/Volume Slider"
 @onready var preferences_button = $"Panel/VBoxContainer/Preferences Button"
+@onready var quit_button = $"Panel/VBoxContainer/Close Game"
+@onready var quit_confirm_dialog = $QuitConfirmation
 
 var is_open = false
 var keybind_menu_open = false
@@ -25,6 +26,7 @@ func _ready():
 	keybind_menu_button.pressed.connect(toggle_keybind_menu)
 	close_keybind_button.pressed.connect(_on_CloseMenuButton_pressed)
 	preferences_button.pressed.connect(_on_preferences_button_pressed)
+	quit_button.pressed.connect(_on_quit_game)
 	#volume_slider.value = SaveManager.volume 
 	#volume_slider.connect("value_changed", _on_volume_changed)
 	
@@ -61,7 +63,7 @@ func _on_save():
 	
 func _on_delete():
 	delete_confirm_dialog.popup_centered()
-	#SaveManager.delete()
+
 
 func _on_delete_confirmation_confirmed():
 	SaveManager.delete()
@@ -76,9 +78,13 @@ func _on_CloseMenuButton_pressed():
 	keybind_menu_open = !keybind_menu_open
 	
 
-#func _on_volume_changed(value):
-#	AudioServer.set_bus_volume_db(0, linear_to_db(value))
-#	SaveManager.set_volume(value)
+func _on_quit_game():
+	quit_confirm_dialog.popup_centered()
+	
+func _on_quit_confirmation_confirmed():
+	SaveManager.save()
+	get_tree().quit()
+
 	
 func _on_preferences_button_pressed():
 	if preferences_menu == null:

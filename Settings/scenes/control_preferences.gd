@@ -2,6 +2,7 @@ extends Control
 
 @onready var volume_slider = $"Panel/VBoxContainer/Volume Slider"
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	volume_slider.value = SaveManager.volume 
