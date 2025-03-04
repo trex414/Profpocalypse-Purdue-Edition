@@ -7,6 +7,8 @@ var QuestMenuScene = null
 var majorInformation = null
 
 func _ready():
+
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	print("Game started. Press E to open inventory.")
 	

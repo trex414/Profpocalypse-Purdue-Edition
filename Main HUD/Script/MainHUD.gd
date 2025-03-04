@@ -18,6 +18,10 @@ var potion_bar_slots = [null, null]
 
 # initilize the main hud along with the hot bars
 func _ready():
+	var hud_ready_time = Time.get_ticks_msec()
+	var load_latency = hud_ready_time - SaveManager.game_start_time
+	print("HUD Load Latency (ms): ", load_latency)
+
 	setup_hotbars()
 	QuestManager.pinned_quests_updated.connect(update_pinned_quests)
 	update_pinned_quests(QuestManager.pinned_quests)  # Initial load if needed

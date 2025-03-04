@@ -13,8 +13,12 @@ var hud = null
 
 var volume = 1.0
 
+#built to test latency
+static var game_start_time = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	game_start_time = Time.get_ticks_msec()
 	load_volume()
 
 
