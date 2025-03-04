@@ -5,6 +5,9 @@ extends Node
 signal save_data_loaded # Signal so "inventory" waits for save to load
 
 var save_path = "user://save_game.json"
+var config = ConfigFile.new()
+
+@onready var root_node = get_tree().current_scene
 
 #call inventory functions easy fix
 var inventory = null
@@ -12,6 +15,7 @@ var inventory = null
 var hud = null
 
 var volume = 1.0
+var brightness = 1.0
 
 #built to test latency
 static var game_start_time = 0
@@ -20,6 +24,8 @@ static var game_start_time = 0
 func _ready():
 	game_start_time = Time.get_ticks_msec()
 	load_volume()
+	load_brightness()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,6 +92,9 @@ func delete():
 	else:
 		print("Failed to delete save. (No file)")
 		
+	if FileAccess.file_exists("user://settings.cfg"):
+		DirAccess.remove_absolute("user://settings.cfg")
+		
 
 func set_volume(value):
 	volume = value
@@ -93,12 +102,26 @@ func set_volume(value):
 	save_volume()
 
 func save_volume():
-	var config = ConfigFile.new()
 	config.set_value("audio", "volume", volume)
 	config.save("user://settings.cfg")
 
 func load_volume():
-	var config = ConfigFile.new()
 	if config.load("user://settings.cfg") == OK:
 		volume = config.get_value("audio", "volume", 1.0)
 		AudioServer.set_bus_volume_db(0, linear_to_db(volume))
+		
+
+func set_brightness(value):
+	brightness = value
+	root_node.modulate = Color(value, value, value, 1)
+	save_brightness()
+	
+
+func save_brightness():
+	config.set_value("graphics", "brightness", brightness)
+	config.save("user://settings.cfg")
+	
+func load_brightness():
+	if config.load("user://settings.cfg") == OK:
+		brightness = config.get_value("graphics", "brightness", 1.0)
+		root_node.modulate = Color(brightness, brightness, brightness, 1)

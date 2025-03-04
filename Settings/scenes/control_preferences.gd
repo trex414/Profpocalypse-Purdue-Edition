@@ -1,12 +1,17 @@
 extends Control
 
+@onready var root_node = get_tree().current_scene
 @onready var volume_slider = $"Panel/VBoxContainer/Volume Slider"
+@onready var brightness_slider = $"Panel/VBoxContainer/Brightness Slider"
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	volume_slider.value = SaveManager.volume 
 	volume_slider.connect("value_changed", _on_volume_changed)
+	brightness_slider.value = SaveManager.brightness
+	brightness_slider.connect("value_changed", _on_brightness_changed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,3 +24,7 @@ func _on_close_button_pressed():
 func _on_volume_changed(value):
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
 	SaveManager.set_volume(value)
+	
+func _on_brightness_changed(brightness):
+	root_node.modulate = Color(brightness, brightness, brightness, 1)
+	SaveManager.set_brightness(brightness)
