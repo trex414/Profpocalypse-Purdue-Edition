@@ -157,3 +157,23 @@ offset_right = 179.0
 offset_bottom = -165.0
 grow_vertical = 0
 text = "Lose EXP"
+
+[node name="PinnedQuestContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -33.0
+offset_right = 73.0
+offset_bottom = 34.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PinnedQuestContainer"]
+layout_mode = 2
+text = "Pinned Quests"
+
+[node name="QuestList" type="VBoxContainer" parent="CanvasLayer/PinnedQuestContainer"]
+layout_mode = 2

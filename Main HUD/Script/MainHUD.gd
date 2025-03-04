@@ -6,6 +6,9 @@ extends Control
 # Call the required scene items
 @onready var item_bar = $"CanvasLayer/Item Bar"
 @onready var potion_bar = $"CanvasLayer/Potion Bar"
+@onready var pinned_quest_container = $CanvasLayer/PinnedQuestContainer
+@onready var quest_list = $CanvasLayer/PinnedQuestContainer/QuestList
+@onready var background_panel = $CanvasLayer/PinnedQuestContainer/BackgroundPanel
 @onready var potions_manager = preload("res://Main HUD/Script/potion.gd").new()
 
 var inventory
@@ -16,6 +19,8 @@ var potion_bar_slots = [null, null]
 # initilize the main hud along with the hot bars
 func _ready():
 	setup_hotbars()
+	QuestManager.pinned_quests_updated.connect(update_pinned_quests)
+	update_pinned_quests(QuestManager.pinned_quests)  # Initial load if needed
 	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
 	# Connect Item Bar Slots to a function for clicking
@@ -407,3 +412,18 @@ func restore_potion_bar(slot_index: int, saved_potion: Dictionary):
 	setup_hotbar_button(button)
 	update_potion_display()
 	print("Restored potion to Potion Bar:", potion_data["name"], " at slot", slot_index)
+	
+func update_pinned_quests(pinned_quests: Array[Quest]):
+	# Clear current labels
+	for child in quest_list.get_children():
+		child.queue_free()
+
+	# Add labels for each pinned quest
+	for quest in pinned_quests:
+		var label = Label.new()
+		label.text = quest.quest_name
+		label.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow text
+		quest_list.add_child(label)
+
+	# Control visibility
+	pinned_quest_container.visible = pinned_quests.size() > 0

@@ -88,3 +88,6 @@ text = "Complete Quest"
 [node name="CloseButton" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/ButtonContainer"]
 layout_mode = 2
 text = "Close"
+
+[node name="Pin" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/ButtonContainer"]
+layout_mode = 2

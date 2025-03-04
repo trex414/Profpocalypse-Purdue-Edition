@@ -6,3 +6,4 @@ class_name Quest
 @export var prerequisites: Array[Quest] = []
 @export var rewards: Array[String] = []
 @export var is_completed: bool = false
+@export var pinned: bool = false

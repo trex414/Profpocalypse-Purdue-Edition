@@ -28,6 +28,7 @@ var semester_index: int
 var current_semester: String
 var current_quests: Dictionary
 static var completed_quests = []
+var pinned_quests = []
 
 
 
@@ -46,6 +47,7 @@ func get_game_state():
 			"current_semester": current_semester,
 			"current_quests": current_quests,
 			"completed_quests": completed_quests,
+			"pinned_quests": pinned_quests,
 		}
 	}
 
@@ -86,6 +88,9 @@ func apply_game_state(data):
 			
 		if "completed_quests" in player_data:
 			completed_quests = player_data.completed_quests
+			
+		if "pinned_quests" in player_data:
+			pinned_quests = player_data.pinned_quests
 
 
 
@@ -118,6 +123,7 @@ func set_default_values():
 	current_quests = {}
 	completed_quests = []
 	completed_quests.clear()
+	pinned_quests = []
 	
 static func is_quest_completed(quest_id: String) -> bool:
 	return quest_id in completed_quests
