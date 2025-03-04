@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=16 format=4 uid="uid://44fn8peqisx3"]
 
-[ext_resource type="Script" path="res://Main Map/scenes/profpocalypse_main_map.gd" id="1_cchdm"]
+[ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
 [ext_resource type="Script" path="res://Main Map/scripts/Building Label.gd" id="2_0pdya"]
 [ext_resource type="Script" path="res://Inventory/scenes/temporary_player.gd" id="4_3tb7l"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="4_j2j4h"]
 [ext_resource type="StyleBox" uid="uid://bdrcw5rjcpfnk" path="res://Main Map/scenes/building icon.tres" id="4_ysta8"]
 [ext_resource type="Texture2D" uid="uid://da60ixcyfybjq" path="res://CharacterImages/WhiteSquare.png" id="5_tqgjs"]
+[ext_resource type="Script" path="res://Main Map/scenes/buildings_3.gd" id="6_fqmo0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khlmg"]
 texture = ExtResource("1_cmsoe")
@@ -3098,6 +3099,9 @@ texture = ExtResource("1_cmsoe")
 [sub_resource type="TileSet" id="TileSet_xy60x"]
 sources/1 = SubResource("TileSetAtlasSource_j0xnl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff34x"]
+size = Vector2(24, 24)
+
 [node name="Map" type="Node2D" groups=["Buildings"]]
 script = ExtResource("1_cchdm")
 font = ExtResource("4_j2j4h")
@@ -3127,14 +3131,21 @@ texture = ExtResource("5_tqgjs")
 position = Vector2(3900, 2750)
 zoom = Vector2(3, 3)
 
-[node name="ARMS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TemporaryPlayer"]
+position = Vector2(3900, 2750)
+shape = SubResource("RectangleShape2D_ff34x")
+
+[node name="Buildings3" type="Node2D" parent="."]
+script = ExtResource("6_fqmo0")
+
+[node name="ARMS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ARMS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ARMS"]
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4000, 2735.59, 4328, 2735.59, 4400, 2807.58, 4400, 2815.58, 4368, 2815.58, 4368, 2823.58, 4384, 2839.57, 4328, 2895.57, 4248, 2815.58, 4056, 2815.58, 4080, 2839.57, 4064, 2856.57, 4072, 2863.57, 4040, 2895.57, 3952, 2807.58, 3976, 2783.58, 4000, 2783.58, 4000, 2767.58, 4016, 2767.58, 4016, 2751.59, 4000, 2751.59)
 
-[node name="Label" type="Label" parent="ARMS"]
+[node name="Label" type="Label" parent="Buildings3/ARMS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3144,15 +3155,15 @@ text = "Neil Armstrong
 Hall of Engineering
 (ARMS)"
 
-[node name="LAMB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LAMB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LAMB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LAMB"]
 position = Vector2(-160, -368)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4000, 2735.59, 4240, 2735.59, 4240, 2847.57, 4224, 2847.57, 4224, 2863.57, 4208, 2863.57, 4208, 2943.56, 4144, 2943.56, 4144, 2959.56, 4096, 2959.56, 4096, 2943.56, 4032, 2943.56, 4032, 2863.57, 4000, 2863.57, 4000, 2831.58, 3984, 2831.58, 3984, 2767.58, 4000, 2767.58)
 
-[node name="Label" type="Label" parent="LAMB"]
+[node name="Label" type="Label" parent="Buildings3/LAMB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3162,15 +3173,15 @@ text = "Ward L. Lambert
 Fieldhouse and Gymnasium
 (LAMB)"
 
-[node name="LG" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LG" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LG"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LG"]
 position = Vector2(144, -208)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4000, 2735.59, 4048, 2735.59, 4048, 2783.58, 4016, 2783.58, 4016, 2767.58, 4000, 2767.58)
 
-[node name="Label" type="Label" parent="LG"]
+[node name="Label" type="Label" parent="Buildings3/LG"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3179,15 +3190,15 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Lambert Green Dining
 (LG)"
 
-[node name="FORD" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FORD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FORD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FORD"]
 position = Vector2(-800, -368)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4032, 2767.58, 4032, 2735.59, 4048, 2735.59, 4048, 2959.56, 4032, 2959.56, 4032, 2975.55, 4016, 2975.55, 4016, 3007.55, 4000, 3007.55, 4000, 2991.55, 3984, 2991.55, 3984, 2959.56, 3968, 2959.56, 3968, 2927.56, 3952, 2927.56, 3952, 2815.58, 3968, 2815.58, 3968, 2751.59, 4000, 2751.59, 4000, 2767.58)
 
-[node name="Label" type="Label" parent="FORD"]
+[node name="Label" type="Label" parent="Buildings3/FORD"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3197,15 +3208,15 @@ text = "Fred & Mary Ford
 Dining Court
 (FORD)"
 
-[node name="OWEN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="OWEN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OWEN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/OWEN"]
 position = Vector2(-976, -400)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4016, 2831.58, 4016, 2735.59, 4048, 2735.59, 4048, 2991.55, 4016, 2991.55, 4016, 2911.56, 3984, 2911.56, 3984, 2927.56, 3888, 2927.56, 3888, 2911.56, 3856, 2911.56, 3856, 2991.55, 3824, 2991.55, 3824, 2735.59, 3856, 2735.59, 3856, 2831.58, 3888, 2831.58, 3888, 2815.58, 3920, 2815.58, 3920, 2799.58, 3952, 2799.58, 3952, 2815.58, 3984, 2815.58, 3984, 2831.58)
 
-[node name="Label" type="Label" parent="OWEN"]
+[node name="Label" type="Label" parent="Buildings3/OWEN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3215,15 +3226,15 @@ text = "Richard Owen
 Residence Hall
 (OWEN)"
 
-[node name="TARK" type="Area2D" parent="." groups=["Buildings"]]
+[node name="TARK" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TARK"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/TARK"]
 position = Vector2(-976, 16)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4016, 2831.58, 4016, 2735.59, 4048, 2735.59, 4048, 3023.55, 4016, 3023.55, 4016, 2911.56, 4000, 2911.56, 4000, 2927.56, 3872, 2927.56, 3872, 2911.56, 3856, 2911.56, 3856, 3055.54, 3824, 3055.54, 3824, 2735.59, 3856, 2735.59, 3856, 2831.58, 3872, 2831.58, 3872, 2815.58, 4000, 2815.58, 4000, 2831.58)
 
-[node name="Label" type="Label" parent="TARK"]
+[node name="Label" type="Label" parent="Buildings3/TARK"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3233,15 +3244,15 @@ text = "Newtoon Booth Tarkington
 Residence Hall
 (TARK)"
 
-[node name="WILY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WILY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WILY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WILY"]
 position = Vector2(-976, 368)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4016, 2847.57, 4016, 2735.59, 4048, 2735.59, 4048, 3023.55, 4016, 3023.55, 4016, 2927.56, 4000, 2927.56, 4000, 2943.56, 3872, 2943.56, 3872, 2927.56, 3856, 2927.56, 3856, 3023.55, 3824, 3023.55, 3824, 2703.59, 3856, 2703.59, 3856, 2847.57, 3872, 2847.57, 3872, 2831.58, 4000, 2831.58, 4000, 2847.57)
 
-[node name="Label" type="Label" parent="WILY"]
+[node name="Label" type="Label" parent="Buildings3/WILY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3250,35 +3261,35 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Harvey W. Wiley
 Residence Hall (WILY)"
 
-[node name="CARY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CARY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CARY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CARY"]
 position = Vector2(-640, -400)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4000, 2735.59, 4176, 2735.59, 4176, 2767.58, 4000, 2767.58)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CARY"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Buildings3/CARY"]
 position = Vector2(-448, -400)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4000, 2735.59, 4160, 2735.59, 4160, 2767.58, 4000, 2767.58)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="CARY"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Buildings3/CARY"]
 position = Vector2(-344, -377)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4072, 2712.59, 4104, 2712.59, 4104, 2904.56, 4072, 2904.56)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="CARY"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Buildings3/CARY"]
 position = Vector2(-760, -377)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4072, 2712.59, 4104, 2712.59, 4104, 2904.56, 4072, 2904.56)
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="CARY"]
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Buildings3/CARY"]
 position = Vector2(-648, -217)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4072, 2712.59, 4312, 2712.59, 4312, 2776.58, 4392, 2776.58, 4392, 2808.58, 4280, 2808.58, 4280, 2744.59, 4104, 2744.59, 4104, 2808.58, 3992, 2809.58, 3992, 2776.58, 4072, 2776.58)
 
-[node name="Label" type="Label" parent="CARY"]
+[node name="Label" type="Label" parent="Buildings3/CARY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3288,15 +3299,15 @@ text = "Franklin Levering Cary
 Quadrangle
 (CARY)"
 
-[node name="MACK" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MACK" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MACK"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MACK"]
 position = Vector2(-16, -928)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(4000, 2735.59, 4048, 2735.59, 4048, 2783.58, 4048, 2831.58, 4064, 2831.58, 4064, 2991.55, 4080, 2991.55, 4080, 3151.53, 4096, 3151.53, 4096, 3247.51, 4080, 3247.51, 4080, 3231.52, 4064, 3231.52, 4064, 3247.51, 4048, 3247.51, 4048, 3231.52, 4016, 3231.52, 4016, 3247.51, 3984, 3247.51, 3984, 3263.51, 3888, 3263.51, 3888, 3247.51, 3904, 3247.51, 3904, 3231.52, 3872, 3231.52, 3872, 3215.52, 3840, 3215.52, 3840, 3199.52, 3808, 3199.52, 3808, 3183.52, 3792, 3183.52, 3792, 3135.53, 3776, 3135.53, 3776, 3071.54, 3760, 3071.54, 3760, 3007.55, 3776, 3007.55, 3776, 3023.55, 3792, 3023.55, 3792, 3039.54, 3808, 3039.54, 3808, 3023.55, 3824, 3023.55, 3824, 3039.54, 3840, 3039.54, 3840, 2991.55, 3872, 2991.55, 3872, 2975.55, 3936, 2975.55, 3936, 2911.56, 3952, 2911.56, 3952, 2847.57, 3968, 2847.57, 3968, 2815.58, 3984, 2815.58, 3984, 2783.58, 4000, 2783.58)
 
-[node name="Label" type="Label" parent="MACK"]
+[node name="Label" type="Label" parent="Buildings3/MACK"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3305,15 +3316,15 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Guy J. Mackey Arena
 (MACK)"
 
-[node name="STDM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="STDM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="STDM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/STDM"]
 position = Vector2(-560, -1152)
 scale = Vector2(1, 1.00015)
 polygon = PackedVector2Array(3920, 2735.59, 4048, 2735.59, 4048, 2751.59, 4096, 2751.59, 4096, 2767.58, 4112, 2767.58, 4112, 2783.58, 4128, 2783.58, 4128, 2815.58, 4144, 2815.58, 4144, 2847.57, 4128, 2847.57, 4128, 2863.57, 4160, 2863.57, 4160, 2879.57, 4176, 2879.57, 4176, 2895.57, 4144, 2895.57, 4144, 2911.56, 4176, 2911.56, 4176, 2943.56, 4192, 2943.56, 4192, 2959.56, 4160, 2959.56, 4160, 2975.55, 4192, 2975.55, 4192, 2991.55, 4208, 2991.55, 4208, 3039.54, 4224, 3039.54, 4224, 3071.54, 4192, 3071.54, 4192, 3087.54, 4160, 3087.54, 4160, 3103.53, 4128, 3103.53, 4128, 3087.54, 4112, 3087.54, 4112, 3071.54, 4096, 3071.54, 4096, 3039.54, 4080, 3039.54, 4080, 2992.55, 4064, 2992.55, 4064, 2943.56, 4048, 2943.56, 4048, 2895.57, 4032, 2895.57, 4032, 2879.57, 4016, 2879.57, 4016, 2863.57, 3968, 2863.57, 3968, 2879.57, 3952, 2879.57, 3952, 2895.57, 3936, 2895.57, 3936, 2943.56, 3952, 2943.56, 3952, 3007.55, 3968, 3007.55, 3968, 3055.54, 3984, 3055.54, 3984, 3103.53, 3968, 3103.53, 3968, 3151.53, 3920, 3151.53, 3920, 3167.52, 3872, 3167.52, 3872, 3135.53, 3856, 3135.53, 3856, 3087.54, 3840, 3087.54, 3840, 3039.54, 3824, 3039.54, 3824, 2991.55, 3808, 2991.55, 3808, 2943.56, 3792, 2943.56, 3792, 2879.57, 3808, 2879.57, 3808, 2815.58, 3824, 2815.58, 3824, 2799.58, 3840, 2799.58, 3840, 2783.58, 3856, 2783.58, 3856, 2767.58, 3872, 2767.58, 3872, 2751.59, 3920, 2751.59)
 
-[node name="Label" type="Label" parent="STDM"]
+[node name="Label" type="Label" parent="Buildings3/STDM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3322,32 +3333,32 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Ross-Ade Stadium
 (STDM)"
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="STDM"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Buildings3/STDM"]
 polygon = PackedVector2Array(3328, 2048, 3328, 2064, 3344, 2064, 3344, 2080, 3392, 2080, 3392, 2064, 3376, 2064, 3376, 2048)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="STDM"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Buildings3/STDM"]
 position = Vector2(96, 48)
 polygon = PackedVector2Array(3328, 2048, 3328, 2064, 3376, 2064, 3376, 2048)
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="STDM"]
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Buildings3/STDM"]
 position = Vector2(160, 48)
 polygon = PackedVector2Array(3328, 2048, 3328, 2064, 3344, 2064, 3344, 2048)
 
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="STDM"]
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Buildings3/STDM"]
 position = Vector2(298, -3)
 polygon = PackedVector2Array(3318, 2059, 3326, 2067, 3366, 2027, 3358, 2019)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="STDM"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Buildings3/STDM"]
 position = Vector2(114, -23)
 polygon = PackedVector2Array(3326, 2039, 3326, 2087, 3342, 2087, 3342, 2103, 3390, 2103, 3390, 2119, 3486, 2119, 3486, 2103, 3406, 2103, 3406, 2087, 3470, 2087, 3470, 2055, 3454, 2055, 3454, 2023, 3390, 2023, 3390, 2039)
 
-[node name="BRES" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BRES" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BRES"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BRES"]
 polygon = PackedVector2Array(3744, 1872, 3744, 2032, 3856, 2032, 3856, 2016, 3872, 2016, 3872, 2000, 3888, 2000, 3888, 1952, 3872, 1952, 3872, 1872)
 
-[node name="Label" type="Label" parent="BRES"]
+[node name="Label" type="Label" parent="Buildings3/BRES"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3357,14 +3368,14 @@ text = "Drew & Brittany Brees
 Student Athletic Center
 (BRES)"
 
-[node name="PRID" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PRID" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PRID"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PRID"]
 position = Vector2(-345, -350)
 polygon = PackedVector2Array(3801, 1886, 3801, 1902, 3785, 1902, 3785, 1934, 3849, 1934, 3849, 1902, 3833, 1902, 3833, 1886)
 
-[node name="Label" type="Label" parent="PRID"]
+[node name="Label" type="Label" parent="Buildings3/PRID"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3373,14 +3384,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Purdue Pride Store
 (PRID)"
 
-[node name="MOLL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MOLL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MOLL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MOLL"]
 position = Vector2(-80, -448)
 polygon = PackedVector2Array(3744, 1872, 3744, 2000, 3760, 2000, 3760, 2160, 3776, 2160, 3776, 2192, 3792, 2192, 3792, 2240, 3808, 2240, 3808, 2256, 3920, 2256, 3920, 2160, 3936, 2160, 3936, 1984, 3920, 1984, 3920, 1872)
 
-[node name="Label" type="Label" parent="MOLL"]
+[node name="Label" type="Label" parent="Buildings3/MOLL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3389,14 +3400,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Mollenkopf Athletic Center
 (MOLL)"
 
-[node name="KFPC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="KFPC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KFPC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/KFPC"]
 position = Vector2(-176, -496)
 polygon = PackedVector2Array(3744, 1872, 3744, 1920, 4016, 1920, 4016, 1968, 4032, 1968, 4032, 1952, 4064, 1952, 4064, 1968, 4096, 1968, 4096, 1920, 4112, 1920, 4112, 1872, 4000, 1872, 4000, 1856, 3936, 1856, 3936, 1872)
 
-[node name="Label" type="Label" parent="KFPC"]
+[node name="Label" type="Label" parent="Buildings3/KFPC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3406,13 +3417,13 @@ text = "Kozuch Football
 Performance Complex
 (KFPC)"
 
-[node name="HAMP" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HAMP" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HAMP"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HAMP"]
 polygon = PackedVector2Array(4080, 2936, 4264, 3120, 4368, 3017, 4328, 2976, 4297, 3016, 4272, 2984, 4304, 2952, 4288, 2928, 4272, 2928, 4272, 2944, 4240, 2944, 4240, 2928, 4224, 2928, 4224, 2880, 4208, 2880, 4208, 2864, 4176, 2864, 4176, 2880, 4160, 2880, 4160, 2864, 4152, 2864, 4136, 2848, 4096, 2888, 4128, 2920, 4128, 2928, 4080, 2928)
 
-[node name="Label" type="Label" parent="HAMP"]
+[node name="Label" type="Label" parent="Buildings3/HAMP"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3422,13 +3433,13 @@ text = "Hampton (Delon and Elizabeth)
 Hall of Civil Engineering
 (HAMP)"
 
-[node name="PHYS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PHYS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PHYS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PHYS"]
 polygon = PackedVector2Array(4456, 2864, 4368, 2952, 4536, 3120, 4624, 3032)
 
-[node name="Label" type="Label" parent="PHYS"]
+[node name="Label" type="Label" parent="Buildings3/PHYS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3437,14 +3448,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Physics Building
 (PHYS)"
 
-[node name="WANG" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WANG" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WANG"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WANG"]
 position = Vector2(173, -99)
 polygon = PackedVector2Array(4459, 2867, 4403, 2923, 4571, 3091, 4627, 3035)
 
-[node name="Label" type="Label" parent="WANG"]
+[node name="Label" type="Label" parent="Buildings3/WANG"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3453,14 +3464,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Seng-Liang Wang Hall
 (WANG)"
 
-[node name="PGSC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PGSC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PGSC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PGSC"]
 position = Vector2(368, 60)
 polygon = PackedVector2Array(4456, 2860, 4392, 2924, 4433, 2964, 4480, 2964, 4480, 2885)
 
-[node name="Label" type="Label" parent="PGSC"]
+[node name="Label" type="Label" parent="Buildings3/PGSC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3469,14 +3480,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Purdue Graduate
 Student Center"
 
-[node name="FRNY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FRNY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FRNY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FRNY"]
 position = Vector2(-45, 180)
 polygon = PackedVector2Array(4453, 2860, 4381, 2932, 4397, 2948, 4389, 2956, 4365, 2932, 4333, 2964, 4445, 3076, 4557, 2964)
 
-[node name="Label" type="Label" parent="FRNY"]
+[node name="Label" type="Label" parent="Buildings3/FRNY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3486,14 +3497,14 @@ text = "Forney Hall of
 Chemical Engineering
 (FRNY)"
 
-[node name="MSEE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MSEE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MSEE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MSEE"]
 position = Vector2(177, 206)
 polygon = PackedVector2Array(4455, 2866, 4399, 2922, 4519, 3042, 4575, 2986)
 
-[node name="Label" type="Label" parent="MSEE"]
+[node name="Label" type="Label" parent="Buildings3/MSEE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3502,14 +3513,14 @@ text = "Materials and Electrical
 Engineering Building
 (MSEE)"
 
-[node name="BHEE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BHEE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BHEE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BHEE"]
 position = Vector2(348, 365)
 polygon = PackedVector2Array(4476, 2867, 4388, 2955, 4525, 3090, 4557, 3091, 4588, 3123, 4644, 3067, 4595, 3019, 4612, 3003)
 
-[node name="Label" type="Label" parent="BHEE"]
+[node name="Label" type="Label" parent="Buildings3/BHEE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3518,14 +3529,14 @@ text = "Brown (Max W & Maileen)
 Family Hall
 (BHEE)"
 
-[node name="ME" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ME" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ME"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ME"]
 position = Vector2(115, 438)
 polygon = PackedVector2Array(4533, 2858, 4365, 3026, 4365, 3099, 4429, 3114, 4501, 3098, 4637, 2962)
 
-[node name="Label" type="Label" parent="ME"]
+[node name="Label" type="Label" parent="Buildings3/ME"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3534,14 +3545,14 @@ text = "Mechanical Engineering
 Building
 (ME)"
 
-[node name="PUSH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PUSH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PUSH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PUSH"]
 position = Vector2(-666, 28)
 polygon = PackedVector2Array(4562, 2868, 4522, 2908, 4618, 3004, 4602, 3020, 4626, 3044, 4683, 2988)
 
-[node name="Label" type="Label" parent="PUSH"]
+[node name="Label" type="Label" parent="Buildings3/PUSH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3550,14 +3561,14 @@ text = "Purdue University Student
 Health Center
 (PUSH)"
 
-[node name="CHAS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CHAS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CHAS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CHAS"]
 position = Vector2(-519, 461)
 polygon = PackedVector2Array(4591, 2899, 4503, 2987, 4559, 3043, 4607, 2995, 4639, 3026, 4679, 2987)
 
-[node name="Label" type="Label" parent="CHAS"]
+[node name="Label" type="Label" parent="Buildings3/CHAS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3566,14 +3577,14 @@ text = "Chaney-Hale
 Hall of Science
 (CHAS)"
 
-[node name="RHPH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="RHPH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RHPH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/RHPH"]
 position = Vector2(-619, 138)
 polygon = PackedVector2Array(4627, 2934, 4581, 2982, 4491, 2982, 4491, 3094, 4563, 3094, 4643, 3014, 4651, 3022, 4683, 2990)
 
-[node name="Label" type="Label" parent="RHPH"]
+[node name="Label" type="Label" parent="Buildings3/RHPH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3582,14 +3593,14 @@ text = "Robert E. Heine
 Pharmacy Building
 (RHPH)"
 
-[node name="JNSN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="JNSN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="JNSN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/JNSN"]
 position = Vector2(-550, 214)
 polygon = PackedVector2Array(4606, 2986, 4566, 3026, 4622, 3082, 4662, 3041)
 
-[node name="Label" type="Label" parent="JNSN"]
+[node name="Label" type="Label" parent="Buildings3/JNSN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3598,14 +3609,14 @@ text = "Helen R. Johnson
 Hall Of Nursing
 (JNSN)"
 
-[node name="NACC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="NACC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NACC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/NACC"]
 position = Vector2(-774, 294)
 polygon = PackedVector2Array(4550, 3018, 4518, 3018, 4518, 3050, 4550, 3050)
 
-[node name="Label" type="Label" parent="NACC"]
+[node name="Label" type="Label" parent="Buildings3/NACC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3614,14 +3625,14 @@ text = "Native American Educational
 and Cultural Center
 (NACC)"
 
-[node name="AACC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AACC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AACC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AACC"]
 position = Vector2(-918, 294)
 polygon = PackedVector2Array(4550, 3018, 4518, 3018, 4518, 3034, 4550, 3034)
 
-[node name="Label" type="Label" parent="AACC"]
+[node name="Label" type="Label" parent="Buildings3/AACC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3630,14 +3641,14 @@ text = "Asian American Resource
 and Cultural Center
 (AACC)"
 
-[node name="LCCP" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LCCP" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LCCP"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LCCP"]
 position = Vector2(-918, 326)
 polygon = PackedVector2Array(4550, 3018, 4518, 3018, 4518, 3034, 4550, 3034)
 
-[node name="Label" type="Label" parent="LCCP"]
+[node name="Label" type="Label" parent="Buildings3/LCCP"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3646,14 +3657,14 @@ text = "Latino Cultural Center
 at Purdue
 (LCCP)"
 
-[node name="DSAI" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DSAI" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DSAI"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DSAI"]
 position = Vector2(-383, 275)
 polygon = PackedVector2Array(4575, 2989, 4575, 3013, 4503, 3085, 4567, 3149, 4599, 3117, 4623, 3117, 4623, 3069, 4647, 3069, 4671, 3045, 4615, 2989)
 
-[node name="Label" type="Label" parent="DSAI"]
+[node name="Label" type="Label" parent="Buildings3/DSAI"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3662,14 +3673,14 @@ text = "Hall of Data Science
 and AI
 (DSAI)"
 
-[node name="ELLT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ELLT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ELLT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ELLT"]
 position = Vector2(-338, 441)
 polygon = PackedVector2Array(4602, 2982, 4562, 3023, 4610, 3071, 4586, 3095, 4554, 3063, 4434, 3184, 4418, 3239, 4434, 3271, 4466, 3288, 4522, 3271, 4642, 3151, 4610, 3119, 4634, 3095, 4682, 3143, 4722, 3103)
 
-[node name="Label" type="Label" parent="ELLT"]
+[node name="Label" type="Label" parent="Buildings3/ELLT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3678,14 +3689,14 @@ text = "Edward C. Elliott
 Hall of Music
 (ELLT)"
 
-[node name="AR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AR"]
 position = Vector2(-726, 521)
 polygon = PackedVector2Array(4598, 2983, 4598, 3207, 4710, 3207, 4710, 2999, 4726, 2999, 4726, 2983)
 
-[node name="Label" type="Label" parent="AR"]
+[node name="Label" type="Label" parent="Buildings3/AR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3693,14 +3704,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Armory
 (AR)"
 
-[node name="LWSN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LWSN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LWSN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LWSN"]
 position = Vector2(-872, 608)
 polygon = PackedVector2Array(4616, 2992, 4600, 2992, 4600, 3152, 4664, 3152, 4664, 2992, 4632, 2992, 4632, 2976, 4616, 2976)
 
-[node name="Label" type="Label" parent="LWSN"]
+[node name="Label" type="Label" parent="Buildings3/LWSN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3709,14 +3720,14 @@ text = "Richard & Patricia Lawson
 Computer Science Building
 (LWSN)"
 
-[node name="HAAS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HAAS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HAAS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HAAS"]
 position = Vector2(-729, 854)
 polygon = PackedVector2Array(4601, 2986, 4601, 3098, 4665, 3098, 4665, 3066, 4681, 3066, 4681, 3018, 4665, 3018, 4665, 2986)
 
-[node name="Label" type="Label" parent="HAAS"]
+[node name="Label" type="Label" parent="Buildings3/HAAS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3724,14 +3735,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Felix Haas Hall
 (HAAS)"
 
-[node name="MATH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MATH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MATH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MATH"]
 position = Vector2(-630, 922)
 polygon = PackedVector2Array(4646, 3014, 4630, 3014, 4630, 3070, 4614, 3086, 4630, 3110, 4678, 3110, 4678, 3014, 4662, 3014, 4662, 2982, 4646, 2982)
 
-[node name="Label" type="Label" parent="MATH"]
+[node name="Label" type="Label" parent="Buildings3/MATH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3740,14 +3751,14 @@ text = "Mathematical Sciences
 Building
 (MATH)"
 
-[node name="PSYC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PSYC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PSYC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PSYC"]
 position = Vector2(-387, 824)
 polygon = PackedVector2Array(4516, 3000, 4516, 3032, 4531, 3032, 4531, 3048, 4563, 3048, 4563, 3064, 4579, 3064, 4579, 3048, 4659, 3048, 4659, 3032, 4675, 3032, 4675, 3000, 4659, 3000, 4659, 2984, 4579, 2984, 4579, 3000)
 
-[node name="Label" type="Label" parent="PSYC"]
+[node name="Label" type="Label" parent="Buildings3/PSYC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3756,14 +3767,14 @@ text = "Psychological Sciences
 Building
 (PSYC)"
 
-[node name="PRCE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PRCE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PRCE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PRCE"]
 position = Vector2(-390, 899)
 polygon = PackedVector2Array(4534, 2989, 4534, 3037, 4582, 3037, 4582, 3021, 4614, 3021, 4614, 2989)
 
-[node name="Label" type="Label" parent="PRCE"]
+[node name="Label" type="Label" parent="Buildings3/PRCE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3771,14 +3782,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Peirce Hall
 (PRCE)"
 
-[node name="CL50" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CL50" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CL50"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CL50"]
 position = Vector2(-390, 948)
 polygon = PackedVector2Array(4534, 2988, 4534, 3036, 4550, 3036, 4550, 3052, 4598, 3052, 4598, 3036, 4614, 3036, 4614, 2988)
 
-[node name="Label" type="Label" parent="CL50"]
+[node name="Label" type="Label" parent="Buildings3/CL50"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3787,14 +3798,14 @@ text = "Class of 1950
 Lecture Hall
 (CL50)"
 
-[node name="SC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SC"]
 position = Vector2(-294, 914)
 polygon = PackedVector2Array(4534, 2990, 4534, 3070, 4630, 3070, 4630, 2990)
 
-[node name="Label" type="Label" parent="SC"]
+[node name="Label" type="Label" parent="Buildings3/SC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3802,14 +3813,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Stanley Coulter Hall
 (SC)"
 
-[node name="WALC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WALC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WALC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WALC"]
 position = Vector2(-50, 589)
 polygon = PackedVector2Array(4530, 2995, 4530, 3075, 4546, 3075, 4546, 3155, 4530, 3155, 4531, 3235, 4674, 3235, 4674, 3011, 4562, 3011, 4562, 2995)
 
-[node name="Label" type="Label" parent="WALC"]
+[node name="Label" type="Label" parent="Buildings3/WALC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3819,14 +3830,14 @@ Wilmeth Active Learning
 Center 
 (WALC)"
 
-[node name="POTR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="POTR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="POTR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/POTR"]
 position = Vector2(93, 566)
 polygon = PackedVector2Array(4579, 3050, 4563, 3050, 4563, 3146, 4547, 3146, 4547, 3162, 4563, 3162, 4563, 3178, 4595, 3178, 4595, 3162, 4659, 3162, 4659, 3178, 4675, 3178, 4675, 3018, 4659, 3018, 4659, 3034, 4579, 3034)
 
-[node name="Label" type="Label" parent="POTR"]
+[node name="Label" type="Label" parent="Buildings3/POTR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3835,14 +3846,14 @@ text = "A. A. Potter
 Engineering Center
 (POTR)"
 
-[node name="LMBS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LMBS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LMBS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LMBS"]
 position = Vector2(236, 500)
 polygon = PackedVector2Array(4564, 3036, 4564, 3228, 4644, 3228, 4644, 3052, 4628, 3052, 4628, 3036)
 
-[node name="Label" type="Label" parent="LMBS"]
+[node name="Label" type="Label" parent="Buildings3/LMBS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3850,14 +3861,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Lambertus Hall
 (LMBS)"
 
-[node name="DUDL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DUDL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DUDL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DUDL"]
 position = Vector2(237, 695)
 polygon = PackedVector2Array(4563, 3033, 4563, 3113, 4851, 3113, 4851, 3033)
 
-[node name="Label" type="Label" parent="DUDL"]
+[node name="Label" type="Label" parent="Buildings3/DUDL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3865,14 +3876,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Dudley Hall
 (DUDL)"
 
-[node name="KNOY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="KNOY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KNOY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/KNOY"]
 position = Vector2(483, 435)
 polygon = PackedVector2Array(4565, 3037, 4493, 3109, 4493, 3277, 4605, 3277, 4605, 3197, 4589, 3197, 4589, 3149, 4605, 3149, 4605, 3133, 4621, 3133, 4621, 3117, 4605, 3117, 4605, 3085, 4589, 3085, 4589, 3053, 4573, 3053, 4573, 3037)
 
-[node name="Label" type="Label" parent="KNOY"]
+[node name="Label" type="Label" parent="Buildings3/KNOY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3881,14 +3892,14 @@ text = "Maurice G. Knoy
 Hall of Technology
 (KNOY)"
 
-[node name="BALY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BALY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BALY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BALY"]
 position = Vector2(707, 583)
 polygon = PackedVector2Array(4573, 3097, 4509, 3097, 4509, 3193, 4589, 3193, 4589, 3129, 4573, 3129)
 
-[node name="Label" type="Label" parent="BALY"]
+[node name="Label" type="Label" parent="Buildings3/BALY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3897,14 +3908,14 @@ text = "Ralph and Bettye
 Bailey Hall
 (BALY)"
 
-[node name="WTHR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WTHR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WTHR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WTHR"]
 position = Vector2(-28, 790)
 polygon = PackedVector2Array(4684, 3098, 4620, 3098, 4620, 3114, 4572, 3114, 4572, 3098, 4508, 3098, 4508, 3210, 4556, 3210, 4556, 3226, 4636, 3226, 4636, 3210, 4684, 3210)
 
-[node name="Label" type="Label" parent="WTHR"]
+[node name="Label" type="Label" parent="Buildings3/WTHR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3913,14 +3924,14 @@ text = "Richard Benbridge Wetherill
 Lab of Chemistry
 (WTHR)"
 
-[node name="HEAV" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HEAV" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HEAV"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HEAV"]
 position = Vector2(195, 870)
 polygon = PackedVector2Array(4733, 3098, 4509, 3098, 4509, 3146, 4733, 3146)
 
-[node name="Label" type="Label" parent="HEAV"]
+[node name="Label" type="Label" parent="Buildings3/HEAV"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3928,14 +3939,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Heavilon Hall
 (HEAV)"
 
-[node name="BRWN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BRWN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BRWN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BRWN"]
 position = Vector2(151, 803)
 polygon = PackedVector2Array(4681, 3069, 4633, 3069, 4633, 3085, 4553, 3085, 4553, 3101, 4505, 3101, 4505, 3133, 4553, 3133, 4553, 3149, 4777, 3149, 4777, 3133, 4793, 3133, 4793, 3101, 4777, 3101, 4777, 3085, 4681, 3085)
 
-[node name="Label" type="Label" parent="BRWN"]
+[node name="Label" type="Label" parent="Buildings3/BRWN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3944,14 +3955,14 @@ text = "Herbert C. Brown
 Laboratory of Chemistry
 (BRWN)"
 
-[node name="GRIS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="GRIS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GRIS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/GRIS"]
 position = Vector2(311, 798)
 polygon = PackedVector2Array(4745, 3090, 4745, 3122, 4697, 3122, 4697, 3154, 4745, 3154, 4745, 3170, 4697, 3170, 4697, 3218, 4793, 3218, 4793, 3090)
 
-[node name="Label" type="Label" parent="GRIS"]
+[node name="Label" type="Label" parent="Buildings3/GRIS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3959,14 +3970,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Grissom Hall
 (GRIS)"
 
-[node name="UC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="UC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/UC"]
 position = Vector2(518, 862)
 polygon = PackedVector2Array(4746, 3138, 4746, 3122, 4698, 3122, 4698, 3218, 4746, 3218, 4746, 3170, 4778, 3170, 4778, 3218, 4826, 3218, 4826, 3154, 4794, 3154, 4794, 3138)
 
-[node name="Label" type="Label" parent="UC"]
+[node name="Label" type="Label" parent="Buildings3/UC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3974,14 +3985,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "University Church
 (UC)"
 
-[node name="PMU" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PMU" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PMU"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PMU"]
 position = Vector2(167, 1086)
 polygon = PackedVector2Array(4873, 3314, 4873, 3234, 4905, 3202, 4873, 3170, 4873, 3122, 4697, 3122, 4697, 3378, 4873, 3378, 4873, 3362, 4969, 3362, 4969, 3314)
 
-[node name="Label" type="Label" parent="PMU"]
+[node name="Label" type="Label" parent="Buildings3/PMU"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -3989,14 +4000,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Purdue Memorial Union
 (PMU)"
 
-[node name="PMUC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PMUC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PMUC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PMUC"]
 position = Vector2(392, 975)
 polygon = PackedVector2Array(4760, 3121, 4696, 3121, 4696, 3232.82, 4728, 3233, 4728, 3297, 4696, 3297, 4696, 3425, 4728, 3425, 4728, 3393, 4760, 3393, 4760, 3377, 4776, 3377, 4776, 3361, 4760, 3361, 4760, 3345, 4728, 3345, 4728, 3313, 4760, 3313, 4760, 3217, 4728, 3217, 4728, 3153, 4760, 3153)
 
-[node name="Label" type="Label" parent="PMUC"]
+[node name="Label" type="Label" parent="Buildings3/PMUC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4005,14 +4016,14 @@ text = "Purdue Memorial
 Union Club
 (PMU)"
 
-[node name="STEW" type="Area2D" parent="." groups=["Buildings"]]
+[node name="STEW" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="STEW"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/STEW"]
 position = Vector2(-217, 1102)
 polygon = PackedVector2Array(4697, 3122, 4697, 3186, 4713, 3186, 4713, 3362, 5017, 3362, 5017, 3282, 5001, 3282, 5001, 3122, 4905, 3122, 4905, 3154, 4841, 3154, 4841, 3122)
 
-[node name="Label" type="Label" parent="STEW"]
+[node name="Label" type="Label" parent="Buildings3/STEW"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4020,14 +4031,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Stewart Center
 (STEW)"
 
-[node name="HICKS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HICKS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HICKS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HICKS"]
 position = Vector2(-72, 1358)
 polygon = PackedVector2Array(4697, 3122, 4697, 3169, 4760, 3169, 4760, 3122)
 
-[node name="Label" type="Label" parent="HICKS"]
+[node name="Label" type="Label" parent="Buildings3/HICKS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4036,14 +4047,14 @@ text = "John W. Hicks
 Undergraduate Library
 (HICKS)"
 
-[node name="SCHM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SCHM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SCHM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SCHM"]
 position = Vector2(-553, 928)
 polygon = PackedVector2Array(4697, 3120, 4697, 3248, 4745, 3248, 4745, 3120)
 
-[node name="Label" type="Label" parent="SCHM"]
+[node name="Label" type="Label" parent="Buildings3/SCHM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4051,14 +4062,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Helen B. Schleman Hall
 (SCHM)"
 
-[node name="UNIV" type="Area2D" parent="." groups=["Buildings"]]
+[node name="UNIV" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UNIV"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/UNIV"]
 position = Vector2(-553, 1102)
 polygon = PackedVector2Array(4697, 3122, 4698, 3216, 4744, 3216, 4745, 3122)
 
-[node name="Label" type="Label" parent="UNIV"]
+[node name="Label" type="Label" parent="Buildings3/UNIV"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4066,14 +4077,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "University Hall
 (UNIV)"
 
-[node name="STON" type="Area2D" parent="." groups=["Buildings"]]
+[node name="STON" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="STON"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/STON"]
 position = Vector2(-554, 1247)
 polygon = PackedVector2Array(4683, 3122, 4683, 3217, 4634, 3216, 4634, 3280, 4745, 3280, 4745, 3122)
 
-[node name="Label" type="Label" parent="STON"]
+[node name="Label" type="Label" parent="Buildings3/STON"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4081,14 +4092,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Winthrop E. Stone Hall
 (STON)"
 
-[node name="BRNG" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BRNG" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BRNG"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BRNG"]
 position = Vector2(-735, 899)
 polygon = PackedVector2Array(4671, 3133, 4607, 3133, 4607, 3293, 4679, 3293, 4711, 3261, 4671, 3221, 4671, 3213, 4783, 3213, 4783, 3165, 4671, 3165)
 
-[node name="Label" type="Label" parent="BRNG"]
+[node name="Label" type="Label" parent="Buildings3/BRNG"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4098,14 +4109,14 @@ Hall of Liberal Arts
 & Education
 (BRNG)"
 
-[node name="MTHW" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MTHW" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MTHW"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MTHW"]
 position = Vector2(-720, 1122)
 polygon = PackedVector2Array(4657, 3133, 4608, 3133, 4609, 3213, 4594, 3215, 4593, 3405, 4655, 3406)
 
-[node name="Label" type="Label" parent="MTHW"]
+[node name="Label" type="Label" parent="Buildings3/MTHW"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4113,14 +4124,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Matthews Hall
 (MTHW)"
 
-[node name="MRRT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MRRT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MRRT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MRRT"]
 position = Vector2(-880, 1203)
 polygon = PackedVector2Array(4672, 3133, 4608, 3133, 4608, 3228, 4594, 3229, 4592, 3324, 4688, 3324, 4687, 3231, 4672, 3228)
 
-[node name="Label" type="Label" parent="MRRT"]
+[node name="Label" type="Label" parent="Buildings3/MRRT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4128,14 +4139,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Marriott Hall
 (MRRT)"
 
-[node name="TEL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="TEL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TEL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/TEL"]
 position = Vector2(-866, 835)
 polygon = PackedVector2Array(4594, 3229, 4594, 3277, 4658, 3277, 4658, 3229)
 
-[node name="Label" type="Label" parent="TEL"]
+[node name="Label" type="Label" parent="Buildings3/TEL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4144,14 +4155,14 @@ text = "Telecommunications
 Building
 (TEL)"
 
-[node name="WALD" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WALD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WALD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WALD"]
 position = Vector2(-1106, 835)
 polygon = PackedVector2Array(4594, 3229, 4594, 3293, 4642, 3293, 4642, 3229)
 
-[node name="Label" type="Label" parent="WALD"]
+[node name="Label" type="Label" parent="Buildings3/WALD"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4159,14 +4170,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Waldron Place II
 (WALD)"
 
-[node name="HAGL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HAGL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HAGL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HAGL"]
 position = Vector2(-1313, 580)
 polygon = PackedVector2Array(4593, 3228, 4593, 3276, 4657, 3276, 4657, 3228)
 
-[node name="Label" type="Label" parent="HAGL"]
+[node name="Label" type="Label" parent="Buildings3/HAGL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4175,14 +4186,14 @@ text = "Marc and Sharon
 Hagle Hall
 (HAGL)"
 
-[node name="HCRN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HCRN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HCRN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HCRN"]
 position = Vector2(-1425, 596)
 polygon = PackedVector2Array(4513, 3284, 4538, 3308, 4569, 3276, 4625, 3276, 4625, 3388, 4569, 3387, 4537, 3356, 4513, 3380, 4553, 3420, 4625, 3420, 4625, 3436, 4657, 3436, 4657, 3228, 4625, 3228, 4625, 3244, 4553, 3244)
 
-[node name="Label" type="Label" parent="HCRN"]
+[node name="Label" type="Label" parent="Buildings3/HCRN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4191,14 +4202,14 @@ text = "Honors College
 Residence Hall North
 (HCRN)"
 
-[node name="HCRS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HCRS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HCRS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HCRS"]
 position = Vector2(-1425, 836)
 polygon = PackedVector2Array(4625, 3436, 4657, 3436, 4657, 3228, 4625, 3228)
 
-[node name="Label" type="Label" parent="HCRS"]
+[node name="Label" type="Label" parent="Buildings3/HCRS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4207,14 +4218,14 @@ text = "Honors College
 Residence Hall South
 (HCRS)"
 
-[node name="DUHM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DUHM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DUHM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DUHM"]
 position = Vector2(-1722, 964)
 polygon = PackedVector2Array(4674, 3308, 4706, 3308, 4762, 3252, 4738, 3228, 4690, 3276, 4642, 3228, 4618, 3252)
 
-[node name="Label" type="Label" parent="DUHM"]
+[node name="Label" type="Label" parent="Buildings3/DUHM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4223,14 +4234,14 @@ text = "Ophelia Duhme
 Residence Hall
 (DUHM)"
 
-[node name="WARN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WARN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WARN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WARN"]
 position = Vector2(-1722, 724)
 polygon = PackedVector2Array(4674, 3308, 4706, 3308, 4762, 3252, 4738, 3228, 4690, 3276, 4642, 3228, 4618, 3252)
 
-[node name="Label" type="Label" parent="WARN"]
+[node name="Label" type="Label" parent="Buildings3/WARN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4239,14 +4250,14 @@ text = "Martha E. & Eugene K.
 Warren Residence Hall
 (WARN)"
 
-[node name="SHLY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SHLY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SHLY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SHLY"]
 position = Vector2(-1722, 820)
 polygon = PackedVector2Array(4674, 3244, 4706, 3244, 4762, 3300, 4738, 3324, 4690, 3276, 4642, 3324, 4618, 3300)
 
-[node name="Label" type="Label" parent="SHLY"]
+[node name="Label" type="Label" parent="Buildings3/SHLY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4255,14 +4266,14 @@ text = "Frances M. Shealy
 Residence Hall
 (SHLY)"
 
-[node name="VAWT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VAWT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VAWT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VAWT"]
 position = Vector2(-1722, 580)
 polygon = PackedVector2Array(4674, 3244, 4706, 3244, 4762, 3300, 4738, 3324, 4690, 3276, 4642, 3324, 4618, 3300)
 
-[node name="Label" type="Label" parent="VAWT"]
+[node name="Label" type="Label" parent="Buildings3/VAWT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4271,14 +4282,14 @@ text = "Everett B. Vawter
 Residence Hall
 (VAWT)"
 
-[node name="WDC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WDC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WDC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WDC"]
 position = Vector2(-1810, 644)
 polygon = PackedVector2Array(4674, 3244, 4706, 3244, 4706, 3237, 4730, 3261, 4754, 3236, 4754, 3244, 4770, 3244, 4770, 3324, 4754, 3324, 4754, 3332, 4730, 3308, 4706, 3332, 4682.48, 3307.67, 4674, 3316, 4650, 3292, 4674, 3268)
 
-[node name="Label" type="Label" parent="WDC"]
+[node name="Label" type="Label" parent="Buildings3/WDC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4286,14 +4297,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Windsor Dining Court
 (WDC)"
 
-[node name="WOOD" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WOOD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WOOD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WOOD"]
 position = Vector2(-1929, 680)
 polygon = PackedVector2Array(4665, 3360, 4769, 3256, 4793, 3280, 4713, 3360, 4713, 3376, 4793, 3456, 4769, 3479, 4665, 3376)
 
-[node name="Label" type="Label" parent="WOOD"]
+[node name="Label" type="Label" parent="Buildings3/WOOD"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4302,14 +4313,14 @@ text = "Elizabeth G. & William R.
 Wood Residence Hall
 (WOOD)"
 
-[node name="BIDC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BIDC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BIDC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BIDC"]
 position = Vector2(-1314, 483)
 polygon = PackedVector2Array(4594, 3229, 4594, 3293, 4658, 3293, 4658, 3229)
 
-[node name="Label" type="Label" parent="BIDC"]
+[node name="Label" type="Label" parent="Buildings3/BIDC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4318,14 +4329,14 @@ text = "Bechtel Innovation
 Design Center
 (BIDC)"
 
-[node name="DMNT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DMNT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DMNT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DMNT"]
 position = Vector2(-2338, 403)
 polygon = PackedVector2Array(4594, 3229, 4594, 3293, 4658, 3293, 4658, 3229)
 
-[node name="Label" type="Label" parent="DMNT"]
+[node name="Label" type="Label" parent="Buildings3/DMNT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4334,14 +4345,14 @@ text = "Clayton W. Dement
 Fire Station
 (DMNT)"
 
-[node name="SMLY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SMLY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SMLY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SMLY"]
 position = Vector2(-2194, 579)
 polygon = PackedVector2Array(4594, 3229, 4594, 3293, 4674, 3293, 4674, 3309, 4706, 3309, 4706, 3229)
 
-[node name="Label" type="Label" parent="SMLY"]
+[node name="Label" type="Label" parent="Buildings3/SMLY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4351,14 +4362,14 @@ Housing & Food Service
 Administration
 (SMLY)"
 
-[node name="MRDS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MRDS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MRDS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MRDS"]
 position = Vector2(-2338, 963)
 polygon = PackedVector2Array(4594, 3229, 4594, 3277, 4706, 3277, 4706, 3261, 4818, 3261, 4818, 3277, 4946, 3277, 4946, 3245, 4882, 3245, 4882, 3229, 4818, 3229, 4818, 3213, 4706, 3213, 4706, 3229)
 
-[node name="Label" type="Label" parent="MRDS"]
+[node name="Label" type="Label" parent="Buildings3/MRDS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4367,14 +4378,14 @@ text = "Virginia C. Meredith
 Residence Hall South
 (MRDS)"
 
-[node name="MRDH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MRDH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MRDH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MRDH"]
 position = Vector2(-2266, 675)
 polygon = PackedVector2Array(4594, 3229, 4570, 3253, 4650, 3333, 4650, 3381, 4570, 3461, 4594, 3485, 4674, 3405, 4722, 3405, 4802, 3485, 4826, 3462, 4746, 3381, 4746, 3333, 4826, 3253, 4802, 3229, 4722, 3309, 4674, 3309)
 
-[node name="Label" type="Label" parent="MRDH"]
+[node name="Label" type="Label" parent="Buildings3/MRDH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4383,14 +4394,14 @@ text = "Virginia C. Meredith
 Residence Hall
 (MRDH)"
 
-[node name="TREC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="TREC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TREC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/TREC"]
 position = Vector2(-2418, 195)
 polygon = PackedVector2Array(4594, 3229, 4594, 3358, 4626.28, 3357.6, 4626, 3389, 4658, 3389, 4658, 3357, 4674, 3357, 4674, 3229)
 
-[node name="Label" type="Label" parent="TREC"]
+[node name="Label" type="Label" parent="Buildings3/TREC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4398,14 +4409,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Turf Recreational Center
 (TREC)"
 
-[node name="SCPA" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SCPA" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SCPA"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SCPA"]
 position = Vector2(-2006, -723)
 polygon = PackedVector2Array(4574, 3219, 4502, 3291, 4550, 3321, 4598, 3275)
 
-[node name="Label" type="Label" parent="SCPA"]
+[node name="Label" type="Label" parent="Buildings3/SCPA"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4414,14 +4425,14 @@ text = "Slayter Center of
 Performing Arts
 (SCPA)"
 
-[node name="HA" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HA" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HA"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HA"]
 position = Vector2(-1496, -1924)
 polygon = PackedVector2Array(4574, 3219, 4399, 3329, 4149, 3607, 3946, 4052, 4029, 4143, 4709, 4177, 4706, 3841, 4641, 3397, 4598, 3275)
 
-[node name="Label" type="Label" parent="HA"]
+[node name="Label" type="Label" parent="Buildings3/HA"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4429,14 +4440,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Hilltop Apartments
 (HA)"
 
-[node name="BCC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BCC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BCC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BCC"]
 position = Vector2(-1426, 483)
 polygon = PackedVector2Array(4594, 3229, 4594, 3277, 4642, 3277, 4642, 3261, 4658, 3261, 4658, 3229)
 
-[node name="Label" type="Label" parent="BCC"]
+[node name="Label" type="Label" parent="Buildings3/BCC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4444,14 +4455,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Black Cultural Center
 (BCC)"
 
-[node name="KRCH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="KRCH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KRCH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/KRCH"]
 position = Vector2(-1794, 467)
 polygon = PackedVector2Array(4610, 3245, 4594, 3245, 4594, 3277, 4738, 3277, 4738, 3245, 4658, 3245, 4658, 3229, 4610, 3229)
 
-[node name="Label" type="Label" parent="KRCH"]
+[node name="Label" type="Label" parent="Buildings3/KRCH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4459,14 +4470,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Krach Leadership Center
 (KRCH)"
 
-[node name="WDCT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WDCT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WDCT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WDCT"]
 position = Vector2(-1746, 259)
 polygon = PackedVector2Array(4610, 3245, 4594, 3245, 4594, 3293, 4610, 3293, 4610, 3309, 4738, 3309, 4737.57, 3293, 4802, 3293, 4802, 3245, 4738, 3245, 4738, 3229, 4610, 3229)
 
-[node name="Label" type="Label" parent="WDCT"]
+[node name="Label" type="Label" parent="Buildings3/WDCT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4474,14 +4485,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Wiley Dining Court
 (WDCT)"
 
-[node name="CREC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CREC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CREC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CREC"]
 position = Vector2(-2082, 51)
 polygon = PackedVector2Array(4610, 3309, 4578, 3309, 4578, 3357, 4594, 3357, 4594, 3389, 4578, 3389, 4578, 3421, 4562, 3421, 4562, 3453, 4578, 3453, 4578, 3469, 4626, 3469, 4626, 3565, 4642, 3565, 4642, 3629, 4674, 3629, 4674, 3645, 4754, 3645, 4754, 3613, 4786, 3613, 4786, 3228, 4610, 3229)
 
-[node name="Label" type="Label" parent="CREC"]
+[node name="Label" type="Label" parent="Buildings3/CREC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4490,14 +4501,14 @@ text = "France A. Cordova
 Recreational Sports Center
 (CREC)"
 
-[node name="AQUA" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AQUA" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AQUA"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AQUA"]
 position = Vector2(-2210, 243)
 polygon = PackedVector2Array(4610, 3437, 4738, 3437, 4738, 3389, 4722, 3389, 4722, 3277, 4706, 3277, 4706, 3261, 4690, 3261, 4690, 3229, 4610, 3229)
 
-[node name="Label" type="Label" parent="AQUA"]
+[node name="Label" type="Label" parent="Buildings3/AQUA"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4507,14 +4518,14 @@ Boilermarker Aquatic
 Center
 (AQUA)"
 
-[node name="PKRF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PKRF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PKRF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PKRF"]
 position = Vector2(-1421, 271)
 polygon = PackedVector2Array(4605, 3217, 4605, 3249, 4541, 3249, 4541, 3297, 4605, 3297, 4605, 3361, 4589, 3361, 4589, 3393, 4653, 3393, 4653, 3217)
 
-[node name="Label" type="Label" parent="PKRF"]
+[node name="Label" type="Label" parent="Buildings3/PKRF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4523,14 +4534,14 @@ text = "Frieda Parker
 Residence Hall
 (PKRF)"
 
-[node name="PKRW" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PKRW" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PKRW"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PKRW"]
 position = Vector2(-1549, 367)
 polygon = PackedVector2Array(4589, 3217, 4589, 3249, 4637, 3249, 4637, 3281, 4589, 3281, 4589, 3313, 4637, 3313, 4637, 3345, 4541, 3345, 4541, 3377, 4653, 3377, 4653, 3217)
 
-[node name="Label" type="Label" parent="PKRW"]
+[node name="Label" type="Label" parent="Buildings3/PKRW"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4539,14 +4550,14 @@ text = "Winifred Parker
 Residence Hall
 (PKRW)"
 
-[node name="RAWL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="RAWL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RAWL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/RAWL"]
 position = Vector2(718, 1443)
 polygon = PackedVector2Array(4594, 3229, 4594, 3277, 4610, 3277, 4610, 3309, 4642, 3309, 4642, 3277, 4706, 3277, 4706, 3261, 4722, 3261, 4722, 3245, 4706, 3245, 4706, 3229)
 
-[node name="Label" type="Label" parent="RAWL"]
+[node name="Label" type="Label" parent="Buildings3/RAWL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4554,14 +4565,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Jerry S. Rawls Hall
 (RAWL)"
 
-[node name="KRAN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="KRAN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KRAN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/KRAN"]
 position = Vector2(510, 1443)
 polygon = PackedVector2Array(4434, 3277, 4434, 3341, 4642, 3341, 4642, 3293, 4706, 3293, 4706, 3229, 4530, 3229, 4530, 3277)
 
-[node name="Label" type="Label" parent="KRAN"]
+[node name="Label" type="Label" parent="Buildings3/KRAN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4569,14 +4580,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Krannert Building
 (KRAN)"
 
-[node name="KCTR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="KCTR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="KCTR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/KCTR"]
 position = Vector2(238, 1442)
 polygon = PackedVector2Array(4594, 3326, 4594, 3374, 4707, 3374, 4706, 3271, 4666, 3230, 4658, 3230, 4658, 3326)
 
-[node name="Label" type="Label" parent="KCTR"]
+[node name="Label" type="Label" parent="Buildings3/KCTR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4585,14 +4596,14 @@ text = "Krannert Center For
 Exec Education & Research
 (KCTR)"
 
-[node name="YONG" type="Area2D" parent="." groups=["Buildings"]]
+[node name="YONG" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YONG"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/YONG"]
 position = Vector2(499, 1592)
 polygon = PackedVector2Array(4701, 3384, 4733, 3384, 4733, 3352, 4701, 3352, 4701, 3224, 4653, 3224, 4653, 3512, 4701, 3512)
 
-[node name="Label" type="Label" parent="YONG"]
+[node name="Label" type="Label" parent="Buildings3/YONG"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4600,14 +4611,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Ernest C. Young Hall
 (YONG)"
 
-[node name="HAWK" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HAWK" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HAWK"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HAWK"]
 position = Vector2(195, 1624)
 polygon = PackedVector2Array(4749, 3464, 4797, 3465, 4797, 3304, 4702, 3304, 4701, 3224, 4653, 3224, 4653, 3352, 4669, 3352, 4669, 3383, 4702, 3400, 4718, 3432, 4749, 3432)
 
-[node name="Label" type="Label" parent="HAWK"]
+[node name="Label" type="Label" parent="Buildings3/HAWK"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4615,14 +4626,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "George A. Hawkins Hall
 (HAWK)"
 
-[node name="DAUC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DAUC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DAUC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DAUC"]
 position = Vector2(355, 1976)
 polygon = PackedVector2Array(4877, 3272, 4861, 3272, 4861, 3240, 4829, 3240, 4829, 3224, 4653, 3224, 4653, 3336, 4701, 3336, 4701, 3320, 4797, 3320, 4797, 3336, 4877, 3336)
 
-[node name="Label" type="Label" parent="DAUC"]
+[node name="Label" type="Label" parent="Buildings3/DAUC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4631,14 +4642,14 @@ text = "Dick & Sandy Dauch
 Alumni Center
 (DAUC)"
 
-[node name="PAO" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PAO" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PAO"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PAO"]
 position = Vector2(-156, 1736)
 polygon = PackedVector2Array(4652, 3224, 4684, 3224, 4684, 3240, 4764, 3240, 4764, 3224, 4876, 3224, 4876, 3304, 4860, 3304, 4860, 3368, 4668, 3368, 4668, 3304, 4652, 3304)
 
-[node name="Label" type="Label" parent="PAO"]
+[node name="Label" type="Label" parent="Buildings3/PAO"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4648,14 +4659,14 @@ Hall of Visual and
 Performing Arts
 (PAO)"
 
-[node name="AGAD" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AGAD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AGAD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AGAD"]
 position = Vector2(-396, 1512)
 polygon = PackedVector2Array(4652, 3224, 4796, 3224, 4796, 3336, 4748, 3336, 4748, 3272, 4700, 3272, 4700, 3304, 4652, 3304)
 
-[node name="Label" type="Label" parent="AGAD"]
+[node name="Label" type="Label" parent="Buildings3/AGAD"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4664,14 +4675,14 @@ text = "Agricultural Administration
 Building
 (AGAD)"
 
-[node name="FORS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FORS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FORS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FORS"]
 position = Vector2(-364, 1689)
 polygon = PackedVector2Array(4716, 3207, 4764, 3207, 4764, 3351, 4716, 3351)
 
-[node name="Label" type="Label" parent="FORS"]
+[node name="Label" type="Label" parent="Buildings3/FORS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4679,14 +4690,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Forestry Building
 (FORS)"
 
-[node name="FPRD" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FPRD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FPRD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FPRD"]
 position = Vector2(-540, 1609)
 polygon = PackedVector2Array(4716, 3207, 4764, 3207, 4764, 3319, 4716, 3319)
 
-[node name="Label" type="Label" parent="FPRD"]
+[node name="Label" type="Label" parent="Buildings3/FPRD"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4694,14 +4705,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Forest Products Building
 (FPRD)"
 
-[node name="EEL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="EEL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EEL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/EEL"]
 position = Vector2(-476, 1689)
 polygon = PackedVector2Array(4716, 3207, 4812, 3207, 4812, 3239, 4796, 3239, 4796, 3303, 4764, 3303, 4764, 3255, 4748, 3255, 4748, 3351, 4716, 3351)
 
-[node name="Label" type="Label" parent="EEL"]
+[node name="Label" type="Label" parent="Buildings3/EEL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4710,14 +4721,14 @@ text = "Entomology Environmental
 Lab
 (EEL)"
 
-[node name="PFEN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PFEN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PFEN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PFEN"]
 position = Vector2(-636, 1481)
 polygon = PackedVector2Array(4716, 3207, 4828, 3207, 4828, 3255, 4812, 3255, 4812, 3319, 4732, 3319, 4732, 3255, 4716, 3255)
 
-[node name="Label" type="Label" parent="PFEN"]
+[node name="Label" type="Label" parent="Buildings3/PFEN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4726,14 +4737,14 @@ text = "David C. Pfendler
 Hall of Agriculture
 (PFEN)"
 
-[node name="WSLR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WSLR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WSLR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WSLR"]
 position = Vector2(-620, 1593)
 polygon = PackedVector2Array(4716, 3207, 4764, 3207, 4764, 3447, 4716, 3447, 4716, 3431, 4700, 3431, 4700, 3367, 4716, 3367, 4716, 3287, 4700, 3287, 4700, 3223, 4716, 3223)
 
-[node name="Label" type="Label" parent="WSLR"]
+[node name="Label" type="Label" parent="Buildings3/WSLR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4742,14 +4753,14 @@ text = "Roy L. Whistler
 Hall of Agricultural Research
 (WSLR)"
 
-[node name="HORT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HORT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HORT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HORT"]
 position = Vector2(-329, 1977)
 polygon = PackedVector2Array(4569, 3239, 4729, 3239, 4729, 3319, 4681, 3319, 4681, 3287, 4617, 3287, 4617, 3351, 4569, 3351)
 
-[node name="Label" type="Label" parent="HORT"]
+[node name="Label" type="Label" parent="Buildings3/HORT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4757,14 +4768,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Horticulture Building
 (HORT)"
 
-[node name="NLSN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="NLSN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NLSN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/NLSN"]
 position = Vector2(-505, 1977)
 polygon = PackedVector2Array(4569, 3239, 4713, 3239, 4713, 3367, 4697, 3367, 4697, 3463, 4633, 3463, 4633, 3415, 4569, 3415)
 
-[node name="Label" type="Label" parent="NLSN"]
+[node name="Label" type="Label" parent="Buildings3/NLSN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4773,14 +4784,14 @@ text = "Philip E. Nelson
 Hall of Food Science
 (NLSN)"
 
-[node name="PGH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PGH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PGH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PGH"]
 position = Vector2(-1017, 2105)
 polygon = PackedVector2Array(4601, 3239, 4713, 3239, 4713, 3319, 4729, 3319, 4729, 3367, 4713, 3367, 4713, 3479, 4569, 3479, 4569, 3271, 4585, 3271, 4585, 3255, 4601, 3255)
 
-[node name="Label" type="Label" parent="PGH"]
+[node name="Label" type="Label" parent="Buildings3/PGH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4789,14 +4800,14 @@ text = "Harrison Street
 Parking Garage
 (PGH)"
 
-[node name="ABE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ABE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ABE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ABE"]
 position = Vector2(-761, 1945)
 polygon = PackedVector2Array(4553, 3239, 4713, 3239, 4713, 3367, 4697, 3367, 4697, 3383, 4553, 3383, 4553, 3367, 4537, 3367, 4537, 3303, 4553, 3303)
 
-[node name="Label" type="Label" parent="ABE"]
+[node name="Label" type="Label" parent="Buildings3/ABE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4805,14 +4816,14 @@ text = "Agricultural and Biological
 Engineering
 (ABE)"
 
-[node name="DRUG" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DRUG" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DRUG"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DRUG"]
 position = Vector2(-953, 1945)
 polygon = PackedVector2Array(4553, 3239, 4633, 3239, 4633, 3319, 4649, 3319, 4649, 3351, 4553, 3351)
 
-[node name="Label" type="Label" parent="DRUG"]
+[node name="Label" type="Label" parent="Buildings3/DRUG"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4820,14 +4831,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Drug Discovery Facility
 (DRUG)"
 
-[node name="HLAB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HLAB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HLAB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HLAB"]
 position = Vector2(-1465, 1801)
 polygon = PackedVector2Array(4553, 3239, 4649, 3239, 4649, 3383, 4665, 3383, 4665, 3447, 4537, 3447, 4537, 3383, 4553, 3383)
 
-[node name="Label" type="Label" parent="HLAB"]
+[node name="Label" type="Label" parent="Buildings3/HLAB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4835,14 +4846,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Herrick Laboratories
 (HLAB)"
 
-[node name="SOIL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SOIL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SOIL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SOIL"]
 position = Vector2(-1545, 2089)
 polygon = PackedVector2Array(4553, 3239, 4617, 3239, 4617, 3271, 4697, 3271, 4697, 3287, 4729, 3287, 4729, 3319, 4697, 3319, 4697, 3367, 4553, 3367, 4553, 3351, 4537, 3351, 4537, 3335, 4553, 3335)
 
-[node name="Label" type="Label" parent="SOIL"]
+[node name="Label" type="Label" parent="Buildings3/SOIL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4850,29 +4861,30 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Soil Erosion Lab
 (SOIL)"
 
-[node name="CRTN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CRTN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CRTN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CRTN"]
 position = Vector2(-1305, 2137)
 polygon = PackedVector2Array(4553, 3239, 4569, 3239, 4569, 3255, 4585, 3255, 4585, 3223, 4729.16, 3223, 4729, 3239, 4777, 3239, 4777, 3223, 4793, 3223, 4793, 3319, 4649, 3319, 4649, 3303, 4553, 3303)
 
-[node name="Label" type="Label" parent="CRTN"]
+[node name="Label" type="Label" parent="Buildings3/CRTN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_styles/normal = ExtResource("4_ysta8")
-text = "Soil Erosion Lab
-(SOIL)"
+text = "Hobart & Russel Creighton
+Hall of Animal Sciences
+(CRTN)"
 
-[node name="LOLC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LOLC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LOLC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LOLC"]
 position = Vector2(-1302, 2235)
 polygon = PackedVector2Array(4662, 3301, 4678, 3301, 4678, 3221, 4790, 3221, 4790, 3317, 4758, 3317, 4758, 3349, 4662, 3349)
 
-[node name="Label" type="Label" parent="LOLC"]
+[node name="Label" type="Label" parent="Buildings3/LOLC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4882,14 +4894,14 @@ Experimental Learning and
 Purina Pavilion
 (LOLC)"
 
-[node name="MJIS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MJIS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MJIS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MJIS"]
 position = Vector2(-1737, 1817)
 polygon = PackedVector2Array(4537, 3288, 4633, 3287, 4665, 3383, 4777, 3383, 4777, 3447, 4537, 3447, 4537, 3399, 4553, 3399, 4553, 3382.97, 4569, 3383)
 
-[node name="Label" type="Label" parent="MJIS"]
+[node name="Label" type="Label" parent="Buildings3/MJIS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4899,14 +4911,14 @@ Hall of Biomedical
 Engineering
 (MJIS)"
 
-[node name="GRS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="GRS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GRS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/GRS"]
 position = Vector2(-1465, 1545)
 polygon = PackedVector2Array(4585, 3367, 4617, 3367, 4617, 3383, 4649, 3383, 4649, 3399, 4665, 3399, 4665, 3431, 4649, 3431, 4649, 3447, 4553, 3447, 4553, 3431, 4537, 3431, 4537, 3399, 4553, 3399, 4553, 3383, 4585, 3383)
 
-[node name="Label" type="Label" parent="GRS"]
+[node name="Label" type="Label" parent="Buildings3/GRS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4914,14 +4926,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Ground Service Building
 (GRS)"
 
-[node name="HERL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HERL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HERL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HERL"]
 position = Vector2(-1753, 1465)
 polygon = PackedVector2Array(4729, 3383, 4729, 3463, 4681, 3463, 4681, 3543, 4649, 3543, 4649, 3591, 4601, 3591, 4601, 3463, 4553, 3463, 4553, 3383, 4601, 3383, 4601, 3447, 4681, 3447, 4681, 3383)
 
-[node name="Label" type="Label" parent="HERL"]
+[node name="Label" type="Label" parent="Buildings3/HERL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4929,14 +4941,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Herrick Acoustics
 (HERL)"
 
-[node name="TERY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="TERY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TERY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/TERY"]
 position = Vector2(-1961, 1673)
 polygon = PackedVector2Array(4633, 3527, 4553, 3527, 4553, 3383, 4633, 3383)
 
-[node name="Label" type="Label" parent="TERY"]
+[node name="Label" type="Label" parent="Buildings3/TERY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4945,14 +4957,14 @@ text = "Oliver Perkins
 Terry House
 (TERY)"
 
-[node name="FLEX" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FLEX" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FLEX"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FLEX"]
 position = Vector2(-2249, 1818)
 polygon = PackedVector2Array(4617, 3590, 4553, 3590, 4553, 3382, 4617, 3382)
 
-[node name="Label" type="Label" parent="FLEX"]
+[node name="Label" type="Label" parent="Buildings3/FLEX"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4960,14 +4972,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Flex Laboratories
 (FLEX)"
 
-[node name="CONV" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CONV" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CONV"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CONV"]
 position = Vector2(-2889, 1258)
 polygon = PackedVector2Array(4633, 3590, 4553, 3590, 4553, 3382, 4633, 3382)
 
-[node name="Label" type="Label" parent="CONV"]
+[node name="Label" type="Label" parent="Buildings3/CONV"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4975,14 +4987,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Convergence
 (CONV)"
 
-[node name="PGMD" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PGMD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PGMD"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PGMD"]
 position = Vector2(-3209, 458)
 polygon = PackedVector2Array(4793, 3718, 4552, 3718, 4553, 3382, 4793, 3382)
 
-[node name="Label" type="Label" parent="PGMD"]
+[node name="Label" type="Label" parent="Buildings3/PGMD"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -4991,14 +5003,14 @@ text = "McCutcheon Drive
 Parking Garage
 (PGMD)"
 
-[node name="ECEC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ECEC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ECEC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ECEC"]
 position = Vector2(-4137, 970)
 polygon = PackedVector2Array(4601, 3542, 4553, 3542, 4553, 3382, 4601, 3382)
 
-[node name="Label" type="Label" parent="ECEC"]
+[node name="Label" type="Label" parent="Buildings3/ECEC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5008,14 +5020,14 @@ Early Care and
 Education Center
 (ECEC)"
 
-[node name="MCUT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MCUT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MCUT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MCUT"]
 position = Vector2(-3145, 906)
 polygon = PackedVector2Array(4713, 3590, 4553, 3590, 4553, 3558, 4585, 3558, 4585, 3414, 4553, 3414.09, 4553, 3382, 4713, 3382, 4713, 3414, 4697, 3414, 4697, 3430, 4713, 3430, 4713, 3478, 4729, 3478, 4729, 3542, 4697, 3542, 4697, 3558, 4713, 3558.22)
 
-[node name="Label" type="Label" parent="MCUT"]
+[node name="Label" type="Label" parent="Buildings3/MCUT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5024,14 +5036,14 @@ text = "John T. Mccutcheon
 Residence Hall
 (MCUT)"
 
-[node name="HARR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HARR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HARR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HARR"]
 position = Vector2(-2873, 906)
 polygon = PackedVector2Array(4713, 3590, 4553, 3590, 4553, 3558, 4569, 3558, 4569, 3542, 4537, 3542, 4537, 3478, 4553, 3478, 4553, 3430, 4569, 3430.15, 4569, 3414, 4553, 3414.09, 4553, 3382, 4713, 3382, 4713, 3414, 4681, 3414, 4681, 3558, 4713, 3558.22)
 
-[node name="Label" type="Label" parent="HARR"]
+[node name="Label" type="Label" parent="Buildings3/HARR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5040,14 +5052,14 @@ text = "Benjamin Harrison
 Residence Hall
 (HARR)"
 
-[node name="CONT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="CONT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CONT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/CONT"]
 position = Vector2(-3193, 1258)
 polygon = PackedVector2Array(4793, 3606, 4777, 3606, 4777, 3622, 4745, 3622, 4745, 3494, 4729, 3494, 4729, 3526, 4601, 3526, 4601, 3574, 4729, 3574, 4729, 3638, 4617, 3638, 4617, 3654, 4553, 3654, 4553, 3494.05, 4601, 3494, 4601, 3478, 4553, 3478, 4553, 3382, 4793, 3382)
 
-[node name="Label" type="Label" parent="CONT"]
+[node name="Label" type="Label" parent="Buildings3/CONT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5055,14 +5067,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Continuum
 (CONT)"
 
-[node name="PVAB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PVAB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PVAB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PVAB"]
 position = Vector2(-2237, 2157)
 polygon = PackedVector2Array(4485, 3619, 4429, 3563, 4477, 3515, 4445, 3483, 4485, 3443, 4516.96, 3475.04, 4549, 3443, 4605, 3499)
 
-[node name="Label" type="Label" parent="PVAB"]
+[node name="Label" type="Label" parent="Buildings3/PVAB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5071,14 +5083,14 @@ text = "Purdue Village
 Administration Building
 (PVAB)"
 
-[node name="AERO" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AERO" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AERO"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AERO"]
 position = Vector2(-3841, 3104)
 polygon = PackedVector2Array(4497, 3552, 4497, 3504, 4577, 3504, 4577, 3552)
 
-[node name="Label" type="Label" parent="AERO"]
+[node name="Label" type="Label" parent="Buildings3/AERO"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5087,14 +5099,14 @@ text = "Aerospace Science
 Laboratory
 (AERO)"
 
-[node name="COMP" type="Area2D" parent="." groups=["Buildings"]]
+[node name="COMP" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="COMP"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/COMP"]
 position = Vector2(-3841, 3152)
 polygon = PackedVector2Array(4497, 3520, 4497, 3504, 4529, 3504, 4529, 3520)
 
-[node name="Label" type="Label" parent="COMP"]
+[node name="Label" type="Label" parent="Buildings3/COMP"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5102,14 +5114,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Composites Laboratory
 (COMP)"
 
-[node name="FOPN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FOPN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FOPN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FOPN"]
 position = Vector2(-3985, 3104)
 polygon = PackedVector2Array(4497, 3520, 4497, 3504, 4545, 3504, 4545, 3520)
 
-[node name="Label" type="Label" parent="FOPN"]
+[node name="Label" type="Label" parent="Buildings3/FOPN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5117,14 +5129,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Flight Operations Building
 (FOPN)"
 
-[node name="TERM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="TERM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TERM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/TERM"]
 position = Vector2(-4081, 3104)
 polygon = PackedVector2Array(4497, 3568, 4497, 3504, 4577, 3504, 4577, 3568)
 
-[node name="Label" type="Label" parent="TERM"]
+[node name="Label" type="Label" parent="Buildings3/TERM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5132,14 +5144,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Terminal Building
 (TERM)"
 
-[node name="HNGR5" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HNGR5" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HNGR5"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HNGR5"]
 position = Vector2(-4337, 3088)
 polygon = PackedVector2Array(4497, 3568, 4497, 3504, 4545, 3504, 4545, 3568)
 
-[node name="Label" type="Label" parent="HNGR5"]
+[node name="Label" type="Label" parent="Buildings3/HNGR5"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5147,14 +5159,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Hangar 5
 (HNGR5)"
 
-[node name="HNGR6" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HNGR6" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HNGR6"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HNGR6"]
 position = Vector2(-4417, 3088)
 polygon = PackedVector2Array(4497, 3552, 4497, 3504, 4561, 3504, 4561, 3552)
 
-[node name="Label" type="Label" parent="HNGR6"]
+[node name="Label" type="Label" parent="Buildings3/HNGR6"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5162,14 +5174,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Hangar 6
 (HNGR6)"
 
-[node name="SIML" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SIML" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SIML"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SIML"]
 position = Vector2(-4481, 3040)
 polygon = PackedVector2Array(4497, 3552, 4497, 3504, 4545, 3504, 4545, 3584, 4513, 3584, 4513, 3552)
 
-[node name="Label" type="Label" parent="SIML"]
+[node name="Label" type="Label" parent="Buildings3/SIML"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5178,14 +5190,14 @@ text = "Holleman-Niswonger
 Simulator Center
 (SIML)"
 
-[node name="ASB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ASB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ASB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ASB"]
 position = Vector2(-4465, 3488)
 polygon = PackedVector2Array(4497, 3600, 4497, 3504, 4529, 3504, 4529, 3600)
 
-[node name="Label" type="Label" parent="ASB"]
+[node name="Label" type="Label" parent="Buildings3/ASB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5194,14 +5206,14 @@ text = "Airport Service Building
 (Shop Services)
 (ASB)"
 
-[node name="HNGR4" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HNGR4" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HNGR4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HNGR4"]
 position = Vector2(-4312, 3508)
 polygon = PackedVector2Array(4536, 3556, 4488, 3508, 4592, 3404, 4640, 3452, 4656, 3436, 4664, 3444, 4528, 3580, 4520, 3572)
 
-[node name="Label" type="Label" parent="HNGR4"]
+[node name="Label" type="Label" parent="Buildings3/HNGR4"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5209,14 +5221,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Hangar 4
 (HNGR4)"
 
-[node name="HNGR7" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HNGR7" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HNGR7"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HNGR7"]
 position = Vector2(-4432, 3726)
 polygon = PackedVector2Array(4432, 3603, 4432, 3506, 4463.97, 3506, 4464, 3490, 4544, 3490, 4544, 3506, 4576, 3506, 4576, 3538, 4592, 3538, 4592, 3554, 4576, 3554, 4576, 3618, 4544, 3618, 4544, 3602)
 
-[node name="Label" type="Label" parent="HNGR7"]
+[node name="Label" type="Label" parent="Buildings3/HNGR7"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5224,14 +5236,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Hangar 7
 (HNGR7)"
 
-[node name="NISW" type="Area2D" parent="." groups=["Buildings"]]
+[node name="NISW" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NISW"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/NISW"]
 position = Vector2(-3905, 3072)
 polygon = PackedVector2Array(4497, 3600, 4497, 3536, 4513, 3536, 4513, 3504, 4545, 3504, 4545, 3536, 4561, 3536, 4561, 3552, 4545, 3552, 4545, 3600)
 
-[node name="Label" type="Label" parent="NISW"]
+[node name="Label" type="Label" parent="Buildings3/NISW"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5240,14 +5252,14 @@ text = "Niswonger Aviation
 Technology Building
 (NISW)"
 
-[node name="DLR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DLR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DLR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DLR"]
 position = Vector2(-1888, 1872)
 polygon = PackedVector2Array(4608, 3520, 4496, 3552, 4448, 3552, 4448, 3536, 4416, 3536, 4416, 3456, 4480, 3456, 4480, 3472, 4608, 3472)
 
-[node name="Label" type="Label" parent="DLR"]
+[node name="Label" type="Label" parent="Buildings3/DLR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5256,14 +5268,14 @@ text = "Hall for Discovery and
 Learning Research
 (DLR)"
 
-[node name="HOCK" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HOCK" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HOCK"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HOCK"]
 position = Vector2(-1616, 1904)
 polygon = PackedVector2Array(4544, 3616, 4464, 3616, 4464, 3568, 4448, 3568, 4448, 3520, 4432, 3520, 4432, 3488, 4416, 3488, 4416, 3456, 4448, 3456, 4448, 3472, 4464, 3472, 4464, 3456, 4480, 3456, 4480, 3408, 4512, 3408, 4512, 3456, 4528, 3456, 4528, 3552, 4544, 3552)
 
-[node name="Label" type="Label" parent="HOCK"]
+[node name="Label" type="Label" parent="Buildings3/HOCK"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5272,14 +5284,14 @@ text = "Hockmeyer Hall of
 Structural Biology
 HOCK)"
 
-[node name="MANN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MANN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MANN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MANN"]
 position = Vector2(-2040, 1482)
 polygon = PackedVector2Array(4648, 3510, 4584, 3526, 4568, 3398, 4632, 3382)
 
-[node name="Label" type="Label" parent="MANN"]
+[node name="Label" type="Label" parent="Buildings3/MANN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5287,14 +5299,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Gerald D. and Edna E.
 Mann Hall"
 
-[node name="BRK" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BRK" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BRK"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BRK"]
 position = Vector2(-2584, 1547)
 polygon = PackedVector2Array(4808, 3557, 4808, 3589, 4648, 3589, 4648, 3573, 4632, 3573, 4632, 3589, 4600, 3589, 4600, 3557, 4584, 3557, 4584, 3525, 4600, 3525, 4600, 3509, 4584, 3509, 4584, 3493, 4568, 3493, 4568, 3413, 4584, 3413, 4584, 3397, 4680, 3397, 4680, 3381, 4728, 3381, 4728, 3397, 4808, 3397, 4808, 3413, 4840, 3413, 4840, 3477, 4824, 3477, 4824, 3557)
 
-[node name="Label" type="Label" parent="BRK"]
+[node name="Label" type="Label" parent="Buildings3/BRK"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5303,14 +5315,14 @@ text = "Birck Nanotechnology
 Center
 (BRK)"
 
-[node name="MRGN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MRGN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MRGN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MRGN"]
 position = Vector2(-2055, 1290)
 polygon = PackedVector2Array(4631, 3526, 4567, 3526, 4567, 3398, 4615, 3398, 4615, 3430, 4631, 3430)
 
-[node name="Label" type="Label" parent="MRGN"]
+[node name="Label" type="Label" parent="Buildings3/MRGN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5319,14 +5331,14 @@ text = "Burton D. Morgan
 Center for Entrepreneurship
 (MRGN)"
 
-[node name="FWLR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FWLR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FWLR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FWLR"]
 position = Vector2(-1975, 986)
 polygon = PackedVector2Array(4631, 3526, 4567, 3526, 4567, 3398, 4631, 3398)
 
-[node name="Label" type="Label" parent="FWLR"]
+[node name="Label" type="Label" parent="Buildings3/FWLR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5335,14 +5347,14 @@ text = "Harriet O. & James M. Fowler
 Jr. Memorial House
 (FWLR)"
 
-[node name="ERHT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ERHT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ERHT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ERHT"]
 position = Vector2(-2599, 682)
 polygon = PackedVector2Array(4759, 3558, 4727, 3558, 4727, 3526, 4599, 3526, 4599.09, 3558, 4567, 3558, 4567, 3398, 4599, 3398, 4599, 3430, 4647.28, 3430, 4647, 3414, 4679, 3414, 4679, 3430, 4727, 3430, 4727, 3398, 4759, 3398)
 
-[node name="Label" type="Label" parent="ERHT"]
+[node name="Label" type="Label" parent="Buildings3/ERHT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5351,14 +5363,14 @@ text = "Amelia Earhart
 Residence Hall
 (ERHT)"
 
-[node name="SHRV" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SHRV" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SHRV"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SHRV"]
 position = Vector2(-2599, 426)
 polygon = PackedVector2Array(4759, 3558, 4727, 3558, 4727, 3526, 4679, 3526, 4679, 3542, 4647, 3542, 4647, 3526, 4599, 3526, 4599.09, 3558, 4567, 3558, 4567, 3398, 4599, 3398, 4599, 3430, 4727, 3430, 4727, 3398, 4759, 3398)
 
-[node name="Label" type="Label" parent="SHRV"]
+[node name="Label" type="Label" parent="Buildings3/SHRV"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5367,14 +5379,14 @@ text = "Eleanor B. Shreve
 Residence Hall
 (SHRV)"
 
-[node name="HILL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HILL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HILL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HILL"]
 position = Vector2(-2919, 426)
 polygon = PackedVector2Array(4807, 3574, 4743, 3574, 4743, 3638, 4711, 3638, 4710.9, 3558, 4703, 3558, 4663, 3598, 4663, 3622, 4639, 3622, 4623, 3638, 4567, 3582, 4647, 3502, 4647, 3494, 4567, 3493.98, 4567, 3462, 4631, 3462, 4631, 3398, 4663, 3398, 4663, 3462, 4679, 3462, 4679, 3478, 4695, 3478, 4695, 3430, 4775, 3430, 4775, 3510, 4727, 3510, 4727, 3526, 4743, 3526, 4743, 3542, 4807, 3542)
 
-[node name="Label" type="Label" parent="HILL"]
+[node name="Label" type="Label" parent="Buildings3/HILL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5382,14 +5394,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Hillenbrand Residence Hall
 (HILL)"
 
-[node name="FSTE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FSTE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FSTE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FSTE"]
 position = Vector2(-2295, 970)
 polygon = PackedVector2Array(4599, 3558, 4583, 3558, 4583, 3542, 4567, 3542, 4567, 3526, 4583, 3526, 4583, 3510, 4599, 3510, 4599, 3430, 4567, 3430, 4567, 3414, 4599, 3414, 4599, 3398, 4615, 3398, 4615, 3430, 4647, 3430, 4647, 3446, 4631, 3446, 4631, 3493.98, 4647, 3494, 4647, 3510, 4631, 3510, 4631, 3526, 4615, 3526, 4615, 3542, 4599, 3542)
 
-[node name="Label" type="Label" parent="FSTE"]
+[node name="Label" type="Label" parent="Buildings3/FSTE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5397,13 +5409,13 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "First Street Towers Eastern
 (FSTE)"
 
-[node name="FSTW" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FSTW" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FSTW"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FSTW"]
 polygon = PackedVector2Array(2000, 4368, 2000, 4400, 1968, 4400, 1968, 4416, 1984, 4416, 1984, 4464, 1968, 4464, 1968, 4480, 1984, 4480, 1984, 4496, 2000, 4496, 2000, 4512, 2016, 4512, 2016, 4528, 2032, 4528, 2032, 4512, 2048, 4512, 2048, 4496, 2032, 4496, 2032, 4480, 2016, 4480, 2016, 4400, 2048, 4400, 2048, 4384, 2016, 4384, 2016, 4368)
 
-[node name="Label" type="Label" parent="FSTW"]
+[node name="Label" type="Label" parent="Buildings3/FSTW"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5411,14 +5423,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "First Street Towers Western
 (FSTW)"
 
-[node name="HNLY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HNLY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HNLY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HNLY"]
 position = Vector2(-2107, 1016)
 polygon = PackedVector2Array(4667, 3496, 4619, 3496, 4619, 3512, 4555, 3512, 4555, 3480, 4571, 3480, 4571, 3448, 4635, 3448, 4635, 3432, 4667, 3432)
 
-[node name="Label" type="Label" parent="HNLY"]
+[node name="Label" type="Label" parent="Buildings3/HNLY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5428,14 +5440,14 @@ Human Development
 Institute
 (HNLY)"
 
-[node name="FSTC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="FSTC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FSTC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/FSTC"]
 position = Vector2(-2446, 948)
 polygon = PackedVector2Array(4686, 3452, 4702, 3452, 4702, 3484, 4686, 3484, 4686, 3516, 4670, 3516, 4670, 3532, 4638, 3532, 4638, 3516, 4622, 3516, 4622, 3532, 4590, 3532, 4590, 3516, 4574, 3516, 4573, 3532, 4542, 3532, 4542, 3516, 4526, 3516, 4526, 3484, 4510, 3484, 4510, 3452, 4526, 3452, 4526, 3436, 4558, 3436, 4558, 3468, 4654, 3468, 4654, 3436, 4686, 3436)
 
-[node name="Label" type="Label" parent="FSTC"]
+[node name="Label" type="Label" parent="Buildings3/FSTC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5443,14 +5455,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "First Street Towers Central
 (FSTC)"
 
-[node name="BIND" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BIND" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BIND"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BIND"]
 position = Vector2(-2199, 1514)
 polygon = PackedVector2Array(4615, 3622, 4567, 3622, 4567, 3526.13, 4583, 3526, 4583, 3510, 4567, 3510, 4567, 3398, 4631, 3398, 4631, 3526, 4615, 3526)
 
-[node name="Label" type="Label" parent="BIND"]
+[node name="Label" type="Label" parent="Buildings3/BIND"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5459,14 +5471,14 @@ text = "Bindley Bioscience
 Building
 (BIND)"
 
-[node name="ADPC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ADPC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ADPC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ADPC"]
 position = Vector2(-2375, 1290)
 polygon = PackedVector2Array(4791, 3574, 4567, 3574, 4567, 3398, 4791, 3398)
 
-[node name="Label" type="Label" parent="ADPC"]
+[node name="Label" type="Label" parent="Buildings3/ADPC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5475,14 +5487,14 @@ text = "Aspire at Discovery Park
 Building C
 (ADPC)"
 
-[node name="ADPA" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ADPA" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ADPA"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ADPA"]
 position = Vector2(-2631, 1290)
 polygon = PackedVector2Array(4679, 3526, 4567, 3526, 4567, 3398, 4711, 3398, 4711, 3494, 4695, 3494, 4695, 3510, 4679, 3510)
 
-[node name="Label" type="Label" parent="ADPA"]
+[node name="Label" type="Label" parent="Buildings3/ADPA"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5491,14 +5503,14 @@ text = "Aspire at Discovery Park
 Building A
 (ADPC)"
 
-[node name="ADPB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ADPB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ADPB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ADPB"]
 position = Vector2(-2631, 1290)
 polygon = PackedVector2Array(4791, 3574, 4775, 3574, 4775, 3590, 4711, 3590, 4711, 3606, 4615, 3606, 4615, 3622, 4567, 3622, 4567, 3574, 4615, 3574, 4615, 3558, 4711, 3558, 4711, 3542, 4743, 3542, 4743, 3398, 4791, 3398)
 
-[node name="Label" type="Label" parent="ADPB"]
+[node name="Label" type="Label" parent="Buildings3/ADPB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5507,14 +5519,14 @@ text = "Aspire at Discovery Park
 Building B
 (ADPB)"
 
-[node name="HANS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HANS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HANS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HANS"]
 position = Vector2(-857, 1817)
 polygon = PackedVector2Array(4569, 3255, 4569, 3239, 4681, 3239, 4681, 3271, 4697, 3271, 4697, 3287, 4681, 3287, 4681, 3303, 4697, 3303.09, 4697, 3319, 4681, 3319, 4681, 3335, 4553, 3335, 4553, 3255)
 
-[node name="Label" type="Label" parent="HANS"]
+[node name="Label" type="Label" parent="Buildings3/HANS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5524,14 +5536,14 @@ Life Sciences Research
 Building
 (HANS)"
 
-[node name="BCHM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BCHM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BCHM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BCHM"]
 position = Vector2(-697, 1593)
 polygon = PackedVector2Array(4569, 3239, 4665, 3239, 4665, 3431, 4473, 3431, 4473, 3367, 4553, 3367, 4553, 3383, 4601, 3383, 4601, 3255, 4585, 3255, 4585, 3287, 4569, 3287)
 
-[node name="Label" type="Label" parent="BCHM"]
+[node name="Label" type="Label" parent="Buildings3/BCHM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5539,14 +5551,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Biochemistry Building
 (BCHM)"
 
-[node name="SMTH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="SMTH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SMTH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/SMTH"]
 position = Vector2(-754, 1447)
 polygon = PackedVector2Array(4466, 3257, 4466, 3241, 4498, 3241, 4498, 3257, 4594, 3257, 4594, 3241, 4626, 3241, 4626, 3257, 4642, 3257, 4642, 3305, 4626, 3305, 4626, 3321, 4594, 3321, 4594, 3305, 4578, 3305, 4578, 3385, 4514, 3385, 4514, 3305, 4498, 3305, 4498, 3401, 4450, 3401, 4450, 3257)
 
-[node name="Label" type="Label" parent="SMTH"]
+[node name="Label" type="Label" parent="Buildings3/SMTH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5554,14 +5566,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Smith Hall
 (SMTH)"
 
-[node name="LILY" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LILY" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LILY"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LILY"]
 position = Vector2(-1106, 1447)
 polygon = PackedVector2Array(4770, 3257, 4770, 3353, 4722.28, 3353, 4722, 3529, 4706, 3529, 4706, 3513, 4626, 3513, 4626, 3353, 4450, 3353, 4450, 3257)
 
-[node name="Label" type="Label" parent="LILY"]
+[node name="Label" type="Label" parent="Buildings3/LILY"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5570,14 +5582,14 @@ text = "Lilly Hall of
 Life Sciences
 (LILY)"
 
-[node name="LSPS" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LSPS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LSPS"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LSPS"]
 position = Vector2(-1222, 1575)
 polygon = PackedVector2Array(4710, 3257, 4710, 3305, 4646, 3305, 4646, 3321, 4614, 3321, 4614, 3305, 4534, 3305, 4534, 3257, 4614, 3257, 4614, 3225, 4646, 3225, 4646, 3257)
 
-[node name="Label" type="Label" parent="LSPS"]
+[node name="Label" type="Label" parent="Buildings3/LSPS"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5586,14 +5598,14 @@ text = "Life Science Plant and
 Soils Laboratory
 (LSPS)"
 
-[node name="AAPF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AAPF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AAPF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AAPF"]
 position = Vector2(-1254, 1639)
 polygon = PackedVector2Array(4662, 3257, 4662, 3289, 4534, 3289, 4534, 3257)
 
-[node name="Label" type="Label" parent="AAPF"]
+[node name="Label" type="Label" parent="Buildings3/AAPF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5602,14 +5614,14 @@ text = "Ag Alumni Seed
 Phenotyping Facility
 (AAPF)"
 
-[node name="LSR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LSR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LSR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LSR"]
 position = Vector2(-1175, 1639)
 polygon = PackedVector2Array(4663, 3257, 4663, 3289, 4599, 3289, 4599, 3305, 4663, 3305, 4663, 3337, 4599, 3337, 4599, 3353, 4663, 3353, 4663, 3385, 4599, 3385, 4599, 3401, 4663, 3401.26, 4663, 3433, 4599, 3433, 4599, 3449, 4663, 3448.92, 4663, 3481, 4599, 3481, 4599, 3497, 4663, 3497.36, 4663, 3529, 4599, 3529, 4599, 3545, 4631, 3545, 4631, 3609, 4439, 3609, 4439, 3545, 4567, 3545, 4567, 3529, 4455, 3529, 4455, 3497, 4567, 3497, 4567, 3481, 4455, 3481, 4455, 3449, 4567, 3449, 4567, 3433, 4439, 3433, 4438.9, 3529, 4407, 3529, 4407, 3273, 4439, 3273, 4439, 3401, 4567, 3401, 4567, 3385, 4455, 3385, 4455, 3353, 4567, 3353, 4567, 3337, 4455, 3337, 4455, 3305, 4567, 3305, 4567, 3289, 4583, 3289, 4583, 3257)
 
-[node name="Label" type="Label" parent="LSR"]
+[node name="Label" type="Label" parent="Buildings3/LSR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5617,14 +5629,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Life Science Ranges
 (LSR)"
 
-[node name="LSA" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LSA" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LSA"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LSA"]
 position = Vector2(-866, 1735)
 polygon = PackedVector2Array(4530, 3257, 4530, 3353, 4450, 3353, 4450, 3241, 4482, 3241, 4482, 3257)
 
-[node name="Label" type="Label" parent="LSA"]
+[node name="Label" type="Label" parent="Buildings3/LSA"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5633,14 +5645,14 @@ text = "Life Science Animal
 Building
 (LSA)"
 
-[node name="LYLE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LYLE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LYLE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LYLE"]
 position = Vector2(-841, 2169)
 polygon = PackedVector2Array(4569, 3239, 4681, 3239, 4681, 3255, 4793, 3255, 4793, 3415, 4713, 3415, 4713, 3399, 4697, 3399, 4697, 3351, 4665, 3351, 4665, 3335, 4633, 3335, 4633, 3383, 4585, 3383, 4585, 3335, 4569, 3335, 4569, 3303, 4553, 3303, 4553, 3255, 4569, 3255)
 
-[node name="Label" type="Label" parent="LYLE"]
+[node name="Label" type="Label" parent="Buildings3/LYLE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5648,14 +5660,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Lyle-Porter Hall
 (LYLE)"
 
-[node name="HGRH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HGRH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HGRH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HGRH"]
 position = Vector2(-328, 2120)
 polygon = PackedVector2Array(4568, 3240, 4632, 3240, 4632, 3256, 4648, 3256, 4648, 3224, 4664, 3224, 4664, 3256, 4728, 3256, 4728, 3304, 4776, 3304, 4776, 3496, 4696, 3496, 4696, 3304, 4648, 3304, 4648, 3496, 4568, 3496)
 
-[node name="Label" type="Label" parent="HGRH"]
+[node name="Label" type="Label" parent="Buildings3/HGRH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5663,14 +5675,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Horticultural Greenhouse
 (HGRH)"
 
-[node name="VPTH" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VPTH" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VPTH"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VPTH"]
 position = Vector2(-520, 2456)
 polygon = PackedVector2Array(4568, 3240, 4648, 3240, 4648, 3256, 4664, 3256, 4664, 3272, 4648, 3272, 4648, 3304, 4632, 3304, 4632, 3352, 4584, 3352, 4584, 3288, 4568, 3288)
 
-[node name="Label" type="Label" parent="VPTH"]
+[node name="Label" type="Label" parent="Buildings3/VPTH"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5679,17 +5691,17 @@ text = "Veterinary Pathology
 Building
 (VPTH)"
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="VPTH"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Buildings3/VPTH"]
 polygon = PackedVector2Array(4144, 5728, 4176, 5728, 4176, 5744, 4192, 5744, 4192, 5760, 4160, 5760, 4160, 5744, 4144, 5744)
 
-[node name="LYNN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LYNN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LYNN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LYNN"]
 position = Vector2(-376, 2487)
 polygon = PackedVector2Array(4568, 3241, 4840, 3241, 4840, 3321, 4824, 3321, 4824, 3337, 4808, 3337, 4808, 3369, 4824, 3369, 4824, 3481, 4840, 3481, 4840, 3545, 4744, 3545, 4744, 3481, 4664, 3481, 4664, 3545, 4456, 3545, 4456, 3417, 4568, 3417)
 
-[node name="Label" type="Label" parent="LYNN"]
+[node name="Label" type="Label" parent="Buildings3/LYNN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5698,14 +5710,14 @@ text = "Charles J. Lynn
 Hall of Veterinary Medicine
 (LYNN)"
 
-[node name="BRUN" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BRUN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BRUN"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BRUN"]
 position = Vector2(8, 2551)
 polygon = PackedVector2Array(4568, 3209, 4536, 3209, 4536, 3177, 4600, 3177, 4600, 3225, 4616, 3225, 4616, 3417, 4632, 3417, 4632, 3465, 4520, 3465, 4520, 3433, 4456, 3433, 4456, 3417, 4568, 3417)
 
-[node name="Label" type="Label" parent="BRUN"]
+[node name="Label" type="Label" parent="Buildings3/BRUN"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5714,14 +5726,14 @@ text = "David & Bonnie Brunner
 Small Animal Hospital
 (BRUN)"
 
-[node name="BREQ" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BREQ" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BREQ"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BREQ"]
 position = Vector2(104, 2791)
 polygon = PackedVector2Array(4424, 3225, 4536, 3225, 4536, 3177, 4584, 3177, 4584, 3225, 4680, 3225, 4680, 3369, 4616, 3369, 4616, 3241, 4584, 3241, 4584, 3385, 4552, 3385, 4552, 3257, 4520, 3257, 4520, 3289, 4488, 3289, 4488, 3257, 4472, 3257, 4472, 3385, 4488, 3385, 4488, 3433, 4424, 3433)
 
-[node name="Label" type="Label" parent="BREQ"]
+[node name="Label" type="Label" parent="Buildings3/BREQ"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5730,14 +5742,14 @@ text = "David & Bonnie Brunner
 Equine Hospital
 (BREQ)"
 
-[node name="AHF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="AHF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AHF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/AHF"]
 position = Vector2(-56, 2855)
 polygon = PackedVector2Array(4424, 3225, 4520, 3225, 4520, 3449, 4440, 3449, 4440, 3385, 4472, 3385, 4472, 3337, 4424, 3337)
 
-[node name="Label" type="Label" parent="AHF"]
+[node name="Label" type="Label" parent="Buildings3/AHF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5745,14 +5757,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Animal Holding Facility
 (AHF)"
 
-[node name="VCPR" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VCPR" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VCPR"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VCPR"]
 position = Vector2(-120, 2855)
 polygon = PackedVector2Array(4424, 3225, 4472, 3225, 4472, 3289, 4424, 3289)
 
-[node name="Label" type="Label" parent="VCPR"]
+[node name="Label" type="Label" parent="Buildings3/VCPR"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5761,14 +5773,14 @@ text = "Center for
 Paralysis Research
 (VCPR)"
 
-[node name="EHSA" type="Area2D" parent="." groups=["Buildings"]]
+[node name="EHSA" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EHSA"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/EHSA"]
 position = Vector2(-56, 3223)
 polygon = PackedVector2Array(4424, 3225, 4520, 3225, 4520, 3273, 4424, 3273)
 
-[node name="Label" type="Label" parent="EHSA"]
+[node name="Label" type="Label" parent="Buildings3/EHSA"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5777,14 +5789,14 @@ text = "Equine Health
 Sciences Annex
 (EHSA)"
 
-[node name="UPSB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="UPSB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UPSB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/UPSB"]
 position = Vector2(136, 3319)
 polygon = PackedVector2Array(4424, 3225, 4504, 3225, 4504, 3273, 4424, 3273)
 
-[node name="Label" type="Label" parent="UPSB"]
+[node name="Label" type="Label" parent="Buildings3/UPSB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5793,14 +5805,14 @@ text = "Utility Plant
 Storage Building
 (UPSB)"
 
-[node name="UPOB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="UPOB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UPOB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/UPOB"]
 position = Vector2(472, 3319)
 polygon = PackedVector2Array(4424, 3225, 4456, 3225, 4456, 3289, 4440, 3289, 4440, 3241, 4424, 3241)
 
-[node name="Label" type="Label" parent="UPOB"]
+[node name="Label" type="Label" parent="Buildings3/UPOB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5809,14 +5821,14 @@ text = "Utility Plant
 Office Building
 (UPOB)"
 
-[node name="WADE" type="Area2D" parent="." groups=["Buildings"]]
+[node name="WADE" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WADE"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/WADE"]
 position = Vector2(312, 3223)
 polygon = PackedVector2Array(4424, 3225, 4488, 3225, 4488, 3289, 4616, 3289, 4616, 3305, 4584, 3305, 4584, 3385, 4344, 3385, 4344, 3305, 4392, 3305, 4392, 3289, 4424, 3289)
 
-[node name="Label" type="Label" parent="WADE"]
+[node name="Label" type="Label" parent="Buildings3/WADE"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5825,14 +5837,14 @@ text = "Walter W. Wade
 Utility Plant
 (WADE)"
 
-[node name="UPOF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="UPOF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UPOF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/UPOF"]
 position = Vector2(312, 3095)
 polygon = PackedVector2Array(4424, 3225, 4488, 3225, 4488, 3305, 4424, 3305)
 
-[node name="Label" type="Label" parent="UPOF"]
+[node name="Label" type="Label" parent="Buildings3/UPOF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5841,14 +5853,14 @@ text = "Utility Plant Office
 Facility
 (UPOF)"
 
-[node name="HMMT" type="Area2D" parent="." groups=["Buildings"]]
+[node name="HMMT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HMMT"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/HMMT"]
 position = Vector2(606, 3569)
 polygon = PackedVector2Array(4442, 3215, 4466, 3239, 4410, 3279, 4386, 3255)
 
-[node name="Label" type="Label" parent="HMMT"]
+[node name="Label" type="Label" parent="Buildings3/HMMT"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5857,14 +5869,14 @@ text = "Hazardous Materials
 Management Trailer
 (HMMT)"
 
-[node name="LMST" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LMST" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LMST"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LMST"]
 position = Vector2(682, 3607)
 polygon = PackedVector2Array(4438, 3225, 4438, 3241, 4390, 3241, 4390, 3225)
 
-[node name="Label" type="Label" parent="LMST"]
+[node name="Label" type="Label" parent="Buildings3/LMST"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5873,14 +5885,14 @@ text = "Laboratory Material
 Storage Trailer
 (LMST)"
 
-[node name="LMSB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="LMSB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LMSB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/LMSB"]
 position = Vector2(666, 3671)
 polygon = PackedVector2Array(4438, 3225, 4438, 3321, 4390, 3321, 4390, 3225)
 
-[node name="Label" type="Label" parent="LMSB"]
+[node name="Label" type="Label" parent="Buildings3/LMSB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5889,14 +5901,14 @@ text = "Laboratory Material
 Storage Building
 (LMSB)"
 
-[node name="TSWF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="TSWF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TSWF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/TSWF"]
 position = Vector2(-182, 4231)
 polygon = PackedVector2Array(4454, 3225, 4454, 3289, 4390, 3289, 4390, 3225)
 
-[node name="Label" type="Label" parent="TSWF"]
+[node name="Label" type="Label" parent="Buildings3/TSWF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5905,14 +5917,14 @@ text = "Transportation Service
 Wash Facility
 (TSWF)"
 
-[node name="PRSV" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PRSV" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PRSV"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PRSV"]
 position = Vector2(-742, 3735)
 polygon = PackedVector2Array(4614, 3225, 4614, 3321, 4566, 3321, 4566, 3337, 4390, 3337, 4390, 3225)
 
-[node name="Label" type="Label" parent="PRSV"]
+[node name="Label" type="Label" parent="Buildings3/PRSV"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5920,14 +5932,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Printing Services Facility
 (PRSV)"
 
-[node name="GMF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="GMF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GMF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/GMF"]
 position = Vector2(-1224, 3734)
 polygon = PackedVector2Array(4552, 3210, 4552, 3338, 4472, 3338, 4472, 3210)
 
-[node name="Label" type="Label" parent="GMF"]
+[node name="Label" type="Label" parent="Buildings3/GMF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5936,14 +5948,14 @@ text = "Grounds Maintenance
 Facility
 (GMF)"
 
-[node name="ADM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ADM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ADM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ADM"]
 position = Vector2(-1384, 3526)
 polygon = PackedVector2Array(4664, 3210, 4664, 3258, 4632, 3258, 4632, 3274, 4552, 3274, 4552, 3258, 4472, 3258, 4472, 3210, 4568, 3210, 4568, 3226, 4616, 3226, 4616, 3210)
 
-[node name="Label" type="Label" parent="ADM"]
+[node name="Label" type="Label" parent="Buildings3/ADM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5952,14 +5964,14 @@ text = "ADM Agricultural
 Innovation Center
 (ADM)"
 
-[node name="MMS1" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MMS1" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MMS1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MMS1"]
 position = Vector2(-1176, 3878)
 polygon = PackedVector2Array(4520, 3210, 4520, 3290, 4472, 3290, 4472, 3210)
 
-[node name="Label" type="Label" parent="MMS1"]
+[node name="Label" type="Label" parent="Buildings3/MMS1"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5968,14 +5980,14 @@ text = "Materials Management
 Storage Building 1
 (MMS1)"
 
-[node name="GMGF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="GMGF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GMGF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/GMGF"]
 position = Vector2(-1320, 3830)
 polygon = PackedVector2Array(4504, 3210, 4504, 3290, 4472, 3290, 4472, 3210)
 
-[node name="Label" type="Label" parent="GMGF"]
+[node name="Label" type="Label" parent="Buildings3/GMGF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5983,14 +5995,14 @@ theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Grounds Maintenance
 Greenhouse Facilities"
 
-[node name="MMDC" type="Area2D" parent="." groups=["Buildings"]]
+[node name="MMDC" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MMDC"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/MMDC"]
 position = Vector2(-982, 3735)
 polygon = PackedVector2Array(4614, 3225, 4614, 3321, 4566, 3321, 4566, 3417, 4486, 3417, 4486, 3337, 4470, 3337, 4470, 3321, 4406, 3321, 4406, 3257, 4438, 3257, 4438, 3193, 4470, 3193, 4470, 3225)
 
-[node name="Label" type="Label" parent="MMDC"]
+[node name="Label" type="Label" parent="Buildings3/MMDC"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -5999,14 +6011,14 @@ text = "Materials Management
 and Distribution Center
 (MMDC)"
 
-[node name="PFSB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="PFSB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PFSB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/PFSB"]
 position = Vector2(-425, 3879)
 polygon = PackedVector2Array(4417, 3193, 4457, 3297, 4409, 3313, 4361, 3347, 4336, 3369, 4313, 3401, 4280, 3494, 4265, 3593, 4153, 3593, 4155, 3537, 4169, 3468, 4186, 3417, 4202, 3385, 4257, 3417, 4296, 3358, 4249, 3313, 4298, 3263, 4350, 3226)
 
-[node name="Label" type="Label" parent="PFSB"]
+[node name="Label" type="Label" parent="Buildings3/PFSB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6015,14 +6027,14 @@ text = "Physical Facilities
 Service Building
 (PFSB)"
 
-[node name="BRFM" type="Area2D" parent="." groups=["Buildings"]]
+[node name="BRFM" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BRFM"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/BRFM"]
 position = Vector2(584, 3063)
 polygon = PackedVector2Array(4424, 3225, 4456, 3225, 4456, 3209, 4504, 3209, 4504, 3225, 4536, 3225, 4536, 3257, 4552, 3257, 4552, 3305, 4536, 3305, 4536, 3337, 4424, 3337)
 
-[node name="Label" type="Label" parent="BRFM"]
+[node name="Label" type="Label" parent="Buildings3/BRFM"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6031,14 +6043,14 @@ text = "David & Bonnie Brunner
 Farm Animal Hospital
 (BRFM)"
 
-[node name="EHSB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="EHSB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EHSB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/EHSB"]
 position = Vector2(-200, 2855)
 polygon = PackedVector2Array(4424, 3225, 4472, 3225, 4472, 3257, 4424, 3257)
 
-[node name="Label" type="Label" parent="EHSB"]
+[node name="Label" type="Label" parent="Buildings3/EHSB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6047,14 +6059,14 @@ text = "Equine Health
 Sciences Building
 (EHSB)"
 
-[node name="VLAB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VLAB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VLAB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VLAB"]
 position = Vector2(-248, 2855)
 polygon = PackedVector2Array(4424, 3225, 4456, 3225, 4456, 3289, 4424, 3289)
 
-[node name="Label" type="Label" parent="VLAB"]
+[node name="Label" type="Label" parent="Buildings3/VLAB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6063,14 +6075,14 @@ text = "Veterinary Laboratory
 Animal Building
 (VLAB)"
 
-[node name="VA2" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VA2" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VA2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VA2"]
 position = Vector2(-456, 2791)
 polygon = PackedVector2Array(4424, 3225, 4472, 3225, 4472, 3337, 4424, 3337)
 
-[node name="Label" type="Label" parent="VA2"]
+[node name="Label" type="Label" parent="Buildings3/VA2"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6079,14 +6091,14 @@ text = "Veterinary Animal
 Isolation Building 2
 (VA2)"
 
-[node name="VA1" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VA1" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VA1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VA1"]
 position = Vector2(-456, 2711)
 polygon = PackedVector2Array(4440, 3225, 4488, 3225, 4488, 3289, 4440, 3289)
 
-[node name="Label" type="Label" parent="VA1"]
+[node name="Label" type="Label" parent="Buildings3/VA1"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6095,14 +6107,14 @@ text = "Veterinary Animal
 Isolation Building 1
 (VA2)"
 
-[node name="DOYL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="DOYL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DOYL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/DOYL"]
 position = Vector2(-344, 2855)
 polygon = PackedVector2Array(4424, 3225, 4504, 3225, 4504, 3289, 4520, 3289, 4520, 3305, 4472, 3305, 4472, 3289, 4424, 3289)
 
-[node name="Label" type="Label" parent="DOYL"]
+[node name="Label" type="Label" parent="Buildings3/DOYL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6111,14 +6123,14 @@ text = "Leo Philip Doyle
 Laboratory
 (DOYL)"
 
-[node name="VMIF" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VMIF" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VMIF"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VMIF"]
 position = Vector2(-264, 3095)
 polygon = PackedVector2Array(4424, 3225, 4504, 3225, 4504, 3257, 4472, 3257, 4472, 3273, 4440, 3273, 4440, 3257, 4424, 3257)
 
-[node name="Label" type="Label" parent="VMIF"]
+[node name="Label" type="Label" parent="Buildings3/VMIF"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6127,14 +6139,14 @@ text = "Veterinary Medicine
 Isolation Facility
 (VMIF)"
 
-[node name="VPRB" type="Area2D" parent="." groups=["Buildings"]]
+[node name="VPRB" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VPRB"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/VPRB"]
 position = Vector2(-472, 2519)
 polygon = PackedVector2Array(4424, 3225, 4488, 3225, 4488, 3417, 4456, 3417, 4456, 3353, 4424, 3353, 4424, 3321, 4408, 3321, 4408, 3273, 4424, 3273)
 
-[node name="Label" type="Label" parent="VPRB"]
+[node name="Label" type="Label" parent="Buildings3/VPRB"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -6143,14 +6155,14 @@ text = "Veterinary Pathobiology
 Research Building
 (VPRB)"
 
-[node name="ADDL" type="Area2D" parent="." groups=["Buildings"]]
+[node name="ADDL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ADDL"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Buildings3/ADDL"]
 position = Vector2(-440, 2935)
 polygon = PackedVector2Array(4456, 3225, 4488, 3225, 4488, 3401, 4504, 3401, 4504, 3465, 4440, 3465, 4440, 3449, 4408, 3449, 4408, 3369, 4392, 3369, 4392, 3337, 4408, 3337, 4408, 3321, 4392, 3321, 4392, 3289, 4408, 3289, 4408, 3241, 4456, 3241)
 
-[node name="Label" type="Label" parent="ADDL"]
+[node name="Label" type="Label" parent="Buildings3/ADDL"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
