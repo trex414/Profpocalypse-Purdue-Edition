@@ -60,6 +60,7 @@ func _ready():
 func update_display():
 	# Clear previous labels
 	clear_current_semester()
+	fill_vbox()
 	# Find the selected semester
 	for semester in course_list:
 		if semester["semester"] == current_semester:
@@ -82,10 +83,20 @@ func clear_current_semester():
 		child.queue_free()
 
 func fill_vbox():
-	for semester_data in course_list:
+	for child in vbox.get_children():
+		child.queue_free()
+	for i in range(course_list.size()):
+		var semester_data = course_list[i]
 		# Create a Label for the semester
 		var semester_label = Label.new()
 		semester_label.text = semester_data["semester"]
+		# Color the label based on its status
+		if i < semester_index:
+			semester_label.add_theme_color_override("font_color", Color(0, 1, 0))  # Green (Completed)
+		elif i == semester_index:
+			semester_label.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow (In Progress)
+		else:
+			semester_label.add_theme_color_override("font_color", Color(1, 0, 0))  # Red (Upcoming)
 		vbox.add_child(semester_label)
 		# Loop through courses and add buttons
 		for course in semester_data["courses"]:
@@ -135,6 +146,7 @@ func complete_current_semester():
 	else:
 		print("No more semesters!")  # Debug message
 		clear_current_semester()
+		fill_vbox()
 		progress_bar.value = 8  # Update progress bar
 
 func _on_complete_semester_pressed():
@@ -148,6 +160,7 @@ func _on_complete_semester_pressed():
 			progress_bar.value = semester_index  # Update progress bar
 			clear_current_semester()
 			last_pressed = 1
+		fill_vbox()
 
 func _on_new_semester_pressed():
 	if last_pressed == 1:
@@ -155,6 +168,7 @@ func _on_new_semester_pressed():
 			update_display()
 		else:
 			print("No more semesters!")  # Debug message
+			
 		last_pressed = 0
 		
 func _on_course_button_pressed(course):
