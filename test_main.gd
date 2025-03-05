@@ -47,6 +47,7 @@ func _ready():
 		window.size = Vector2(1280, 720)
 		
 	PlayerData.ready
+	
 
 
 func _process(delta):
