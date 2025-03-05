@@ -3159,6 +3159,7 @@ polygon = PackedVector2Array(4000, 2735.59, 4328, 2735.59, 4400, 2807.58, 4400, 
 
 [node name="Label" type="Label" parent="Buildings3/ARMS"]
 visible = false
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("4_j2j4h")
@@ -3524,7 +3525,8 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("4_j2j4h")
 theme_override_styles/normal = ExtResource("4_ysta8")
 text = "Purdue Graduate
-Student Center"
+Student Center
+(PGSC)"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Buildings3/PGSC"]
 
