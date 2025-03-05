@@ -9,7 +9,7 @@ func _ready():
 
 func _process(_delta):
 	if label.visible:
-		label.global_position = get_global_mouse_position() + Vector2(20, 20)  # Offset from cursor
+		label.global_position = get_global_mouse_position() + Vector2(10, 10)  # Offset from cursor
 
 func _on_mouse_entered():
 	label.show()

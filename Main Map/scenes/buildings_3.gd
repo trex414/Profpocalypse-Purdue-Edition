@@ -3,7 +3,14 @@ extends Node2D
 
 func _ready():
 	for building in get_children():
-		if building is Area2D and not building.has_node("StaticBody2D"):
+		if building is Area2D:
+			# Remove any existing StaticBody2D nodes
+			for child in building.get_children():
+				if child is StaticBody2D:
+					building.remove_child(child)
+					child.queue_free()  # Marks for deletion
+
+			# Create a new StaticBody2D if none exists
 			var static_body = StaticBody2D.new()
 			static_body.name = "StaticBody2D"
 			static_body.position = building.position  # Align positions
