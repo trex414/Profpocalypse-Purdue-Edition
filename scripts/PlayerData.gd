@@ -30,6 +30,13 @@ var current_quests: Dictionary
 static var completed_quests = []
 var pinned_quests = []
 
+# Keybinding variables
+var inventory_key: Key
+var move_up: Key
+var move_down: Key
+var move_right: Key
+var move_left: Key
+
 
 
 # Function to get current game state (pass this to the save function when saving)
@@ -48,6 +55,13 @@ func get_game_state():
 			"current_quests": current_quests,
 			"completed_quests": completed_quests,
 			"pinned_quests": pinned_quests,
+		},
+		"keybindings": {
+			"inventory_key": inventory_key,
+			"move_up": move_up,
+			"move_down": move_down,
+			"move_right": move_right,
+			"move_left": move_left,
 		}
 	}
 
@@ -91,6 +105,24 @@ func apply_game_state(data):
 			
 		if "pinned_quests" in player_data:
 			pinned_quests = player_data.pinned_quests
+			
+	if "keybindings" in data:
+		var key_bindings = data["keybindings"]
+		
+		if "inventory_key" in key_bindings:
+			inventory_key = key_bindings.inventory_key
+			
+		if "move_up" in key_bindings:
+			move_up = key_bindings.move_up
+			
+		if "move_down" in key_bindings:
+			move_down = key_bindings.move_down
+			
+		if "move_right" in key_bindings:
+			move_right = key_bindings.move_right
+			
+		if "move_left" in key_bindings:
+			move_left = key_bindings.move_left
 
 
 
@@ -101,6 +133,8 @@ func load_on_start():
 	# Function to set default values only if no save is found
 func set_default_values():
 	print("No save detected ==========>>>>")
+	
+	# Player Data Defaults
 	position = Vector2(0, 0)
 	inventory = []
 	
@@ -124,6 +158,14 @@ func set_default_values():
 	completed_quests = []
 	completed_quests.clear()
 	pinned_quests = []
+	
+	#Key Binding Defaults
+	inventory_key = 69
+	move_left = 65
+	move_right = 68
+	move_up = 87
+	move_down = 83
+	 
 	
 static func is_quest_completed(quest_id: String) -> bool:
 	return quest_id in completed_quests

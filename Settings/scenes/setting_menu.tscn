@@ -143,7 +143,7 @@ text = "Inventory"
 [node name="LineEditInv" type="LineEdit" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 script = ExtResource("3_cvb01")
-action_name = "inventory"
+action_name = "inventory_key"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
 layout_mode = 2

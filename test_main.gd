@@ -51,7 +51,7 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory_key"):
 		# Check if inventory exists, otherwise create it
 		if inventory == null:
 			inventory = load("res://Inventory/scenes/inventory.tscn").instantiate()
