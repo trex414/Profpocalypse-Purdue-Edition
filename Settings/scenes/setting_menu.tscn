@@ -136,6 +136,7 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="Inventory" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Inventory"
@@ -149,6 +150,7 @@ action_name = "inventory"
 layout_mode = 2
 
 [node name="Move Left" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Move Left"
@@ -162,6 +164,7 @@ action_name = "move_left"
 layout_mode = 2
 
 [node name="Move Right" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Move Right
@@ -176,6 +179,7 @@ action_name = "move_right"
 layout_mode = 2
 
 [node name="Move Up" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Move Up"
@@ -189,6 +193,7 @@ action_name = "move_up"
 layout_mode = 2
 
 [node name="Move Down" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Move Down"

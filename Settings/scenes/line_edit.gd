@@ -7,7 +7,6 @@ var listening_for_key = false
 
 
 func _ready():
-	print("here")
 	text = get_current_key_name()
 	connect("focus_entered", Callable(self, "_on_focus_entered"))
 
