@@ -10,6 +10,7 @@ var pinned_quests: Array[Quest] = []
 var walk_forward_quest = load("res://Quest/assets/WalkForward.tres")
 var walk_backwards_quest = load("res://Quest/assets/WalkBackwards.tres")
 var open_inventory_quest = load("res://Quest/assets/OpenInventory.tres")
+var walk_left_quest = load("res://Quest/assets/Walkleft.tres")
 
 signal pinned_quests_updated(pinned_quests: Array[Quest])
 
@@ -23,6 +24,7 @@ func _ready():
 	add_quest(walk_forward_quest)
 	add_quest(open_inventory_quest)
 	add_quest(walk_backwards_quest)
+	add_quest(walk_left_quest)
 	
 	for quest in all_quests.values():
 		if quest.quest_name in PlayerData.completed_quests:

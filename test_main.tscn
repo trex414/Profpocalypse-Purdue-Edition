@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0mcfe40m7h7i"]
+[gd_scene load_steps=5 format=3 uid="uid://d0mcfe40m7h7i"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
-[ext_resource type="AudioStream" uid="uid://cbjdawkdxfy4d" path="res://Bounce.mp3" id="5_5lims"]
-[ext_resource type="Texture2D" uid="uid://4ou77xvelse5" path="res://Settings/assets/menu-bars.svg" id="5_l84qr"]
-[ext_resource type="Script" path="res://scripts/menu_button.gd" id="6_75fvt"]
+[ext_resource type="Texture2D" path="res://menu-bars.svg" id="5_l84qr"]
+[ext_resource type="Script" path="res://menu_button.gd" id="6_75fvt"]
 
 [node name="TestMain" type="Node2D"]
 script = ExtResource("1_nsodu")
@@ -18,7 +17,3 @@ icon = ExtResource("5_l84qr")
 script = ExtResource("6_75fvt")
 
 [node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_2ypww")]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_5lims")
-autoplay = true

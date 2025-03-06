@@ -10,3 +10,4 @@ description = "The  Player needs to move forward for 1 second"
 prerequisites = Array[ExtResource("1_pwrcx")]([ExtResource("2_ltdku")])
 rewards = Array[String](["Health Potion"])
 is_completed = false
+pinned = false
