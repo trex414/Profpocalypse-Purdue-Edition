@@ -2,31 +2,31 @@ extends Control
 
 @export var course_list: Array = [
 	{"semester": "Freshman Fall", "inprogress": true, "courses": [
-	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "time": "10 AM", "description": "Learn suffering", "completed": false}
+	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "time": "10 AM", "description": "Learn suffering", "completed": false, "prerequisites": "None"}
 	]},
 	{"semester": "Freshman Spring", "inprogress": false, "courses": [
-	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
-	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false} 
+	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS180"},
+	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS180"} 
 	]},
 	{"semester": "Sophmore Fall", "inprogress": false, "courses": [
-	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
-	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
+	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS240"},
+	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS182"}
 	]},
 	{"semester": "Sophmore Spring", "inprogress": false, "courses": [
-	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
+	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS251"}
 	]},
 	{"semester": "Junior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
+	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
 	]},
 	{"semester": "Junior Spring", "inprogress": false, "courses": [
-	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
+	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
 	]},
 	{"semester": "Senior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
+	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
 	]},
 	{"semester": "Senior Spring", "inprogress": false, "courses": [
-	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false},
-	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false}
+	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"},
+	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
 	]}
 ]
 
@@ -68,7 +68,7 @@ func update_display():
 			for course in courses:
 				var vbox = VBoxContainer.new()  # Create a column for each course
 				# Add labels for each course field
-				for field in ["name", "professor", "location", "time", "description"]:
+				for field in ["name", "professor", "location", "time", "description", "prerequisites"]:
 					var label = Label.new()
 					label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
 					label.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # Allows resizing to fit container
@@ -191,6 +191,9 @@ func _on_course_button_pressed(course):
 	var description_label = Label.new()
 	description_label.text = "Description: " + course["description"]
 	popup_vbox.add_child(description_label)
+	var prereq_label = Label.new()
+	prereq_label.text = "Prerequisites: " + course["prerequisites"]
+	popup_vbox.add_child(prereq_label)
 	# Add Close Button
 	var close_button = Button.new()
 	close_button.text = "Close"
