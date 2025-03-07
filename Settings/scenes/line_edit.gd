@@ -35,7 +35,6 @@ func _input(event):
 		listening_for_key = false
 		var new_key = event.keycode
 		print("New Key Pressed: ", new_key)
-		
 		remap_action(action_name, new_key)
 		print("Test ->", action_name)
 		if action_name == "inventory_key":
