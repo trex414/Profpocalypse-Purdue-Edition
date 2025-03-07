@@ -139,6 +139,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Inventory" type="Button" parent="Panel/VBoxContainer/Control - Key Bind Menu/Panel/VBoxContainer/HBoxContainer"]

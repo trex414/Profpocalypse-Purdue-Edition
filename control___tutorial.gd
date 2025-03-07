@@ -17,20 +17,21 @@ func _ready():
 	update_labels()
 
 func _input(event):
-	if event.is_action_pressed("move_up"):
-		keys_pressed["move_up"] = true
-	elif event.is_action_pressed("move_left"):
-		keys_pressed["move_left"] = true
-	elif event.is_action_pressed("move_down"):
-		keys_pressed["move_down"] = true
-	elif event.is_action_pressed("move_right"):
-		keys_pressed["move_right"] = true
-	elif event.is_action_pressed("inventory_key"):
-		keys_pressed["inventory_key"] = true
-	elif event.is_action_pressed("QuestMenu"):
-		keys_pressed["QuestMenu"] = true
-	elif event.is_action_pressed("courses_information"):
-		keys_pressed["courses_information"] = true
+	if Global.tutorial_screen.visible == true:
+		if event.is_action_pressed("move_up"):
+			keys_pressed["move_up"] = true
+		elif event.is_action_pressed("move_left"):
+			keys_pressed["move_left"] = true
+		elif event.is_action_pressed("move_down"):
+			keys_pressed["move_down"] = true
+		elif event.is_action_pressed("move_right"):
+			keys_pressed["move_right"] = true
+		elif event.is_action_pressed("inventory_key"):
+			keys_pressed["inventory_key"] = true
+		elif event.is_action_pressed("QuestMenu"):
+			keys_pressed["QuestMenu"] = true
+		elif event.is_action_pressed("courses_information"):
+			keys_pressed["courses_information"] = true
 	
 	update_labels()
 	
