@@ -1,18 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0mcfe40m7h7i"]
+[gd_scene load_steps=6 format=3 uid="uid://d0mcfe40m7h7i"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
+[ext_resource type="Script" path="res://control___tutorial.gd" id="5_iq883"]
 [ext_resource type="Texture2D" uid="uid://4ou77xvelse5" path="res://Settings/assets/menu-bars.svg" id="5_l84qr"]
 [ext_resource type="Script" path="res://scripts/menu_button.gd" id="6_75fvt"]
 
 [node name="TestMain" type="Node2D"]
 script = ExtResource("1_nsodu")
 
+[node name="Tutorial UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control - Tutorial" type="Control" parent="Tutorial UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 20.0
+offset_bottom = 150.0
+script = ExtResource("5_iq883")
+
+[node name="Panel" type="Panel" parent="Tutorial UI/Control - Tutorial"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial UI/Control - Tutorial/Panel"]
+layout_mode = 0
+offset_right = 198.0
+offset_bottom = 212.0
+
+[node name="Label" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Move Up (W): [ ]\""
+
+[node name="Label2" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Move Left (A): [ ]\""
+
+[node name="Label3" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Move Down (S): [ ]\""
+
+[node name="Label4" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Move Right (D): [ ]\""
+
+[node name="Label5" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Open Inventory (E): [ ]\""
+
+[node name="Label6" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Open Quests (Q): [ ]\""
+
+[node name="Label7" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Open Classes (C): [ ]\""
+
+[node name="Label8" type="Label" parent="Tutorial UI/Control - Tutorial/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "\"Status : Incomplete\""
+
 [node name="Menu UI" type="CanvasLayer" parent="."]
 
 [node name="Menu Button" type="Button" parent="Menu UI"]
-offset_right = 83.0
-offset_bottom = 83.0
+offset_top = 1.0
+offset_right = 133.0
+offset_bottom = 134.0
 icon = ExtResource("5_l84qr")
 script = ExtResource("6_75fvt")
 

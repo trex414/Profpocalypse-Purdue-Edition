@@ -11,6 +11,7 @@ extends Control
 @onready var preferences_button = $"Panel/VBoxContainer/Preferences Button"
 @onready var quit_button = $"Panel/VBoxContainer/Close Game"
 @onready var quit_confirm_dialog = $QuitConfirmation
+@onready var tutorial_button = $"Panel/VBoxContainer/Tutorial Button"
 
 var is_open = false
 var keybind_menu_open = false
@@ -27,11 +28,17 @@ func _ready():
 	close_keybind_button.pressed.connect(_on_CloseMenuButton_pressed)
 	preferences_button.pressed.connect(_on_preferences_button_pressed)
 	quit_button.pressed.connect(_on_quit_game)
+	tutorial_button.pressed.connect(begin_tutorial)
 	#volume_slider.value = SaveManager.volume 
 	#volume_slider.connect("value_changed", _on_volume_changed)
 	
 
-
+func begin_tutorial():
+	if Global.tutorial_screen:
+		Global.tutorial_screen.visible = true
+		
+	toggle_menu()
+	
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		toggle_menu()

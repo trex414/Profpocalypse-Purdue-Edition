@@ -21,6 +21,7 @@ InventoryManager="*res://Inventory/script/inventory_manager.gd"
 PlayerData="*res://scripts/PlayerData.gd"
 SaveManager="*res://scripts/SaveManager.gd"
 QuestManager="*res://Quest/script/QuestManager.gd"
+Global="*res://global.gd"
 
 [filesystem]
 

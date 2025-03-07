@@ -87,6 +87,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Key Bindings"
 
+[node name="Tutorial Button" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(210, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Begin Tutorial"
+
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
 
