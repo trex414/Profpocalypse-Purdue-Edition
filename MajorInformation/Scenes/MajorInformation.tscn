@@ -21,18 +21,32 @@ script = ExtResource("1_6ocl2")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 407.0
-offset_top = 92.0
-offset_right = 734.0
-offset_bottom = 529.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -218.5
+offset_right = 163.5
+offset_bottom = 218.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = SubResource("Theme_tiob2")
 
 [node name="PhoneBackground" type="TextureRect" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = -295.0
-offset_top = -144.0
-offset_right = 621.0
-offset_bottom = 582.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.501
+anchor_right = 0.498
+anchor_bottom = 0.501
+offset_left = -457.846
+offset_top = -362.937
+offset_right = 458.154
+offset_bottom = 363.063
 texture = ExtResource("2_kekh8")
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel"]
@@ -103,20 +117,20 @@ size_flags_horizontal = 3
 [node name="PrerequisiteFlowchartTexture" type="TextureRect" parent="CanvasLayer/Panel"]
 visible = false
 layout_mode = 0
-offset_left = -1.0
-offset_top = 113.0
-offset_right = 325.0
-offset_bottom = 297.0
+offset_left = -173.0
+offset_top = 32.0
+offset_right = 533.0
+offset_bottom = 389.0
 texture = ExtResource("2_o3dfs")
 expand_mode = 1
 
 [node name="PopupPanel" type="PopupPanel" parent="CanvasLayer/Panel"]
-position = Vector2i(425, 237)
+initial_position = 1
 size = Vector2i(285, 174)
 visible = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PopupPanel"]
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 266.0
-offset_bottom = 155.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 281.0
+offset_bottom = 170.0
