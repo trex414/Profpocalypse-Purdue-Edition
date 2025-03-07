@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
-[ext_resource type="Texture2D" path="res://menu-bars.svg" id="5_l84qr"]
-[ext_resource type="Script" path="res://menu_button.gd" id="6_75fvt"]
+[ext_resource type="Texture2D" uid="uid://4ou77xvelse5" path="res://Settings/assets/menu-bars.svg" id="5_l84qr"]
+[ext_resource type="Script" path="res://scripts/menu_button.gd" id="6_75fvt"]
 
 [node name="TestMain" type="Node2D"]
 script = ExtResource("1_nsodu")
