@@ -1,0 +1,17 @@
+{
+	"arm2_texture": "res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_arm.png",
+	"arm_texture": "res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_arm.png",
+	"belt_texture": "kenney_modular-characters/PNG/belt.png",
+	"face_texture": "res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_head.png",
+	"features_texture": "res://kenney_modular-characters/PNG/Face/face1.png",
+	"hair_texture": "res://kenney_modular-characters/PNG/Hair/Blonde/blondeMan5.png",
+	"hand2_texture": "res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_hand.png",
+	"hand_texture": "res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_hand.png",
+	"name": "tom",
+	"neck_texture": "res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_neck.png",
+	"pant2_texture": "res://kenney_modular-characters/PNG/Pants/pantsTan_long.png",
+	"pant_texture": "res://kenney_modular-characters/PNG/Pants/pantsTan_long.png",
+	"shirt_texture": "res://kenney_modular-characters/PNG/Shirts/redShirt7.png",
+	"shoe1_texture": "res://kenney_modular-characters/PNG/Shoes/RedShoe3.png",
+	"shoe2_texture": "res://kenney_modular-characters/PNG/Shoes/RedShoe3.png"
+}

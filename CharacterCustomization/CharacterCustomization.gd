@@ -33,6 +33,10 @@ var pant_colors = ["Brown", "Green", "Grey", "LightBlue", "Navy", "Pine", "Red",
 var shoe_colors = ["Black", "Blue", "Brown", "Grey", "Red", "Tan"]
 
 
+
+
+
+
 # ---------------- FACE CUSTOMIZATION (TINT) ----------------
 func _on_change_face_pressed():
 	current_tint_index = (current_tint_index + 1) % 8  # 8 skin tints available
@@ -89,8 +93,19 @@ func _on_change_shoes_pressed():
 	shoe2_sprite.texture = load(shoe_texture_path)  # Update both shoes
 	
 # ---------------- DEFAULT BELT SETUP ----------------
-func _ready():
-	belt_sprite.texture = load("kenney_modular-characters/PNG/belt.png")  # Load default belt texture
+func _ready():	
+	
+	var last_character_path = "user://last_saved_character.json"
+	if FileAccess.file_exists(last_character_path):
+		var last_character_file = FileAccess.open(last_character_path, FileAccess.READ)
+		if last_character_file:
+			var last_character_data = JSON.parse_string(last_character_file.get_as_text())
+			last_character_file.close()
+			if last_character_data and "last_saved" in last_character_data:
+				var last_character_name = last_character_data["last_saved"]
+				# If the character file exists, load it
+				if FileAccess.file_exists("CustomCharacters/" + last_character_name + ".json"):
+					load_character(last_character_name)
 
 # ---------------- SAVE CUSTOMIZATION ----------------
 func _on_save_pressed():
@@ -98,6 +113,15 @@ func _on_save_pressed():
 	var character_name = name_input.text.strip_edges()
 	if character_name == "":
 		character_name = "noname"
+	# Save the last saved character's name in a JSON file
+	var last_character_path = "user://last_saved_character.json"
+	var last_character_file = FileAccess.open(last_character_path, FileAccess.WRITE)
+	if last_character_file:
+		var last_character_data = { "last_saved": character_name }
+		last_character_file.store_string(JSON.stringify(last_character_data, "\t"))
+		last_character_file.close()
+	else:
+		print("Error: Could not write last saved character name to file.")
 
 	# Create a save directory if it doesn't exist
 	var save_dir = "CustomCharacters/"
@@ -131,7 +155,7 @@ func _on_save_pressed():
 
 	print("Character saved at:", save_path)
 	
-
+	#load_character("tom")  #TODO remove test
 
 # ---------------- LOAD CUSTOMIZATION ----------------
 func load_character(character_name):
@@ -165,3 +189,7 @@ func load_character(character_name):
 	belt_sprite.texture = load(save_data["belt_texture"]) 
 
 	print("Character loaded:", character_name)
+
+
+func _on_change_shirts_pressed() -> void:
+	pass # Replace with function body.

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvflwiv8i45hk"
-path="res://.godot/imported/RedShoe3.png-4795a17dcea74a15e6c992c369640b95.ctex"
+path="res://.godot/imported/RedShoe3.png-c0ed365608854cb1b73da6c3840bf31b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/RedShoe3.png"
-dest_files=["res://.godot/imported/RedShoe3.png-4795a17dcea74a15e6c992c369640b95.ctex"]
+source_file="res://kenney_modular-characters/PNG/Shoes/RedShoe3.png"
+dest_files=["res://.godot/imported/RedShoe3.png-c0ed365608854cb1b73da6c3840bf31b.ctex"]
 
 [params]
 

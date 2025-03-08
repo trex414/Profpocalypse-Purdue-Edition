@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx7sjuy26uvob"
-path="res://.godot/imported/face1.png-a38760ba578109dbd085d56430412349.ctex"
+path="res://.godot/imported/face1.png-1685b54f70ea8282e23bb09d48d792b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Face/face1.png"
-dest_files=["res://.godot/imported/face1.png-a38760ba578109dbd085d56430412349.ctex"]
+source_file="res://kenney_modular-characters/PNG/Face/face1.png"
+dest_files=["res://.godot/imported/face1.png-1685b54f70ea8282e23bb09d48d792b8.ctex"]
 
 [params]
 

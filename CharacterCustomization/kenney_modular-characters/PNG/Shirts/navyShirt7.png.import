@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blflpkrquwcv3"
-path="res://.godot/imported/navyShirt7.png-d50a5c55beaf84bf8c70026d8077373f.ctex"
+path="res://.godot/imported/navyShirt7.png-6b18e5f93800c736b273cae6ab87f6ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/navyShirt7.png"
-dest_files=["res://.godot/imported/navyShirt7.png-d50a5c55beaf84bf8c70026d8077373f.ctex"]
+source_file="res://kenney_modular-characters/PNG/Shirts/navyShirt7.png"
+dest_files=["res://.godot/imported/navyShirt7.png-6b18e5f93800c736b273cae6ab87f6ff.ctex"]
 
 [params]
 
