@@ -2,31 +2,31 @@ extends Control
 
 @export var course_list: Array = [
 	{"semester": "Freshman Fall", "inprogress": true, "courses": [
-	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "time": "10 AM", "description": "Learn suffering", "completed": false, "prerequisites": "None"}
+	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "location_description" : "Large Lecture Hall", "time": "10 AM", "description": "Learn suffering", "completed": false, "prerequisites": ["None"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Freshman Spring", "inprogress": false, "courses": [
-	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS180"},
-	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS180"} 
+	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]},
+	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]} 
 	]},
 	{"semester": "Sophmore Fall", "inprogress": false, "courses": [
-	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS240"},
-	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS182"}
+	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 240"], "prerequisite_numbers": [0]},
+	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 182", "CS 240"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Sophmore Spring", "inprogress": false, "courses": [
-	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "CS251"}
+	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251", "CS 250"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Junior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
+	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 252"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Junior Spring", "inprogress": false, "courses": [
-	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
+	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Senior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
+	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Senior Spring", "inprogress": false, "courses": [
-	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"},
-	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": "None"}
+	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]},
+	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 307"], "prerequisite_numbers": [0]}
 	]}
 ]
 
@@ -68,14 +68,19 @@ func update_display():
 			for course in courses:
 				var vbox = VBoxContainer.new()  # Create a column for each course
 				# Add labels for each course field
-				for field in ["name", "professor", "location", "time", "description", "prerequisites"]:
+				for field in ["name", "professor", "location", "location_description", "time", "description"]:
 					var label = Label.new()
 					label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
 					label.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # Allows resizing to fit container
-					label.custom_minimum_size.x = 150  # Set a fixed width (adjust as needed)
+					label.custom_minimum_size.x = 170  # Set a fixed width (adjust as needed)
 					label.text = field.capitalize() + ": " + course[field]
 					vbox.add_child(label)
-					grid_container.add_child(vbox)  # Add the column to the gri
+					grid_container.add_child(vbox)  # Add the column to the grid
+				# Handle prerequisites separately to format them properly
+				var prereq_label = Label.new()
+				prereq_label.text = "Prerequisites: " + ", ".join(course["prerequisites"])
+				prereq_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+				vbox.add_child(prereq_label)
 			break  # Stop searching once we find the semester
 
 func clear_current_semester():
@@ -175,6 +180,7 @@ func _on_course_button_pressed(course):
 	# Clear previous popup content
 	for child in popup_vbox.get_children():
 		child.queue_free()
+
 	# Add new labels dynamically
 	var title_label = Label.new()
 	title_label.text = "Course: " + course["name"]
@@ -185,15 +191,39 @@ func _on_course_button_pressed(course):
 	var location_label = Label.new()
 	location_label.text = "Location: " + course["location"]
 	popup_vbox.add_child(location_label)
+	var location_description_label = Label.new()
+	location_description_label.text = "Location Description: " + course["location_description"]
+	location_description_label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
+	location_description_label.custom_minimum_size.x = 170  # Set a fixed width (adjust as needed)
+	popup_vbox.add_child(location_description_label)
 	var time_label = Label.new()
 	time_label.text = "Time: " + course["time"]
+	
 	popup_vbox.add_child(time_label)
 	var description_label = Label.new()
 	description_label.text = "Description: " + course["description"]
 	popup_vbox.add_child(description_label)
-	var prereq_label = Label.new()
-	prereq_label.text = "Prerequisites: " + course["prerequisites"]
-	popup_vbox.add_child(prereq_label)
+	#var prereq_button = Button.new()
+	
+	# Add prerequisite buttons if they exist
+	if course["prerequisites"][0] != "None":
+		var prereq_label = Label.new()
+		prereq_label.text = "Prerequisites:"
+		popup_vbox.add_child(prereq_label)
+
+		for i in range(course["prerequisites"].size()):
+			var prereq_name = course["prerequisites"][i]
+			var prereq_button = Button.new()
+			prereq_button.text = prereq_name
+			# Find the corresponding course data and bind it
+			var prereq_course = find_course_by_name(prereq_name)
+			if prereq_course:
+				prereq_button.pressed.connect(_on_course_button_pressed.bind(prereq_course))
+			popup_vbox.add_child(prereq_button)
+	
+	#prereq_button.text = "Prerequisites: " + course["prerequisites"]
+	#prereq_button.pressed.connect(_on_course_button_pressed.bind(course))
+	#popup_vbox.add_child(prereq_button)
 	# Add Close Button
 	var close_button = Button.new()
 	close_button.text = "Close"
@@ -204,3 +234,11 @@ func _on_course_button_pressed(course):
 
 func _on_close_button_pressed():
 	popup.hide()  # Hide popup
+
+func find_course_by_name(course_name):
+	# Search for the course by name in the course_list
+	for semester in course_list:
+		for course in semester["courses"]:
+			if course["name"] == course_name:
+				return course
+	return null  # Return null if the course is not found
