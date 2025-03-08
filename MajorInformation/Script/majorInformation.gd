@@ -2,31 +2,31 @@ extends Control
 
 @export var course_list: Array = [
 	{"semester": "Freshman Fall", "inprogress": true, "courses": [
-	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "location_description" : "Large Lecture Hall", "time": "10 AM", "description": "Learn suffering", "completed": false, "prerequisites": ["None"], "prerequisite_numbers": [0]}
+	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "location_description" : "Large Lecture Hall", "time": "10 AM", "description": "Object Oriented Programming", "completed": false, "prerequisites": ["None"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Freshman Spring", "inprogress": false, "courses": [
-	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]},
-	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]} 
+	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Programming in C", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]},
+	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Foundations of Computer Science", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]} 
 	]},
 	{"semester": "Sophmore Fall", "inprogress": false, "courses": [
-	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 240"], "prerequisite_numbers": [0]},
-	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 182", "CS 240"], "prerequisite_numbers": [0]}
+	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Computer Architecture", "completed": false, "prerequisites": ["CS 240"], "prerequisite_numbers": [0]},
+	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Data Structures and Algorithms", "completed": false, "prerequisites": ["CS 182", "CS 240"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Sophmore Spring", "inprogress": false, "courses": [
-	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251", "CS 250"], "prerequisite_numbers": [0]}
+	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Systems Programming", "completed": false, "prerequisites": ["CS 251", "CS 250"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Junior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 252"], "prerequisite_numbers": [0]}
+	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Operating Systems", "completed": false, "prerequisites": ["CS 252"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Junior Spring", "inprogress": false, "courses": [
-	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
+	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Software Engineering I", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Senior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
+	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Analysis of Algorithms", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
 	]},
 	{"semester": "Senior Spring", "inprogress": false, "courses": [
-	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]},
-	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Survive pop quizzes", "completed": false, "prerequisites": ["CS 307"], "prerequisite_numbers": [0]}
+	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Senior Project", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]},
+	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Software Testing", "completed": false, "prerequisites": ["CS 307"], "prerequisite_numbers": [0]}
 	]}
 ]
 
@@ -106,7 +106,7 @@ func fill_vbox():
 		# Loop through courses and add buttons
 		for course in semester_data["courses"]:
 			var course_button = Button.new()
-			course_button.text = course["name"]
+			course_button.text = course["name"] + ": " + course["description"]
 			course_button.pressed.connect(_on_course_button_pressed.bind(course))
 			vbox.add_child(course_button)
 
@@ -202,6 +202,8 @@ func _on_course_button_pressed(course):
 	popup_vbox.add_child(time_label)
 	var description_label = Label.new()
 	description_label.text = "Description: " + course["description"]
+	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
+	description_label.custom_minimum_size.x = 170  # Set a fixed width (adjust as needed)
 	popup_vbox.add_child(description_label)
 	#var prereq_button = Button.new()
 	
