@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dowm04ly3wma1"
-path="res://.godot/imported/redMan8.png-ec14394ff1d264a43922b63bcd3cadb9.ctex"
+path="res://.godot/imported/redMan8.png-2a271d1e487e9cee0c3a9e5d69ba1333.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Hair/Red/redMan8.png"
-dest_files=["res://.godot/imported/redMan8.png-ec14394ff1d264a43922b63bcd3cadb9.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Red/redMan8.png"
+dest_files=["res://.godot/imported/redMan8.png-2a271d1e487e9cee0c3a9e5d69ba1333.ctex"]
 
 [params]
 

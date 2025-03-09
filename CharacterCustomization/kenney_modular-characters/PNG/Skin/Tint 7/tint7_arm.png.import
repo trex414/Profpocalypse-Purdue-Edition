@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj7vrqpvbovs1"
-path="res://.godot/imported/tint7_arm.png-c915025cbf8c8eea913f62538b2dabfd.ctex"
+path="res://.godot/imported/tint7_arm.png-b2cf2f5a591554cdfdc9b3806a90bf2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Skin/Tint 7/tint7_arm.png"
-dest_files=["res://.godot/imported/tint7_arm.png-c915025cbf8c8eea913f62538b2dabfd.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_arm.png"
+dest_files=["res://.godot/imported/tint7_arm.png-b2cf2f5a591554cdfdc9b3806a90bf2b.ctex"]
 
 [params]
 
