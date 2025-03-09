@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djcf34j4m6164"
-path="res://.godot/imported/pantsLightBlue_long.png-eb12cb9f730ae9bee4679e72aab7878e.ctex"
+path="res://.godot/imported/pantsLightBlue_long.png-849243a794fa80414b9c1156a6e2df06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsLightBlue_long.png"
-dest_files=["res://.godot/imported/pantsLightBlue_long.png-eb12cb9f730ae9bee4679e72aab7878e.ctex"]
+source_file="res://kenney_modular-characters/PNG/Pants/pantsLightBlue_long.png"
+dest_files=["res://.godot/imported/pantsLightBlue_long.png-849243a794fa80414b9c1156a6e2df06.ctex"]
 
 [params]
 

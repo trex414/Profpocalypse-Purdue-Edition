@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnpkeimr64y8c"
-path="res://.godot/imported/TanShoe3.png-c56e63e79e681cce46f60ac1c1d20f65.ctex"
+path="res://.godot/imported/TanShoe3.png-58b88c0cc9dc3db7b4bd4ae8eca8839a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/TanShoe3.png"
-dest_files=["res://.godot/imported/TanShoe3.png-c56e63e79e681cce46f60ac1c1d20f65.ctex"]
+source_file="res://kenney_modular-characters/PNG/Shoes/TanShoe3.png"
+dest_files=["res://.godot/imported/TanShoe3.png-58b88c0cc9dc3db7b4bd4ae8eca8839a.ctex"]
 
 [params]
 

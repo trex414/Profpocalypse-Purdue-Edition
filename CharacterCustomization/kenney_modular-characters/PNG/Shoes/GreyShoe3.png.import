@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cp7v7plxd0xvq"
-path="res://.godot/imported/GreyShoe3.png-1ca460a888ea598ed90a601f0bc2123c.ctex"
+path="res://.godot/imported/GreyShoe3.png-2b1a8d70c5cffe18192abdb520a7df01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/GreyShoe3.png"
-dest_files=["res://.godot/imported/GreyShoe3.png-1ca460a888ea598ed90a601f0bc2123c.ctex"]
+source_file="res://kenney_modular-characters/PNG/Shoes/GreyShoe3.png"
+dest_files=["res://.godot/imported/GreyShoe3.png-2b1a8d70c5cffe18192abdb520a7df01.ctex"]
 
 [params]
 

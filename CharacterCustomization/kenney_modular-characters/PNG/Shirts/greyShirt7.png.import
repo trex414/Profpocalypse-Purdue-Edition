@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hydum67fuowx"
-path="res://.godot/imported/greyShirt7.png-976e08cd19b53e630b503d0a41d7aa0a.ctex"
+path="res://.godot/imported/greyShirt7.png-5883de52d09ee0be3242a2ffbdce23f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/greyShirt7.png"
-dest_files=["res://.godot/imported/greyShirt7.png-976e08cd19b53e630b503d0a41d7aa0a.ctex"]
+source_file="res://kenney_modular-characters/PNG/Shirts/greyShirt7.png"
+dest_files=["res://.godot/imported/greyShirt7.png-5883de52d09ee0be3242a2ffbdce23f5.ctex"]
 
 [params]
 

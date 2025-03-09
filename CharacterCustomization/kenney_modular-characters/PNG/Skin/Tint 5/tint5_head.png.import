@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4iscknjkgojt"
-path="res://.godot/imported/tint5_head.png-dbb3be3ad53ef5f62c992f62783ee994.ctex"
+path="res://.godot/imported/tint5_head.png-b622234a05ba637f61de911add4b1021.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_head.png"
-dest_files=["res://.godot/imported/tint5_head.png-dbb3be3ad53ef5f62c992f62783ee994.ctex"]
+source_file="res://kenney_modular-characters/PNG/Skin/Tint 5/tint5_head.png"
+dest_files=["res://.godot/imported/tint5_head.png-b622234a05ba637f61de911add4b1021.ctex"]
 
 [params]
 
