@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ca8lqg1eg4hrh"
-path="res://.godot/imported/blackMan8.png-aeecf4a4babe1ef4febaea8f6045f6f9.ctex"
+path="res://.godot/imported/blackMan8.png-7799b223571f020e2009bfca9e02469f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/Hair/Black/blackMan8.png"
-dest_files=["res://.godot/imported/blackMan8.png-aeecf4a4babe1ef4febaea8f6045f6f9.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Black/blackMan8.png"
+dest_files=["res://.godot/imported/blackMan8.png-7799b223571f020e2009bfca9e02469f.ctex"]
 
 [params]
 

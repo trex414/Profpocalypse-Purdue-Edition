@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=33 format=4 uid="uid://44fn8peqisx3"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
@@ -10,6 +10,13 @@
 [ext_resource type="Script" path="res://Main Map/scenes/buildings_3.gd" id="6_fqmo0"]
 [ext_resource type="Script" path="res://Main Map/scenes/sub_viewport.gd" id="7_7kqgm"]
 [ext_resource type="Texture2D" uid="uid://dvt35775i3h3e" path="res://Main Map/assets/screenshot-tilemap.png" id="8_rlj2k"]
+[ext_resource type="Script" path="res://Main Map/scenes/athletics_section.gd" id="11_i3eja"]
+[ext_resource type="Script" path="res://Main Map/scenes/engineering_section.gd" id="12_fpetl"]
+[ext_resource type="AudioStream" uid="uid://cgdfurfgnjlue" path="res://Music/Tracks/Purdue Fight Song.mp3" id="12_sib2m"]
+[ext_resource type="Script" path="res://Main Map/scenes/residential_section.gd" id="13_uqq10"]
+[ext_resource type="Script" path="res://Main Map/scenes/business_section.gd" id="14_b5pok"]
+[ext_resource type="Script" path="res://Main Map/scenes/science_section.gd" id="15_w615c"]
+[ext_resource type="Script" path="res://Main Map/scenes/outskirts_section.gd" id="16_gnlpb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khlmg"]
 texture = ExtResource("1_cmsoe")
@@ -3109,6 +3116,24 @@ size = Vector2(5837, 107)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gamrb"]
 size = Vector2(153, 7724)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od1j4"]
+size = Vector2(876.55, 551.374)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbx6y"]
+size = Vector2(2253, 1893.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rekja"]
+size = Vector2(3321.75, 1899)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c31ae"]
+size = Vector2(2479, 2001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5our"]
+size = Vector2(3192, 2044)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kt6v"]
+size = Vector2(5763, 995)
 
 [node name="Map" type="Node2D" groups=["Buildings"]]
 script = ExtResource("1_cchdm")
@@ -6771,3 +6796,57 @@ shape = SubResource("RectangleShape2D_gamrb")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(5853, 3852)
 shape = SubResource("RectangleShape2D_gamrb")
+
+[node name="Athletics Section" type="Area2D" parent="."]
+position = Vector2(2351, 1239)
+scale = Vector2(1.35971, 1.68265)
+script = ExtResource("11_i3eja")
+new_music = ExtResource("12_sib2m")
+
+[node name="Athletics Music" type="CollisionShape2D" parent="Athletics Section"]
+position = Vector2(398.247, 295.431)
+rotation = 3.14159
+scale = Vector2(4.6994, -2.04385)
+shape = SubResource("RectangleShape2D_od1j4")
+
+[node name="Engineering Section" type="Area2D" parent="."]
+script = ExtResource("12_fpetl")
+
+[node name="Engineering Music" type="CollisionShape2D" parent="Engineering Section"]
+position = Vector2(4570.5, 3661.12)
+shape = SubResource("RectangleShape2D_jbx6y")
+
+[node name="Residential Section" type="Area2D" parent="."]
+position = Vector2(1931, 2744)
+script = ExtResource("13_uqq10")
+
+[node name="Residential Music" type="CollisionShape2D" parent="Residential Section"]
+position = Vector2(-178.125, 918.5)
+shape = SubResource("RectangleShape2D_rekja")
+
+[node name="Business Section" type="Area2D" parent="."]
+position = Vector2(3218, 4638)
+script = ExtResource("14_b5pok")
+
+[node name="Business Music" type="CollisionShape2D" parent="Business Section"]
+position = Vector2(1239.5, 1000.5)
+shape = SubResource("RectangleShape2D_c31ae")
+
+[node name="Science Section" type="Area2D" parent="."]
+position = Vector2(93, 4629)
+script = ExtResource("15_w615c")
+
+[node name="Science Music" type="CollisionShape2D" parent="Science Section"]
+position = Vector2(1516, 1029)
+shape = SubResource("RectangleShape2D_m5our")
+
+[node name="Outskirts Section" type="Area2D" parent="."]
+position = Vector2(13, 6694)
+script = ExtResource("16_gnlpb")
+
+[node name="Outskirts Music" type="CollisionShape2D" parent="Outskirts Section"]
+position = Vector2(2867.5, 499.5)
+shape = SubResource("RectangleShape2D_4kt6v")
+
+[connection signal="body_entered" from="Athletics Section" to="Athletics Section" method="_on_body_entered"]
+[connection signal="body_exited" from="Athletics Section" to="Athletics Section" method="_on_body_exited"]
