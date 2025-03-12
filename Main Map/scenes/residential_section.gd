@@ -26,6 +26,5 @@ func _on_body_exited(body):
 
 func _change_music():
 	if player_inside:  # Ensure the player is still in the area
-		print(MusicManager)
 		var music_player = get_node("/root/MusicManager")
 		MusicManager.play_music(new_music)
