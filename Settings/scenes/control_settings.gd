@@ -17,6 +17,11 @@ var is_open = false
 var keybind_menu_open = false
 var preferences_menu = null
 
+var original_volume: float = 0.0
+var volume_reduction_db: float = -20.0  # Reduce by 20 dB when settings are open
+var bus_name: String = "Master"
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
@@ -29,8 +34,10 @@ func _ready():
 	preferences_button.pressed.connect(_on_preferences_button_pressed)
 	quit_button.pressed.connect(_on_quit_game)
 	tutorial_button.pressed.connect(begin_tutorial)
-	#volume_slider.value = SaveManager.volume 
-	#volume_slider.connect("value_changed", _on_volume_changed)
+	
+	# Get the initial volume of the bus
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	original_volume = AudioServer.get_bus_volume_db(bus_index)
 	
 
 func begin_tutorial():
@@ -49,14 +56,20 @@ func toggle_menu():
 		# Close the menu first, then toggle the HUD button
 		self.visible = false
 		
-		# Now hide the HUD button
+		# Now show the HUD button
 		HUD_settings_button.visible = true
+		
+		var bus_index = AudioServer.get_bus_index(bus_name)
+		AudioServer.set_bus_volume_db(bus_index, original_volume) # Restore original volume
 	else:
 		# Show the menu first
 		self.visible = true
 		
 		# Hide the HUD button
 		HUD_settings_button.visible = false
+		
+		var bus_index = AudioServer.get_bus_index(bus_name)
+		AudioServer.set_bus_volume_db(bus_index, original_volume + volume_reduction_db) # Lower volume
 
 	is_open = !is_open
 	#get_tree().paused = is_open    # ADD THIS TO PAUSE GAME WHEN SETTINGS IS OPEN
