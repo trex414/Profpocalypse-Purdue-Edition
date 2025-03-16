@@ -43,8 +43,8 @@ var abilities = {
 	}
 }
 
-@onready var labels_container = $VBoxContainer  # Adjust path
-@onready var progress_container = $VBoxContainer2  # Adjust path
+@onready var labels_container = $CanvasLayer/VBoxContainer  # Adjust path
+@onready var progress_container = $CanvasLayer/VBoxContainer2  # Adjust path
 
 func _ready():
 	update_ability("Speed", 5)

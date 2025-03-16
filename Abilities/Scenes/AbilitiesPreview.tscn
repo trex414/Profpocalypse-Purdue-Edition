@@ -11,8 +11,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l0eos")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -244.0
+offset_right = 228.0
+offset_bottom = -63.0
+
+[node name="Speed" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "0/10 Ability 1"
+
+[node name="Strength" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "0/10 Ability 2"
+
+[node name="Intelligence" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "0/10 Ability 3"
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Abilities Detailed View"
+icon_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -21,51 +52,20 @@ offset_top = -244.0
 offset_right = 228.0
 offset_bottom = -137.0
 
-[node name="Speed" type="ProgressBar" parent="VBoxContainer2"]
+[node name="Speed" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 max_value = 10.0
 show_percentage = false
 
-[node name="Strength" type="ProgressBar" parent="VBoxContainer2"]
+[node name="Strength" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 max_value = 10.0
 show_percentage = false
 
-[node name="Intelligence" type="ProgressBar" parent="VBoxContainer2"]
+[node name="Intelligence" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 max_value = 10.0
 show_percentage = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -244.0
-offset_right = 228.0
-offset_bottom = -116.0
-
-[node name="Speed" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "0/10 Ability 1"
-
-[node name="Strength" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "0/10 Ability 2"
-
-[node name="Intelligence" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 33
-text = "0/10 Ability 3"
-
-[node name="Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Abilities Detailed View"
-icon_alignment = 1

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0mcfe40m7h7i"]
+[gd_scene load_steps=7 format=3 uid="uid://d0mcfe40m7h7i"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
 [ext_resource type="PackedScene" uid="uid://cpmvljq2taiaa" path="res://Music/MusicManager.tscn" id="5_2xhnb"]
-[ext_resource type="PackedScene" uid="uid://b6xcw6wn5at5d" path="res://Abilities/Scenes/AbilitiesPreview.tscn" id="5_bv55e"]
 [ext_resource type="Texture2D" uid="uid://4ou77xvelse5" path="res://Settings/assets/menu-bars.svg" id="5_l84qr"]
 [ext_resource type="Script" path="res://Music/MusicManager.gd" id="5_pyw2q"]
 [ext_resource type="Script" path="res://scripts/menu_button.gd" id="6_75fvt"]
@@ -20,8 +19,6 @@ icon = ExtResource("5_l84qr")
 script = ExtResource("6_75fvt")
 
 [node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_2ypww")]
-
-[node name="AbilitiesPreview" parent="Menu UI" instance=ExtResource("5_bv55e")]
 
 [node name="MusicManager" parent="." instance=ExtResource("5_2xhnb")]
 script = ExtResource("5_pyw2q")
