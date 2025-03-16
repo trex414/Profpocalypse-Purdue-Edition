@@ -3,6 +3,7 @@ extends Node2D
 var map = null
 var inventory = null
 var hud = null
+var abilitiesPreview = null
 var QuestMenuScene = null
 var majorInformation = null
 
@@ -25,6 +26,10 @@ func _ready():
 	# Load HUD
 	hud = load("res://Main HUD/Scenes/hud.tscn").instantiate()
 	add_child(hud)
+	
+	# Load abilities preview
+	abilitiesPreview = load("res://Abilities/Scenes/AbilitiesPreview.tscn").instantiate()
+	add_child(abilitiesPreview)
 	
 	# Load Quest Screen
 	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
