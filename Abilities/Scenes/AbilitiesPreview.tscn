@@ -20,6 +20,7 @@ offset_left = 2.0
 offset_top = -244.0
 offset_right = 228.0
 offset_bottom = -137.0
+grow_vertical = 0
 
 [node name="Speed" type="ProgressBar" parent="VBoxContainer2"]
 custom_minimum_size = Vector2(0, 27)
@@ -48,6 +49,7 @@ offset_left = 4.0
 offset_top = -244.0
 offset_right = 228.0
 offset_bottom = -116.0
+grow_vertical = 0
 
 [node name="Speed" type="Label" parent="VBoxContainer"]
 layout_mode = 2

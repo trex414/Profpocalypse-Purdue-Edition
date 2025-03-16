@@ -22,6 +22,7 @@ script = ExtResource("6_75fvt")
 [node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_2ypww")]
 
 [node name="AbilitiesPreview" parent="Menu UI" instance=ExtResource("5_bv55e")]
+visible = false
 
 [node name="MusicManager" parent="." instance=ExtResource("5_2xhnb")]
 script = ExtResource("5_pyw2q")
