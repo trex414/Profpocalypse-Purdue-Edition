@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=42 format=4 uid="uid://44fn8peqisx3"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Main Map/scenes/buildings_3.gd" id="6_fqmo0"]
 [ext_resource type="Script" path="res://Main Map/scenes/sub_viewport.gd" id="7_7kqgm"]
 [ext_resource type="Texture2D" uid="uid://dvt35775i3h3e" path="res://Main Map/assets/screenshot-tilemap.png" id="8_rlj2k"]
+[ext_resource type="Script" path="res://Main Map/scenes/enter building.gd" id="11_2w1om"]
 [ext_resource type="Script" path="res://Main Map/scenes/athletics_section.gd" id="11_i3eja"]
 [ext_resource type="Script" path="res://Main Map/scenes/engineering_section.gd" id="12_fpetl"]
 [ext_resource type="AudioStream" uid="uid://cgdfurfgnjlue" path="res://Music/Tracks/Purdue Fight Song.mp3" id="12_sib2m"]
@@ -3115,6 +3116,40 @@ sources/1 = SubResource("TileSetAtlasSource_j0xnl")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ff34x"]
 size = Vector2(24, 24)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064h2"]
+bg_color = Color(0.529412, 0.411765, 0.105882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kajbt"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tccjh"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_083jr"]
 size = Vector2(5837, 107)
@@ -6784,6 +6819,85 @@ position = Vector2(100, 100)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_tqgjs")
 
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -40.5
+offset_right = 88.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_2w1om")
+
+[node name="Panel" type="Panel" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -90.0
+offset_right = 278.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_064h2")
+
+[node name="Label" type="Label" parent="UI/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.325
+anchor_right = 0.5
+anchor_bottom = 0.325
+offset_left = -112.0
+offset_top = -12.35
+offset_right = 112.0
+offset_bottom = 40.65
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_j2j4h")
+theme_override_font_sizes/font_size = 50
+text = "Do you wish to enter"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -84.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Button" type="Button" parent="UI/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_j2j4h")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_kajbt")
+text = "YES"
+
+[node name="Button2" type="Button" parent="UI/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_j2j4h")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_tccjh")
+text = "NO"
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -6858,6 +6972,8 @@ new_music = ExtResource("22_qd3bh")
 position = Vector2(2867.5, 499.5)
 shape = SubResource("RectangleShape2D_4kt6v")
 
+[connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button2" to="UI/Control" method="_on_button_2_pressed"]
 [connection signal="body_entered" from="Athletics Section" to="Athletics Section" method="_on_body_entered"]
 [connection signal="body_exited" from="Athletics Section" to="Athletics Section" method="_on_body_exited"]
 [connection signal="body_entered" from="Engineering Section" to="Engineering Section" method="_on_body_entered"]
