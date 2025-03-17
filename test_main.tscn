@@ -25,5 +25,11 @@ visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 
+[node name="ItemList" type="ItemList" parent="Menu UI/Calender Button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 123
+
 [node name="MusicManager" parent="." instance=ExtResource("5_2xhnb")]
 script = ExtResource("5_pyw2q")
