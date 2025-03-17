@@ -23,13 +23,13 @@ offset_right = 229.0
 offset_bottom = -127.0
 grow_vertical = 0
 
-[node name="Speed" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
+[node name="GPA" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 max_value = 10.0
 show_percentage = false
 
-[node name="Strength" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
+[node name="Luck" type="ProgressBar" parent="CanvasLayer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
 max_value = 10.0
@@ -51,12 +51,12 @@ offset_right = 230.0
 offset_bottom = -100.0
 grow_vertical = 0
 
-[node name="Speed" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="GPA" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
 text = "0/10 Ability 1"
 
-[node name="Strength" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="Luck" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
 text = "0/10 Ability 2"
