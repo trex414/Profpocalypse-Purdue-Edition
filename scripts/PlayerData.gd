@@ -17,6 +17,7 @@ func _ready() -> void:
 
 # Player data variables (initialized but not hardcoded)
 var position: Vector2
+var building_interior_position: Vector2  # Default starting position for building interior
 #initialize player spots
 var inventory = [null, null, null, null, null, null, null, null, null, null, null, null]
 var potion_bar = [null, null, null, null, null]
