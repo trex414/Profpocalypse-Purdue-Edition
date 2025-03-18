@@ -86,7 +86,10 @@ func _process(delta):
 # Main game script (extends Node2D)
 func change_map(new_map_path: String):
 	if map:  # If a map already exists, remove it
-		map.queue_free()
+		map.call_deferred("queue_free")  # Defer the removal of the map
+	call_deferred("_load_new_map", new_map_path)  # Defer loading the new map
+
+func _load_new_map(new_map_path: String):
 	map = load(new_map_path).instantiate()  # Load the new map
 	add_child(map)  # Add the new map to the scene
 	move_child(map, 0)  # Ensure the map is at the bottom (below UI)
