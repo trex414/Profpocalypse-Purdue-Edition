@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://y1y4i0lvdt4l"]
+[gd_scene load_steps=3 format=3 uid="uid://y1y4i0lvdt4l"]
+
+[ext_resource type="Script" path="res://User_Battle/Script/battle_ui.gd" id="1_mt36e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akw03"]
 
@@ -7,8 +9,16 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_mt36e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BattleBackground" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Enemy_Health_Bar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -20,27 +30,27 @@ grow_vertical = 2
 
 [node name="Health" type="ProgressBar" parent="CanvasLayer/Enemy_Health_Bar"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = -613.0
-offset_right = 399.0
-offset_bottom = -562.0
-grow_vertical = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 110.0
+offset_top = 101.0
+offset_right = 486.0
+offset_bottom = 152.0
+grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_akw03")
 step = 1.0
 
 [node name="Lose_Health" type="Button" parent="CanvasLayer/Enemy_Health_Bar"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 26.0
-offset_top = -556.0
-offset_right = 205.0
-offset_bottom = -497.0
-grow_vertical = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 115.0
+offset_top = 165.0
+offset_right = 294.0
+offset_bottom = 224.0
+grow_horizontal = 2
 text = "Lose Health"
 
 [node name="Enemy_EXP_Bar" type="Control" parent="CanvasLayer"]
@@ -95,3 +105,7 @@ offset_right = 179.0
 offset_bottom = -165.0
 grow_vertical = 0
 text = "Lose EXP"
+
+[node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer"]
+
+[node name="EnemySprite" type="Sprite2D" parent="CanvasLayer"]

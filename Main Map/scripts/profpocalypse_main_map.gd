@@ -10,3 +10,4 @@ func apply_font_to_labels(node):
 		node.add_theme_font_override("font", font)
 	for child in node.get_children():
 		apply_font_to_labels(child)
+		

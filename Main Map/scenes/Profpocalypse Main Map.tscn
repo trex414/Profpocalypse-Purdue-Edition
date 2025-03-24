@@ -1,11 +1,11 @@
-[gd_scene load_steps=42 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=44 format=4 uid="uid://44fn8peqisx3"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
 [ext_resource type="Script" path="res://Main Map/scripts/Building Label.gd" id="2_0pdya"]
 [ext_resource type="Script" path="res://Inventory/scenes/temporary_player.gd" id="4_3tb7l"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="4_j2j4h"]
-[ext_resource type="StyleBox" uid="uid://bdrcw5rjcpfnk" path="res://Main Map/scenes/building icon.tres" id="4_ysta8"]
+[ext_resource type="StyleBox" path="res://Main Map/scenes/building icon.tres" id="4_ysta8"]
 [ext_resource type="Texture2D" uid="uid://da60ixcyfybjq" path="res://CharacterImages/WhiteSquare.png" id="5_tqgjs"]
 [ext_resource type="Script" path="res://Main Map/scenes/buildings_3.gd" id="6_fqmo0"]
 [ext_resource type="Script" path="res://Main Map/scenes/sub_viewport.gd" id="7_7kqgm"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://dgxq8hc3oiyo2" path="res://Music/Tracks/Business.mp3" id="18_srqxo"]
 [ext_resource type="AudioStream" uid="uid://c1vute6ehxr75" path="res://Music/Tracks/Science.mp3" id="20_15c0i"]
 [ext_resource type="AudioStream" uid="uid://4yqp1j6dfims" path="res://Music/Tracks/Outskirts.mp3" id="22_qd3bh"]
+[ext_resource type="Script" path="res://Main Map/scripts/test_dummy.gd" id="24_qnv2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khlmg"]
 texture = ExtResource("1_cmsoe")
@@ -3174,6 +3175,9 @@ size = Vector2(3192, 2044)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kt6v"]
 size = Vector2(5763, 995)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhhif"]
+size = Vector2(65, 58.5)
 
 [node name="Map" type="Node2D" groups=["Buildings"]]
 script = ExtResource("1_cchdm")
@@ -6972,6 +6976,23 @@ new_music = ExtResource("22_qd3bh")
 position = Vector2(2867.5, 499.5)
 shape = SubResource("RectangleShape2D_4kt6v")
 
+[node name="TestDummy" type="Node2D" parent="."]
+script = ExtResource("24_qnv2v")
+
+[node name="ColorRect" type="ColorRect" parent="TestDummy"]
+custom_minimum_size = Vector2(32, 32)
+offset_left = 1910.0
+offset_top = 2368.0
+offset_right = 1950.0
+offset_bottom = 2408.0
+color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="TestDummy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestDummy/Area2D"]
+position = Vector2(1929, 2387)
+shape = SubResource("RectangleShape2D_jhhif")
+
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button2" to="UI/Control" method="_on_button_2_pressed"]
 [connection signal="body_entered" from="Athletics Section" to="Athletics Section" method="_on_body_entered"]
@@ -6986,3 +7007,4 @@ shape = SubResource("RectangleShape2D_4kt6v")
 [connection signal="body_exited" from="Science Section" to="Science Section" method="_on_body_exited"]
 [connection signal="body_entered" from="Outskirts Section" to="Outskirts Section" method="_on_body_entered"]
 [connection signal="body_exited" from="Outskirts Section" to="Outskirts Section" method="_on_body_exited"]
+[connection signal="body_entered" from="TestDummy/Area2D" to="TestDummy" method="_on_body_entered"]
