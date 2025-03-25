@@ -12,6 +12,7 @@ offset_bottom = 40.0
 script = ExtResource("1_mt36e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 6
 
 [node name="BattleBackground" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -109,3 +110,27 @@ text = "Lose EXP"
 [node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer"]
 
 [node name="EnemySprite" type="Sprite2D" parent="CanvasLayer"]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 120.0
+offset_top = 236.0
+offset_right = 220.0
+offset_bottom = 295.0
+grow_horizontal = 2
+text = "Leave"
+
+[node name="BattleMessage" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -25.5
+offset_right = 8.5
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2

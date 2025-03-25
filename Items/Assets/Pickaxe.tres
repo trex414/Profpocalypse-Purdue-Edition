@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BaseItem" load_steps=3 format=3 uid="uid://g6gqkucrmbi5"]
+
+[ext_resource type="Script" path="res://Items/Script/BaseItem.gd" id="1_nvgrx"]
+[ext_resource type="Texture2D" uid="uid://dq4vgfswd2v8s" path="res://Inventory/assets/Large Potion.png" id="2_5a3uw"]
+
+[resource]
+script = ExtResource("1_nvgrx")
+item_name = "Small Heal"
+texture = ExtResource("2_5a3uw")
+item_type = 2
+stackable = false
+count = 1
+itemstrength = 20

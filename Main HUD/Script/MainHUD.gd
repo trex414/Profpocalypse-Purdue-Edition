@@ -11,6 +11,11 @@ extends Control
 @onready var background_panel = $CanvasLayer/PinnedQuestContainer/BackgroundPanel
 @onready var potions_manager = preload("res://Main HUD/Script/potion.gd").new()
 
+
+var battle_ui = null
+
+
+
 var inventory
 # Storage for HUD items
 var item_bar_slots = [null, null, null, null, null]
@@ -35,6 +40,9 @@ func _ready():
 	for i in range(potion_bar.get_child_count()):
 		var button = potion_bar.get_child(i)
 		button.connect("pressed", Callable(self, "hotbar_potion_slot_clicked").bind(i))
+		
+	
+
 
 # Function to make sure inventory is a global call for main hud
 func set_inventory(inv):
@@ -69,21 +77,28 @@ func setup_hotbar_button(button):
 # When clicking an Item Bar slot, try moving the selected inventory item
 func hotbar_slot_clicked(slot_index):
 	if inventory == null:
-		#DEBUG
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
-	# Check if the slot is already occupied
+	# Check if battle UI is active
+	var in_battle = battle_ui != null and battle_ui.is_visible_in_tree()
+
+	# If there's an item in the hotbar
 	if item_bar_slots[slot_index] != null:
-		move_from_hotbar_to_inventory(slot_index)
+		if in_battle:
+			handle_battle_attack(slot_index)
+		else:
+			move_from_hotbar_to_inventory(slot_index)
+
+	# If inventory is open and slot is empty, allow moving item into hotbar
 	elif inventory.selected_slot != null:
-		# Otherwise, move selected item from inventory to hotbar
 		var selected_item = inventory.get_selected_item()
 		if selected_item["type"] == inventory.ItemType.SPELL:
-			#DEBUG
 			print("Potions cannot be placed in the Item Bar!")
 			return
 		inventory.move_item_to_item_bar(inventory.selected_slot, self, slot_index)
+
+
 
 
 func hotbar_potion_slot_clicked(slot_index):
@@ -169,11 +184,16 @@ func check_potion(item) -> bool:
 
 #Function to move items from item bar to inventory
 func move_from_hotbar_to_inventory(slot_index):
+	# Prevent moving items if in battle
+	var in_battle = battle_ui != null and battle_ui.is_visible_in_tree()
+	if in_battle:
+		print("⚠️ Can't move items during battle.")
+		return
+
 	if inventory == null:
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
-	# Check if inventory is open
 	if not inventory.is_inventory_open():
 		print("Inventory is closed. Cannot move item.")
 		return
@@ -183,22 +203,20 @@ func move_from_hotbar_to_inventory(slot_index):
 		print("No item in hotbar slot", slot_index)
 		return
 
-	# Check if the inventory has space before removing the item
 	if not inventory.has_space_for_item():
 		print("Inventory full! Item remains in hotbar.")
 		return
 
-	# Remove item from hotbar
 	item_bar_slots[slot_index] = null
 	var button = item_bar.get_child(slot_index)
-	button.icon = null  # Clear the hotbar slot
+	button.icon = null
 
-	# Add item to inventory
 	var success = inventory.add_item_from_hotbar(item)
 	if not success:
 		print("Inventory full! Cannot move item from hotbar.")
 
 	print("Moved", item["name"], "from hotbar slot", slot_index, "to inventory")
+
 
 # Function to move potions from protion bar to inventory
 func move_potion_from_hotbar_to_inventory(slot_index):
@@ -431,3 +449,40 @@ func update_pinned_quests(pinned_quests: Array[Quest]):
 
 	# Control visibility
 	pinned_quest_container.visible = pinned_quests.size() > 0
+	
+func handle_battle_attack(slot_index):
+	var item = item_bar_slots[slot_index]
+	if item == null:
+		return
+
+	if battle_ui.turn_locked:
+		print("Turn is locked. Wait for CPU.")
+		return
+
+	# Basic damage logic
+	var base_damage = 5
+	var miss_chance = randf() <= 0.05
+	var crit_chance = randf() <= 0.10
+	var break_chance = randf() <= 0.10
+
+	if miss_chance:
+		battle_ui.show_battle_message("You missed!")
+		battle_ui.lock_turn()
+		await get_tree().create_timer(2).timeout
+		battle_ui.cpu_attack()
+		return
+
+	var final_damage = base_damage
+	if crit_chance:
+		final_damage = int(base_damage * 1.5)
+
+	if break_chance:
+		battle_ui.show_battle_message("%s broke!" % item["name"])
+		item_bar_slots[slot_index] = null
+		item_bar.get_child(slot_index).icon = null
+	else:
+		battle_ui.player_attack(final_damage)
+		
+func set_battle_ui(ui):
+	battle_ui = ui
+	print("✅ Battle UI manually set:", battle_ui.name)

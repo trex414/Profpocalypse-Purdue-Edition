@@ -40,6 +40,15 @@ func _ready():
 	
 	QuestMenuScene.inventory = inventory
 	
+		# Load Battle UI early and hide it
+	var battle_ui = load("res://User_Battle/Scene/battle_ui.tscn").instantiate()
+	battle_ui.visible = false
+	battle_ui.hide()
+	add_child(battle_ui)
+
+# Pass to HUD
+	hud.set_battle_ui(battle_ui)
+	
 
 	# Pass inventory reference to HUD
 	hud.set_inventory(inventory)

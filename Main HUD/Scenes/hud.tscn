@@ -19,6 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_3f0v0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 7
 
 [node name="Item Bar" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
