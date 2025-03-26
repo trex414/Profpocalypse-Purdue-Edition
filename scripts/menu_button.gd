@@ -16,12 +16,13 @@ func _on_button_pressed():
 	
 	if settings_menu.visible:
 		var bus_index = AudioServer.get_bus_index(bus_name)
-		GlobalPreferences.user_defined_volume = AudioServer.get_bus_volume_db(bus_index)
-		AudioServer.set_bus_volume_db(bus_index, GlobalPreferences.user_defined_volume + volume_reduction_db) # Lower volume
+		print("Check 1 ", GlobalPreferences.user_defined_volume)
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(GlobalPreferences.user_defined_volume) + volume_reduction_db) # Lower volume
 		print(AudioServer.get_bus_volume_db(bus_index))
 	else:
 		var bus_index = AudioServer.get_bus_index(bus_name)
-		AudioServer.set_bus_volume_db(bus_index, GlobalPreferences.user_defined_volume) # Restore volume
+		print("Check 2 ", GlobalPreferences.user_defined_volume)
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(GlobalPreferences.user_defined_volume)) # Restore volume
 		print(AudioServer.get_bus_volume_db(bus_index))
 	
 	self.visible = false
