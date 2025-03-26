@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Main Map/scripts/Building Label.gd" id="2_0pdya"]
 [ext_resource type="Script" path="res://Inventory/scenes/temporary_player.gd" id="4_3tb7l"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="4_j2j4h"]
-[ext_resource type="StyleBox" uid="uid://bdrcw5rjcpfnk" path="res://Main Map/scenes/building icon.tres" id="4_ysta8"]
+[ext_resource type="StyleBox" path="res://Main Map/scenes/building icon.tres" id="4_ysta8"]
 [ext_resource type="Texture2D" uid="uid://da60ixcyfybjq" path="res://CharacterImages/WhiteSquare.png" id="5_tqgjs"]
 [ext_resource type="Script" path="res://Main Map/scenes/buildings_3.gd" id="6_fqmo0"]
 [ext_resource type="Script" path="res://Main Map/scenes/sub_viewport.gd" id="7_7kqgm"]

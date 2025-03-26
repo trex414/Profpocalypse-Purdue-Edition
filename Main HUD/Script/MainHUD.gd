@@ -216,9 +216,10 @@ func move_from_hotbar_to_inventory(slot_index):
 	#print("Moved", item["name"], "from hotbar slot", slot_index, "to inventory")
 	if Global.in_battle and not battle_ui.turn_locked:
 		print("item to inven")
-		battle_ui.show_battle_message("Used turn to assign item.")
-		battle_ui.lock_turn()
-		battle_ui.cpu_attack()
+		inventory.get_node("CanvasLayer/Panel").visible = false
+		await battle_ui.show_battle_message("Used turn to assign item.")
+		await battle_ui.lock_turn()
+		await battle_ui.cpu_attack()
 
 
 # Function to move potions from protion bar to inventory
@@ -273,10 +274,10 @@ func move_to_item_bar(item, slot_index):
 		#print("Moved", item["name"], "to Item Bar slot", slot_index)
 		
 		if Global.in_battle and not battle_ui.turn_locked:
-			print("item to bar")
-			battle_ui.show_battle_message("Used turn to assign item.")
-			battle_ui.lock_turn()
-			battle_ui.cpu_attack()
+			inventory.get_node("CanvasLayer/Panel").visible = false
+			await battle_ui.show_battle_message("Used turn to assign item.")
+			await battle_ui.lock_turn()
+			await battle_ui.cpu_attack()
 
 
 # Function to move potion from inventory to portion bar

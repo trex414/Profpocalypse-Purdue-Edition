@@ -65,12 +65,42 @@ func start_cutscene():
 
 func lock_turn():
 	turn_locked = true
+	var scene = get_tree().current_scene
+	var hud = scene.get_node_or_null("Control - HUD")
+	var inventory = scene.get_node_or_null("Control - Inventory")
+
+	if hud:
+		for child in hud.get_children():
+			if child is Button:
+				child.disabled = true
+
+	if inventory:
+		for child in inventory.get_children():
+			if child is Button:
+				child.disabled = true
+
 	await get_tree().create_timer(2).timeout
 	unlock_turn()
 
 
+
 func unlock_turn():
 	turn_locked = false
+	var scene = get_tree().current_scene
+	var hud = scene.get_node_or_null("Control - HUD")
+	var inventory = scene.get_node_or_null("Control - Inventory")
+
+	if hud:
+		for child in hud.get_children():
+			if child is Button:
+				child.disabled = false
+
+	if inventory:
+		for child in inventory.get_children():
+			if child is Button:
+				child.disabled = false
+
+
 
 func show_battle_message(msg: String) -> void:
 	$CanvasLayer/BattleMessage.text = msg
@@ -88,7 +118,6 @@ func try_leave_fight():
 		
 		await get_tree().create_timer(2).timeout
 		restore_gameplay()
-		queue_free()
 	else:
 		show_battle_message("Escape failed! CPU is attacking...")
 		lock_turn()
@@ -150,3 +179,6 @@ func restore_gameplay():
 	
 	player.set_process(true)
 	player.set_physics_process(true)
+	
+	visible = false
+	$CanvasLayer.visible = false
