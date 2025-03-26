@@ -1,8 +1,10 @@
 extends Control
 
+var player_health_bar = null
 var player_texture = null
 var turn_locked = false
 var rng = RandomNumberGenerator.new()
+@onready var enemy_bar = $CanvasLayer/Enemy_Health_Bar
 
 var input_blocker = null
 
@@ -12,6 +14,10 @@ func set_input_blocker(blocker):
 func set_player_texture(texture):
 	player_texture = texture
 	start_cutscene()
+
+func set_health_bar(health_node):
+	player_health_bar = health_node
+
 	
 func _ready():
 	visible = false
@@ -19,13 +25,17 @@ func _ready():
 	
 	# Load and add input blocker
 	
+var enemy_scene = preload("res://User_Battle/Scene/enemy.tscn")
+var current_enemy = null
 
-
-
-
+func spawn_enemy():
+	current_enemy = enemy_scene.instantiate()
+	$CanvasLayer.add_child(current_enemy)  # Add to Battle UI
+	current_enemy.position = Vector2(850, 350)  # Set position
 
 
 func start_cutscene():
+	enemy_bar.reset_health()
 
 	Global.in_battle = true
 	visible = true
@@ -79,8 +89,8 @@ func start_cutscene():
 func lock_turn():
 	turn_locked = true
 	input_blocker.visible = true
-	await get_tree().create_timer(2).timeout
-	unlock_turn()
+	#await get_tree().create_timer(2).timeout
+	#unlock_turn()
 
 
 
@@ -107,8 +117,8 @@ func try_leave_fight():
 		await get_tree().create_timer(2).timeout
 		restore_gameplay()
 	else:
-		show_battle_message("Escape failed! CPU is attacking...")
 		lock_turn()
+		show_battle_message("Escape failed! CPU is attacking...")
 		await get_tree().create_timer(2).timeout
 		cpu_attack()
 
@@ -117,11 +127,14 @@ func player_attack(damage):
 	if turn_locked:
 		return
 	lock_turn()
-	var result_text = "Successfully attacked for %d damage" % damage
-	show_battle_message(result_text)
-	# future logic: reduce enemy health
+
+	show_battle_message("Successfully attacked for %d damage" % damage)
+
+	enemy_bar.take_damage(damage)  # ✅ Directly call it here
+
 	await get_tree().create_timer(2).timeout
 	cpu_attack()
+
 
 func player_heal(heal_amt):
 	if turn_locked:
@@ -135,7 +148,8 @@ func player_heal(heal_amt):
 func cpu_attack():
 	var miss = rng.randf() <= 0.05
 	if miss:
-		show_battle_message("CPU missed their attack!")
+		await show_battle_message("CPU missed their attack!")
+		unlock_turn() 
 		return
 
 	var crit = rng.randf() <= 0.10
@@ -144,11 +158,12 @@ func cpu_attack():
 	if crit:
 		final_damage = int(base_damage * 1.5)
 
-	var health_bar = get_node_or_null("CanvasLayer/Health_Bar")
-	if health_bar:
-		health_bar.lose_health(final_damage)
+	if player_health_bar:
+		player_health_bar.lose_health(final_damage)  # ✅ Directly call the method
 
-	show_battle_message("CPU attacked for %d damage" % final_damage)
+	await show_battle_message("CPU attacked for %d damage" % final_damage)
+	unlock_turn() 
+
 	
 func restore_gameplay():
 	Global.in_battle = false

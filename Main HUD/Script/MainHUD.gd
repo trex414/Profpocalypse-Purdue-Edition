@@ -129,30 +129,38 @@ func use_item_bar(slot_index):
 
 #Function if the inventoy is closed you can click potions on potion bar and will be used
 func use_potion_bar(slot_index):
-	# If inventory is closed, use the potion instead
+	# Get the potion from the potion bar slot
 	var item = potion_bar_slots[slot_index]
 	if item == null:
 		print("No potion in hotbar slot", slot_index)
 		return  # No potion to use
 
 	var potion_name = item["name"]
-
-	# Handle Health Potion
-	if potion_name == "Health Potion":  # Ensure the correct potion name
-		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")  # Adjust to match scene structure
-		if potions_manager.use_health_potion(health_manager, item):
-			remove_potion(slot_index)
-
-	# Handle EXP Potion
-	elif potion_name == "EXP Potion":  # Ensure the correct potion name
-		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")  # Ensure correct path to EXP system
-		if potions_manager.use_exp_potion(exp_manager, item):
-			remove_potion(slot_index)
+	var used = false
+	
+	# Apply the potion's effect based on its type
+	if potion_name == "Health Potion":
+		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")
+		used = potions_manager.use_health_potion(health_manager, item)
+	elif potion_name == "EXP Potion":
+		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")
+		used = potions_manager.use_exp_potion(exp_manager, item)
 	else:
 		print("This is not a valid potion.")
-	PlayerData.potion_bar = potion_bar_slots.duplicate(true)
+	
+	# If the potion effect was successfully applied, update the potion bar
+	if used:
+		remove_potion(slot_index)
+		PlayerData.potion_bar = potion_bar_slots.duplicate(true)
+		update_potion_display()
+		
+		# If in battle and the turn isn't locked, lock the turn and trigger CPU attack
+		if Global.in_battle and not battle_ui.turn_locked:
+			inventory.get_node("CanvasLayer/Panel").visible = false
+			await battle_ui.lock_turn()
+			await battle_ui.show_battle_message("Used turn for potion.")
+			await battle_ui.cpu_attack()
 
-	update_potion_display()
 	
 func remove_potion(slot_index):
 	var item = potion_bar_slots[slot_index]
@@ -228,7 +236,7 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
-	# Check if inventory is open
+	# Ensure the inventory is open before moving the potion
 	if not inventory.is_inventory_open():
 		print("Inventory is closed. Cannot move potion.")
 		return
@@ -242,24 +250,30 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 	var potion_count = potion["count"]
 	var potion_texture = potion["texture"]
 
-	# Check if the inventory has space before removing the potion
+	# Check if the inventory has space for the potion before removing it from the HUD
 	if not inventory.has_space_for_item():
 		print("Inventory full! Potion remains in hotbar.")
 		return 
 
-	# Remove potion from potion bar
+	# Remove the potion from the potion bar
 	potion_bar_slots[slot_index] = null
 	var button = potion_bar.get_child(slot_index)
 	button.icon = null
 	button.text = ""
 
-	# Add potion back to inventory with correct count and texture
+	# Add the potion back to the inventory with the correct count and texture
 	var success = inventory.add_potion_from_hotbar(potion_name, potion_count, potion_texture)
 	if not success:
 		print("Inventory full! Cannot move potion from hotbar.")
-	
-#	DEBUG
-	print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
+
+	#print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
+
+	# If in battle and the turn isn't locked, hide the inventory panel, lock the turn, show a battle message, and trigger CPU attack
+	if Global.in_battle and not battle_ui.turn_locked:
+		inventory.get_node("CanvasLayer/Panel").visible = false
+		await battle_ui.lock_turn()
+		await battle_ui.show_battle_message("Used turn to move potion to inventory.")
+		await battle_ui.cpu_attack()
 
 # Function to move an item from inventory to item bar
 func move_to_item_bar(item, slot_index):
@@ -290,12 +304,12 @@ func move_to_potion_bar(item, slot_index):
 			print("No potions available in inventory.")
 			return
 
-		# If slot already has the same potion, update the count
+		# If the slot already has the same potion, update its count
 		if potion_bar_slots[slot_index] != null and potion_bar_slots[slot_index]["name"] == potion_name:
 			potion_bar_slots[slot_index]["count"] += potion_count
 		else:
 			if potion_bar_slots[slot_index] == null:
-				# Assign new potion with correct count
+				# Assign a new potion entry with the correct count and a resized texture
 				potion_bar_slots[slot_index] = { 
 					"name": potion_name, 
 					"texture": resize_texture(item["texture"], Vector2(64, 64)),
@@ -305,15 +319,23 @@ func move_to_potion_bar(item, slot_index):
 				print("Potion slot is already occupied!")
 				return
 		
-		# Remove from inventory since it's now in HUD
+		# Remove the potion from the inventory since it's now placed on the HUD
 		inventory.remove_item(potion_name, potion_count)
 		PlayerData.potion_bar = potion_bar_slots.duplicate(true)
 
-		# Update button UI with locked icon size
+		# Update the potion bar button UI with the resized texture and correct settings
 		var button = potion_bar.get_child(slot_index)
-		button.icon = resize_texture(item["texture"], Vector2(64, 64))  # Apply resized texture
+		button.icon = resize_texture(item["texture"], Vector2(64, 64))
 		setup_hotbar_button(button)
 		update_potion_display()
+
+		# If in battle and the turn isn't locked, lock the turn and trigger CPU attack
+		if Global.in_battle and not battle_ui.turn_locked:
+			inventory.get_node("CanvasLayer/Panel").visible = false
+			await battle_ui.lock_turn()
+			await battle_ui.show_battle_message("Used turn to assign potion.")
+			await battle_ui.cpu_attack()
+
 
 # Use a potion from the potion bar
 func update_potion_display():
@@ -478,10 +500,10 @@ func handle_battle_attack(slot_index):
 	var break_chance = randf() <= 0.10
 
 	if miss_chance:
-		battle_ui.show_battle_message("You missed!")
-		battle_ui.lock_turn()
+		await battle_ui.lock_turn()
+		await battle_ui.show_battle_message("You missed!")
 		await get_tree().create_timer(2).timeout
-		battle_ui.cpu_attack()
+		await battle_ui.cpu_attack()
 		return
 
 	var final_damage = base_damage
@@ -489,9 +511,12 @@ func handle_battle_attack(slot_index):
 		final_damage = int(base_damage * 1.5)
 
 	if break_chance:
-		battle_ui.show_battle_message("%s broke!" % item["name"])
+		await battle_ui.lock_turn()
+		await battle_ui.show_battle_message("%s broke!" % item["name"])
 		item_bar_slots[slot_index] = null
 		item_bar.get_child(slot_index).icon = null
+		await get_tree().create_timer(2).timeout
+		await battle_ui.cpu_attack()
 	else:
 		battle_ui.player_attack(final_damage)
 		

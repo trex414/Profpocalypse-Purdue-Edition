@@ -50,6 +50,10 @@ func _ready():
 	input_blocker.visible = false
 	add_child(input_blocker)
 	battle_ui.set_input_blocker(input_blocker)
+	
+	var health_bar = hud.get_node("CanvasLayer/Health_Bar")
+	battle_ui.set_health_bar(health_bar)
+
 
 # Pass to HUD
 	hud.set_battle_ui(battle_ui)

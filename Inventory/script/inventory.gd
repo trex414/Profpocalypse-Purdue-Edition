@@ -247,75 +247,77 @@ func use_item():
 		return
 	
 	var item = inventory[selected_slot]
+	var used = false  # flag to indicate if the potion was successfully used
 	
-	# Check if the item is a spell
+	# Check if the item is a spell (i.e. a potion)
 	if item["type"] == ItemType.SPELL:
 		var spell_name = item["name"]
 
-		# If it's a HEAL potion, apply health recovery
+		# Health Potion: apply healing
 		if spell_name == "Health Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
 
-			var health_manager = main_hud.get_node_or_null("CanvasLayer/Health_Bar")  
+			var health_manager = main_hud.get_node_or_null("CanvasLayer/Health_Bar")
 			if health_manager != null:
 				if health_manager.current_health < health_manager.max_health:
-					health_manager.add_health(20)  
+					health_manager.add_health(20)
 					print("Potion used! Health increased.")
-
-					# Reduce potion count
 					item["count"] -= 1
 					if item["count"] <= 0:
-						inventory[selected_slot] = null  
-
+						inventory[selected_slot] = null
 					PlayerData.inventory = inventory.duplicate(true)
-
-					update_inventory() 
+					update_inventory()
+					used = true
 				else:
 					print("Health is already full. Cannot use potion.")
 			else:
 				print("ERROR: HealthContainer node not found in HUD.")
 
-		# EXP
+		# EXP Potion: apply experience gain
 		elif spell_name == "EXP Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
 
-			var exp_manager = main_hud.get_node_or_null("CanvasLayer/EXP_Bar")  
+			var exp_manager = main_hud.get_node_or_null("CanvasLayer/EXP_Bar")
 			if exp_manager != null:
-				exp_manager.add_exp(1) 
+				exp_manager.add_exp(1)
 				print("EXP Potion used! Experience increased.")
-
-				# Reduce potion count
 				item["count"] -= 1
 				if item["count"] <= 0:
 					inventory[selected_slot] = null
-
-					PlayerData.inventory = inventory.duplicate(true)
-
+				PlayerData.inventory = inventory.duplicate(true)
 				update_inventory()
+				used = true
 			else:
 				print("ERROR: EXPContainer node not found in HUD.")
 
-		# Handle other spells
+		# Other potions or spells with preset messages
 		elif spell_name in spell_messages:
 			print_centered(spell_messages[spell_name])
 			item["count"] -= 1
 			if item["count"] <= 0:
 				inventory[selected_slot] = null
-				
 			PlayerData.inventory = inventory.duplicate(true)
-			
 			update_inventory()
+			used = true
 		else:
 			print("Unknown spell.")
-	
 	else:
-		print_centered("NOT USABLE") # Item is not a spell
+		print_centered("NOT USABLE")  # Item is not a spell (potion)
+	
+	# If a potion was used and we're in battle, lock the turn and trigger CPU attack
+	if used and Global.in_battle and main_hud != null and main_hud.battle_ui and not main_hud.battle_ui.turn_locked:
+		var panel = $CanvasLayer/Panel
+		panel.visible = false
+		await main_hud.battle_ui.lock_turn()
+		await main_hud.battle_ui.show_battle_message("Used turn for potion.")
+		await main_hud.battle_ui.cpu_attack()
 	
 	deselect_item()
+
 
 # Function print a message in the center of the inventory
 func print_centered(message):
