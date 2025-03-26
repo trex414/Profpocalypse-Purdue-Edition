@@ -15,6 +15,7 @@ func _ready():
 
 
 func start_cutscene():
+	Global.in_battle = true
 	visible = true
 	$CanvasLayer.visible = true
 	# HIDE gameplay UI and map
@@ -64,17 +65,19 @@ func start_cutscene():
 
 func lock_turn():
 	turn_locked = true
-	get_tree().create_timer(2).timeout.connect(unlock_turn)
+	await get_tree().create_timer(2).timeout
+	unlock_turn()
+
 
 func unlock_turn():
 	turn_locked = false
 
-func show_battle_message(msg):
+func show_battle_message(msg: String) -> void:
 	$CanvasLayer/BattleMessage.text = msg
 	$CanvasLayer/BattleMessage.show()
-	get_tree().create_timer(2).timeout.connect(func():
-		$CanvasLayer/BattleMessage.hide()
-	)
+	await get_tree().create_timer(2).timeout
+	$CanvasLayer/BattleMessage.hide()
+
 
 func try_leave_fight():
 	if turn_locked:
@@ -131,6 +134,7 @@ func cpu_attack():
 	show_battle_message("CPU attacked for %d damage" % final_damage)
 	
 func restore_gameplay():
+	Global.in_battle = false
 	var scene = get_tree().get_current_scene()
 	
 	var map = scene.get_node("Map")

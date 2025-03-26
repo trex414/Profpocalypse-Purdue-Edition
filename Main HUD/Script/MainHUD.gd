@@ -80,24 +80,23 @@ func hotbar_slot_clicked(slot_index):
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
-	# Check if battle UI is active
-	var in_battle = battle_ui != null and battle_ui.is_visible_in_tree()
-
-	# If there's an item in the hotbar
+	# Check if battle UI is visible
+	print("Trey this", Global.in_battle)
+	
+	
 	if item_bar_slots[slot_index] != null:
-		if in_battle:
+		# During battle, use weapon to attack
+		if Global.in_battle and !inventory.is_inventory_open():
 			handle_battle_attack(slot_index)
 		else:
 			move_from_hotbar_to_inventory(slot_index)
-
-	# If inventory is open and slot is empty, allow moving item into hotbar
 	elif inventory.selected_slot != null:
+		# Move selected item from inventory to hotbar
 		var selected_item = inventory.get_selected_item()
 		if selected_item["type"] == inventory.ItemType.SPELL:
 			print("Potions cannot be placed in the Item Bar!")
 			return
 		inventory.move_item_to_item_bar(inventory.selected_slot, self, slot_index)
-
 
 
 
@@ -184,16 +183,12 @@ func check_potion(item) -> bool:
 
 #Function to move items from item bar to inventory
 func move_from_hotbar_to_inventory(slot_index):
-	# Prevent moving items if in battle
-	var in_battle = battle_ui != null and battle_ui.is_visible_in_tree()
-	if in_battle:
-		print("⚠️ Can't move items during battle.")
-		return
 
 	if inventory == null:
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
+	# Check if inventory is open
 	if not inventory.is_inventory_open():
 		print("Inventory is closed. Cannot move item.")
 		return
@@ -203,19 +198,27 @@ func move_from_hotbar_to_inventory(slot_index):
 		print("No item in hotbar slot", slot_index)
 		return
 
+	# Check if the inventory has space before removing the item
 	if not inventory.has_space_for_item():
 		print("Inventory full! Item remains in hotbar.")
 		return
 
+	# Remove item from hotbar
 	item_bar_slots[slot_index] = null
 	var button = item_bar.get_child(slot_index)
-	button.icon = null
+	button.icon = null  # Clear the hotbar slot
 
+	# Add item to inventory
 	var success = inventory.add_item_from_hotbar(item)
 	if not success:
 		print("Inventory full! Cannot move item from hotbar.")
-
-	print("Moved", item["name"], "from hotbar slot", slot_index, "to inventory")
+	#debug
+	#print("Moved", item["name"], "from hotbar slot", slot_index, "to inventory")
+	if Global.in_battle and not battle_ui.turn_locked:
+		print("item to inven")
+		battle_ui.show_battle_message("Used turn to assign item.")
+		battle_ui.lock_turn()
+		battle_ui.cpu_attack()
 
 
 # Function to move potions from protion bar to inventory
@@ -265,8 +268,16 @@ func move_to_item_bar(item, slot_index):
 		# Set icon and prevent stretching
 		button.icon = item["texture"]
 		setup_hotbar_button(button)
+		
 		#Debug
-		print("Moved", item["name"], "to Item Bar slot", slot_index)
+		#print("Moved", item["name"], "to Item Bar slot", slot_index)
+		
+		if Global.in_battle and not battle_ui.turn_locked:
+			print("item to bar")
+			battle_ui.show_battle_message("Used turn to assign item.")
+			battle_ui.lock_turn()
+			battle_ui.cpu_attack()
+
 
 # Function to move potion from inventory to portion bar
 func move_to_potion_bar(item, slot_index):

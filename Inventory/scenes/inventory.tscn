@@ -112,10 +112,10 @@ text = "DELETE"
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = -80.0
-offset_top = -44.0
-offset_right = 176.0
-offset_bottom = 47.0
+offset_left = -113.0
+offset_top = -52.0
+offset_right = 143.0
+offset_bottom = 39.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 36
 

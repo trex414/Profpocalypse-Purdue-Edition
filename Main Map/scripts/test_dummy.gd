@@ -1,7 +1,9 @@
 extends Node2D
 
 func trigger_cutscene():
-	var battle_ui = preload("res://User_Battle/Scene/battle_ui.tscn").instantiate()
+	var hud = get_tree().current_scene.get_node("Control - HUD")
+	var battle_ui = hud.battle_ui
+
 
 	# Grab player texture from the main map
 	var player_sprite = get_tree().get_current_scene().get_node("Map/TemporaryPlayer/Sprite2D")
@@ -16,7 +18,6 @@ func trigger_cutscene():
 
 
 	# Wait for UI to initialize then assign texture
-	get_tree().current_scene.add_child(battle_ui)
 	await get_tree().process_frame  # wait one frame after adding
 
 	battle_ui.set_player_texture(player_texture)
