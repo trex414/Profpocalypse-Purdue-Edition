@@ -4,6 +4,11 @@ var player_texture = null
 var turn_locked = false
 var rng = RandomNumberGenerator.new()
 
+var input_blocker = null
+
+func set_input_blocker(blocker):
+	input_blocker = blocker
+
 func set_player_texture(texture):
 	player_texture = texture
 	start_cutscene()
@@ -11,10 +16,17 @@ func set_player_texture(texture):
 func _ready():
 	visible = false
 	$CanvasLayer.visible = false
+	
+	# Load and add input blocker
+	
+
+
+
 
 
 
 func start_cutscene():
+
 	Global.in_battle = true
 	visible = true
 	$CanvasLayer.visible = true
@@ -63,22 +75,10 @@ func start_cutscene():
 
 	$CanvasLayer/Button.connect("pressed", Callable(self, "try_leave_fight"))
 
+
 func lock_turn():
 	turn_locked = true
-	var scene = get_tree().current_scene
-	var hud = scene.get_node_or_null("Control - HUD")
-	var inventory = scene.get_node_or_null("Control - Inventory")
-
-	if hud:
-		for child in hud.get_children():
-			if child is Button:
-				child.disabled = true
-
-	if inventory:
-		for child in inventory.get_children():
-			if child is Button:
-				child.disabled = true
-
+	input_blocker.visible = true
 	await get_tree().create_timer(2).timeout
 	unlock_turn()
 
@@ -86,19 +86,7 @@ func lock_turn():
 
 func unlock_turn():
 	turn_locked = false
-	var scene = get_tree().current_scene
-	var hud = scene.get_node_or_null("Control - HUD")
-	var inventory = scene.get_node_or_null("Control - Inventory")
-
-	if hud:
-		for child in hud.get_children():
-			if child is Button:
-				child.disabled = false
-
-	if inventory:
-		for child in inventory.get_children():
-			if child is Button:
-				child.disabled = false
+	input_blocker.visible = false	
 
 
 

@@ -45,6 +45,11 @@ func _ready():
 	battle_ui.visible = false
 	battle_ui.hide()
 	add_child(battle_ui)
+	
+	var input_blocker = load("res://User_Battle/Scene/inputblocker.tscn").instantiate()
+	input_blocker.visible = false
+	add_child(input_blocker)
+	battle_ui.set_input_blocker(input_blocker)
 
 # Pass to HUD
 	hud.set_battle_ui(battle_ui)

@@ -217,8 +217,8 @@ func move_from_hotbar_to_inventory(slot_index):
 	if Global.in_battle and not battle_ui.turn_locked:
 		print("item to inven")
 		inventory.get_node("CanvasLayer/Panel").visible = false
-		await battle_ui.show_battle_message("Used turn to assign item.")
 		await battle_ui.lock_turn()
+		await battle_ui.show_battle_message("Used turn to assign item.")
 		await battle_ui.cpu_attack()
 
 
@@ -275,8 +275,8 @@ func move_to_item_bar(item, slot_index):
 		
 		if Global.in_battle and not battle_ui.turn_locked:
 			inventory.get_node("CanvasLayer/Panel").visible = false
-			await battle_ui.show_battle_message("Used turn to assign item.")
 			await battle_ui.lock_turn()
+			await battle_ui.show_battle_message("Used turn to assign item.")
 			await battle_ui.cpu_attack()
 
 
