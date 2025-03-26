@@ -13,13 +13,11 @@ func _ready():
 	change_music_timer.timeout.connect(_change_music)
 
 func _on_body_entered(body):
-	print("Athletics Section Entered")
 	if body.name == "TemporaryPlayer" and not player_inside:
 		player_inside = true
 		change_music_timer.start()  # Start timer
 
 func _on_body_exited(body):
-	print("Athletics Section Exited")
 	if body.name == "TemporaryPlayer":
 		player_inside = false
 		change_music_timer.stop()  # Prevent changing if player leaves quickly

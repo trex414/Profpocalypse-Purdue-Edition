@@ -37,7 +37,7 @@ func _ready():
 	
 	# Get the initial volume of the bus
 	var bus_index = AudioServer.get_bus_index(bus_name)
-	original_volume = AudioServer.get_bus_volume_db(bus_index)
+	print("Ready", GlobalPreferences.user_defined_volume)
 	
 
 func begin_tutorial():
@@ -60,7 +60,9 @@ func toggle_menu():
 		HUD_settings_button.visible = true
 		
 		var bus_index = AudioServer.get_bus_index(bus_name)
-		AudioServer.set_bus_volume_db(bus_index, original_volume) # Restore original volume
+		print("Check 2 ", GlobalPreferences.user_defined_volume)
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(GlobalPreferences.user_defined_volume)) # Restore volume
+		print(AudioServer.get_bus_volume_db(bus_index))
 	else:
 		# Show the menu first
 		self.visible = true
@@ -69,7 +71,10 @@ func toggle_menu():
 		HUD_settings_button.visible = false
 		
 		var bus_index = AudioServer.get_bus_index(bus_name)
-		AudioServer.set_bus_volume_db(bus_index, original_volume + volume_reduction_db) # Lower volume
+		#GlobalPreferences.user_defined_volume = AudioServer.get_bus_volume_db(bus_index)
+		print("Check 1 ", GlobalPreferences.user_defined_volume)
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(GlobalPreferences.user_defined_volume) + volume_reduction_db) # Lower volume
+		print(AudioServer.get_bus_volume_db(bus_index))
 
 	is_open = !is_open
 	#get_tree().paused = is_open    # ADD THIS TO PAUSE GAME WHEN SETTINGS IS OPEN
@@ -97,6 +102,9 @@ func _on_CloseMenuButton_pressed():
 	keybind_menu.visible = false
 	keybind_menu_open = !keybind_menu_open
 	
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(GlobalPreferences.user_defined_volume)) # Restore volume
+	
 
 func _on_quit_game():
 	quit_confirm_dialog.popup_centered()
@@ -109,4 +117,8 @@ func _on_quit_confirmation_confirmed():
 func _on_preferences_button_pressed():
 	if preferences_menu == null:
 		preferences_menu = load("res://Settings/scenes/preferences_menu.tscn").instantiate()
+		
+		var bus_index = AudioServer.get_bus_index(bus_name)
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(GlobalPreferences.user_defined_volume)) # Restore original volume
+
 		add_child(preferences_menu)  # Add it to the scene
