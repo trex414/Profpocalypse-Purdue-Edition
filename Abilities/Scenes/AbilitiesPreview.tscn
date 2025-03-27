@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6xcw6wn5at5d"]
+[gd_scene load_steps=3 format=3 uid="uid://b6xcw6wn5at5d"]
 
 [ext_resource type="Script" path="res://Abilities/Scripts/abilities.gd" id="1_l0eos"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdtdx"]
+bg_color = Color(0.378192, 0.46749, 0.550881, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="AbilitiesPreview" type="Control"]
 layout_mode = 3
@@ -89,6 +96,7 @@ offset_right = 191.544
 offset_bottom = 201.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xdtdx")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer2/Panel"]
 custom_minimum_size = Vector2(340, 0)
@@ -182,15 +190,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Add"
 
-[node name="DescripBrowniePoints" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
+[node name="DiscripBrowniePoints" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 20
 
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DescripBrowniePoints"]
+[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripBrowniePoints"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DescripBrowniePoints"]
+[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripBrowniePoints"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
@@ -227,15 +235,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Add"
 
-[node name="DescripLuck" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
+[node name="DiscripLuck" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 20
 
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DescripLuck"]
+[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripLuck"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DescripLuck"]
+[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripLuck"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
@@ -466,3 +474,19 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
 text = "Reduce # Of Choices for Trivia"
 horizontal_alignment = 2
+
+[node name="tokenslabel" type="Label" parent="CanvasLayer2/Panel"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 14.0
+offset_right = 167.0
+offset_bottom = 37.0
+text = "Study Tokens:"
+
+[node name="tokensbutton" type="Button" parent="CanvasLayer2/Panel"]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 9.0
+offset_right = 355.0
+offset_bottom = 40.0
+text = "Add Tokens"

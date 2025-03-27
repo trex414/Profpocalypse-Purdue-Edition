@@ -1,131 +1,122 @@
 extends Control
 
-# Ability Dictionary (Only Stores Base Values & Descriptions)
 var abilities = {
-	"GPA": {
-		"description": "Max health",
-		"base_value": 10
-	},
-	"Brownie Points": {
-		"description": "Subtracted from damage",
-		"base_value": 10
-	},
-	"Luck": {
-		"description": "Subtracted from hit chance",
-		"base_value": 10
-	},
-	"Extra Credit": {
-		"description": "HP that renews either each round or each combat. Should only come from items.",
-		"base_value": 10
-	},
-	"Brilliant Answer %": {
-		"description": "% chance to deal 2x or 1.5x damage",
-		"base_value": 10
-	},
-	"Move Speed": {
-		"description": "Affects player movement",
-		"base_value": 10
-	},
-	"Hint Odds": {
-		"description": "Chance to receive a cryptic hint",
-		"base_value": 10
-	},
-	"Intelligence": {
-		"description": "Reduce number of multiple choices for trivia questions",
-		"base_value": 10
-	}
+	"GPA": { "description": "Max health", "base_value": 10, "current_value": 0 },
+	"Brownie Points": { "description": "Subtracted from damage", "base_value": 10, "current_value": 0 },
+	"Luck": { "description": "Subtracted from hit chance", "base_value": 10, "current_value": 0 },
+	"Extra Credit": { "description": "HP that renews each round/combat (item-based)", "base_value": 10, "current_value": 0 },
+	"Brilliant Answer %": { "description": "% chance to deal 2x or 1.5x damage", "base_value": 10, "current_value": 0 },
+	"Move Speed": { "description": "Affects player movement", "base_value": 10, "current_value": 0 },
+	"Hint Odds": { "description": "Chance to receive a cryptic hint", "base_value": 10, "current_value": 0 },
+	"Intelligence": { "description": "Reduce number of multiple choices for trivia questions", "base_value": 10, "current_value": 0 }
 }
 
-# Separate Variables to Store Current Values
-var GPA = 3
-var Brownie_Points = 0
-var Luck = 0
-var Extra_Credit = 0
-var Brilliant_Answer_Chance = 0
-var Move_Speed = 0
-var Hint_Odds = 0
-var Intelligence = 0
+@onready var ability_buttons = {
+	"GPA": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer/Button,
+	"Brownie Points": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer/Button,
+	"Luck": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/LuckFlowContainer/Button,
+	"Extra Credit": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer/Button,
+	"Brilliant Answer %": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer/Button,
+	"Move Speed": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer/Button,
+	"Hint Odds": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer/Button,
+	"Intelligence": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer/Button
+}
 
-@onready var labels_container = $CanvasLayer/VBoxContainer  # Container for labels
-@onready var progress_container = $CanvasLayer/VBoxContainer2  # Container for progress bars
-@onready var OpenDetailedView = $CanvasLayer/VBoxContainer/Button
+@onready var tokens_label = $CanvasLayer2/Panel/tokenslabel
+@onready var tokens_button = $CanvasLayer2/Panel/tokensbutton
 
+@onready var labels_container = $CanvasLayer/VBoxContainer  
+@onready var progress_container = $CanvasLayer/VBoxContainer2  
+@onready var open_detailed_view = $CanvasLayer/VBoxContainer/Button
+@onready var details_panel = $CanvasLayer2
+
+var study_tokens = 0  # Global variable for Study Tokens
 
 func _ready():
-	OpenDetailedView.pressed.connect(_on_open_abilities_button_pressed)
-	# Initialize UI with current values
+	open_detailed_view.pressed.connect(_on_open_abilities_button_pressed)
+	tokens_button.pressed.connect(_on_tokens_button_pressed)
+	for ability_name in ability_buttons.keys():
+		var button = ability_buttons[ability_name]
+		button.pressed.connect(func(): _on_ability_button_pressed(ability_name))
+	update_ui()
+
+# Updates all UI elements (labels, progress bars, and buttons)
+func update_ui():
 	for ability in abilities.keys():
-		update_ability(ability, get_current_value(ability))
+		var value = abilities[ability]["current_value"]
+		var base_value = abilities[ability]["base_value"]
 
-		
+		# Update labels
+		for label in labels_container.get_children():
+			if label.name == ability:
+				label.text = "%s: %d/%d" % [ability, value, base_value]
+
+		# Update progress bars
+		for bar in progress_container.get_children():
+			if bar.name == ability and bar is ProgressBar:
+				bar.value = value
+
+		# Update buttons' visibility
+		if ability in ability_buttons:
+			var button = ability_buttons[ability]
+			button.visible = study_tokens > 0 and value < 10  # Only show if tokens > 0 and value < 10
 	
+	# Update study tokens label
+	update_study_tokens_label()
 
-func update_ability(ability_name, value):
-	# Update the corresponding variable
-	set_current_value(ability_name, value)
+	# Update detailed view if visible
+	if details_panel.visible:
+		update_detailed_view()
 
-	# Update the label text
-	for label in labels_container.get_children():
-		if label.name == ability_name:
-			label.text = ability_name + ": " + str(value) + "/" + str(abilities[ability_name]["base_value"])
+# Updates the detailed ability UI
+func update_detailed_view():
+	for ability in abilities.keys():
+		var value = abilities[ability]["current_value"]
+		var progress_bar = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/%sFlowContainer/ProgressBar" % ability.replace(" ", ""))
+		var label = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/%sFlowContainer/Label2" % ability.replace(" ", ""))
 
-	# Update the progress bar value
-	for bar in progress_container.get_children():
-		if bar.name == ability_name and bar is ProgressBar:
-			bar.value = value
+		var button = ability_buttons[ability]
+		button.visible = study_tokens > 0 and value < 10  # Update button visibility
 
-func get_current_value(ability_name):
-	match ability_name:
-		"GPA": return GPA
-		"Brownie Points": return Brownie_Points
-		"Luck": return Luck
-		"Extra Credit": return Extra_Credit
-		"Brilliant Answer %": return Brilliant_Answer_Chance
-		"Move Speed": return Move_Speed
-		"Hint Odds": return Hint_Odds
-		"Intelligence": return Intelligence
-	return 0  # Default case (should never happen)
-
-func set_current_value(ability_name, value):
-	match ability_name:
-		"GPA": GPA = value
-		"Brownie Points": Brownie_Points = value
-		"Luck": Luck = value
-		"Extra Credit": Extra_Credit = value
-		"Brilliant Answer %": Brilliant_Answer_Chance = value
-		"Move Speed": Move_Speed = value
-		"Hint Odds": Hint_Odds = value
-		"Intelligence": Intelligence = value
+		if progress_bar:
+			progress_bar.value = value
+		if label:
+			label.text = str(value)
 		
-		
+		var ability_safe_name = ability.replace(" ", "")
+		var description_container = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/Discrip%s" % ability_safe_name)
+		var flow_container = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/%sFlowContainer" % ability_safe_name)
+		if ability == "Brilliant Answer %":
+			flow_container = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer")
+			description_container = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/DiscripBrilliantAnswer")
+
+# Set visibility based on current_value
+		var is_visible = value > -1
+		if flow_container:
+			flow_container.visible = is_visible
+		if description_container:
+			description_container.visible = is_visible
+	
+	update_study_tokens_label()  # Update tokens label here too
+
+# Toggles the detailed ability view
 func _on_open_abilities_button_pressed():
-	if $CanvasLayer2.visible == true:
-		$CanvasLayer2.visible = false
-	else:
-		$CanvasLayer2.visible = true  # Make sure the layer is initially hidden in the Inspector
-		update_progress_bars()
-	
-func update_progress_bars():
-	update_progress_labels()
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer/ProgressBar.value = GPA
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer/ProgressBar.value = Brownie_Points
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/LuckFlowContainer/ProgressBar.value = Luck
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer/ProgressBar.value = Extra_Credit
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer/ProgressBar.value = Brilliant_Answer_Chance
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer/ProgressBar.value = Move_Speed
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer/ProgressBar.value = Hint_Odds
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer/ProgressBar.value = Intelligence
-func update_progress_labels():
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer/Label2.text = str(GPA)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer/Label2.text = str(Brownie_Points)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/LuckFlowContainer/Label2.text = str(Luck)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer/Label2.text = str(Extra_Credit)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer/Label2.text = str(Brilliant_Answer_Chance)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer/Label2.text = str(Move_Speed)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer/Label2.text = str(Hint_Odds)
-	$CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer/Label2.text = str(Intelligence)
+	details_panel.visible = !details_panel.visible
+	if details_panel.visible:
+		update_detailed_view()
 
-func _on_gpa_button_pressed():
-	abilities["GPA"] += 5
-	abilities["GPA"] = min(abilities["GPA"], 100)  # Ensure it doesn't exceed max
-	$CanvasLayer/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer/ProgressBar.value = abilities["GPA"]
+# Handles ability button press
+func _on_ability_button_pressed(ability_name):
+	if study_tokens > 0 and abilities[ability_name]["current_value"] < 10:
+		abilities[ability_name]["current_value"] += 1
+		study_tokens -= 1
+		update_ui()  # Refresh UI after change
+
+# Handles Study Tokens button press
+func _on_tokens_button_pressed():
+	study_tokens += 1  # Increase Study Tokens
+	update_detailed_view()  # Refresh everything including buttons
+
+# Updates Study Tokens label
+func update_study_tokens_label():
+	tokens_label.text = "Study Tokens: " + str(study_tokens)
