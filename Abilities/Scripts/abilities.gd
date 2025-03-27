@@ -99,8 +99,11 @@ func set_current_value(ability_name, value):
 		
 		
 func _on_open_abilities_button_pressed():
-	$CanvasLayer2.show()  # Make sure the layer is initially hidden in the Inspector
-	update_progress_bars()
+	if $CanvasLayer2.visible == true:
+		$CanvasLayer2.visible = false
+	else:
+		$CanvasLayer2.visible = true  # Make sure the layer is initially hidden in the Inspector
+		update_progress_bars()
 	
 func update_progress_bars():
 	update_progress_labels()
