@@ -30,18 +30,9 @@ var spell_messages = {
 	"SPEED": "You are faster"
 }
 
-# Sample items (for testing)
-var item_items = [
-	{ "type": ItemType.ITEM, "name": "Pickaxe", "texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)), "stackable": false, "count": 1 },
-	{ "type": ItemType.ITEM, "name": "Axe", "texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)), "stackable": false, "count": 1 }
-]
+const ITEM_DEFINITIONS = ItemDefinitions.ITEM_DEFINITIONS
+const SPELL_DEFINITIONS = ItemDefinitions.SPELL_DEFINITIONS
 
-var spell_items = [
-	{ "type": ItemType.SPELL, "name": "Health Potion", "texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
-	{ "type": ItemType.SPELL, "name": "Speed Potion", "texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)), "stackable": true, "count": 1 },
-	{ "type": ItemType.SPELL, "name": "EXP Potion", "texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)), "stackable": true, "count": 1 }
-
-]
 
 # Function to fix the sizing of the item images
 func resize_texture(original_texture: Texture, size: Vector2) -> ImageTexture:
@@ -99,51 +90,19 @@ func setup_inventory():
 
 # Function to add an item to the inventory
 func add_item():
-	# Randomly choose whether to add an ITEM or SPELL
-	var category = randi() % 2  # 0 for ITEM, 1 for SPELL
-	var new_item = null
-
+	# Randomly choose whether to add an ITEM or SPELL.
+	var category = randi() % 2  # 0 for item, 1 for spell.
+	var new_item_name = ""
 	if category == 0:
-		new_item = item_items[randi() % item_items.size()]
+		var keys = ITEM_DEFINITIONS.keys()
+		new_item_name = keys[randi() % keys.size()]
 	else:
-		new_item = spell_items[randi() % spell_items.size()]
-		
-	# if the item is in the hot bar it will be added there instead of inventory slot (potions)
-	if main_hud != null and new_item["type"] == ItemType.SPELL and main_hud.check_potion(new_item):
-		return
-		
-	# Adds new item to the inventory array in Player Data
-	PlayerData.inventory = inventory.duplicate(true)
+		var keys = SPELL_DEFINITIONS.keys()
+		new_item_name = keys[randi() % keys.size()]
 	
-	print(PlayerData.get_game_state()) # Print for testing (confirm item is in inventory)
+	# This function will create the item data and insert it into inventory or the hotbar.
+	add_named_item(new_item_name)
 
-	# Try to stack if item is stackable
-	if new_item["stackable"]:
-		for i in range(SLOT_COUNT):
-			if inventory[i] != null and inventory[i]["name"] == new_item["name"]:
-				inventory[i]["count"] += 1
-				
-				PlayerData.inventory = inventory.duplicate(true)
-				main_hud.save_potion_count()
-				
-				update_inventory()
-				print("Stacked item in slot", i, "new count:", inventory[i]["count"])
-				return
-	
-	# Find the first empty slot
-	for i in range(SLOT_COUNT):
-		if inventory[i] == null:
-			inventory[i] = new_item.duplicate()
-			
-			PlayerData.inventory = inventory.duplicate(true)
-			main_hud.save_potion_count()
-
-			update_inventory()
-			
-			print("Added new item:", new_item["name"], "to slot", i)
-			return
-	
-	print("Inventory full! Cannot add more items.")
 
 # Function to update ui and reflect changes
 func update_inventory():
@@ -245,15 +204,19 @@ func use_item():
 	if selected_slot == null or inventory[selected_slot] == null:
 		print("No item selected.")
 		return
-	
+
 	var item = inventory[selected_slot]
-	var used = false  # flag to indicate if the potion was successfully used
-	
-	# Check if the item is a spell (i.e. a potion)
+	var used = false
+
+	# Only proceed if it's a spell/potion
 	if item["type"] == ItemType.SPELL:
 		var spell_name = item["name"]
 
-		# Health Potion: apply healing
+		# 1) Fetch any dictionary-based stats you need (with a fallback):
+		var heal_amount = item.get("heal_amount", 0)
+		var exp_amount  = item.get("exp_amount", 0)
+		# You can add more, e.g. speed_boost, etc.
+
 		if spell_name == "Health Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
@@ -261,9 +224,10 @@ func use_item():
 
 			var health_manager = main_hud.get_node_or_null("CanvasLayer/Health_Bar")
 			if health_manager != null:
+				# Use heal_amount from the dictionary (defaulting to 0 if not found).
 				if health_manager.current_health < health_manager.max_health:
-					health_manager.add_health(20)
-					print("Potion used! Health increased.")
+					health_manager.add_health(heal_amount)
+					print("Potion used! Health increased by %d." % heal_amount)
 					item["count"] -= 1
 					if item["count"] <= 0:
 						inventory[selected_slot] = null
@@ -275,7 +239,6 @@ func use_item():
 			else:
 				print("ERROR: HealthContainer node not found in HUD.")
 
-		# EXP Potion: apply experience gain
 		elif spell_name == "EXP Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
@@ -283,8 +246,9 @@ func use_item():
 
 			var exp_manager = main_hud.get_node_or_null("CanvasLayer/EXP_Bar")
 			if exp_manager != null:
-				exp_manager.add_exp(1)
-				print("EXP Potion used! Experience increased.")
+				# Use exp_amount from the dictionary.
+				exp_manager.add_exp(exp_amount)
+				print("EXP Potion used! Gained %d EXP." % exp_amount)
 				item["count"] -= 1
 				if item["count"] <= 0:
 					inventory[selected_slot] = null
@@ -294,8 +258,9 @@ func use_item():
 			else:
 				print("ERROR: EXPContainer node not found in HUD.")
 
-		# Other potions or spells with preset messages
+		# If you have more potions, either check for them by name or rely on other keys:
 		elif spell_name in spell_messages:
+			# This is your existing message-based approach:
 			print_centered(spell_messages[spell_name])
 			item["count"] -= 1
 			if item["count"] <= 0:
@@ -306,16 +271,16 @@ func use_item():
 		else:
 			print("Unknown spell.")
 	else:
-		print_centered("NOT USABLE")  # Item is not a spell (potion)
-	
-	# If a potion was used and we're in battle, lock the turn and trigger CPU attack
+		print_centered("NOT USABLE")  # It's not a spell/potion
+
+	# If a potion was used and you're in battle, lock the turn and trigger CPU attack
 	if used and Global.in_battle and main_hud != null and main_hud.battle_ui and not main_hud.battle_ui.turn_locked:
 		var panel = $CanvasLayer/Panel
 		panel.visible = false
 		await main_hud.battle_ui.lock_turn()
 		await main_hud.battle_ui.show_battle_message("Used turn for potion.")
 		await main_hud.battle_ui.cpu_attack()
-	
+
 	deselect_item()
 
 
@@ -440,83 +405,52 @@ func has_space_for_item() -> bool:
 #
 #
 func add_named_item(item_name: String) -> bool:
-	var item_data = null
+	var def = {}
+	# Check in the two dictionaries
+	if ITEM_DEFINITIONS.has(item_name):
+		def = ITEM_DEFINITIONS[item_name]
+	elif SPELL_DEFINITIONS.has(item_name):
+		def = SPELL_DEFINITIONS[item_name]
+	else:
+		update_inventory()
+		print("Unknown item name:", item_name)
+		return false
+	
+	# Create the base item_data using the common properties.
+	var loaded_texture = load(def["texture_path"])
+	if loaded_texture == null:
+		print("Error: Could not load texture at path: ", def["texture_path"])
+		return false  # or handle error accordingly
 
-	# Lookup table - match quest reward names to actual item definitions
-	match item_name:
-		"Health Potion":
-			item_data = {
-				"type": ItemType.SPELL,
-				"name": "Health Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": 1
-			}
-		"Speed Potion":
-			item_data = {
-				"type": ItemType.SPELL,
-				"name": "Speed Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": 1
-			}
-		"EXP Potion":
-			item_data = {
-				"type": ItemType.SPELL,
-				"name": "EXP Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": 1
-			}
-		"Pickaxe":
-			item_data = {
-				"type": ItemType.ITEM,
-				"name": "Pickaxe",
-				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
-				"stackable": false,
-				"count": 1
-			}
-		"Axe":
-			item_data = {
-				"type": ItemType.ITEM,
-				"name": "Axe",
-				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
-				"stackable": false,
-				"count": 1
-			}
-		_:
-			update_inventory()
-			print("Unknown item name:", item_name)
-			return false
-
-	# Handle potions going directly to the potion bar if there’s space
+	var item_data = def.duplicate(true)  # duplicate all keys from the definition
+	item_data["texture"] = resize_texture(loaded_texture, Vector2(64, 64))
+	item_data["count"] = def["count"]  # set initial count
+	
+	# If the item is a spell and can be directly added to the HUD, do that.
 	if main_hud != null and item_data["type"] == ItemType.SPELL:
 		if main_hud.check_potion(item_data):
-			return true  # Added to potion bar, don't need to add to inventory
-
-	# Try to stack if item already exists and is stackable
+			return true
+	
+	# Try stacking if the item is stackable.
 	if item_data["stackable"]:
 		for i in range(SLOT_COUNT):
 			if inventory[i] != null and inventory[i]["name"] == item_data["name"]:
 				inventory[i]["count"] += 1
-				
 				PlayerData.inventory = inventory.duplicate(true)
 				update_inventory()
 				print("Stacked item:", item_data["name"], "new count:", inventory[i]["count"])
 				return true
-
-	# If no stack found, find first empty slot in inventory
+	
+	# Otherwise, find the first empty slot.
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null:
 			inventory[i] = item_data.duplicate()
-			
 			PlayerData.inventory = inventory.duplicate(true)
 			update_inventory()
 			print("Added new item:", item_data["name"], "to slot", i)
 			return true
-
-	# --- NEW LOGIC ---
-	# If inventory is full, check the item bar or potion bar (depending on type)
+	
+	# If the inventory is full, try adding to the hotbar.
 	if main_hud != null:
 		if item_data["type"] == ItemType.SPELL:
 			for j in range(PlayerData.potion_bar.size()):
@@ -530,60 +464,40 @@ func add_named_item(item_name: String) -> bool:
 					main_hud.move_to_item_bar(item_data, j)
 					print("Added to item bar slot", j)
 					return true
-
-	# If nothing worked, inventory AND hotbar are full
+	
 	print("Inventory and item/potion bars are full! Cannot add item:", item_data["name"])
 	return false
+
 	
 func restore_item_at_slot(slot_index: int, saved_item: Dictionary):
-	var item_data = null
+	var item_def = {}
+	# Look up the definition from the dictionaries.
+	if ITEM_DEFINITIONS.has(saved_item["name"]):
+		item_def = ITEM_DEFINITIONS[saved_item["name"]]
+	elif SPELL_DEFINITIONS.has(saved_item["name"]):
+		item_def = SPELL_DEFINITIONS[saved_item["name"]]
+	else:
+		print("Unknown item during restore:", saved_item["name"])
+		return
+	
+	var loaded_texture = load(item_def["texture_path"])  # load at runtime
+	if loaded_texture == null:
+		print("Error: Could not load texture at path: ", item_def["texture_path"])
+	# You can return or handle this error as you see fit
 
-	# Lookup table - match saved item names to full definitions
-	match saved_item["name"]:
-		"Health Potion":
-			item_data = {
-				"type": ItemType.SPELL,
-				"name": "Health Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_item["count"]
-			}
-		"Speed Potion":
-			item_data = {
-				"type": ItemType.SPELL,
-				"name": "Speed Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_item["count"]
-			}
-		"EXP Potion":
-			item_data = {
-				"type": ItemType.SPELL,
-				"name": "EXP Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_item["count"]
-			}
-		"Pickaxe":
-			item_data = {
-				"type": ItemType.ITEM,
-				"name": "Pickaxe",
-				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
-				"stackable": false,
-				"count": saved_item["count"]
-			}
-		"Axe":
-			item_data = {
-				"type": ItemType.ITEM,
-				"name": "Axe",
-				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
-				"stackable": false,
-				"count": saved_item["count"]
-			}
-		_:
-			print("Unknown item during restore:", saved_item["name"])
-			return
-
-	# Set in inventory
+	var item_data = {
+		"type": item_def["type"],
+		"name": item_def["name"],
+		"texture": resize_texture(loaded_texture, Vector2(64, 64)),
+		"stackable": item_def["stackable"],
+		"count": item_def["count"]
+	}
+	
+	# Merge in any extra keys from the definition.
+	for key in item_def.keys():
+		if not item_data.has(key) and key != "texture_path":
+			item_data[key] = item_def[key]
+	
+	# Set this restored item in the inventory.
 	inventory[slot_index] = item_data
 	update_inventory()

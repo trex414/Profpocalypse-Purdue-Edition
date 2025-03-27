@@ -24,6 +24,7 @@ QuestManager="*res://Quest/script/QuestManager.gd"
 Global="*res://global.gd"
 MusicManager="*res://Music/MusicManager.gd"
 GlobalPreferences="*res://Settings/GlobalPreferences.gd"
+ItemDefinitions="*res://Inventory/script/ItemDefinitions.gd"
 
 [filesystem]
 

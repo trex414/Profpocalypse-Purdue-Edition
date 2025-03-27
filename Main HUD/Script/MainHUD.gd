@@ -14,6 +14,9 @@ extends Control
 
 var battle_ui = null
 
+const ITEM_DEFINITIONS = ItemDefinitions.ITEM_DEFINITIONS
+const SPELL_DEFINITIONS = ItemDefinitions.SPELL_DEFINITIONS
+
 
 
 var inventory
@@ -40,6 +43,14 @@ func _ready():
 	for i in range(potion_bar.get_child_count()):
 		var button = potion_bar.get_child(i)
 		button.connect("pressed", Callable(self, "hotbar_potion_slot_clicked").bind(i))
+		
+	if PlayerData.item_bar:
+		item_bar_slots = PlayerData.item_bar.duplicate(true)
+		for i in range(item_bar_slots.size()):
+			if item_bar_slots[i] != null:
+				restore_item_bar(i, item_bar_slots[i])
+
+
 		
 	
 
@@ -260,6 +271,7 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 	var button = potion_bar.get_child(slot_index)
 	button.icon = null
 	button.text = ""
+	PlayerData.item_bar = item_bar_slots.duplicate(true)
 
 	# Add the potion back to the inventory with the correct count and texture
 	var success = inventory.add_potion_from_hotbar(potion_name, potion_count, potion_texture)
@@ -283,6 +295,7 @@ func move_to_item_bar(item, slot_index):
 		# Set icon and prevent stretching
 		button.icon = item["texture"]
 		setup_hotbar_button(button)
+		PlayerData.item_bar = item_bar_slots.duplicate(true)
 		
 		#Debug
 		#print("Moved", item["name"], "to Item Bar slot", slot_index)
@@ -366,58 +379,31 @@ enum ItemType { ITEM, SPELL }
 
 	
 func restore_item_bar(slot_index: int, saved_item: Dictionary):
-	var item_data = null
-	
 	if saved_item.is_empty() or not saved_item.has("name"):
 		print("Skipping empty/invalid item bar slot", slot_index)
 		return
 
-	match saved_item["name"]:
-		"Health Potion":
-			item_data = {
-				"type": inventory.ItemType.SPELL,
-				"name": "Health Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_item["count"]
-			}
-		"Speed Potion":
-			item_data = {
-				"type": inventory.ItemType.SPELL,
-				"name": "Speed Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_item["count"]
-			}
-		"EXP Potion":
-			item_data = {
-				"type": inventory.ItemType.SPELL,
-				"name": "EXP Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_item["count"]
-			}
-		"Pickaxe":
-			item_data = {
-				"type": inventory.ItemType.ITEM,
-				"name": "Pickaxe",
-				"texture": resize_texture(preload("res://Inventory/assets/Pickaxe.jpg"), Vector2(64, 64)),
-				"stackable": false,
-				"count": saved_item["count"]
-			}
-		"Axe":
-			item_data = {
-				"type": inventory.ItemType.ITEM,
-				"name": "Axe",
-				"texture": resize_texture(preload("res://Inventory/assets/Axe.png"), Vector2(64, 64)),
-				"stackable": false,
-				"count": saved_item["count"]
-			}
-		_:
-			print("Unknown item in item bar:", saved_item["name"])
-			return
+	var item_def = {}
+	if ITEM_DEFINITIONS.has(saved_item["name"]):
+		item_def = ITEM_DEFINITIONS[saved_item["name"]]
+	elif SPELL_DEFINITIONS.has(saved_item["name"]):
+		item_def = SPELL_DEFINITIONS[saved_item["name"]]
+	else:
+		print("Unknown item during restore:", saved_item["name"])
+		return
+
+	var loaded_texture = load(item_def["texture_path"])
+	if loaded_texture == null:
+		print("Error: Could not load texture at path:", item_def["texture_path"])
+		return
+
+	var item_data = item_def.duplicate(true)   # duplicate all keys
+	item_data["texture"] = resize_texture(loaded_texture, Vector2(64, 64))
+	item_data["count"] = saved_item["count"]      # override with saved count
 
 	item_bar_slots[slot_index] = item_data
+	PlayerData.item_bar = item_bar_slots.duplicate(true)
+	
 	var button = item_bar.get_child(slot_index)
 	button.icon = item_data["texture"]
 	button.tooltip_text = item_data["name"]
@@ -425,49 +411,47 @@ func restore_item_bar(slot_index: int, saved_item: Dictionary):
 	print("Restored item to Item Bar:", item_data["name"], "at slot", slot_index)
 
 
+
+
 func restore_potion_bar(slot_index: int, saved_potion: Dictionary):
-	var potion_data = null
-	
 	if saved_potion.is_empty() or not saved_potion.has("name"):
 		print("Skipping empty/invalid item bar slot", slot_index)
 		return
 
-	match saved_potion["name"]:
-		"Health Potion":
-			potion_data = {
-				"type": inventory.ItemType.SPELL,
-				"name": "Health Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/heal.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_potion["count"]
-			}
-		"Speed Potion":
-			potion_data = {
-				"type": inventory.ItemType.SPELL,
-				"name": "Speed Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/speed.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_potion["count"]
-			}
-		"EXP Potion":
-			potion_data = {
-				"type": inventory.ItemType.SPELL,
-				"name": "EXP Potion",
-				"texture": resize_texture(preload("res://Inventory/assets/Experience.png"), Vector2(64, 64)),
-				"stackable": true,
-				"count": saved_potion["count"]
-			}
-		_:
-			print("Unknown potion in potion bar:", saved_potion["name"])
-			return
+	var item_name = saved_potion["name"]
+	var def = {}
+	# Look up the potion definition in your shared dictionaries:
+	if ITEM_DEFINITIONS.has(item_name):
+		def = ITEM_DEFINITIONS[item_name]
+	elif SPELL_DEFINITIONS.has(item_name):
+		def = SPELL_DEFINITIONS[item_name]
+	else:
+		print("Unknown potion in potion bar:", item_name)
+		return
+
+	# Load the texture dynamically:
+	var loaded_texture = load(def["texture_path"])
+	if loaded_texture == null:
+		print("Error: Could not load texture at path:", def["texture_path"])
+		return
+
+	# Duplicate the definition (deep copy) to get all stats:
+	var potion_data = def.duplicate(true)
+	potion_data["texture"] = resize_texture(loaded_texture, Vector2(64, 64))
+	# Override the count with the saved value:
+	potion_data["count"] = saved_potion["count"]
 
 	potion_bar_slots[slot_index] = potion_data
+
 	var button = potion_bar.get_child(slot_index)
 	button.icon = potion_data["texture"]
 	button.tooltip_text = potion_data["name"]
 	setup_hotbar_button(button)
 	update_potion_display()
-	print("Restored potion to Potion Bar:", potion_data["name"], " at slot", slot_index)
+
+	print("Restored potion to Potion Bar:", potion_data["name"], "at slot", slot_index)
+
+
 	
 func update_pinned_quests(pinned_quests: Array[Quest]):
 	# Clear current labels
@@ -493,11 +477,18 @@ func handle_battle_attack(slot_index):
 		print("Turn is locked. Wait for CPU.")
 		return
 
-	# Basic damage logic
-	var base_damage = 5
-	var miss_chance = randf() <= 0.05
-	var crit_chance = randf() <= 0.10
-	var break_chance = randf() <= 0.10
+	# Pull stats from the item dictionary, using defaults if missing
+	var base_damage  = item.get("damage", 1)
+	var miss_rate    = item.get("miss_chance", 0.00)
+	var crit_rate    = item.get("crit_chance", 0.0)
+	var break_rate   = item.get("break_chance", 0.0)
+	var stun_rate    = item.get("stun_chance", 0.0)  # If you want a stun effect
+
+	# Evaluate random events
+	var miss_chance = randf() <= miss_rate
+	var crit_chance = randf() <= crit_rate
+	var break_chance = randf() <= break_rate
+	var stun_chance = randf() <= stun_rate
 
 	if miss_chance:
 		await battle_ui.lock_turn()
@@ -517,8 +508,20 @@ func handle_battle_attack(slot_index):
 		item_bar.get_child(slot_index).icon = null
 		await get_tree().create_timer(2).timeout
 		await battle_ui.cpu_attack()
+		return
 	else:
+		# Optionally handle stun
+		if stun_chance:
+			await battle_ui.lock_turn()
+			await battle_ui.show_battle_message("You stunned the enemy!")
+			# e.g. battle_ui.apply_stun_to_enemy() if you have that logic
+			await get_tree().create_timer(2).timeout
+			await battle_ui.cpu_attack()
+			return
+
+		# Otherwise do normal damage
 		battle_ui.player_attack(final_damage)
+
 		
 func set_battle_ui(ui):
 	battle_ui = ui
