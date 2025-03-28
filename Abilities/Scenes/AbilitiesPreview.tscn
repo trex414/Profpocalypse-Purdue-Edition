@@ -160,51 +160,6 @@ theme_override_font_sizes/font_size = 12
 text = "Max Health"
 horizontal_alignment = 2
 
-[node name="BrowniePointsFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-theme_override_constants/h_separation = 20
-
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Brownie Points"
-horizontal_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
-custom_minimum_size = Vector2(150, 20)
-layout_mode = 2
-max_value = 10.0
-show_percentage = false
-
-[node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "0/10"
-
-[node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Add"
-
-[node name="DiscripBrowniePoints" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 20
-
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripBrowniePoints"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-
-[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripBrowniePoints"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 12
-text = "Subtracted From Damage"
-horizontal_alignment = 2
-
 [node name="LuckFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
@@ -248,6 +203,96 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
 text = "Subtracted From Hit Chance"
+horizontal_alignment = 2
+
+[node name="IntelligenceFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+max_value = 10.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Add"
+
+[node name="DiscripIntelligence" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripIntelligence"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripIntelligence"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "Reduce # Of Choices for Trivia"
+horizontal_alignment = 2
+
+[node name="BrowniePointsFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Brownie Points"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+max_value = 10.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "0/10"
+
+[node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Add"
+
+[node name="DiscripBrowniePoints" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripBrowniePoints"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripBrowniePoints"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "Subtracted From Damage"
 horizontal_alignment = 2
 
 [node name="ExtraCreditFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
@@ -430,51 +475,6 @@ theme_override_font_sizes/font_size = 12
 text = "Chance To Receive a Cryptic Hint"
 horizontal_alignment = 2
 
-[node name="IntelligenceFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-theme_override_constants/h_separation = 20
-
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Intelligence"
-horizontal_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
-custom_minimum_size = Vector2(150, 20)
-layout_mode = 2
-max_value = 10.0
-show_percentage = false
-
-[node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "0"
-
-[node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Add"
-
-[node name="DiscripIntelligence" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 20
-
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripIntelligence"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-
-[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripIntelligence"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 12
-text = "Reduce # Of Choices for Trivia"
-horizontal_alignment = 2
-
 [node name="tokenslabel" type="Label" parent="CanvasLayer2/Panel"]
 layout_mode = 0
 offset_left = 59.0
@@ -490,3 +490,9 @@ offset_top = 9.0
 offset_right = 355.0
 offset_bottom = 40.0
 text = "Add Tokens"
+
+[node name="Button" type="Button" parent="CanvasLayer2/Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "level up"

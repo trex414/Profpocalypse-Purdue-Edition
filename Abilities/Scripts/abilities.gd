@@ -2,13 +2,14 @@ extends Control
 
 var abilities = {
 	"GPA": { "description": "Max health", "base_value": 10, "current_value": 0 },
-	"Brownie Points": { "description": "Subtracted from damage", "base_value": 10, "current_value": 0 },
 	"Luck": { "description": "Subtracted from hit chance", "base_value": 10, "current_value": 0 },
-	"Extra Credit": { "description": "HP that renews each round/combat (item-based)", "base_value": 10, "current_value": 0 },
-	"Brilliant Answer %": { "description": "% chance to deal 2x or 1.5x damage", "base_value": 10, "current_value": 0 },
-	"Move Speed": { "description": "Affects player movement", "base_value": 10, "current_value": 0 },
-	"Hint Odds": { "description": "Chance to receive a cryptic hint", "base_value": 10, "current_value": 0 },
-	"Intelligence": { "description": "Reduce number of multiple choices for trivia questions", "base_value": 10, "current_value": 0 }
+	"Intelligence": { "description": "Reduce number of multiple choices for trivia questions", "base_value": 10, "current_value": 0 },
+	"Brownie Points": { "description": "Subtracted from damage", "base_value": 10, "current_value": -1 },
+	"Extra Credit": { "description": "HP that renews each round/combat (item-based)", "base_value": 10, "current_value": -1 },
+	"Brilliant Answer %": { "description": "% chance to deal 2x or 1.5x damage", "base_value": 10, "current_value": -1 },
+	"Move Speed": { "description": "Affects player movement", "base_value": 10, "current_value": -1 },
+	"Hint Odds": { "description": "Chance to receive a cryptic hint", "base_value": 10, "current_value": -1 }
+	
 }
 
 @onready var ability_buttons = {
@@ -25,6 +26,8 @@ var abilities = {
 @onready var tokens_label = $CanvasLayer2/Panel/tokenslabel
 @onready var tokens_button = $CanvasLayer2/Panel/tokensbutton
 
+@onready var level_button = $CanvasLayer2/Panel/Button
+
 @onready var labels_container = $CanvasLayer/VBoxContainer  
 @onready var progress_container = $CanvasLayer/VBoxContainer2  
 @onready var open_detailed_view = $CanvasLayer/VBoxContainer/Button
@@ -36,10 +39,12 @@ var health_bar: Control  # Declare health bar variable
 
 var health_per_GPA = 10  # Increase max health by 2 per GPA point
 var study_tokens = 30  # Global variable for Study Tokens
+var level = 1
 
 func _ready():
 	open_detailed_view.pressed.connect(_on_open_abilities_button_pressed)
 	tokens_button.pressed.connect(_on_tokens_button_pressed)
+	level_button.pressed.connect(levelup_abilities_update)
 	for ability_name in ability_buttons.keys():
 		var button = ability_buttons[ability_name]
 		button.pressed.connect(func(): _on_ability_button_pressed(ability_name))
@@ -140,3 +145,20 @@ func _on_tokens_button_pressed():
 # Updates Study Tokens label
 func update_study_tokens_label():
 	tokens_label.text = "Study Tokens: " + str(study_tokens)
+	
+func levelup_abilities_update():
+	level += 1
+	study_tokens += 2
+	if level == 3:
+		abilities["Brownie Points"]["current_value"] = 0
+	if level == 5:
+		abilities["Extra Credit"]["current_value"] = 0
+	if level == 7:
+		abilities["Brilliant Answer %"]["current_value"] = 0
+	if level == 10:
+		abilities["Move Speed"]["current_value"] = 0
+	if level == 12:
+		abilities["Hint Odds"]["current_value"] = 0
+	if level == 15:
+		abilities["Brilliant Answer %"]["current_value"] = 0
+	update_detailed_view()
