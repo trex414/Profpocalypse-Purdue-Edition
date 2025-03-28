@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw0vltoutc230"]
 
 [ext_resource type="Script" path="res://Inventory/script/inventory.gd" id="1_yaqxc"]
-[ext_resource type="AudioStream" uid="uid://b3wagqbi2ejiu" path="res://inventory_sound_effects/metal-clash.wav" id="3_qegjf"]
-[ext_resource type="AudioStream" uid="uid://bc8egw5tos4l6" path="res://inventory_sound_effects/spell-bubble.wav" id="4_1fhfi"]
-[ext_resource type="AudioStream" uid="uid://bbmm6mi1k4734" path="res://inventory_sound_effects/inventory.wav" id="4_43f6m"]
+[ext_resource type="AudioStream" uid="uid://b3wagqbi2ejiu" path="res://menu_sound_effects/metal-clash.wav" id="3_qegjf"]
+[ext_resource type="AudioStream" uid="uid://bc8egw5tos4l6" path="res://menu_sound_effects/spell-bubble.wav" id="4_1fhfi"]
+[ext_resource type="AudioStream" uid="uid://bbmm6mi1k4734" path="res://menu_sound_effects/inventory.wav" id="4_43f6m"]
 
 [node name="Control - Inventory" type="Control"]
 layout_mode = 3

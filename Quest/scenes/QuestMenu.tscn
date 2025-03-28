@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkq41e5opk1dr"]
+[gd_scene load_steps=4 format=3 uid="uid://bkq41e5opk1dr"]
 
 [ext_resource type="Script" path="res://Quest/script/QuestMenu.gd" id="1_p8jem"]
+[ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://menu_sound_effects/turn_page.wav" id="2_x6ysj"]
+[ext_resource type="AudioStream" uid="uid://cbeuy3u8cthef" path="res://menu_sound_effects/pin.wav" id="3_dofu6"]
 
 [node name="QuestMenu" type="Control"]
 layout_mode = 3
@@ -91,3 +93,9 @@ text = "Close"
 
 [node name="Pin" type="Button" parent="CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/ButtonContainer"]
 layout_mode = 2
+
+[node name="QuestMenuSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_x6ysj")
+
+[node name="QuestPinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dofu6")

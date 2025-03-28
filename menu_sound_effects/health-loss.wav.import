@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://w6b2pnrge31p"
-path="res://.godot/imported/health-loss.wav-5616fb20dd25fa20269227e6489650af.sample"
+path="res://.godot/imported/health-loss.wav-3ebf31601f510ca03314b4e7ea9d455f.sample"
 
 [deps]
 
-source_file="res://inventory_sound_effects/health-loss.wav"
-dest_files=["res://.godot/imported/health-loss.wav-5616fb20dd25fa20269227e6489650af.sample"]
+source_file="res://menu_sound_effects/health-loss.wav"
+dest_files=["res://.godot/imported/health-loss.wav-3ebf31601f510ca03314b4e7ea9d455f.sample"]
 
 [params]
 

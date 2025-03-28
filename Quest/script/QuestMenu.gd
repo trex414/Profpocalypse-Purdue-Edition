@@ -182,6 +182,8 @@ func close_quest_details():
 	pin_button.visible = false  # Hide pin button when no quest is selected
 
 func toggle_questmenu():
+	$QuestMenuSFX.play()
+	
 	var panel = $CanvasLayer/PanelContainer
 	panel.visible = !panel.visible
 
@@ -190,6 +192,7 @@ func toggle_questmenu():
 		close_quest_details()
 		
 func toggle_pin_quest(quest: Quest, pin_button: Button, quest_button: Button):
+	$QuestPinSFX.play()
 	if quest.pinned:
 		QuestManager.unpin_quest(quest)
 		pin_button.text = "Pin"

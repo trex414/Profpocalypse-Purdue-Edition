@@ -120,6 +120,8 @@ func get_next_semester() -> String:
 	return ""  # No more semesters
 
 func toggle_MajorInfo():
+	$MajorInfoSFX.play()
+	
 	var panel = $CanvasLayer/Panel
 	panel.visible = !panel.visible
 	# Update inventory UI when opening

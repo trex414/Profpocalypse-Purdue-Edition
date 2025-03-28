@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bth8sm4lqrecc"
-path="res://.godot/imported/EXP-loss.wav-b1d8b01dfd977c29ddfbbca585971c77.sample"
+path="res://.godot/imported/EXP-loss.wav-36a9f3f44cf3cf6af8d80eb0e86948f1.sample"
 
 [deps]
 
-source_file="res://inventory_sound_effects/EXP-loss.wav"
-dest_files=["res://.godot/imported/EXP-loss.wav-b1d8b01dfd977c29ddfbbca585971c77.sample"]
+source_file="res://menu_sound_effects/EXP-loss.wav"
+dest_files=["res://.godot/imported/EXP-loss.wav-36a9f3f44cf3cf6af8d80eb0e86948f1.sample"]
 
 [params]
 
