@@ -30,7 +30,12 @@ var abilities = {
 @onready var open_detailed_view = $CanvasLayer/VBoxContainer/Button
 @onready var details_panel = $CanvasLayer2
 
-var study_tokens = 0  # Global variable for Study Tokens
+@onready var health_bar_script = get_node("res://Main HUD/Script/health_bar.gd")  # Adjust path!
+
+var health_bar: Control  # Declare health bar variable
+
+var health_per_GPA = 10  # Increase max health by 2 per GPA point
+var study_tokens = 30  # Global variable for Study Tokens
 
 func _ready():
 	open_detailed_view.pressed.connect(_on_open_abilities_button_pressed)
@@ -39,6 +44,10 @@ func _ready():
 		var button = ability_buttons[ability_name]
 		button.pressed.connect(func(): _on_ability_button_pressed(ability_name))
 	update_ui()
+
+# This function can be called when you want to increase the max health
+func set_health_bar(health_bar_ref: Control):
+	health_bar = health_bar_ref  # Assign the health bar reference
 
 # Updates all UI elements (labels, progress bars, and buttons)
 func update_ui():
@@ -74,14 +83,17 @@ func update_detailed_view():
 		var value = abilities[ability]["current_value"]
 		var progress_bar = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/%sFlowContainer/ProgressBar" % ability.replace(" ", ""))
 		var label = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/%sFlowContainer/Label2" % ability.replace(" ", ""))
-
+		if ability == "Brilliant Answer %":
+			progress_bar = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer/ProgressBar")
+			label = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer/Label2")
+			
 		var button = ability_buttons[ability]
 		button.visible = study_tokens > 0 and value < 10  # Update button visibility
 
 		if progress_bar:
 			progress_bar.value = value
 		if label:
-			label.text = str(value)
+			label.text = str(value) + "/" + str(abilities[ability]["base_value"])
 		
 		var ability_safe_name = ability.replace(" ", "")
 		var description_container = details_panel.get_node("Panel/ScrollContainer/VBoxContainer/Discrip%s" % ability_safe_name)
@@ -110,6 +122,14 @@ func _on_ability_button_pressed(ability_name):
 	if study_tokens > 0 and abilities[ability_name]["current_value"] < 10:
 		abilities[ability_name]["current_value"] += 1
 		study_tokens -= 1
+		
+		# If GPA is upgraded, increase max health
+ 		# Increase max health by 10 (or any desired value)
+		if health_bar:
+			health_bar.increase_max_health(health_per_GPA)  # Increase max health
+		else:
+			print("HealthBar node not found!")	
+			
 		update_ui()  # Refresh UI after change
 
 # Handles Study Tokens button press

@@ -56,6 +56,7 @@ func add_health(amount: int):
 
 # Function to update the health bar UI
 func update_health_bar():
+	health_bar.max_value = max_health
 	health_bar.value = current_health
 	update_health_color()
 
@@ -69,4 +70,11 @@ func update_health_color():
 	else:
 		new_stylebox.bg_color = Color(0.7, 0.1, 0.1)  # Red
 	health_bar.add_theme_stylebox_override("fill", new_stylebox)
+	
+# Function to increase max health
+func increase_max_health(amount: int):
+	# Increase max health
+	max_health += amount
+	current_health += amount
+	update_health_bar()  # Refresh UI
 	

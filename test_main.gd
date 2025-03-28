@@ -30,6 +30,7 @@ func _ready():
 	# Load abilities preview
 	abilitiesPreview = load("res://Abilities/Scenes/AbilitiesPreview.tscn").instantiate()
 	add_child(abilitiesPreview)
+
 	
 	# Load Quest Screen
 	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
@@ -53,6 +54,7 @@ func _ready():
 	
 	var health_bar = hud.get_node("CanvasLayer/Health_Bar")
 	battle_ui.set_health_bar(health_bar)
+	abilitiesPreview.set_health_bar(health_bar)  # Pass health bar reference to abilitiesPreview
 
 
 # Pass to HUD

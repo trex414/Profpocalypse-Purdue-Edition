@@ -90,9 +90,9 @@ anchor_left = 0.502
 anchor_top = 0.5
 anchor_right = 0.503
 anchor_bottom = 0.5
-offset_left = -191.304
+offset_left = -205.304
 offset_top = -203.0
-offset_right = 191.544
+offset_right = 205.544
 offset_bottom = 201.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -106,9 +106,9 @@ anchor_left = 0.498
 anchor_top = 0.503
 anchor_right = 0.498
 anchor_bottom = 0.503
-offset_left = -178.176
+offset_left = -194.176
 offset_top = -154.212
-offset_right = 183.824
+offset_right = 199.824
 offset_bottom = 193.788
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Panel/ScrollContainer"]
@@ -116,7 +116,7 @@ custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
 
 [node name="GPAFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(360, 0)
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
 theme_override_constants/h_separation = 20
@@ -137,7 +137,7 @@ show_percentage = false
 [node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "0"
+text = "0/10"
 
 [node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer"]
 custom_minimum_size = Vector2(30, 0)
@@ -182,7 +182,7 @@ show_percentage = false
 [node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "0"
+text = "0/10"
 
 [node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
 custom_minimum_size = Vector2(30, 0)
@@ -227,7 +227,7 @@ show_percentage = false
 [node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/LuckFlowContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "0"
+text = "0/10"
 
 [node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/LuckFlowContainer"]
 custom_minimum_size = Vector2(30, 0)
