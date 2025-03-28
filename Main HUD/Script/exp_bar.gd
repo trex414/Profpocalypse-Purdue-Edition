@@ -38,6 +38,7 @@ func get_exp_to_next_level(level: int) -> int:
 
 # Function to add EXP
 func add_exp(amount: int):
+	$EXPGainSFX.play()
 	current_exp += amount
 	print("Gained", amount, "EXP. Current EXP:", current_exp)
 
@@ -56,6 +57,7 @@ func add_exp(amount: int):
 
 # Function to lose EXP
 func lose_exp(amount: int):
+	$EXPLossSFX.play()
 	current_exp -= amount
 	if current_exp < 0:
 		current_exp = 0

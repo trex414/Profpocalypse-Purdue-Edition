@@ -1,6 +1,7 @@
 extends Button
 
-@onready var settings_menu = $"../Control - Settings"  # Adjust path as needed
+@onready var settings_menu = $"../Control - Settings"
+@onready var click = $"../Control - Settings/MenuClick"
 
 var volume_reduction_db: float = -20.0  # Reduce by 20 dB when settings are open
 var bus_name: String = "Master"
@@ -12,6 +13,9 @@ func _ready():
 	var bus_index = AudioServer.get_bus_index(bus_name)
 
 func _on_button_pressed():
+	#Play SFX
+	click.play();
+
 	settings_menu.visible = !settings_menu.visible  # Toggle visibility
 	
 	if settings_menu.visible:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca3fmoi36r3x6"]
+[gd_scene load_steps=5 format=3 uid="uid://ca3fmoi36r3x6"]
 
 [ext_resource type="Script" path="res://Settings/scenes/control_settings.gd" id="1_48vij"]
 [ext_resource type="Texture2D" uid="uid://cbm3do06va5xi" path="res://Settings/assets/pixel-art-ancient-scroll.jpg" id="2_xc3l3"]
 [ext_resource type="Script" path="res://Settings/scenes/line_edit.gd" id="3_cvb01"]
+[ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://inventory_sound_effects/turn_page.wav" id="4_kgt4h"]
 
 [node name="Control - Settings" type="Control"]
 visible = false
@@ -223,6 +224,9 @@ dialog_text = "Are you sure you want to delete your game?"
 auto_translate_mode = 1
 size = Vector2i(548, 100)
 dialog_text = "Are you sure you want to quit the game? Your progress will be saved."
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kgt4h")
 
 [connection signal="confirmed" from="DeleteConfirmation" to="." method="_on_delete_confirmation_confirmed"]
 [connection signal="confirmed" from="QuitConfirmation" to="." method="_on_quit_confirmation_confirmed"]

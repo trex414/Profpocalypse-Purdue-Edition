@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw0vltoutc230"]
+[gd_scene load_steps=5 format=3 uid="uid://cw0vltoutc230"]
 
 [ext_resource type="Script" path="res://Inventory/script/inventory.gd" id="1_yaqxc"]
+[ext_resource type="AudioStream" uid="uid://b3wagqbi2ejiu" path="res://inventory_sound_effects/metal-clash.wav" id="3_qegjf"]
+[ext_resource type="AudioStream" uid="uid://bc8egw5tos4l6" path="res://inventory_sound_effects/spell-bubble.wav" id="4_1fhfi"]
+[ext_resource type="AudioStream" uid="uid://bbmm6mi1k4734" path="res://inventory_sound_effects/inventory.wav" id="4_43f6m"]
 
 [node name="Control - Inventory" type="Control"]
 layout_mode = 3
@@ -128,3 +131,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.647059)
+
+[node name="WeaponSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qegjf")
+volume_db = -2.0
+
+[node name="SpellSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1fhfi")
+volume_db = -2.0
+
+[node name="InventorySFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_43f6m")
+volume_db = -2.0

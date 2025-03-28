@@ -52,6 +52,8 @@ func _input(event):
 		
 
 func toggle_menu():
+	#Play SFX
+	$MenuClick.play()
 	if self.visible:
 		# Close the menu first, then toggle the HUD button
 		self.visible = false

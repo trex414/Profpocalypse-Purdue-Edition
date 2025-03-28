@@ -60,6 +60,7 @@ func set_main_hud(hud):
 func toggle_inventory():
 	var panel = $CanvasLayer/Panel
 	panel.visible = !panel.visible
+	$InventorySFX.play()
 	deselect_item()
 
 	# Update inventory UI when opening
@@ -300,6 +301,7 @@ func print_centered(message):
 	
 # Function to move an item from inventory to the item bar
 func move_item_to_item_bar(slot_index, hud, bar_slot):
+	$WeaponSFX.play()
 	deselect_item()
 	if inventory[slot_index] != null:
 		hud.move_to_item_bar(inventory[slot_index], bar_slot)  # Move to HUD
@@ -313,6 +315,7 @@ func move_item_to_item_bar(slot_index, hud, bar_slot):
 
 # Function to move potion from inventory to potion bar
 func move_item_to_potion_bar(slot_index, hud, bar_slot):
+	$SpellSFX.play()
 	deselect_item()
 	if inventory[slot_index] != null and inventory[slot_index]["type"] == ItemType.SPELL:
 		PlayerData.potion_bar[bar_slot] = inventory[slot_index]
@@ -329,6 +332,7 @@ func move_item_to_potion_bar(slot_index, hud, bar_slot):
 
 # Function move item from item bar to inventory
 func add_item_from_hotbar(item) -> bool:
+	$WeaponSFX.play()
 	deselect_item()
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null: 
@@ -347,6 +351,7 @@ func add_item_from_hotbar(item) -> bool:
 
 # Function move potion from potion bar to inventory
 func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
+	$SpellSFX.play()
 	deselect_item()
 	# Try to stack potion if it already exists in inventory
 	for i in range(SLOT_COUNT):
@@ -409,8 +414,10 @@ func add_named_item(item_name: String) -> bool:
 	# Check in the two dictionaries
 	if ITEM_DEFINITIONS.has(item_name):
 		def = ITEM_DEFINITIONS[item_name]
+		$WeaponSFX.play()
 	elif SPELL_DEFINITIONS.has(item_name):
 		def = SPELL_DEFINITIONS[item_name]
+		$SpellSFX.play()
 	else:
 		update_inventory()
 		print("Unknown item name:", item_name)

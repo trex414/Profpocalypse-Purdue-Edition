@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ixadnea0fvxk"]
+[gd_scene load_steps=9 format=3 uid="uid://ixadnea0fvxk"]
 
 [ext_resource type="Script" path="res://Main HUD/Script/MainHUD.gd" id="1_3f0v0"]
 [ext_resource type="Script" path="res://Main HUD/Script/health_bar.gd" id="2_613hy"]
 [ext_resource type="Script" path="res://Main HUD/Script/exp_bar.gd" id="3_kvwqi"]
+[ext_resource type="AudioStream" uid="uid://w6b2pnrge31p" path="res://inventory_sound_effects/health-loss.wav" id="4_cjxvh"]
+[ext_resource type="AudioStream" uid="uid://dpbhwh0np56k0" path="res://inventory_sound_effects/health-gain.wav" id="4_pm12q"]
+[ext_resource type="AudioStream" uid="uid://chbpgu2c322kd" path="res://inventory_sound_effects/ring_inventory.wav" id="6_mcdkk"]
+[ext_resource type="AudioStream" uid="uid://bth8sm4lqrecc" path="res://inventory_sound_effects/EXP-loss.wav" id="7_6441y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vvx0"]
 
@@ -104,6 +108,16 @@ offset_bottom = -53.0
 grow_vertical = 0
 text = "Lose Health"
 
+[node name="HealthLossSFX" type="AudioStreamPlayer" parent="CanvasLayer/Health_Bar"]
+stream = ExtResource("4_cjxvh")
+volume_db = -2.0
+pitch_scale = 4.0
+
+[node name="HealthGainSFX" type="AudioStreamPlayer" parent="CanvasLayer/Health_Bar"]
+stream = ExtResource("4_pm12q")
+volume_db = -2.0
+pitch_scale = 4.0
+
 [node name="EXP_Bar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
@@ -158,6 +172,14 @@ offset_right = 179.0
 offset_bottom = -165.0
 grow_vertical = 0
 text = "Lose EXP"
+
+[node name="EXPGainSFX" type="AudioStreamPlayer" parent="CanvasLayer/EXP_Bar"]
+stream = ExtResource("6_mcdkk")
+volume_db = -2.0
+
+[node name="EXPLossSFX" type="AudioStreamPlayer" parent="CanvasLayer/EXP_Bar"]
+stream = ExtResource("7_6441y")
+volume_db = -2.0
 
 [node name="PinnedQuestContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 6

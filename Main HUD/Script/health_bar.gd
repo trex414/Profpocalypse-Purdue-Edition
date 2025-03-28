@@ -26,6 +26,7 @@ func on_lose_health_pressed():
 
 # Function to decrease health
 func lose_health(amount: int):
+	$HealthLossSFX.play()
 	if current_health <= 0:
 		#DEBUG
 		print("You died and cannot lose more.")
@@ -42,6 +43,7 @@ func lose_health(amount: int):
 
 # Function to increase health
 func add_health(amount: int):
+	$HealthGainSFX.play()
 	if current_health >= max_health:
 		#DEBUG
 		print("Health full and will not add more.")
