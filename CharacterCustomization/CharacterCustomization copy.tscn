@@ -1,0 +1,209 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwfmcu06okyh6"]
+
+[ext_resource type="Script" path="res://CharacterCustomization.gd" id="1_iqjwb"]
+[ext_resource type="Texture2D" uid="uid://u557eal274pp" path="res://kenney_modular-characters/PNG/Skin/Tint 1/tint1_head.png" id="2_bakls"]
+[ext_resource type="Texture2D" uid="uid://bx7sjuy26uvob" path="res://kenney_modular-characters/PNG/Face/face1.png" id="3_3sxpa"]
+[ext_resource type="Texture2D" uid="uid://uvls0s0rivqk" path="res://kenney_modular-characters/PNG/Hair/Black/blackMan5.png" id="4_cueju"]
+[ext_resource type="Texture2D" uid="uid://blflpkrquwcv3" path="res://kenney_modular-characters/PNG/Shirts/navyShirt7.png" id="5_hpw57"]
+[ext_resource type="Texture2D" uid="uid://byqj7omadlfof" path="res://kenney_modular-characters/PNG/Skin/Tint 1/tint1_neck.png" id="6_jcgfj"]
+[ext_resource type="Texture2D" uid="uid://criqlfxv7jv48" path="res://kenney_modular-characters/PNG/Pants/pantsGrey_long.png" id="7_273tn"]
+[ext_resource type="Texture2D" uid="uid://cvflwiv8i45hk" path="res://kenney_modular-characters/PNG/Shoes/RedShoe3.png" id="8_jwqe3"]
+[ext_resource type="Texture2D" uid="uid://iynb4fmr5ljm" path="res://kenney_modular-characters/PNG/belt.png" id="9_kdxiq"]
+[ext_resource type="Texture2D" uid="uid://dglf42x0tiofe" path="res://kenney_modular-characters/PNG/Skin/Tint 1/tint1_arm.png" id="10_tn6jn"]
+[ext_resource type="Texture2D" uid="uid://coenx7x4uvfv" path="res://kenney_modular-characters/PNG/Skin/Tint 1/tint1_hand.png" id="11_e5bbv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vf6co"]
+load_path = "res://.godot/imported/band.png-b8c138bc4aa765278997f7a761150c6c.ctex"
+
+[node name="CharacterCuztomization" type="Node2D"]
+
+[node name="name" type="TextEdit" parent="."]
+anchors_preset = -1
+anchor_left = -3.053
+anchor_top = -4.719
+anchor_right = -3.053
+anchor_bottom = -4.719
+offset_left = 389.0
+offset_top = 494.0
+offset_right = 767.0
+offset_bottom = 559.0
+placeholder_text = "name your character!"
+
+[node name="save" type="MenuButton" parent="."]
+offset_left = 497.0
+offset_top = 584.0
+offset_right = 661.0
+offset_bottom = 629.0
+text = "SAVE"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="change class" type="MenuButton" parent="."]
+offset_left = 836.0
+offset_top = 390.0
+offset_right = 1129.0
+offset_bottom = 432.0
+text = "Click here for more classes"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="header" type="MenuButton" parent="."]
+offset_left = 418.0
+offset_top = 21.0
+offset_right = 736.324
+offset_bottom = 63.251
+text = "CUSTOMIZE YOUR CHARACTER"
+flat = false
+
+[node name="change face" type="MenuButton" parent="."]
+offset_left = 51.0
+offset_top = 100.0
+offset_right = 336.0
+offset_bottom = 140.0
+text = "Click here for more skin tones"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="change features" type="MenuButton" parent="."]
+offset_left = 52.0
+offset_top = 152.0
+offset_right = 333.0
+offset_bottom = 196.0
+text = "Click here for more features"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="change hair" type="MenuButton" parent="."]
+offset_left = 54.0
+offset_top = 215.0
+offset_right = 333.0
+offset_bottom = 257.0
+text = "Click here for more hairstyles"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="change pants" type="MenuButton" parent="."]
+offset_left = 54.0
+offset_top = 335.0
+offset_right = 333.0
+offset_bottom = 380.0
+text = "Click here for more pant colors"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="change shoes" type="MenuButton" parent="."]
+offset_left = 50.0
+offset_top = 400.0
+offset_right = 336.0
+offset_bottom = 442.0
+text = "Click here for more shoe colors"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="change shirts" type="MenuButton" parent="."]
+offset_left = 52.0
+offset_top = 277.0
+offset_right = 335.0
+offset_bottom = 318.0
+text = "Click here for more shirt colors"
+flat = false
+script = ExtResource("1_iqjwb")
+
+[node name="body_root" type="Sprite2D" parent="."]
+position = Vector2(184, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="shirt" type="Sprite2D" parent="body_root"]
+position = Vector2(789.333, 539.559)
+scale = Vector2(1, 1.00304)
+texture = ExtResource("5_hpw57")
+
+[node name="neck" type="Sprite2D" parent="body_root/shirt"]
+position = Vector2(-4, -77.6755)
+texture = ExtResource("6_jcgfj")
+
+[node name="class" type="Sprite2D" parent="body_root/shirt"]
+position = Vector2(-3.33302, 18.3851)
+scale = Vector2(0.876302, 0.84243)
+texture = SubResource("CompressedTexture2D_vf6co")
+
+[node name="pant" type="Sprite2D" parent="body_root"]
+texture_filter = 1
+position = Vector2(840, 714.353)
+texture = ExtResource("7_273tn")
+
+[node name="pant2" type="Sprite2D" parent="body_root/pant"]
+texture_filter = 1
+position = Vector2(-102.667, 0)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("7_273tn")
+
+[node name="shoe2" type="Sprite2D" parent="body_root/pant/pant2"]
+position = Vector2(41.3333, 93.1765)
+texture = ExtResource("8_jwqe3")
+
+[node name="belt" type="Sprite2D" parent="body_root/pant/pant2"]
+position = Vector2(-52, -74.8235)
+texture = ExtResource("9_kdxiq")
+
+[node name="shoe" type="Sprite2D" parent="body_root/pant/pant2"]
+position = Vector2(-146.667, 93.1765)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("8_jwqe3")
+
+[node name="sleeve" type="Sprite2D" parent="body_root"]
+position = Vector2(928, 523.765)
+texture = ExtResource("10_tn6jn")
+
+[node name="sleeve2" type="Sprite2D" parent="body_root/sleeve"]
+position = Vector2(-284, 6.10352e-05)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("10_tn6jn")
+
+[node name="hand2" type="Sprite2D" parent="body_root/sleeve/sleeve2"]
+position = Vector2(-360, 70.588)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("11_e5bbv")
+
+[node name="hand" type="Sprite2D" parent="body_root/sleeve/sleeve2"]
+position = Vector2(82.6667, 64.941)
+texture = ExtResource("11_e5bbv")
+
+[node name="face" type="Sprite2D" parent="body_root"]
+texture_filter = 1
+position = Vector2(782, 318)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_bakls")
+
+[node name="features" type="Sprite2D" parent="body_root/face"]
+texture_filter = 1
+position = Vector2(-2.66669, 3.52942)
+scale = Vector2(1.11565, 1.18954)
+texture = ExtResource("3_3sxpa")
+
+[node name="hair" type="Sprite2D" parent="body_root/face/features"]
+texture_filter = 1
+position = Vector2(8.36582, -41.077)
+scale = Vector2(0.97119, 0.888101)
+texture = ExtResource("4_cueju")
+
+[node name="class_description" type="RichTextLabel" parent="."]
+offset_left = 841.0
+offset_top = 95.0
+offset_right = 1126.0
+offset_bottom = 372.0
+text = "Class: The Band Geek; Always talking about rehearsals, concerts, and marching season. Probably carries a baton or drumsticks around for no reason.
+"
+
+[connection signal="pressed" from="save" to="save" method="_on_save_pressed"]
+[connection signal="pressed" from="change class" to="change features" method="_on_change_class_pressed"]
+[connection signal="pressed" from="change face" to="change face" method="_on_change_face_pressed"]
+[connection signal="pressed" from="change features" to="change features" method="_on_change_features_pressed"]
+[connection signal="pressed" from="change hair" to="save" method="_on_change_hair_pressed"]
+[connection signal="pressed" from="change pants" to="change pants" method="_on_change_pants_pressed"]
+[connection signal="pressed" from="change shoes" to="save" method="_on_change_shoes_pressed"]
+[connection signal="pressed" from="change shirts" to="save" method="_on_change_shirt_pressed"]
