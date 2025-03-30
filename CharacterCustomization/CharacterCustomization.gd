@@ -14,10 +14,11 @@ extends MenuButton
 @onready var hand2_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2/hand2
 @onready var neck_sprite = $/root/CharacterCuztomization/body_root/shirt/neck
 @onready var belt_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/belt  
+@onready var class_sprite = $/root/CharacterCuztomization/body_root/shirt/class
+@onready var class_description = $/root/CharacterCuztomization/class_description
 @onready var name_input = $/root/CharacterCuztomization/name
 @onready var save_button = $/root/CharacterCuztomization/save
 
-# Indices for cycling through options
 var current_tint_index = 0
 var current_hair_color_index = 0
 var current_hair_style_index = 0
@@ -25,26 +26,51 @@ var current_features_index = 0
 var current_shirt_index = 0
 var current_pant_index = 0
 var current_shoe_index = 0
+var current_class_index = 0
 
-# Lists of available colors
 var hair_colors = ["Black", "Blonde", "Brown", "Red", "White"]
 var shirt_colors = ["blue", "green", "grey", "navy", "pine", "red", "white", "yellow"]
 var pant_colors = ["Brown", "Green", "Grey", "LightBlue", "Navy", "Pine", "Red", "Tan", "White", "Yellow"]
 var shoe_colors = ["Black", "Blue", "Brown", "Grey", "Red", "Tan"]
 
+var class_names = [
+	"art", "band", "business", "coffee", "dj", "gaming", "gym", "hippie", "international", "math",
+	"med", "napper", "party", "philosophy", "politics", "skateboard", "STEM", "theatre"
+]
 
+var class_descriptions = {
+	"art": "The Art Student – Covered in paint, never without a sketchbook, and insists that a chair is not just a chair.",
+	"band": "The Band Geek – Always talking about rehearsals, concerts, and marching season. Probably carries a baton or drumsticks around for no reason.",
+	"business": "The Business Bro – Wears Patagonia vests, talks in acronyms, and calls LinkedIn a 'hustle platform.'",
+	"coffee": "The Coffee Addict – Seen at the campus café more than in class. Always holding a cup, even if it’s empty.",
+	"dj": "The Dorm DJ – Has the loudest speaker on the floor. Always curating a playlist no one asked for.",
+	"gaming": "The Gamer – Runs on Mountain Dew and memes. Talks in Discord jargon. Might be wearing pajamas at noon.",
+	"gym": "The Gym Rat – Always in athleisure, talks about macros and gains, and hits the gym before their 8am lecture.",
+	"hippie": "The Nature Hippie – Eats granola, carries a reusable water bottle and utensils, and wants to save the planet yesterday.",
+	"international": "The International Student – Speaks three languages fluently, teaches others slang from their home country, and FaceTimes their family at odd hours.",
+	"math": "The Math Nerd – Lives in the math building, loves proofs, talks in variables, and finds derivatives for fun.",
+	"med": "The Pre-Med Machine – Shadowed a surgeon at 16, already worried about residency, and always smells faintly of hand sanitizer.",
+	"napper": "The Professional Napper – Can fall asleep anywhere—library chair, bench, beanbag. A true talent.",
+	"party": "The Party Animal – Knows every house on frat row, has class… but hasn’t attended since syllabus week.",
+	"philosophy": "The Chill Philosopher – Spends hours debating the trolley problem and questioning reality. Probably wears a beanie and drinks herbal tea.",
+	"politics": "The Political Activist – Tabling every week, protesting every month, and knows way more about policy than your poli-sci professor.",
+	"skateboard": "The Skateboard Dude – Glides across campus like he owns it, backpack hanging off one shoulder, always late but somehow chill about it. Probably says 'yo' a lot.",
+	"STEM": "The STEM Zombie – Sleeps 3 hours a night, survives on energy drinks, and is always debugging something.",
+	"theatre": "The Theater Kid – Quotes Shakespeare, bursts into song, and thinks life is a stage."
+}
 
+func _on_change_class_pressed():
+	current_class_index = (current_class_index + 1) % class_names.size()
+	var class_nam = class_names[current_class_index]
+	var class_icon_path = "kenney_modular-characters/PNG/" + class_nam + ".png"
+	class_sprite.texture = load(class_icon_path)
+	class_description.text = class_descriptions[class_nam]
 
-
-
-# ---------------- FACE CUSTOMIZATION (TINT) ----------------
 func _on_change_face_pressed():
-	current_tint_index = (current_tint_index + 1) % 8  # 8 skin tints available
+	current_tint_index = (current_tint_index + 1) % 8
 	var tint_folder = "Tint " + str(current_tint_index + 1)
 	var face_texture_path = "kenney_modular-characters/PNG/Skin/" + tint_folder + "/tint" + str(current_tint_index + 1) + "_head.png"
 	face_sprite.texture = load(face_texture_path)
-
-	# Apply skin tint to neck, arms, and hands
 	var skin_texture_path = "kenney_modular-characters/PNG/Skin/" + tint_folder + "/tint" + str(current_tint_index + 1)
 	arm_sprite.texture = load(skin_texture_path + "_arm.png")
 	arm2_sprite.texture = load(skin_texture_path + "_arm.png")
@@ -52,49 +78,39 @@ func _on_change_face_pressed():
 	hand2_sprite.texture = load(skin_texture_path + "_hand.png")
 	neck_sprite.texture = load(skin_texture_path + "_neck.png")
 
-# ---------------- FEATURES CUSTOMIZATION ----------------
 func _on_change_features_pressed():
-	current_features_index = (current_features_index + 1) % 4  # 4 available features
+	current_features_index = (current_features_index + 1) % 4
 	var features_texture_path = "kenney_modular-characters/PNG/Face/face" + str(current_features_index + 1) + ".png"
 	features_sprite.texture = load(features_texture_path)
 
-# ---------------- HAIR CUSTOMIZATION (COLOR + STYLE) ----------------
 func _on_change_hair_pressed():
-	# Cycle through both color and style in one method
 	current_hair_style_index += 1
 	if current_hair_style_index >= 3:
 		current_hair_style_index = 0
 		current_hair_color_index = (current_hair_color_index + 1) % hair_colors.size()
-
-	# Update hair texture
 	var hair_color = hair_colors[current_hair_color_index]
 	var hair_style = ["5", "7", "8"][current_hair_style_index]
 	var hair_texture_path = "kenney_modular-characters/PNG/Hair/" + hair_color + "/" + hair_color.to_lower() + "Man" + hair_style + ".png"
 	hair_sprite.texture = load(hair_texture_path)
 
-# ---------------- SHIRT CUSTOMIZATION ----------------
 func _on_change_shirt_pressed():
 	current_shirt_index = (current_shirt_index + 1) % shirt_colors.size()
 	var shirt_texture_path = "kenney_modular-characters/PNG/Shirts/" + shirt_colors[current_shirt_index] + "Shirt7.png"
 	shirt_sprite.texture = load(shirt_texture_path)
 
-# ---------------- PANT CUSTOMIZATION ----------------
 func _on_change_pants_pressed():
 	current_pant_index = (current_pant_index + 1) % pant_colors.size()
 	var pant_texture_path = "kenney_modular-characters/PNG/Pants/pants" + pant_colors[current_pant_index] + "_long.png"
 	pant_sprite.texture = load(pant_texture_path)
-	pant2_sprite.texture = load(pant_texture_path)  # Apply to both legs
+	pant2_sprite.texture = load(pant_texture_path)
 
-# ---------------- SHOES CUSTOMIZATION ----------------
 func _on_change_shoes_pressed():
 	current_shoe_index = (current_shoe_index + 1) % shoe_colors.size()
 	var shoe_texture_path = "kenney_modular-characters/PNG/Shoes/" + shoe_colors[current_shoe_index] + "Shoe3.png"
 	shoe1_sprite.texture = load(shoe_texture_path)
-	shoe2_sprite.texture = load(shoe_texture_path)  # Update both shoes
-	
-# ---------------- DEFAULT BELT SETUP ----------------
-func _ready():	
-	
+	shoe2_sprite.texture = load(shoe_texture_path)
+
+func _ready():
 	var last_character_path = "user://last_saved_character.json"
 	if FileAccess.file_exists(last_character_path):
 		var last_character_file = FileAccess.open(last_character_path, FileAccess.READ)
@@ -103,33 +119,20 @@ func _ready():
 			last_character_file.close()
 			if last_character_data and "last_saved" in last_character_data:
 				var last_character_name = last_character_data["last_saved"]
-				# If the character file exists, load it
 				if FileAccess.file_exists("CustomCharacters/" + last_character_name + ".json"):
 					load_character(last_character_name)
 
-# ---------------- SAVE CUSTOMIZATION ----------------
 func _on_save_pressed():
-	# Ensure the character has a name
 	var character_name = name_input.text.strip_edges()
 	if character_name == "":
 		character_name = "noname"
-	# Save the last saved character's name in a JSON file
 	var last_character_path = "user://last_saved_character.json"
 	var last_character_file = FileAccess.open(last_character_path, FileAccess.WRITE)
 	if last_character_file:
 		var last_character_data = { "last_saved": character_name }
 		last_character_file.store_string(JSON.stringify(last_character_data, "\t"))
 		last_character_file.close()
-	else:
-		print("Error: Could not write last saved character name to file.")
-
-	# Create a save directory if it doesn't exist
-	var save_dir = "CustomCharacters/"
-
-	# Define the save path using the character's name
-	var save_path = save_dir + character_name + ".json"
-
-	# Create a dictionary of character data, storing the actual texture paths used
+	var save_path = "CustomCharacters/" + character_name + ".json"
 	var save_data = {
 		"name": character_name,
 		"face_texture": face_sprite.texture.resource_path if face_sprite.texture else "",
@@ -145,33 +148,23 @@ func _on_save_pressed():
 		"hand_texture": hand_sprite.texture.resource_path if hand_sprite.texture else "",
 		"hand2_texture": hand2_sprite.texture.resource_path if hand2_sprite.texture else "",
 		"neck_texture": neck_sprite.texture.resource_path if neck_sprite.texture else "",
-		"belt_texture": "kenney_modular-characters/PNG/belt.png"  # Belt always has the default texture
+		"belt_texture": "kenney_modular-characters/PNG/belt.png",
+		"class_texture": class_sprite.texture.resource_path if class_sprite.texture else "",
+		"class_description": class_description.text
 	}
-
-	# Save the data as JSON
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(save_data, "\t"))  # Pretty print JSON
+	file.store_string(JSON.stringify(save_data, "\t"))
 	file.close()
-
 	print("Character saved at:", save_path)
-	
-	#load_character("tom")  #TODO remove test
 
-# ---------------- LOAD CUSTOMIZATION ----------------
 func load_character(character_name):
 	var save_path = "CustomCharacters/" + character_name + ".json"
-
-	# Check if the character save file exists
 	if not FileAccess.file_exists(save_path):
 		print("Error: No saved character found for", character_name)
 		return
-
-	# Load the JSON data
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	var save_data = JSON.parse_string(file.get_as_text())
 	file.close()
-
-	# Apply the loaded customization by assigning textures
 	name_input.text = save_data["name"]
 	face_sprite.texture = load(save_data["face_texture"]) if save_data["face_texture"] != "" else null
 	features_sprite.texture = load(save_data["features_texture"]) if save_data["features_texture"] != "" else null
@@ -187,9 +180,5 @@ func load_character(character_name):
 	hand2_sprite.texture = load(save_data["hand2_texture"]) if save_data["hand2_texture"] != "" else null
 	neck_sprite.texture = load(save_data["neck_texture"]) if save_data["neck_texture"] != "" else null
 	belt_sprite.texture = load(save_data["belt_texture"]) 
-
-	print("Character loaded:", character_name)
-
-
-func _on_change_shirts_pressed() -> void:
-	pass # Replace with function body.
+	class_sprite.texture = load(save_data["class_texture"]) if save_data.has("class_texture") else null
+	class_description.text = save_data["class_description"] if save_data.has("class_description") else ""
