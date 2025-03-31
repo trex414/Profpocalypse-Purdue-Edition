@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bchgpwcwgpocx"
-path="res://.godot/imported/international.png-b998936a91092968d324a164d1187805.ctex"
+path="res://.godot/imported/international.png-468112611a4ef8a8bd32a06d36e4d7c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/international.png"
-dest_files=["res://.godot/imported/international.png-b998936a91092968d324a164d1187805.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/international.png"
+dest_files=["res://.godot/imported/international.png-468112611a4ef8a8bd32a06d36e4d7c4.ctex"]
 
 [params]
 

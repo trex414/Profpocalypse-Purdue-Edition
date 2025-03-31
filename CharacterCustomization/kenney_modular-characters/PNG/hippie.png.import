@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqoqpbnmcdpay"
-path="res://.godot/imported/hippie.png-cbe093a7a35bd966e470c7a92ab8cc79.ctex"
+path="res://.godot/imported/hippie.png-c59fd1c27f2b49b523d843e71d2cc252.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/hippie.png"
-dest_files=["res://.godot/imported/hippie.png-cbe093a7a35bd966e470c7a92ab8cc79.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/hippie.png"
+dest_files=["res://.godot/imported/hippie.png-c59fd1c27f2b49b523d843e71d2cc252.ctex"]
 
 [params]
 

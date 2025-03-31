@@ -2,6 +2,7 @@ extends Node2D
 
 var map = null
 var inventory = null
+var trivia_book = null
 var hud = null
 var abilitiesPreview = null
 var QuestMenuScene = null
@@ -22,6 +23,9 @@ func _ready():
 	# Load Inventory
 	inventory = load("res://Inventory/scenes/inventory.tscn").instantiate()
 	add_child(inventory)
+	
+	trivia_book = load("res://Trivia/scenes/trivia_book.tscn").instantiate()
+	add_child(trivia_book)
 
 	# Load HUD
 	hud = load("res://Main HUD/Scenes/hud.tscn").instantiate()

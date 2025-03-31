@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmajgld7e3r7g"
-path="res://.godot/imported/STEM.png-25af7d6f89535bd45477268926c05a76.ctex"
+path="res://.godot/imported/STEM.png-f15c2bfb194db2488d84276d4536b5cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/STEM.png"
-dest_files=["res://.godot/imported/STEM.png-25af7d6f89535bd45477268926c05a76.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/STEM.png"
+dest_files=["res://.godot/imported/STEM.png-f15c2bfb194db2488d84276d4536b5cb.ctex"]
 
 [params]
 

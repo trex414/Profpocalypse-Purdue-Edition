@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbfmp7qf3esg6"
-path="res://.godot/imported/coffee.png-66bdfe46f5e4f8989768e35fbe650812.ctex"
+path="res://.godot/imported/coffee.png-37d20fd86c3fc8e23592653974e4ac74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/coffee.png"
-dest_files=["res://.godot/imported/coffee.png-66bdfe46f5e4f8989768e35fbe650812.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/coffee.png"
+dest_files=["res://.godot/imported/coffee.png-37d20fd86c3fc8e23592653974e4ac74.ctex"]
 
 [params]
 

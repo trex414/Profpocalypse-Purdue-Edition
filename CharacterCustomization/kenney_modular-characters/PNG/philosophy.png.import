@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5kjoioojiysc"
-path="res://.godot/imported/philosophy.png-8d6226cb403a4d9146831de0044acdbb.ctex"
+path="res://.godot/imported/philosophy.png-72d5e0cfa85a0ddb62b564ed9b445934.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/philosophy.png"
-dest_files=["res://.godot/imported/philosophy.png-8d6226cb403a4d9146831de0044acdbb.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/philosophy.png"
+dest_files=["res://.godot/imported/philosophy.png-72d5e0cfa85a0ddb62b564ed9b445934.ctex"]
 
 [params]
 

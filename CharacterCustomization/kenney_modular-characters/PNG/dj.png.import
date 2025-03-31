@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btb4rwmndxny3"
-path="res://.godot/imported/dj.png-cafaf822c57e35f92e2ddcee6b77ef05.ctex"
+path="res://.godot/imported/dj.png-f6921d908b9c97abd34b78372225a476.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/dj.png"
-dest_files=["res://.godot/imported/dj.png-cafaf822c57e35f92e2ddcee6b77ef05.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/dj.png"
+dest_files=["res://.godot/imported/dj.png-f6921d908b9c97abd34b78372225a476.ctex"]
 
 [params]
 

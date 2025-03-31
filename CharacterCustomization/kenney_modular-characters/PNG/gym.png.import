@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://t14oipue8hgf"
-path="res://.godot/imported/gym.png-472ecc7a9e87b48c57e6aefca7fc2adf.ctex"
+path="res://.godot/imported/gym.png-12222003372a262b2ec898b82cf3cdb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_modular-characters/PNG/classes/gym.png"
-dest_files=["res://.godot/imported/gym.png-472ecc7a9e87b48c57e6aefca7fc2adf.ctex"]
+source_file="res://CharacterCustomization/kenney_modular-characters/PNG/gym.png"
+dest_files=["res://.godot/imported/gym.png-12222003372a262b2ec898b82cf3cdb5.ctex"]
 
 [params]
 

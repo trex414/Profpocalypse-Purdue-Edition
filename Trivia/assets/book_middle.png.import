@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwbjb30y1bbdp"
-path="res://.godot/imported/party.png-e343d1d48477ae6ec9a02a093a09fe41.ctex"
+uid="uid://crm42yod8uney"
+path="res://.godot/imported/book_middle.png-f398a54b3698b98247db92012a0b6a03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterCustomization/kenney_modular-characters/PNG/party.png"
-dest_files=["res://.godot/imported/party.png-e343d1d48477ae6ec9a02a093a09fe41.ctex"]
+source_file="res://Trivia/assets/book_middle.png"
+dest_files=["res://.godot/imported/book_middle.png-f398a54b3698b98247db92012a0b6a03.ctex"]
 
 [params]
 
