@@ -110,13 +110,14 @@ func update_inventory():
 	for i in range(SLOT_COUNT):
 		var slot = grid_container.get_child(i)
 		if slot is Button:
-			if inventory[i] != null:
+			if inventory[i] != null and inventory[i].has("texture"):
 				slot.icon = inventory[i]["texture"]
 				slot.expand_icon = true
-				slot.text = str(inventory[i]["count"]) if inventory[i]["stackable"] else ""
+				slot.text = str(inventory[i]["count"]) if inventory[i].has("stackable") and inventory[i]["stackable"] else ""
 			else:
 				slot.icon = preload("res://Inventory/assets/empty_slot1.png")
 				slot.text = ""
+
 
 # Function to select an item slot
 func select_item(slot_index):
@@ -303,15 +304,20 @@ func print_centered(message):
 func move_item_to_item_bar(slot_index, hud, bar_slot):
 	$WeaponSFX.play()
 	deselect_item()
-	if inventory[slot_index] != null:
-		hud.move_to_item_bar(inventory[slot_index], bar_slot)  # Move to HUD
+	if inventory[slot_index] != null and inventory[slot_index]["type"] == 0:
 		PlayerData.item_bar[bar_slot] = inventory[slot_index]
-		inventory[slot_index] = null  # Remove from inventory
-		selected_slot = null  # Clear selection
+		print("Added this weapon to bar: ", inventory[slot_index])
+		hud.move_to_item_bar(inventory[slot_index], bar_slot)
+		inventory[slot_index] = null
+		selected_slot = null
 		
 		PlayerData.inventory = inventory.duplicate(true)
 		
 		update_inventory()
+	else:
+		print("Only weapons can go here!")
+
+
 
 # Function to move potion from inventory to potion bar
 func move_item_to_potion_bar(slot_index, hud, bar_slot):
@@ -345,7 +351,11 @@ func add_item_from_hotbar(item) -> bool:
 			PlayerData.inventory = inventory.duplicate()
 			
 			update_inventory()
-			print("Added", item["name"], "to inventory slot", i)
+			if item.has("name"):
+				print("Added", item["name"], "to inventory slot", i)
+			else:
+				print("⚠️ Item missing 'name' key when adding to inventory slot", i, "Item:", item)
+
 			return true 
 	return false
 

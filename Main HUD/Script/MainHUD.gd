@@ -90,24 +90,22 @@ func hotbar_slot_clicked(slot_index):
 	if inventory == null:
 		print("ERROR: Inventory not assigned to HUD!")
 		return
+	
 
-	# Check if battle UI is visible
-	print("Trey this", Global.in_battle)
-	
-	
-	if item_bar_slots[slot_index] != null:
 		# During battle, use weapon to attack
-		if Global.in_battle and !inventory.is_inventory_open():
-			handle_battle_attack(slot_index)
-		else:
+	if Global.in_battle and !inventory.is_inventory_open():
+		handle_battle_attack(slot_index)
+	else:
+		if inventory.selected_slot == null:
 			move_from_hotbar_to_inventory(slot_index)
-	elif inventory.selected_slot != null:
-		# Move selected item from inventory to hotbar
-		var selected_item = inventory.get_selected_item()
-		if selected_item["type"] == inventory.ItemType.SPELL:
-			print("Potions cannot be placed in the Item Bar!")
-			return
-		inventory.move_item_to_item_bar(inventory.selected_slot, self, slot_index)
+		else:
+		# Otherwise, move selected item from inventory to hotbar
+			var selected_item = inventory.get_selected_item()
+			if selected_item["type"] != 0:
+			#DEBUG
+				print("Potions cannot be placed in the Item Bar!")
+				return
+			inventory.move_item_to_item_bar(inventory.selected_slot, self, slot_index)
 
 
 
@@ -213,9 +211,10 @@ func move_from_hotbar_to_inventory(slot_index):
 		return
 
 	var item = item_bar_slots[slot_index]
-	if item == null:
-		print("No item in hotbar slot", slot_index)
+	if item == null or not item.has("name"):
+		print("❌ Invalid item in hotbar slot", slot_index, ":", item)
 		return
+
 
 	# Check if the inventory has space before removing the item
 	if not inventory.has_space_for_item():
@@ -290,21 +289,26 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 # Function to move an item from inventory to item bar
 func move_to_item_bar(item, slot_index):
 	if slot_index < item_bar_slots.size():
-		item_bar_slots[slot_index] = item
+		if item != null and item.has("name") and item.has("texture"):
+			# Force items to have a count of 1
+			item["count"] = 1
+			item_bar_slots[slot_index] = item
+		else:
+			print("❌ Tried to assign invalid item to hotbar:", item)
+			return
 		var button = item_bar.get_child(slot_index)
-		# Set icon and prevent stretching
-		button.icon = item["texture"]
+		# Use resized texture for consistency with potions
+		button.icon = resize_texture(item["texture"], Vector2(64, 64))
 		setup_hotbar_button(button)
 		PlayerData.item_bar = item_bar_slots.duplicate(true)
-		
-		#Debug
-		#print("Moved", item["name"], "to Item Bar slot", slot_index)
+		update_item_display()
 		
 		if Global.in_battle and not battle_ui.turn_locked:
 			inventory.get_node("CanvasLayer/Panel").visible = false
 			await battle_ui.lock_turn()
 			await battle_ui.show_battle_message("Used turn to assign item.")
 			await battle_ui.cpu_attack()
+
 
 
 # Function to move potion from inventory to portion bar
@@ -364,6 +368,21 @@ func update_potion_display():
 				
 				# Display count only if > 1
 				button.text = str(potion_bar_slots[i]["count"]) if potion_bar_slots[i]["count"] > 1 else ""
+			else:
+				button.icon = null
+				button.text = ""
+
+func update_item_display():
+	for i in range(item_bar_slots.size()):
+		var button = item_bar.get_child(i)
+		if button is Button:
+			if item_bar_slots[i] != null:
+				#button.icon = resize_texture(item_bar_slots[i]["texture"], Vector2(64, 64))
+				button.expand_icon = false
+				button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				button.custom_minimum_size = Vector2(64, 64)
+				button.set_size(Vector2(64, 64))
+				
 			else:
 				button.icon = null
 				button.text = ""
