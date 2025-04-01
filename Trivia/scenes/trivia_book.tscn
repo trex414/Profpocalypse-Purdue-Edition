@@ -12,7 +12,6 @@ script = ExtResource("1_ortk4")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -95,3 +94,6 @@ offset_left = -274.0
 offset_top = 184.0
 offset_right = -241.0
 offset_bottom = 218.0
+
+[connection signal="pressed" from="CanvasLayer/Panel/Next" to="." method="next_page"]
+[connection signal="pressed" from="CanvasLayer/Panel/Previous" to="." method="prev_page"]
