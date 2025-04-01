@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://y1y4i0lvdt4l"]
+[gd_scene load_steps=9 format=3 uid="uid://y1y4i0lvdt4l"]
 
 [ext_resource type="Script" path="res://User_Battle/Script/battle_ui.gd" id="1_mt36e"]
 [ext_resource type="AudioStream" uid="uid://pwswji2goitr" path="res://Music/Tracks/battle.ogg" id="2_hde35"]
 [ext_resource type="Script" path="res://User_Battle/Script/enemy.gd" id="2_kw82d"]
-[ext_resource type="AudioStream" uid="uid://dpbhwh0np56k0" path="res://menu_sound_effects/health-gain.wav" id="3_rab3t"]
+[ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="4_0nwts"]
+[ext_resource type="AudioStream" uid="uid://5pt0u5lby2ee" path="res://menu_sound_effects/success-48018.mp3" id="5_ch11x"]
+[ext_resource type="AudioStream" uid="uid://de23rb0p7sekd" path="res://click.wav" id="5_kvhev"]
+[ext_resource type="AudioStream" uid="uid://3muygngblxdi" path="res://menu_sound_effects/error-call-to-attention-129258.mp3" id="6_sscru"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akw03"]
 
@@ -134,6 +137,19 @@ theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 40
 autowrap_mode = 3
 
-[node name="PlayerHealSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_rab3t")
+[node name="AttackMissSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0nwts")
+volume_db = -2.0
+
+[node name="AttackSuccessSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kvhev")
+volume_db = 1.0
+pitch_scale = 0.5
+
+[node name="EscapeSuccessSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ch11x")
+volume_db = -2.0
+
+[node name="EscapeFailedSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sscru")
 volume_db = -2.0

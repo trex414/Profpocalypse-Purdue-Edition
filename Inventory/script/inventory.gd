@@ -281,6 +281,7 @@ func use_item():
 		panel.visible = false
 		await main_hud.battle_ui.lock_turn()
 		await main_hud.battle_ui.show_battle_message("Used turn for potion.")
+		$SpellSFX.play()
 		await main_hud.battle_ui.cpu_attack()
 
 	deselect_item()

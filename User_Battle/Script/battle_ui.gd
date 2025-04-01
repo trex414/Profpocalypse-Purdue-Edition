@@ -116,11 +116,13 @@ func try_leave_fight():
 
 	if rng.randf() <= 0.6:
 		show_battle_message("Successfully escaped!")
+		$EscapeSuccessSFX.play()
 		
 		await get_tree().create_timer(2).timeout
 		restore_gameplay()
 	else:
 		lock_turn()
+		$EscapeFailedSFX.play()
 		show_battle_message("Escape failed! CPU is attacking...")
 		await get_tree().create_timer(2).timeout
 		cpu_attack()
@@ -133,6 +135,7 @@ func player_attack(damage):
 
 	show_battle_message("Successfully attacked for %d damage" % damage)
 
+	$AttackSuccessSFX.play()
 	enemy_bar.take_damage(damage)  # ✅ Directly call it here
 
 	await get_tree().create_timer(2).timeout
@@ -143,7 +146,6 @@ func player_heal(heal_amt):
 	if turn_locked:
 		return
 	lock_turn()
-	$PlayerHealSFX.play()
 	var result_text = "Successfully healed for %d HP" % heal_amt
 	show_battle_message(result_text)
 	await get_tree().create_timer(2).timeout
@@ -152,6 +154,7 @@ func player_heal(heal_amt):
 func cpu_attack():
 	var miss = rng.randf() <= 0.05
 	if miss:
+		$AttackMissSFX.play()
 		await show_battle_message("CPU missed their attack!")
 		unlock_turn() 
 		return
@@ -170,6 +173,7 @@ func cpu_attack():
 
 	
 func restore_gameplay():
+	$EscapeSuccessSFX.play()
 	Global.in_battle = false
 	var scene = get_tree().get_current_scene()
 	
