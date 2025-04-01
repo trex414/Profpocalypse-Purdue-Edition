@@ -228,4 +228,3 @@ func restore_gameplay():
 	$CanvasLayer.visible = false
 	
 	MusicManager.restore_previous_music()
-	SaveManager.save()

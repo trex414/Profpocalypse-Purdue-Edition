@@ -18,5 +18,12 @@ var enemy_database = {
 		"level": 2,
 		"damage": 1,
 		"texture_path": "res://User_Battle/Sprites/blue.png"
+	},
+	"green": {
+		"name": "green",
+		"max_health": 100,
+		"level": 10,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/green.png"
 	}
 }

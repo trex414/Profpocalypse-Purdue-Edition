@@ -3178,7 +3178,7 @@ size = Vector2(3192, 2044)
 size = Vector2(5763, 995)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jhhif"]
-size = Vector2(65, 58.5)
+size = Vector2(90, 58.5)
 
 [node name="Map" type="Node2D" groups=["Buildings"]]
 script = ExtResource("1_cchdm")
@@ -6982,12 +6982,12 @@ new_music = ExtResource("22_qd3bh")
 position = Vector2(2867.5, 499.5)
 shape = SubResource("RectangleShape2D_4kt6v")
 
-[node name="TestDummy" type="Node2D" parent="." groups=["enemies"]]
+[node name="red enemy" type="Node2D" parent="." groups=["enemies"]]
 script = ExtResource("24_qnv2v")
 enemy_name = "red"
 enemy_node_path = NodePath(".")
 
-[node name="ColorRect" type="ColorRect" parent="TestDummy"]
+[node name="ColorRect" type="ColorRect" parent="red enemy"]
 custom_minimum_size = Vector2(32, 32)
 offset_left = 1910.0
 offset_top = 2368.0
@@ -6996,30 +6996,50 @@ offset_bottom = 2408.0
 color = Color(1, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="TestDummy"]
+[node name="Area2D" type="Area2D" parent="red enemy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestDummy/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red enemy/Area2D"]
 position = Vector2(1929, 2387)
 shape = SubResource("RectangleShape2D_jhhif")
 
-[node name="TestDummy2" type="Node2D" parent="." groups=["enemies"]]
+[node name="blue enemy" type="Node2D" parent="." groups=["enemies"]]
 script = ExtResource("24_qnv2v")
 enemy_name = "blue"
 enemy_node_path = NodePath(".")
 
-[node name="ColorRect" type="ColorRect" parent="TestDummy2"]
+[node name="ColorRect" type="ColorRect" parent="blue enemy"]
 custom_minimum_size = Vector2(32, 32)
-offset_left = 2201.0
-offset_top = 2393.0
-offset_right = 2241.0
-offset_bottom = 2433.0
+offset_left = 3521.0
+offset_top = 2550.0
+offset_right = 3561.0
+offset_bottom = 2590.0
 color = Color(0, 0, 1, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="TestDummy2"]
+[node name="Area2D" type="Area2D" parent="blue enemy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestDummy2/Area2D"]
-position = Vector2(2220, 2412)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue enemy/Area2D"]
+position = Vector2(3541, 2569)
+shape = SubResource("RectangleShape2D_jhhif")
+
+[node name="green enemy" type="Node2D" parent="." groups=["enemies"]]
+script = ExtResource("24_qnv2v")
+enemy_name = "green"
+enemy_node_path = NodePath(".")
+
+[node name="ColorRect" type="ColorRect" parent="green enemy"]
+custom_minimum_size = Vector2(32, 32)
+offset_left = 3461.0
+offset_top = 1915.0
+offset_right = 3501.0
+offset_bottom = 1955.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="green enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="green enemy/Area2D"]
+position = Vector2(3480, 1935)
 shape = SubResource("RectangleShape2D_jhhif")
 
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]
@@ -7036,5 +7056,6 @@ shape = SubResource("RectangleShape2D_jhhif")
 [connection signal="body_exited" from="Science Section" to="Science Section" method="_on_body_exited"]
 [connection signal="body_entered" from="Outskirts Section" to="Outskirts Section" method="_on_body_entered"]
 [connection signal="body_exited" from="Outskirts Section" to="Outskirts Section" method="_on_body_exited"]
-[connection signal="body_entered" from="TestDummy/Area2D" to="TestDummy" method="_on_body_entered"]
-[connection signal="body_entered" from="TestDummy2/Area2D" to="TestDummy2" method="_on_body_entered"]
+[connection signal="body_entered" from="red enemy/Area2D" to="red enemy" method="_on_body_entered"]
+[connection signal="body_entered" from="blue enemy/Area2D" to="blue enemy" method="_on_body_entered"]
+[connection signal="body_entered" from="green enemy/Area2D" to="green enemy" method="_on_body_entered"]
