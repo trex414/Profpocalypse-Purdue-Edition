@@ -114,8 +114,6 @@ func lock_turn():
 	#await get_tree().create_timer(2).timeout
 	#unlock_turn()
 
-
-
 func unlock_turn():
 	turn_locked = false
 	input_blocker.visible = false
@@ -185,7 +183,7 @@ func cpu_attack():
 		return
 
 	var crit = rng.randf() <= 0.10
-	var base_damage = 1
+	var base_damage = current_enemy["damage"]
 	var final_damage = base_damage
 	if crit:
 		final_damage = int(base_damage * 1.5)
