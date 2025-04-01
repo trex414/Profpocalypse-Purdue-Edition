@@ -13,6 +13,8 @@ func _ready() -> void:
 	print("current quests: ", current_quests)
 	print("=================")
 	print("completed quests: ", completed_quests)
+	print("=================")
+	print("defeated enemies: ", defeated_enemies)
 
 
 # Player data variables (initialized but not hardcoded)
@@ -30,6 +32,7 @@ var current_semester: String
 var current_quests: Dictionary
 static var completed_quests = []
 var pinned_quests = []
+var defeated_enemies = []
 
 # Keybinding variables
 var inventory_key: Key
@@ -56,6 +59,7 @@ func get_game_state():
 			"current_quests": current_quests,
 			"completed_quests": completed_quests,
 			"pinned_quests": pinned_quests,
+			"defeated_enemies": defeated_enemies,
 		},
 		"keybindings": {
 			"inventory_key": inventory_key,
@@ -106,6 +110,9 @@ func apply_game_state(data):
 			
 		if "pinned_quests" in player_data:
 			pinned_quests = player_data.pinned_quests
+			
+		if "defeated_enemies" in player_data:
+			defeated_enemies = player_data.defeated_enemies
 			
 	if "keybindings" in data:
 		var key_bindings = data["keybindings"]
@@ -159,6 +166,7 @@ func set_default_values():
 	completed_quests = []
 	completed_quests.clear()
 	pinned_quests = []
+	defeated_enemies = []
 	
 	#Key Binding Defaults
 	inventory_key = 69
@@ -170,3 +178,11 @@ func set_default_values():
 	
 static func is_quest_completed(quest_id: String) -> bool:
 	return quest_id in completed_quests
+	
+func mark_enemy_defeated(enemy_name: String):
+	if enemy_name not in defeated_enemies:
+		defeated_enemies.append(enemy_name)
+		print("Defeated Enemies:", defeated_enemies)
+
+func is_enemy_defeated(enemy_name: String) -> bool:
+	return enemy_name in defeated_enemies

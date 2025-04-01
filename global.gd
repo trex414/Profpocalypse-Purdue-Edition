@@ -6,14 +6,14 @@ var in_battle: bool = false
 
 var enemy_database = {
 	"red": {
-		"name": "Red",
+		"name": "red",
 		"max_health": 100,
 		"level": 5,
 		"damage": 5,
 		"texture_path": "res://User_Battle/Sprites/red.png"
 	},
 	"blue": {
-		"name": "Blue",
+		"name": "blue",
 		"max_health": 100,
 		"level": 2,
 		"damage": 1,

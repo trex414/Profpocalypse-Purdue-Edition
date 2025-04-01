@@ -6982,7 +6982,7 @@ new_music = ExtResource("22_qd3bh")
 position = Vector2(2867.5, 499.5)
 shape = SubResource("RectangleShape2D_4kt6v")
 
-[node name="TestDummy" type="Node2D" parent="."]
+[node name="TestDummy" type="Node2D" parent="." groups=["enemies"]]
 script = ExtResource("24_qnv2v")
 enemy_name = "red"
 enemy_node_path = NodePath(".")
@@ -7002,7 +7002,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(1929, 2387)
 shape = SubResource("RectangleShape2D_jhhif")
 
-[node name="TestDummy2" type="Node2D" parent="."]
+[node name="TestDummy2" type="Node2D" parent="." groups=["enemies"]]
 script = ExtResource("24_qnv2v")
 enemy_name = "blue"
 enemy_node_path = NodePath(".")

@@ -157,6 +157,9 @@ func player_attack(damage):
 		await get_tree().create_timer(2).timeout
 		print("Current Enemy: ", current_enemy)
 		await show_battle_message("You won!")
+		
+		PlayerData.mark_enemy_defeated(current_enemy["name"])
+		
 		enemy_node_reference.queue_free()
 		enemy_node_reference = null
 		restore_gameplay()
@@ -225,3 +228,4 @@ func restore_gameplay():
 	$CanvasLayer.visible = false
 	
 	MusicManager.restore_previous_music()
+	SaveManager.save()
