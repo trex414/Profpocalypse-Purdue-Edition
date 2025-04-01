@@ -2148,6 +2148,7 @@ shape = SubResource("RectangleShape2D_38km8")
 
 [node name="WalkSFX" type="AudioStreamPlayer" parent="TemporaryPlayer"]
 stream = ExtResource("5_xl0on")
+volume_db = -4.0
 pitch_scale = 2.25
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

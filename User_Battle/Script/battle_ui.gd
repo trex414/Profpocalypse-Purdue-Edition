@@ -6,6 +6,8 @@ var turn_locked = false
 var rng = RandomNumberGenerator.new()
 @onready var enemy_bar = $CanvasLayer/Enemy_Health_Bar
 
+@export var new_music: AudioStream
+
 var input_blocker = null
 
 func set_input_blocker(blocker):
@@ -85,6 +87,7 @@ func start_cutscene():
 
 	$CanvasLayer/Button.connect("pressed", Callable(self, "try_leave_fight"))
 
+	MusicManager.play_battle_music(new_music)
 
 func lock_turn():
 	turn_locked = true
@@ -140,6 +143,7 @@ func player_heal(heal_amt):
 	if turn_locked:
 		return
 	lock_turn()
+	$PlayerHealSFX.play()
 	var result_text = "Successfully healed for %d HP" % heal_amt
 	show_battle_message(result_text)
 	await get_tree().create_timer(2).timeout
@@ -185,3 +189,5 @@ func restore_gameplay():
 	
 	visible = false
 	$CanvasLayer.visible = false
+	
+	MusicManager.restore_previous_music()
