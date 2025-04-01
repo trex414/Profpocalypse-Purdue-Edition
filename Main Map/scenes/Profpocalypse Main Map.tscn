@@ -6984,6 +6984,8 @@ shape = SubResource("RectangleShape2D_4kt6v")
 
 [node name="TestDummy" type="Node2D" parent="."]
 script = ExtResource("24_qnv2v")
+enemy_name = "red"
+enemy_node_path = NodePath(".")
 
 [node name="ColorRect" type="ColorRect" parent="TestDummy"]
 custom_minimum_size = Vector2(32, 32)

@@ -1,5 +1,10 @@
 extends Node2D
 
+@export var enemy_name: String
+@export var enemy_node_path: NodePath
+
+var enemy_instance
+
 func trigger_cutscene():
 	var hud = get_tree().current_scene.get_node("Control - HUD")
 	var battle_ui = hud.battle_ui
@@ -20,9 +25,9 @@ func trigger_cutscene():
 	# Wait for UI to initialize then assign texture
 	await get_tree().process_frame  # wait one frame after adding
 
-	battle_ui.set_player_texture(player_texture)
+	enemy_instance = get_node(enemy_node_path)
 
-
+	battle_ui.set_player_texture(player_texture, enemy_name, enemy_instance)
 
 
 func _on_body_entered(body):

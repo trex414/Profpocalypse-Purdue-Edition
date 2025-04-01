@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://y1y4i0lvdt4l"]
+[gd_scene load_steps=9 format=3 uid="uid://y1y4i0lvdt4l"]
 
 [ext_resource type="Script" path="res://User_Battle/Script/battle_ui.gd" id="1_mt36e"]
 [ext_resource type="AudioStream" uid="uid://pwswji2goitr" path="res://Music/Tracks/battle.ogg" id="2_hde35"]
 [ext_resource type="Script" path="res://User_Battle/Script/enemy.gd" id="2_kw82d"]
 [ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="4_0nwts"]
-[ext_resource type="Script" path="res://User_Battle/Scene/enemy_sprite.gd" id="4_6grwe"]
 [ext_resource type="AudioStream" uid="uid://5pt0u5lby2ee" path="res://menu_sound_effects/success-48018.mp3" id="5_ch11x"]
 [ext_resource type="AudioStream" uid="uid://de23rb0p7sekd" path="res://click.wav" id="5_kvhev"]
 [ext_resource type="AudioStream" uid="uid://3muygngblxdi" path="res://menu_sound_effects/error-call-to-attention-129258.mp3" id="6_sscru"]
@@ -107,7 +106,6 @@ text = "Lose EXP"
 [node name="PlayerSprite" type="Sprite2D" parent="CanvasLayer"]
 
 [node name="EnemySprite" type="Sprite2D" parent="CanvasLayer"]
-script = ExtResource("4_6grwe")
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 anchors_preset = 5

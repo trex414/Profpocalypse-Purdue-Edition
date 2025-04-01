@@ -13,13 +13,14 @@ var input_blocker = null
 var enemy_scene = preload("res://User_Battle/Scene/enemy.tscn")
 var current_enemy = null
 
+var enemy_node_reference = null
 
 func set_input_blocker(blocker):
 	input_blocker = blocker
 
-func set_player_texture(texture):
+func set_player_texture(texture, enemy_name, enemy_node):
 	player_texture = texture
-	start_cutscene()
+	start_cutscene(enemy_name, enemy_node)
 
 func set_health_bar(health_node):
 	player_health_bar = health_node
@@ -32,14 +33,17 @@ func _ready():
 	# Load and add input blocker
 	
 
-func spawn_enemy():
-	current_enemy = enemy_scene.instantiate()
-	$CanvasLayer.add_child(current_enemy)  # Add to Battle UI
-	current_enemy.position = Vector2(850, 350)  # Set position
 
+func start_cutscene(enemy_name: String, enemy_node):
+	if enemy_name not in Global.enemy_database:
+		print("Error: Enemy not found!")
+		return
 
-func start_cutscene():
-	enemy_bar.reset_health()
+	var enemy_data = Global.enemy_database[enemy_name]
+
+	# Reset health bar using correct enemy data
+	enemy_bar.initialize(enemy_data)
+	#enemy_bar.reset_health()
 
 	Global.in_battle = true
 	visible = true
@@ -69,18 +73,27 @@ func start_cutscene():
 	# Apply textures
 	$CanvasLayer/PlayerSprite.texture = player_texture
 
-	var red_image = Image.create(32, 32, false, Image.FORMAT_RGBA8)
-	red_image.fill(Color.RED)
-	var red_texture = ImageTexture.create_from_image(red_image)
-	$CanvasLayer/EnemySprite.texture = red_texture
+	#var red_image = Image.create(32, 32, false, Image.FORMAT_RGBA8)
+	#red_image.fill(Color.RED)
+	#var red_texture = ImageTexture.create_from_image(red_image)
+	#$CanvasLayer/EnemySprite.texture = red_texture
 
-	$CanvasLayer/EnemySprite.scale = Vector2(4, 4)
+	#$CanvasLayer/EnemySprite.texture = load(Global.enemy_database["texture_path"])
+	var enemy_texture = load(enemy_data["texture_path"])
+	$CanvasLayer/EnemySprite.texture = enemy_texture
+	
+	$CanvasLayer/EnemySprite.scale = Vector2(.5, .5)
 	$CanvasLayer/PlayerSprite.scale = Vector2(.5, .5)
 	$CanvasLayer/PlayerSprite.position = Vector2(450, 500)
 	$CanvasLayer/EnemySprite.position = Vector2(850, 350)
 
-	$CanvasLayer/Enemy_Health_Bar/Health.value = 100
-	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL 5"
+	#enemy_bar.reset_health(enemy_data["max_health"])
+	#$CanvasLayer/Enemy_Health_Bar/Health.value = Global.enemy_database["max_health"]
+	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL %d" % enemy_data["level"]
+
+
+	#$CanvasLayer/Enemy_Health_Bar/Health.value = 100
+	#$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL 5"
 
 	$CanvasLayer/PlayerSprite.show()
 	$CanvasLayer/EnemySprite.show()
@@ -90,6 +103,10 @@ func start_cutscene():
 	$CanvasLayer/Button.connect("pressed", Callable(self, "try_leave_fight"))
 
 	MusicManager.play_battle_music(new_music)
+	
+	current_enemy = enemy_data
+	enemy_node_reference = enemy_node
+
 
 func lock_turn():
 	turn_locked = true
@@ -101,7 +118,7 @@ func lock_turn():
 
 func unlock_turn():
 	turn_locked = false
-	input_blocker.visible = false	
+	input_blocker.visible = false
 
 
 
@@ -141,6 +158,9 @@ func player_attack(damage):
 	if enemy_bar.current_health <= 0:
 		await get_tree().create_timer(2).timeout
 		print("Current Enemy: ", current_enemy)
+		await show_battle_message("You won!")
+		enemy_node_reference.queue_free()
+		enemy_node_reference = null
 		restore_gameplay()
 	else:
 		await get_tree().create_timer(2).timeout
@@ -183,6 +203,7 @@ func cpu_attack():
 	
 func restore_gameplay():
 	$EscapeSuccessSFX.play()
+	
 	Global.in_battle = false
 	var scene = get_tree().get_current_scene()
 	
@@ -196,6 +217,8 @@ func restore_gameplay():
 	hud.visible = true
 	inventory.visible = true
 	quest.visible = true
+	
+	input_blocker.visible = false
 	
 	player.set_process(true)
 	player.set_physics_process(true)

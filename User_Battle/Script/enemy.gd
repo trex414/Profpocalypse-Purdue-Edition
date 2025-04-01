@@ -6,6 +6,12 @@ var current_health: int = max_health
 @onready var health_bar = $Health
 @onready var stylebox = health_bar.get("theme_override_styles/fill")
 
+func initialize(enemy_data: Dictionary):
+	if "max_health" in enemy_data:
+		max_health = enemy_data["max_health"]
+		current_health = max_health  # Set current health to max initially
+	update_health_bar()
+
 func _ready():
 	current_health = max_health
 	update_health_bar()
