@@ -10,6 +10,10 @@ var rng = RandomNumberGenerator.new()
 
 var input_blocker = null
 
+var enemy_scene = preload("res://User_Battle/Scene/enemy.tscn")
+var current_enemy = null
+
+
 func set_input_blocker(blocker):
 	input_blocker = blocker
 
@@ -27,8 +31,6 @@ func _ready():
 	
 	# Load and add input blocker
 	
-var enemy_scene = preload("res://User_Battle/Scene/enemy.tscn")
-var current_enemy = null
 
 func spawn_enemy():
 	current_enemy = enemy_scene.instantiate()
@@ -109,14 +111,12 @@ func show_battle_message(msg: String) -> void:
 	await get_tree().create_timer(2).timeout
 	$CanvasLayer/BattleMessage.hide()
 
-
 func try_leave_fight():
 	if turn_locked:
 		return
 
 	if rng.randf() <= 0.6:
 		show_battle_message("Successfully escaped!")
-		$EscapeSuccessSFX.play()
 		
 		await get_tree().create_timer(2).timeout
 		restore_gameplay()
@@ -138,8 +138,13 @@ func player_attack(damage):
 	$AttackSuccessSFX.play()
 	enemy_bar.take_damage(damage)  # ✅ Directly call it here
 
-	await get_tree().create_timer(2).timeout
-	cpu_attack()
+	if enemy_bar.current_health <= 0:
+		await get_tree().create_timer(2).timeout
+		print("Current Enemy: ", current_enemy)
+		restore_gameplay()
+	else:
+		await get_tree().create_timer(2).timeout
+		cpu_attack()
 
 
 func player_heal(heal_amt):
@@ -167,6 +172,10 @@ func cpu_attack():
 
 	if player_health_bar:
 		player_health_bar.lose_health(final_damage)  # ✅ Directly call the method
+	
+	if PlayerData.health <= 0:
+		await show_battle_message("You lost!")
+		get_tree().quit()
 
 	await show_battle_message("CPU attacked for %d damage" % final_damage)
 	unlock_turn() 
