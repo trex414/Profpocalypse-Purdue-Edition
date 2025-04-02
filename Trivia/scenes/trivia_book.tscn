@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs45pvgjl0vug"]
+[gd_scene load_steps=5 format=3 uid="uid://cs45pvgjl0vug"]
 
 [ext_resource type="Script" path="res://Trivia/scenes/trivia_book.gd" id="1_ortk4"]
 [ext_resource type="Texture2D" uid="uid://crm42yod8uney" path="res://Trivia/assets/book_middle.png" id="2_lxj22"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="3_xi3h6"]
+[ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://menu_sound_effects/turn_page.wav" id="4_b33ey"]
 
 [node name="TriviaBook" type="Control"]
 layout_mode = 3
@@ -129,6 +130,10 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_xi3h6")
 theme_override_font_sizes/normal_font_size = 30
 text = "Counter"
+
+[node name="TriviaBookSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_b33ey")
+volume_db = -2.0
 
 [connection signal="pressed" from="CanvasLayer/Panel/Next" to="." method="next_page"]
 [connection signal="pressed" from="CanvasLayer/Panel/Previous" to="." method="prev_page"]

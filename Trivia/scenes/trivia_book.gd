@@ -42,6 +42,7 @@ func _input(event):
 		toggle_book()
 
 func toggle_book():
+	$TriviaBookSFX.play()
 	var panel = $CanvasLayer/Panel
 	panel.visible = !panel.visible
 	update_pages()
