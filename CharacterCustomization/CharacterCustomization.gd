@@ -111,27 +111,20 @@ func _on_change_shoes_pressed():
 	shoe2_sprite.texture = load(shoe_texture_path)
 
 func _ready():
-	var last_character_path = "user://last_saved_character.json"
+	var last_character_path = "CharacterCustomization/last_saved_character.json"
 	if FileAccess.file_exists(last_character_path):
 		var last_character_file = FileAccess.open(last_character_path, FileAccess.READ)
 		if last_character_file:
 			var last_character_data = JSON.parse_string(last_character_file.get_as_text())
 			last_character_file.close()
-			if last_character_data and "last_saved" in last_character_data:
-				var last_character_name = last_character_data["last_saved"]
-				if FileAccess.file_exists("CharacterCustomization/CustomCharacters/" + last_character_name + ".json"):
-					load_character(last_character_name)
+			if last_character_data and last_character_data.has("name"):
+				load_character(last_character_data["name"])
 
 func _on_save_pressed():
 	var character_name = name_input.text.strip_edges()
 	if character_name == "":
 		character_name = "noname"
-	var last_character_path = "user://last_saved_character.json"
-	var last_character_file = FileAccess.open(last_character_path, FileAccess.WRITE)
-	if last_character_file:
-		var last_character_data = { "last_saved": character_name }
-		last_character_file.store_string(JSON.stringify(last_character_data, "\t"))
-		last_character_file.close()
+
 	var save_path = "CharacterCustomization/CustomCharacters/" + character_name + ".json"
 	var save_data = {
 		"name": character_name,
@@ -152,10 +145,20 @@ func _on_save_pressed():
 		"class_texture": class_sprite.texture.resource_path if class_sprite.texture else "",
 		"class_description": class_description.text
 	}
+
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(save_data, "\t"))
 	file.close()
 	print("Character saved at:", save_path)
+
+
+	var last_character_path = "CharacterCustomization/last_saved_character.json"
+	var last_character_file = FileAccess.open(last_character_path, FileAccess.WRITE)
+	last_character_file.store_string(JSON.stringify(save_data, "\t"))
+	last_character_file.close()
+	get_tree().change_scene_to_file("res://test_main.tscn")
+
+		
 
 func load_character(character_name):
 	var save_path = "CharacterCustomization/CustomCharacters/" + character_name + ".json"

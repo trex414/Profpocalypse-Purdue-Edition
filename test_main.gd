@@ -7,6 +7,8 @@ var hud = null
 var abilitiesPreview = null
 var QuestMenuScene = null
 var majorInformation = null
+var is_customization_active = false
+var character_customization = null
 
 
 func _ready():
@@ -105,6 +107,11 @@ func _process(delta):
 			print("Courses Information opened.")
 		else:
 			majorInformation.toggle_MajorInfo()
+	if Input.is_action_just_pressed("ui_customization"):
+		get_tree().change_scene_to_file("res://CharacterCustomization/CharacterCustomization.tscn")
+		
+			
+
 			
 			
 # Main game script (extends Node2D)
