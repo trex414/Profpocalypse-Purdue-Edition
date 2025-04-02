@@ -62,16 +62,16 @@ var class_descriptions = {
 func _on_change_class_pressed():
 	current_class_index = (current_class_index + 1) % class_names.size()
 	var class_nam = class_names[current_class_index]
-	var class_icon_path = "kenney_modular-characters/PNG/" + class_nam + ".png"
+	var class_icon_path = "CharacterCustomization/kenney_modular-characters/PNG/" + class_nam + ".png"
 	class_sprite.texture = load(class_icon_path)
 	class_description.text = class_descriptions[class_nam]
 
 func _on_change_face_pressed():
 	current_tint_index = (current_tint_index + 1) % 8
 	var tint_folder = "Tint " + str(current_tint_index + 1)
-	var face_texture_path = "kenney_modular-characters/PNG/Skin/" + tint_folder + "/tint" + str(current_tint_index + 1) + "_head.png"
+	var face_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Skin/" + tint_folder + "/tint" + str(current_tint_index + 1) + "_head.png"
 	face_sprite.texture = load(face_texture_path)
-	var skin_texture_path = "kenney_modular-characters/PNG/Skin/" + tint_folder + "/tint" + str(current_tint_index + 1)
+	var skin_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Skin/" + tint_folder + "/tint" + str(current_tint_index + 1)
 	arm_sprite.texture = load(skin_texture_path + "_arm.png")
 	arm2_sprite.texture = load(skin_texture_path + "_arm.png")
 	hand_sprite.texture = load(skin_texture_path + "_hand.png")
@@ -80,7 +80,7 @@ func _on_change_face_pressed():
 
 func _on_change_features_pressed():
 	current_features_index = (current_features_index + 1) % 4
-	var features_texture_path = "kenney_modular-characters/PNG/Face/face" + str(current_features_index + 1) + ".png"
+	var features_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Face/face" + str(current_features_index + 1) + ".png"
 	features_sprite.texture = load(features_texture_path)
 
 func _on_change_hair_pressed():
@@ -90,23 +90,23 @@ func _on_change_hair_pressed():
 		current_hair_color_index = (current_hair_color_index + 1) % hair_colors.size()
 	var hair_color = hair_colors[current_hair_color_index]
 	var hair_style = ["5", "7", "8"][current_hair_style_index]
-	var hair_texture_path = "kenney_modular-characters/PNG/Hair/" + hair_color + "/" + hair_color.to_lower() + "Man" + hair_style + ".png"
+	var hair_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Hair/" + hair_color + "/" + hair_color.to_lower() + "Man" + hair_style + ".png"
 	hair_sprite.texture = load(hair_texture_path)
 
 func _on_change_shirt_pressed():
 	current_shirt_index = (current_shirt_index + 1) % shirt_colors.size()
-	var shirt_texture_path = "kenney_modular-characters/PNG/Shirts/" + shirt_colors[current_shirt_index] + "Shirt7.png"
+	var shirt_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Shirts/" + shirt_colors[current_shirt_index] + "Shirt7.png"
 	shirt_sprite.texture = load(shirt_texture_path)
 
 func _on_change_pants_pressed():
 	current_pant_index = (current_pant_index + 1) % pant_colors.size()
-	var pant_texture_path = "kenney_modular-characters/PNG/Pants/pants" + pant_colors[current_pant_index] + "_long.png"
+	var pant_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Pants/pants" + pant_colors[current_pant_index] + "_long.png"
 	pant_sprite.texture = load(pant_texture_path)
 	pant2_sprite.texture = load(pant_texture_path)
 
 func _on_change_shoes_pressed():
 	current_shoe_index = (current_shoe_index + 1) % shoe_colors.size()
-	var shoe_texture_path = "kenney_modular-characters/PNG/Shoes/" + shoe_colors[current_shoe_index] + "Shoe3.png"
+	var shoe_texture_path = "CharacterCustomization/kenney_modular-characters/PNG/Shoes/" + shoe_colors[current_shoe_index] + "Shoe3.png"
 	shoe1_sprite.texture = load(shoe_texture_path)
 	shoe2_sprite.texture = load(shoe_texture_path)
 
@@ -119,7 +119,7 @@ func _ready():
 			last_character_file.close()
 			if last_character_data and "last_saved" in last_character_data:
 				var last_character_name = last_character_data["last_saved"]
-				if FileAccess.file_exists("CustomCharacters/" + last_character_name + ".json"):
+				if FileAccess.file_exists("CharacterCustomization/CustomCharacters/" + last_character_name + ".json"):
 					load_character(last_character_name)
 
 func _on_save_pressed():
@@ -132,7 +132,7 @@ func _on_save_pressed():
 		var last_character_data = { "last_saved": character_name }
 		last_character_file.store_string(JSON.stringify(last_character_data, "\t"))
 		last_character_file.close()
-	var save_path = "CustomCharacters/" + character_name + ".json"
+	var save_path = "CharacterCustomization/CustomCharacters/" + character_name + ".json"
 	var save_data = {
 		"name": character_name,
 		"face_texture": face_sprite.texture.resource_path if face_sprite.texture else "",
@@ -148,7 +148,7 @@ func _on_save_pressed():
 		"hand_texture": hand_sprite.texture.resource_path if hand_sprite.texture else "",
 		"hand2_texture": hand2_sprite.texture.resource_path if hand2_sprite.texture else "",
 		"neck_texture": neck_sprite.texture.resource_path if neck_sprite.texture else "",
-		"belt_texture": "kenney_modular-characters/PNG/belt.png",
+		"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
 		"class_texture": class_sprite.texture.resource_path if class_sprite.texture else "",
 		"class_description": class_description.text
 	}
@@ -158,7 +158,7 @@ func _on_save_pressed():
 	print("Character saved at:", save_path)
 
 func load_character(character_name):
-	var save_path = "CustomCharacters/" + character_name + ".json"
+	var save_path = "CharacterCustomization/CustomCharacters/" + character_name + ".json"
 	if not FileAccess.file_exists(save_path):
 		print("Error: No saved character found for", character_name)
 		return

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Team 1:Profpocalypse: Purdue Edition"
-run/main_scene="res://test_main.tscn"
+run/main_scene="res://CharacterCustomization/CharacterCustomization.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
