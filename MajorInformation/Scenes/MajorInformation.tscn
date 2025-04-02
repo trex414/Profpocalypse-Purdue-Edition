@@ -115,6 +115,19 @@ metadata/_tab_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Professors" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxProfessors" type="VBoxContainer" parent="CanvasLayer/Panel/TabContainer/Professors"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProfessorInfoLabel" type="Label" parent="CanvasLayer/Panel/TabContainer/Professors/VBoxProfessors"]
+layout_mode = 2
+
 [node name="PrerequisiteFlowchartTexture" type="TextureRect" parent="CanvasLayer/Panel"]
 visible = false
 layout_mode = 0

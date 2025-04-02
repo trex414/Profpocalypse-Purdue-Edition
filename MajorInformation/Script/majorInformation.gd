@@ -1,34 +1,95 @@
 extends Control
 
+var professors_data = {
+	"Prof. Doomsmore": {
+		"office": "LWSN 1189",
+		"difficulty": 1,
+		"course": "CS 180 – Object Oriented Programming"
+	},
+	"Prof. Turkey": {
+		"office": "LWSN 2116F",
+		"difficulty": 4,
+		"course": "CS 240 – Programming in C"
+	},
+	"Prof. Sel-key": {
+		"office": "LWSN 2142H",
+		"difficulty": 2,
+		"course": "CS 182 – Foundations of Computer Science"
+	},
+	"Prof. Gust-Codes": {
+		"office": "LWSN 3154G",
+		"difficulty": 3,
+		"course": "CS 250 – Computer Architecture"
+	},
+	"Prof. PosadaBytes": {
+		"office": "LWSN 2116G",
+		"difficulty": 4,
+		"course": "CS 251 – Data Structures and Algorithms"
+	},
+	"Prof. Gust-Stack": {
+		"office": "LWSN 3154G",
+		"difficulty": 3,
+		"course": "CS 252 – Systems Programming"
+	},
+	"Prof. KernelComer": {
+		"office": "LWSN 1171",
+		"difficulty": 3,
+		"course": "CS 354 – Operating Systems"
+	},
+	"Prof. CodeZhang": {
+		"office": "LWSN 3154K",
+		"difficulty": 4,
+		"course": "CS 307 – Software Engineering I"
+	},
+	"Prof. AlgoKnight": {
+		"office": "LWSN 1201",
+		"difficulty": 3,
+		"course": "CS 381 – Analysis of Algorithms"
+	},
+	"Prof. CapstoneCrafter": {
+		"office": "LWSN 2142G",
+		"difficulty": 1,
+		"course": "CS 408 – Senior Project"
+	},
+	"Prof. BugSquasher": {
+		"office": "LWSN 1183",
+		"difficulty": 1,
+		"course": "CS 407 – Software Testing"
+	}
+}
+
+
 @export var course_list: Array = [
 	{"semester": "Freshman Fall", "inprogress": true, "courses": [
-	  {"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "location_description" : "Large Lecture Hall", "time": "10 AM", "description": "Object Oriented Programming", "completed": false, "prerequisites": ["None"], "prerequisite_numbers": [0]}
+		{"name": "CS 180", "professor": "Prof. Doomsmore", "location": "CL 1950", "location_description": "Large Lecture Hall", "time": "10 AM", "description": "Object Oriented Programming", "completed": false, "prerequisites": ["None"], "prerequisite_numbers": [0], "difficulty": 1}
 	]},
 	{"semester": "Freshman Spring", "inprogress": false, "courses": [
-	  {"name": "CS 240", "professor": "Prof. Evil", "location": "UC", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Programming in C", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]},
-	  {"name": "CS 182", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Foundations of Computer Science", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0]} 
+		{"name": "CS 240", "professor": "Prof. Turkey", "location": "UC", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Programming in C", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0], "difficulty": 2},
+		{"name": "CS 182", "professor": "Prof. Sel-key", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Foundations of Computer Science", "completed": false, "prerequisites": ["CS 180"], "prerequisite_numbers": [0], "difficulty": 2}
 	]},
 	{"semester": "Sophmore Fall", "inprogress": false, "courses": [
-	  {"name": "CS 250", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Computer Architecture", "completed": false, "prerequisites": ["CS 240"], "prerequisite_numbers": [0]},
-	  {"name": "CS 251", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Data Structures and Algorithms", "completed": false, "prerequisites": ["CS 182", "CS 240"], "prerequisite_numbers": [0]}
+		{"name": "CS 250", "professor": "Prof. Gust-Codes", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Computer Architecture", "completed": false, "prerequisites": ["CS 240"], "prerequisite_numbers": [0], "difficulty": 2},
+		{"name": "CS 251", "professor": "Prof. PosadaBytes", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Data Structures and Algorithms", "completed": false, "prerequisites": ["CS 182", "CS 240"], "prerequisite_numbers": [0], "difficulty": 3}
 	]},
 	{"semester": "Sophmore Spring", "inprogress": false, "courses": [
-	 {"name": "CS 252", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Systems Programming", "completed": false, "prerequisites": ["CS 251", "CS 250"], "prerequisite_numbers": [0]}
+		{"name": "CS 252", "professor": "Prof. Gust-Stack", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Systems Programming", "completed": false, "prerequisites": ["CS 251", "CS 250"], "prerequisite_numbers": [0], "difficulty": 3}
 	]},
 	{"semester": "Junior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 354", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Operating Systems", "completed": false, "prerequisites": ["CS 252"], "prerequisite_numbers": [0]}
+		{"name": "CS 354", "professor": "Prof. KernelComer", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Operating Systems", "completed": false, "prerequisites": ["CS 252"], "prerequisite_numbers": [0], "difficulty": 3}
 	]},
 	{"semester": "Junior Spring", "inprogress": false, "courses": [
-	 {"name": "CS 307", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Software Engineering I", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
+		{"name": "CS 307", "professor": "Prof. CodeZhang", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Software Engineering I", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0], "difficulty": 2}
 	]},
 	{"semester": "Senior Fall", "inprogress": false, "courses": [
-	 {"name": "CS 381", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Analysis of Algorithms", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]}
+		{"name": "CS 381", "professor": "Prof. AlgoKnight", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Analysis of Algorithms", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0], "difficulty": 10}
 	]},
 	{"semester": "Senior Spring", "inprogress": false, "courses": [
-	{"name": "CS 408", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Senior Project", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0]},
-	{"name": "CS 407", "professor": "Prof. Evil", "location": "WTHR 220", "location_description" : "Large Lecture Hall", "time": "1 PM", "description": "Software Testing", "completed": false, "prerequisites": ["CS 307"], "prerequisite_numbers": [0]}
+		{"name": "CS 408", "professor": "Prof. CapstoneCrafter", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Senior Project", "completed": false, "prerequisites": ["CS 251"], "prerequisite_numbers": [0], "difficulty": 2},
+		{"name": "CS 407", "professor": "Prof. BugSquasher", "location": "WTHR 220", "location_description": "Large Lecture Hall", "time": "1 PM", "description": "Software Testing", "completed": false, "prerequisites": ["CS 307"], "prerequisite_numbers": [0], "difficulty": 2}
 	]}
 ]
+
+
 
 var current_semester: String = "Freshman Fall"  # Change this to switch displayed semester
 var semester_index: int = 0  # Tracks which semester we're on
@@ -56,6 +117,9 @@ func _ready():
 	PrerequisiteFlowchartButton.pressed.connect(toggle_flowchart)
 	fill_vbox()
 	toggle_MajorInfo()
+	populate_professors_tab()
+
+	
 
 func update_display():
 	# Clear previous labels
@@ -178,64 +242,6 @@ func _on_new_semester_pressed():
 			
 		last_pressed = 0
 		
-func _on_course_button_pressed(course):
-	# Clear previous popup content
-	for child in popup_vbox.get_children():
-		child.queue_free()
-
-	# Add new labels dynamically
-	var title_label = Label.new()
-	title_label.text = "Course: " + course["name"]
-	popup_vbox.add_child(title_label)
-	var professor_label = Label.new()
-	professor_label.text = "Professor: " + course["professor"]
-	popup_vbox.add_child(professor_label)
-	var location_label = Label.new()
-	location_label.text = "Location: " + course["location"]
-	popup_vbox.add_child(location_label)
-	var location_description_label = Label.new()
-	location_description_label.text = "Location Description: " + course["location_description"]
-	location_description_label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
-	location_description_label.custom_minimum_size.x = 170  # Set a fixed width (adjust as needed)
-	popup_vbox.add_child(location_description_label)
-	var time_label = Label.new()
-	time_label.text = "Time: " + course["time"]
-	
-	popup_vbox.add_child(time_label)
-	var description_label = Label.new()
-	description_label.text = "Description: " + course["description"]
-	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD  # Enables word wrapping
-	description_label.custom_minimum_size.x = 170  # Set a fixed width (adjust as needed)
-	popup_vbox.add_child(description_label)
-	#var prereq_button = Button.new()
-	
-	# Add prerequisite buttons if they exist
-	if course["prerequisites"][0] != "None":
-		var prereq_label = Label.new()
-		prereq_label.text = "Prerequisites:"
-		popup_vbox.add_child(prereq_label)
-
-		for i in range(course["prerequisites"].size()):
-			var prereq_name = course["prerequisites"][i]
-			var prereq_button = Button.new()
-			prereq_button.text = prereq_name
-			# Find the corresponding course data and bind it
-			var prereq_course = find_course_by_name(prereq_name)
-			if prereq_course:
-				prereq_button.pressed.connect(_on_course_button_pressed.bind(prereq_course))
-			popup_vbox.add_child(prereq_button)
-	
-	#prereq_button.text = "Prerequisites: " + course["prerequisites"]
-	#prereq_button.pressed.connect(_on_course_button_pressed.bind(course))
-	#popup_vbox.add_child(prereq_button)
-	# Add Close Button
-	var close_button = Button.new()
-	close_button.text = "Close"
-	close_button.pressed.connect(_on_close_button_pressed)
-	popup_vbox.add_child(close_button)
-	# Show the popup
-	popup.show()
-
 func _on_close_button_pressed():
 	popup.hide()  # Hide popup
 
@@ -246,3 +252,101 @@ func find_course_by_name(course_name):
 			if course["name"] == course_name:
 				return course
 	return null  # Return null if the course is not found
+
+func _on_course_button_pressed(course):
+	# Clear previous popup content
+	for child in popup_vbox.get_children():
+		child.queue_free()
+
+	# Course title
+	var title_label = Label.new()
+	title_label.text = "Course: " + course["name"]
+	popup_vbox.add_child(title_label)
+
+	# Professor
+	var professor_label = Label.new()
+	professor_label.text = "Professor: " + course["professor"]
+	popup_vbox.add_child(professor_label)
+
+	# Location
+	var location_label = Label.new()
+	location_label.text = "Location: " + course["location"]
+	popup_vbox.add_child(location_label)
+
+	# Location description
+	var location_description_label = Label.new()
+	location_description_label.text = "Location Description: " + course["location_description"]
+	location_description_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	location_description_label.custom_minimum_size.x = 170
+	popup_vbox.add_child(location_description_label)
+
+	# Time
+	var time_label = Label.new()
+	time_label.text = "Time: " + course["time"]
+	popup_vbox.add_child(time_label)
+
+	# Description
+	var description_label = Label.new()
+	description_label.text = "Description: " + course["description"]
+	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	description_label.custom_minimum_size.x = 170
+	popup_vbox.add_child(description_label)
+
+	# Difficulty (shown as stars)
+	var difficulty = course.get("difficulty")
+	var stars = "⭐".repeat(difficulty)
+	var difficulty_label = Label.new()
+	if difficulty > 5:
+		difficulty_label.text= "Difficulty:RIP 💀💀"
+	else: 
+		difficulty_label.text = "Difficulty: " + stars
+	popup_vbox.add_child(difficulty_label)
+
+	# Prerequisites
+	if course["prerequisites"][0] != "None":
+		var prereq_label = Label.new()
+		prereq_label.text = "Prerequisites:"
+		popup_vbox.add_child(prereq_label)
+
+		for i in range(course["prerequisites"].size()):
+			var prereq_name = course["prerequisites"][i]
+			var prereq_button = Button.new()
+			prereq_button.text = prereq_name
+			var prereq_course = find_course_by_name(prereq_name)
+			if prereq_course:
+				prereq_button.pressed.connect(_on_course_button_pressed.bind(prereq_course))
+			popup_vbox.add_child(prereq_button)
+
+	# Close button
+	var close_button = Button.new()
+	close_button.text = "Close"
+	close_button.pressed.connect(_on_close_button_pressed)
+	popup_vbox.add_child(close_button)
+
+	# Show popup
+	popup.show()
+	
+func populate_professors_tab():
+	var professors_vbox = $CanvasLayer/Panel/TabContainer/Professors/VBoxProfessors
+
+	for professor in professors_data.keys():
+		var button = Button.new()
+		button.text = professor
+		button.focus_mode = Control.FOCUS_NONE
+		button.set_meta("original_text", professor)
+
+		button.mouse_entered.connect(func():
+			var data = professors_data[professor]
+			var stars = "⭐".repeat(data["difficulty"])
+			button.text = "{name}\n{office}\n{stars}".format({
+				"name": professor,
+				"office": data["office"],
+				"stars": stars
+			})
+		)
+
+		button.mouse_exited.connect(func():
+			button.text = button.get_meta("original_text")
+		)
+
+		professors_vbox.add_child(button)

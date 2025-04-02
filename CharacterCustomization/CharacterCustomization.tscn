@@ -46,11 +46,11 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="header" type="MenuButton" parent="."]
-offset_left = 418.0
-offset_top = 21.0
-offset_right = 736.324
-offset_bottom = 63.251
-text = "CUSTOMIZE YOUR CHARACTER"
+offset_left = 335.0
+offset_top = 25.0
+offset_right = 857.0
+offset_bottom = 67.251
+text = "CUSTOMIZE YOUR CHARACTER (PRESS SAVE TO GO BACK TO GAME)"
 flat = false
 
 [node name="change face" type="MenuButton" parent="."]
