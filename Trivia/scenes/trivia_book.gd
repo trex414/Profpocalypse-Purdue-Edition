@@ -6,8 +6,10 @@ var trivia_pages = []  # Stores all pages with 4 slots each
 
 @onready var page_num_left = $CanvasLayer/Panel/PageNumLeft
 @onready var page_num_right = $CanvasLayer/Panel/PageNumRight
+@onready var counter = $CanvasLayer/Panel/Counter
 
 var real_trivia = [
+	"Purdue University was established in 1869, named after John Purdue.",
 	"4 Purdue Petes are selected every year.",
 	"Purdue adopted black and gold as its official colors in 1887.",
 	"Purdue Pete originally began as the mascot for the University Bookstore.",
@@ -29,8 +31,8 @@ func _ready():
 		var page = {
 			"texts_left": ["???", "???", "???", "???"], 
 			"texts_right": ["???", "???", "???", "???"], 
-			"unlocked_left": [false, true, false, true], 
-			"unlocked_right": [true, false, true, false]
+			"unlocked_left": [false, false, false, false], 
+			"unlocked_right": [false, false, false, false]
 		}
 		trivia_pages.append(page)
 	update_pages()
@@ -80,10 +82,20 @@ func update_pages():
 
 	page_num_left.text = str(left_page_number)
 	page_num_right.text = str(right_page_number)
+	
+	var unlocked_count = get_unlocked_trivia_count()
+	counter.text = "Unlocked: " + str(unlocked_count) + " / " + str(real_trivia.size())
 		
 	#$Previous.disabled = current_page == 1
 	#$Next.disabled = current_page == trivia_pages.size() - 1
-	
+
+func get_unlocked_trivia_count():
+	var count = 0
+	for page in trivia_pages:
+		count += page["unlocked_left"].count(true)
+		count += page["unlocked_right"].count(true)
+	return count
+
 func next_page():
 	if current_page < trivia_pages.size() - 1:
 		current_page += 1

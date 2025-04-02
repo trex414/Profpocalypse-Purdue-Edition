@@ -119,5 +119,16 @@ theme_override_fonts/normal_font = ExtResource("3_xi3h6")
 theme_override_font_sizes/normal_font_size = 30
 text = "2"
 
+[node name="Counter" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -216.0
+offset_top = 186.0
+offset_right = 62.0
+offset_bottom = 219.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xi3h6")
+theme_override_font_sizes/normal_font_size = 30
+text = "Counter"
+
 [connection signal="pressed" from="CanvasLayer/Panel/Next" to="." method="next_page"]
 [connection signal="pressed" from="CanvasLayer/Panel/Previous" to="." method="prev_page"]
