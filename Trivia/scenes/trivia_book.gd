@@ -22,6 +22,8 @@ var real_trivia = [
 var current_page = 0
 
 func _ready():
+	var panel = $CanvasLayer/Panel
+	panel.visible = false
 	var total_spreads = ceil(real_trivia.size() / float(TRIVIA_PER_PAGE * 2))
 	for _i in range(total_spreads):
 		var page = {
