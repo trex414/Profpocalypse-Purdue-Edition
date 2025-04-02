@@ -115,12 +115,20 @@ func unlock_trivia(index):
 	var is_left = slot < TRIVIA_PER_PAGE  # Left page or right page?
 
 	if spread < trivia_pages.size():
+		var was_already_unlocked = false
+		var fact_text = real_trivia[index]
+
 		if is_left:
-			trivia_pages[spread]["texts_left"][slot] = real_trivia[index]
+			was_already_unlocked = trivia_pages[spread]["unlocked_left"][slot]
+			trivia_pages[spread]["texts_left"][slot] = fact_text
 			trivia_pages[spread]["unlocked_left"][slot] = true
 		else:
 			var right_slot = slot - TRIVIA_PER_PAGE
-			trivia_pages[spread]["texts_right"][right_slot] = real_trivia[index]
+			was_already_unlocked = trivia_pages[spread]["unlocked_right"][right_slot]
+			trivia_pages[spread]["texts_right"][right_slot] = fact_text
 			trivia_pages[spread]["unlocked_right"][right_slot] = true
 
 		update_pages()
+		return [!was_already_unlocked, index + 1, fact_text]
+
+	return [false, index + 1, "Unknown Trivia"]
