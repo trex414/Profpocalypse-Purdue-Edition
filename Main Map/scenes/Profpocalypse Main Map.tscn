@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=50 format=4 uid="uid://44fn8peqisx3"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Main Map/scenes/enter building.gd" id="11_2w1om"]
 [ext_resource type="Script" path="res://Main Map/scenes/athletics_section.gd" id="11_i3eja"]
 [ext_resource type="Script" path="res://Main Map/scenes/engineering_section.gd" id="12_fpetl"]
+[ext_resource type="Script" path="res://Main Map/scenes/dialogue_box.gd" id="12_kxfdi"]
 [ext_resource type="AudioStream" uid="uid://cgdfurfgnjlue" path="res://Music/Tracks/Purdue Fight Song.mp3" id="12_sib2m"]
 [ext_resource type="Script" path="res://Main Map/scenes/residential_section.gd" id="13_uqq10"]
 [ext_resource type="AudioStream" uid="uid://3morer8tnfnd" path="res://Music/Tracks/Engineering.mp3" id="14_8h5q8"]
@@ -3123,6 +3124,9 @@ size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq0of"]
 size = Vector2(29.0781, 29.9062)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ud4g"]
+bg_color = Color(0.529412, 0.411765, 0.105882, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064h2"]
 bg_color = Color(0.529412, 0.411765, 0.105882, 1)
@@ -6824,6 +6828,67 @@ shape = SubResource("RectangleShape2D_eq0of")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="DialogueBox" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_kxfdi")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="UI/DialogueBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -107.0
+offset_right = 276.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ud4g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DialogueBox/Panel"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 56.0
+offset_right = 523.0
+offset_bottom = 203.0
+
+[node name="FactLabel" type="RichTextLabel" parent="UI/DialogueBox/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(10, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_j2j4h")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]trivia fact!!! wow[/center]"
+
+[node name="UnlockLabel" type="RichTextLabel" parent="UI/DialogueBox/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_j2j4h")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]unlock status[/center]"
+
+[node name="CloseButton" type="Button" parent="UI/DialogueBox/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 46.0
+offset_bottom = 45.0
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -6851,6 +6916,7 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_tqgjs")
 
 [node name="Control" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -6864,6 +6930,7 @@ offset_bottom = 40.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_2w1om")
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="UI/Control"]
 layout_mode = 1
@@ -7063,6 +7130,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(3480, 1935)
 shape = SubResource("RectangleShape2D_jhhif")
 
+[connection signal="pressed" from="UI/DialogueBox/Panel/CloseButton" to="UI/DialogueBox" method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button2" to="UI/Control" method="_on_button_2_pressed"]
 [connection signal="body_entered" from="Athletics Section" to="Athletics Section" method="_on_body_entered"]
