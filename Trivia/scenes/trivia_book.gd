@@ -14,10 +14,10 @@ var real_trivia = [
 	"Purdue adopted black and gold as its official colors in 1887.",
 	"John Purdue was buried near his bronze statue in Memorial Mall. Rumor says his ghost appears after sundown.",
 	"Purdue Football has the nickname \"The Cradle of Quarterbacks.\"",
-	"Neil Armstrong graduated from Purdue in 1955.",
+	"Purdue has 27 astronaut graduates, including Neil Armstrong in 1955!",
 	"The Boilermaker Special is Purdue's official mascot, not Purdue Pete!",
 	"Purdue bought Amelia Earhart the plane that she disappeared in. She served as a “Counselor on Careers for Women” in 1935!",
-	"If you walk under the bell tower, you won't graduate in 4 years.",
+	"Legend says that if you walk under the bell tower, you won't graduate in 4 years.",
 	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus.",
 	"Stone Hall is the former women's dormitory.",
 	"Purdue's men's basketball team holds the record for most Big Ten regular season championships: 26!",
@@ -31,10 +31,11 @@ var real_trivia = [
 	"If you and your significant other kiss under Purdue’s bell tower and walk by the Lion’s Fountain, then you will get married!",
 	"There's a 6th floor of Cary Quad. It used to house the campus radio station, and has roof access!",
 	"Rumor says that Amelia Earhart's ghost haunts the hangars.",
-	"The inventory of chicken nuggets, Robert C. Baker, got his PhD from Purdue!",
+	"The inventor of chicken nuggets, Robert C. Baker, got his PhD from Purdue!",
 	"Hilltop Apartments was originally built in 1949 for married students!",
 	"Purdue Memorial Union opened in 1924! It's a memorian for students who fought in WWI.",
-	"Purdue University has 10 colleges/schools!"
+	"Purdue University has 10 colleges/schools!",
+	"In 1921, Purdue completed construction of the largest bass drum in the world. The name is trademarked!"
 ]
 
 var current_page = 0

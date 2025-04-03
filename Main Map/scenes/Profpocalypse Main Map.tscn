@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=68 format=4 uid="uid://44fn8peqisx3"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://k21iv3hthmnv" path="res://Music/Tracks/Residential.mp3" id="16_dofih"]
 [ext_resource type="Script" path="res://Main Map/scenes/outskirts_section.gd" id="16_gnlpb"]
 [ext_resource type="Texture2D" uid="uid://bila3olu0fkte" path="res://Main Map/assets/lion fountain.png" id="17_j2876"]
+[ext_resource type="Texture2D" uid="uid://hx70wd6e8u1w" path="res://Main Map/assets/world's largest drum.png" id="18_d877e"]
 [ext_resource type="AudioStream" uid="uid://dgxq8hc3oiyo2" path="res://Music/Tracks/Business.mp3" id="18_srqxo"]
 [ext_resource type="Texture2D" uid="uid://jxn0mf7whck1" path="res://Main Map/assets/The_Boilermaker_Special_7-removebg-preview.png" id="19_5t6ii"]
 [ext_resource type="AudioStream" uid="uid://c1vute6ehxr75" path="res://Music/Tracks/Science.mp3" id="20_15c0i"]
@@ -3153,6 +3154,9 @@ size = Vector2(126, 79)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ll3lp"]
 size = Vector2(60, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgea6"]
+size = Vector2(91, 83)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ud4g"]
 bg_color = Color(0.529412, 0.411765, 0.105882, 1)
@@ -6986,7 +6990,7 @@ position = Vector2(3933, 2860)
 shape = SubResource("RectangleShape2D_nv7vh")
 
 [node name="Trivia Source 8" type="Node2D" parent="Trivia"]
-position = Vector2(-1018, 1212)
+position = Vector2(-1835, 1410)
 script = ExtResource("10_l7sos")
 
 [node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 8"]
@@ -7329,7 +7333,7 @@ position = Vector2(-13, -19)
 shape = SubResource("RectangleShape2D_eq0of")
 
 [node name="Trivia Source 23" type="Node2D" parent="Trivia"]
-position = Vector2(-1640, 1195)
+position = Vector2(247, 2351)
 script = ExtResource("10_l7sos")
 
 [node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 23"]
@@ -7415,6 +7419,33 @@ position = Vector2(3905, 2852)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Trivia/Trivia Source 26/Area2D/StaticBody2D"]
 position = Vector2(-13, -19)
 shape = SubResource("RectangleShape2D_eq0of")
+
+[node name="Trivia Source 27" type="Node2D" parent="Trivia"]
+position = Vector2(-1088, 1024)
+script = ExtResource("10_l7sos")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Trivia/Trivia Source 27"]
+position = Vector2(3799, 2842)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("18_d877e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 27"]
+position = Vector2(3771, 2818)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("26_xcoj7")
+
+[node name="Area2D" type="Area2D" parent="Trivia/Trivia Source 27"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 27/Area2D"]
+position = Vector2(3798.5, 2839.5)
+shape = SubResource("RectangleShape2D_vgea6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Trivia/Trivia Source 27/Area2D"]
+position = Vector2(3905, 2852)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Trivia/Trivia Source 27/Area2D/StaticBody2D"]
+position = Vector2(-106.5, -12.5)
+shape = SubResource("RectangleShape2D_vgea6")
 
 [node name="Random sprites" type="Node2D" parent="."]
 visible = false
