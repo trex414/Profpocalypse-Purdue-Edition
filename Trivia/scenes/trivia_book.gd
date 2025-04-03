@@ -13,10 +13,10 @@ var real_trivia = [
 	"4 Purdue Petes are selected every year.",
 	"Purdue adopted black and gold as its official colors in 1887.",
 	"John Purdue was buried here in Memorial Mall.",
-	"Purdue's first football game was in 1887.",
+	"Purdue Football has the nickname \"The Cradle of Quarterbacks.\"",
 	"Neil Armstrong graduated from Purdue in 1955.",
-	"The Boilermaker Special is Purdue's official mascot.",
-	"Boilermakers was first used as a nickname in 1891.",
+	"The Boilermaker Special is Purdue's official mascot, not Purdue Pete!",
+	"Purdue bought Amelia Earhart the plane that she disappeared in.",
 	"If you walk under the bell tower, you won't graduate in 4 years.",
 	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus."
 ]

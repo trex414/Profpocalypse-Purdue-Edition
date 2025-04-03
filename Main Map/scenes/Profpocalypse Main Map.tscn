@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://44fn8peqisx3"]
+[gd_scene load_steps=67 format=4 uid="uid://44fn8peqisx3"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
@@ -27,10 +27,15 @@
 [ext_resource type="Script" path="res://Main Map/scenes/trivia_source_6.gd" id="14_dnw5q"]
 [ext_resource type="Script" path="res://Main Map/scenes/trivia_source_3.gd" id="14_shns6"]
 [ext_resource type="Script" path="res://Main Map/scenes/science_section.gd" id="15_w615c"]
+[ext_resource type="Script" path="res://Main Map/scenes/trivia_source_5.gd" id="16_dbr7k"]
 [ext_resource type="AudioStream" uid="uid://k21iv3hthmnv" path="res://Music/Tracks/Residential.mp3" id="16_dofih"]
 [ext_resource type="Script" path="res://Main Map/scenes/outskirts_section.gd" id="16_gnlpb"]
 [ext_resource type="AudioStream" uid="uid://dgxq8hc3oiyo2" path="res://Music/Tracks/Business.mp3" id="18_srqxo"]
+[ext_resource type="Script" path="res://Main Map/scenes/trivia_source_7.gd" id="18_tub5f"]
+[ext_resource type="Texture2D" uid="uid://jxn0mf7whck1" path="res://Main Map/assets/The_Boilermaker_Special_7-removebg-preview.png" id="19_5t6ii"]
 [ext_resource type="AudioStream" uid="uid://c1vute6ehxr75" path="res://Music/Tracks/Science.mp3" id="20_15c0i"]
+[ext_resource type="Script" path="res://Main Map/scenes/trivia_source_8.gd" id="20_thipd"]
+[ext_resource type="Script" path="res://Main Map/scenes/trivia_source_9.gd" id="21_1ty2p"]
 [ext_resource type="Script" path="res://Main Map/scenes/book_button.gd" id="22_23qpi"]
 [ext_resource type="AudioStream" uid="uid://4yqp1j6dfims" path="res://Music/Tracks/Outskirts.mp3" id="22_qd3bh"]
 [ext_resource type="Texture2D" uid="uid://b3vcqv84wmkxv" path="res://Main Map/assets/book_icon.png" id="22_sp2gt"]
@@ -3139,8 +3144,20 @@ size = Vector2(49, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq0of"]
 size = Vector2(23, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nv7vh"]
+size = Vector2(111, 83)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ud4g"]
 bg_color = Color(0.529412, 0.411765, 0.105882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_064h2"]
 bg_color = Color(0.529412, 0.411765, 0.105882, 1)
@@ -6923,6 +6940,29 @@ position = Vector2(3905, 2852)
 position = Vector2(-13, -19)
 shape = SubResource("RectangleShape2D_eq0of")
 
+[node name="Trivia Source 5" type="Node2D" parent="Trivia"]
+position = Vector2(-354, -698)
+script = ExtResource("16_dbr7k")
+trivia_index = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 5"]
+position = Vector2(3897, 2839)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("26_xcoj7")
+
+[node name="Area2D" type="Area2D" parent="Trivia/Trivia Source 5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 5/Area2D"]
+position = Vector2(3892, 2833)
+shape = SubResource("RectangleShape2D_eq0of")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Trivia/Trivia Source 5/Area2D"]
+position = Vector2(3905, 2852)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Trivia/Trivia Source 5/Area2D/StaticBody2D"]
+position = Vector2(-13, -19)
+shape = SubResource("RectangleShape2D_eq0of")
+
 [node name="Trivia Source 6" type="Node2D" parent="Trivia"]
 position = Vector2(500, -88)
 script = ExtResource("14_dnw5q")
@@ -6942,6 +6982,77 @@ shape = SubResource("RectangleShape2D_8a7if")
 [node name="StaticBody2D" type="StaticBody2D" parent="Trivia/Trivia Source 6/Area2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 6/Area2D/StaticBody2D"]
+position = Vector2(3891, 2834)
+shape = SubResource("RectangleShape2D_8a7if")
+
+[node name="Trivia Source 7" type="Node2D" parent="Trivia"]
+position = Vector2(-855, 1733)
+script = ExtResource("18_tub5f")
+trivia_index = 6
+
+[node name="Sprite2D2" type="Sprite2D" parent="Trivia/Trivia Source 7"]
+position = Vector2(3940, 2864)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("19_5t6ii")
+
+[node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 7"]
+position = Vector2(3897, 2839)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("26_xcoj7")
+
+[node name="Area2D" type="Area2D" parent="Trivia/Trivia Source 7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 7/Area2D"]
+position = Vector2(3933, 2860)
+shape = SubResource("RectangleShape2D_nv7vh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Trivia/Trivia Source 7/Area2D"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Trivia/Trivia Source 7/Area2D/StaticBody2D"]
+position = Vector2(3933, 2860)
+shape = SubResource("RectangleShape2D_nv7vh")
+
+[node name="Trivia Source 8" type="Node2D" parent="Trivia"]
+position = Vector2(-1018, 1212)
+script = ExtResource("20_thipd")
+trivia_index = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 8"]
+position = Vector2(3897, 2839)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("26_xcoj7")
+
+[node name="Area2D" type="Area2D" parent="Trivia/Trivia Source 8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 8/Area2D"]
+position = Vector2(3891.5, 2834)
+shape = SubResource("RectangleShape2D_8a7if")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Trivia/Trivia Source 8/Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 8/Area2D/StaticBody2D"]
+position = Vector2(3891, 2834)
+shape = SubResource("RectangleShape2D_8a7if")
+
+[node name="Trivia Source 9" type="Node2D" parent="Trivia"]
+position = Vector2(452, 964)
+script = ExtResource("21_1ty2p")
+trivia_index = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Trivia/Trivia Source 9"]
+position = Vector2(3897, 2839)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("26_xcoj7")
+
+[node name="Area2D" type="Area2D" parent="Trivia/Trivia Source 9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 9/Area2D"]
+position = Vector2(3891.5, 2834)
+shape = SubResource("RectangleShape2D_8a7if")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Trivia/Trivia Source 9/Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trivia/Trivia Source 9/Area2D/StaticBody2D"]
 position = Vector2(3891, 2834)
 shape = SubResource("RectangleShape2D_8a7if")
 
@@ -7009,9 +7120,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -249.0
-offset_top = -100.0
+offset_top = -98.0
 offset_right = 249.0
-offset_bottom = 108.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -7042,9 +7153,12 @@ text = "[center]unlock status[/center]"
 [node name="CloseButton" type="Button" parent="UI/DialogueBox/Panel"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 9.0
 offset_right = 46.0
-offset_bottom = 45.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("4_j2j4h")
+theme_override_font_sizes/font_size = 50
+text = "X"
+flat = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
 anchors_preset = 1
@@ -7157,6 +7271,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tccjh")
 text = "NO"
 
 [node name="Control2" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchor_right = 0.0295139
 anchor_bottom = 0.0200617
@@ -7219,7 +7334,7 @@ script = ExtResource("12_fpetl")
 new_music = ExtResource("14_8h5q8")
 
 [node name="Engineering Music" type="CollisionShape2D" parent="Engineering Section"]
-position = Vector2(4618, 3724)
+position = Vector2(4567, 3666)
 shape = SubResource("RectangleShape2D_jbx6y")
 
 [node name="Residential Section" type="Area2D" parent="."]

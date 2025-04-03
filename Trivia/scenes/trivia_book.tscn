@@ -86,17 +86,27 @@ This is a very long line of trivia to test out if spacing works"
 
 [node name="Next" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 276.0
-offset_top = 183.0
-offset_right = 309.0
-offset_bottom = 217.0
+offset_left = 283.0
+offset_top = 164.0
+offset_right = 334.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xi3h6")
+theme_override_font_sizes/font_size = 70
+text = ">"
+flat = true
 
 [node name="Previous" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = -274.0
-offset_top = 184.0
+offset_left = -286.0
+offset_top = 164.0
 offset_right = -241.0
-offset_bottom = 218.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xi3h6")
+theme_override_font_sizes/font_size = 70
+text = "<"
+flat = true
 
 [node name="PageNumLeft" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 0
@@ -111,9 +121,9 @@ text = "1"
 
 [node name="PageNumRight" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 58.0
+offset_left = 57.0
 offset_top = 186.0
-offset_right = 98.0
+offset_right = 97.0
 offset_bottom = 226.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_xi3h6")
@@ -122,9 +132,9 @@ text = "2"
 
 [node name="Counter" type="RichTextLabel" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = -216.0
+offset_left = -218.0
 offset_top = 186.0
-offset_right = 62.0
+offset_right = 60.0
 offset_bottom = 219.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_xi3h6")
