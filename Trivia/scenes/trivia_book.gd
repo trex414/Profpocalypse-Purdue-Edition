@@ -23,7 +23,9 @@ var real_trivia = [
 	"Purdue's men's basketball team holds the record for most Big Ten regular season championships: 26!",
 	"Clapping here in the clapping circle produces a sharp squeaky echo!",
 	"Purdue is home to Indiana's first and only operating nuclear reactor. It's also open to tours!",
-	"The Engineering Building was a gift from the class of 1939."
+	"The Engineering Building was a gift from the class of 1939.",
+	"Mackey Arena is the loudest Big 10 men's basketball area: it's reached 124.3 decibles!",
+	"Haas Hall was originally the memorial gymnasium for the 1903 train accident. The 17 steps in front are for the 17 lives lost."
 ]
 
 var current_page = 0

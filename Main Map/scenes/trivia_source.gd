@@ -14,7 +14,7 @@ func _ready():
 	var number = last_word.to_int()  # Convert it to an integer
 	trivia_index = number - 1
 
-	print(trivia_index)  # Use the number as needed
+	#print(trivia_index)
 
 func _on_interacted(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
