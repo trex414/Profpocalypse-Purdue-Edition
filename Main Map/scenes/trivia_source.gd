@@ -27,7 +27,7 @@ func _on_interacted(viewport, event, shape_idx):
 			print("Error: TriviaBook node not found!")
 
 		# Hide or remove the interactable after interaction
-		visible = false  # Or use queue_free() to remove it
+		#visible = false  # Or use queue_free() to remove it
 
 func show_dialogue(fact_text, is_new, sequential_number):
 	#var dialogue_box = get_tree().current_scene.find_child("DialogueBox", true, false)
@@ -44,7 +44,7 @@ func show_dialogue(fact_text, is_new, sequential_number):
 			print("Error: FactLabel node not found in DialogueBox")
 
 		if unlock_label:
-			unlock_label.text = "[center]New Trivia Unlocked! Entry #" + str(sequential_number) if is_new else "[center]Already Unlocked."
+			unlock_label.text = "[center]New Trivia Unlocked! Entry #" + str(sequential_number) if is_new else "[center]Already Unlocked. Entry #" + str(sequential_number)
 		else:
 			print("Error: UnlockLabel node not found in DialogueBox")
 

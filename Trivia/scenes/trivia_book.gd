@@ -12,13 +12,13 @@ var real_trivia = [
 	"Purdue University was established in 1869, named after John Purdue.",
 	"4 Purdue Petes are selected every year.",
 	"Purdue adopted black and gold as its official colors in 1887.",
-	"Purdue Pete originally began as the mascot for the University Bookstore.",
+	"John Purdue was buried here in Memorial Mall.",
 	"Purdue's first football game was in 1887.",
 	"Neil Armstrong graduated from Purdue in 1955.",
 	"The Boilermaker Special is Purdue's official mascot.",
-	"Purdue has had a student-run newspaper since 1889.",
 	"Boilermakers was first used as a nickname in 1891.",
-	"check if next works properly"
+	"If you walk under the bell tower, you won't graduate in 4 years.",
+	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus."
 ]
 
 var current_page = 0

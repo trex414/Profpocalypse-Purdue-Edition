@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwoqqxvmu72ul"
-path="res://.godot/imported/sparkles.png-be6d385192abf8a881ea512e07d0426d.ctex"
+uid="uid://b3vcqv84wmkxv"
+path="res://.godot/imported/book_icon.png-0710caf6cb93d07243d45009993eaaa7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main Map/scenes/sparkles.png"
-dest_files=["res://.godot/imported/sparkles.png-be6d385192abf8a881ea512e07d0426d.ctex"]
+source_file="res://Main Map/assets/book_icon.png"
+dest_files=["res://.godot/imported/book_icon.png-0710caf6cb93d07243d45009993eaaa7.ctex"]
 
 [params]
 
