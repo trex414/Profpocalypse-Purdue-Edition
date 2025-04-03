@@ -18,7 +18,12 @@ var real_trivia = [
 	"The Boilermaker Special is Purdue's official mascot, not Purdue Pete!",
 	"Purdue bought Amelia Earhart the plane that she disappeared in.",
 	"If you walk under the bell tower, you won't graduate in 4 years.",
-	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus."
+	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus.",
+	"Stone Hall is the former women's dormitory.",
+	"Purdue's men's basketball team holds the record for most Big Ten regular season championships: 26!",
+	"Clapping here in the clapping circle produces a sharp squeaky echo!",
+	"Purdue is home to Indiana's first and only operating nuclear reactor. It's also open to tours!",
+	"The Engineering Building was a gift from the class of 1939."
 ]
 
 var current_page = 0
@@ -101,13 +106,13 @@ func next_page():
 	if current_page < trivia_pages.size() - 1:
 		current_page += 1
 		update_pages()
-		print("Player clicked NEXT, now on page:", current_page)
+		#print("Player clicked NEXT, now on page:", current_page)
 
 func prev_page():
 	if current_page > 0:
 		current_page -= 1
 		update_pages()
-		print("Player clicked PREVIOUS, now on page:", current_page)
+		#print("Player clicked PREVIOUS, now on page:", current_page)
 		
 func unlock_trivia(index):
 	var spread = index / (TRIVIA_PER_PAGE * 2)  # Determine spread (set of left & right pages)

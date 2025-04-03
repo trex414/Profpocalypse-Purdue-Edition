@@ -9,6 +9,12 @@ extends Node2D
 func _ready():
 	# Ensure the Area2D node's input event is connected
 	$Area2D.connect("input_event", Callable(self, "_on_interacted"))
+	var name_parts = self.name.split(" ")
+	var last_word = name_parts[-1]  # Get the last part
+	var number = last_word.to_int()  # Convert it to an integer
+	trivia_index = number - 1
+
+	print(trivia_index)  # Use the number as needed
 
 func _on_interacted(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
