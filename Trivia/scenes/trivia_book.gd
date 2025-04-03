@@ -10,22 +10,31 @@ var trivia_pages = []  # Stores all pages with 4 slots each
 
 var real_trivia = [
 	"Purdue University was established in 1869, named after John Purdue.",
-	"4 Purdue Petes are selected every year.",
+	"4 Purdue Petes are selected every year. He's currently the athletic mascot, but started as one for the University Book Store.",
 	"Purdue adopted black and gold as its official colors in 1887.",
-	"John Purdue was buried here in Memorial Mall.",
+	"John Purdue was buried near his bronze statue in Memorial Mall. Rumor says his ghost appears after sundown.",
 	"Purdue Football has the nickname \"The Cradle of Quarterbacks.\"",
 	"Neil Armstrong graduated from Purdue in 1955.",
 	"The Boilermaker Special is Purdue's official mascot, not Purdue Pete!",
-	"Purdue bought Amelia Earhart the plane that she disappeared in.",
+	"Purdue bought Amelia Earhart the plane that she disappeared in. She served as a “Counselor on Careers for Women” in 1935!",
 	"If you walk under the bell tower, you won't graduate in 4 years.",
 	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus.",
 	"Stone Hall is the former women's dormitory.",
 	"Purdue's men's basketball team holds the record for most Big Ten regular season championships: 26!",
 	"Clapping here in the clapping circle produces a sharp squeaky echo!",
 	"Purdue is home to Indiana's first and only operating nuclear reactor. It's also open to tours!",
-	"The Engineering Building was a gift from the class of 1939.",
+	"The Engineering Fountain was a gift from the class of 1939.",
 	"Mackey Arena is the loudest Big 10 men's basketball area: it's reached 124.3 decibles!",
-	"Haas Hall was originally the memorial gymnasium for the 1903 train accident. The 17 steps in front are for the 17 lives lost."
+	"Haas Hall was originally the memorial gymnasium for the 1903 train accident. The 17 steps in front are for the 17 lives lost.",
+	"Legend says Beering Hall has different zip codes for its top floors since John Purdue required that no building be taller than the original school building.",
+	"Legend says the Math Building is considered a land bridge since John Purdue required that no building be taller than the original school building.",
+	"If you and your significant other kiss under Purdue’s bell tower and walk by the Lion’s Fountain, then you will get married!",
+	"There's a 6th floor of Cary Quad. It used to house the campus radio station, and has roof access!",
+	"Rumor says that Amelia Earhart's ghost haunts the hangars.",
+	"The inventory of chicken nuggets, Robert C. Baker, got his PhD from Purdue!",
+	"Hilltop Apartments was originally built in 1949 for married students!",
+	"Purdue Memorial Union opened in 1924! It's a memorian for students who fought in WWI.",
+	"Purdue University has 10 colleges/schools!"
 ]
 
 var current_page = 0
