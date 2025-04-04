@@ -106,6 +106,7 @@ func start_cutscene(enemy_name: String, enemy_node):
 	
 	current_enemy = enemy_data
 	enemy_node_reference = enemy_node
+	unlock_turn()
 
 
 func lock_turn():
@@ -197,6 +198,7 @@ func cpu_attack():
 	if PlayerData.health <= 0:
 		await show_battle_message("You lost!")
 		get_tree().quit()
+		
 
 	await show_battle_message("CPU attacked for %d damage" % final_damage)
 	unlock_turn() 

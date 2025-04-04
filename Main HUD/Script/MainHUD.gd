@@ -511,6 +511,7 @@ func handle_battle_attack(slot_index):
 
 	if miss_chance:
 		await battle_ui.lock_turn()
+		$AttackMissSFX.play()
 		await battle_ui.show_battle_message("You missed!")
 		await get_tree().create_timer(2).timeout
 		await battle_ui.cpu_attack()
@@ -522,6 +523,7 @@ func handle_battle_attack(slot_index):
 
 	if break_chance:
 		await battle_ui.lock_turn()
+		$WeaponBreakSFX.play()
 		await battle_ui.show_battle_message("%s broke!" % item["name"])
 		item_bar_slots[slot_index] = null
 		item_bar.get_child(slot_index).icon = null
@@ -532,6 +534,7 @@ func handle_battle_attack(slot_index):
 		# Optionally handle stun
 		if stun_chance:
 			await battle_ui.lock_turn()
+			$StunSFX.play()
 			await battle_ui.show_battle_message("You stunned the enemy!")
 			# e.g. battle_ui.apply_stun_to_enemy() if you have that logic
 			await get_tree().create_timer(2).timeout
