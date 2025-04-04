@@ -1,6 +1,6 @@
 extends Control
 
-const TRIVIA_PER_PAGE = 4
+const TRIVIA_PER_PAGE = 3
 
 var trivia_pages = []  # Stores all pages with 4 slots each
 
@@ -9,21 +9,21 @@ var trivia_pages = []  # Stores all pages with 4 slots each
 @onready var counter = $CanvasLayer/Panel/Counter
 
 var real_trivia = [
-	"Purdue University was established in 1869, named after John Purdue.",
-	"4 Purdue Petes are selected every year. He's currently the athletic mascot, but started as one for the University Book Store.",
-	"Purdue adopted black and gold as its official colors in 1887.",
+	"Purdue University was established in 1869, named after John Purdue!",
+	"4 Purdue Petes are selected every year! He's currently the athletic mascot, but started as one for the University Book Store.",
+	"Purdue adopted black and gold as its official colors in 1887!",
 	"John Purdue was buried near his bronze statue in Memorial Mall. Rumor says his ghost appears after sundown.",
-	"Purdue Football has the nickname \"The Cradle of Quarterbacks.\"",
+	"Purdue Football has the nickname \"The Cradle of Quarterbacks\" for its prominent quarterbacks!",
 	"Purdue has 27 astronaut graduates, including Neil Armstrong in 1955!",
 	"The Boilermaker Special is Purdue's official mascot, not Purdue Pete!",
 	"Purdue bought Amelia Earhart the plane that she disappeared in. She served as a “Counselor on Careers for Women” in 1935!",
 	"Legend says that if you walk under the bell tower, you won't graduate in 4 years.",
-	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus.",
-	"Stone Hall is the former women's dormitory.",
+	"Built in 1877, University Hall is the only building remaining from Purdue's original six-building campus!",
+	"Stone Hall is the former women's dormitory!",
 	"Purdue's men's basketball team holds the record for most Big Ten regular season championships: 26!",
 	"Clapping here in the clapping circle produces a sharp squeaky echo!",
 	"Purdue is home to Indiana's first and only operating nuclear reactor. It's also open to tours!",
-	"The Engineering Fountain was a gift from the class of 1939.",
+	"The Engineering Fountain was a gift from the class of 1939!",
 	"Mackey Arena is the loudest Big 10 men's basketball area: it's reached 124.3 decibles!",
 	"Haas Hall was originally the memorial gymnasium for the 1903 train accident. The 17 steps in front are for the 17 lives lost.",
 	"Legend says Beering Hall has different zip codes for its top floors since John Purdue required that no building be taller than the original school building.",
@@ -35,7 +35,17 @@ var real_trivia = [
 	"Hilltop Apartments was originally built in 1949 for married students!",
 	"Purdue Memorial Union opened in 1924! It's a memorian for students who fought in WWI.",
 	"Purdue University has 10 colleges/schools!",
-	"In 1921, Purdue completed construction of the largest bass drum in the world. The name is trademarked!"
+	"In 1921, Purdue completed construction of the largest bass drum in the world. The name is trademarked!",
+	"Owen Hall is named after Purdue's first president in 1872, Richard Owen! The hall itself was opened in 1957.",
+	"The CoRec is named after Purdue's eleventh president from 2007 to 2012, France Anne-Dominic Córdova!",
+	"Hawkins Hall was renamed from Graduate House West in 1981 to honor George A. Hawkins!",
+	"Hillenbrand Hall is home to the Data Mine program! Dr. Mark Daniel Ward launched it in 2018 with fewer than 100 student participants.",
+	"Westwood Manor was built in 1932 as the private home of Robert B. Stewart, the vice president for business and finance. After he retired and donated it in 1971, it's the president's residence!",
+	"The term \"Boilermakers\" came from an 1891 newspaper headline that referred to the year’s winning football team as \"Burly Boiler Makers from Purdue!\"",
+	"The Grand Prix is 50-mile, 160-lap go-kart race with karts made from scratch by student teams! It began in 1958.",
+	"Purdue Exponent was founded in 1889 and is Indiana’s largest collegiate daily newspaper, with approximately 150 student staff members!",
+	"“Hail Purdue!”, Purdue's official fight song, was composed in 1912 by Edward Wotawa (music) and James Morrison (lyrics)!",
+	"The Old Oaken Bucket, one of the nation’s oldest football trophies, goes to the winner of the annual Purdue-Indiana game, who adds a “P” or “I” link to its chain — though, the 1925 debut ended in a 0-0 tie, starting the chain with an “IP” link."
 ]
 
 var current_page = 0
