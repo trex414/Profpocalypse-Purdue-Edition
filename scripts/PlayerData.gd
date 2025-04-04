@@ -33,6 +33,8 @@ var current_quests: Dictionary
 static var completed_quests = []
 var pinned_quests = []
 var defeated_enemies = []
+var abilities_levels = []
+var study_tokens: int
 
 # Keybinding variables
 var inventory_key: Key
@@ -60,6 +62,8 @@ func get_game_state():
 			"completed_quests": completed_quests,
 			"pinned_quests": pinned_quests,
 			"defeated_enemies": defeated_enemies,
+			"abilities_levels": abilities_levels,
+			"study_tokens": study_tokens
 		},
 		"keybindings": {
 			"inventory_key": inventory_key,
@@ -114,6 +118,12 @@ func apply_game_state(data):
 		if "defeated_enemies" in player_data:
 			defeated_enemies = player_data.defeated_enemies
 			
+		if "abilities_levels" in player_data:
+			abilities_levels = player_data.abilities_levels
+		
+		if "study_tokens" in player_data:
+			study_tokens = player_data.study_tokens
+			
 	if "keybindings" in data:
 		var key_bindings = data["keybindings"]
 		
@@ -167,6 +177,8 @@ func set_default_values():
 	completed_quests.clear()
 	pinned_quests = []
 	defeated_enemies = []
+	abilities_levels = [0, 0, 0, -1, -1, -1, -1, -1]
+	study_tokens = 0
 	
 	#Key Binding Defaults
 	inventory_key = 69
