@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0mcfe40m7h7i"]
+[gd_scene load_steps=12 format=3 uid="uid://d0mcfe40m7h7i"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Music/MusicManager.gd" id="5_pyw2q"]
 [ext_resource type="Script" path="res://scripts/menu_button.gd" id="6_75fvt"]
 [ext_resource type="Texture2D" uid="uid://b3vcqv84wmkxv" path="res://Main Map/assets/book_icon.png" id="6_gbhu0"]
+[ext_resource type="Texture2D" uid="uid://8gkswdnfgs64" path="res://Calendar/Assets/calendar.png" id="7_gdve1"]
+[ext_resource type="Script" path="res://control___calendar.gd" id="7_l4cmt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvon8"]
 bg_color = Color(0.529412, 0.411765, 0.105882, 1)
@@ -24,17 +26,6 @@ icon = ExtResource("5_l84qr")
 script = ExtResource("6_75fvt")
 
 [node name="Control - Settings" parent="Menu UI" instance=ExtResource("2_2ypww")]
-
-[node name="Calender Button" type="Button" parent="Menu UI"]
-visible = false
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="ItemList" type="ItemList" parent="Menu UI/Calender Button"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 123
 
 [node name="Control2" type="Control" parent="Menu UI"]
 layout_mode = 3
@@ -64,7 +55,33 @@ offset_right = 74.0
 offset_bottom = 53.0
 flat = true
 
+[node name="Control - Calendar" type="Control" parent="Menu UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_l4cmt")
+
+[node name="Panel" type="Panel" parent="Menu UI/Control - Calendar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Menu UI/Control - Calendar/Panel"]
+z_index = 2
+position = Vector2(290, 33.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_gdve1")
+
+[node name="Button" type="Button" parent="Menu UI/Control - Calendar"]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 11.0
+offset_right = 312.0
+offset_bottom = 57.0
+
 [node name="MusicManager" parent="." instance=ExtResource("5_2xhnb")]
 script = ExtResource("5_pyw2q")
 
 [connection signal="pressed" from="Menu UI/Control2/Button" to="Menu UI/Control2" method="_on_button_pressed"]
+[connection signal="pressed" from="Menu UI/Control - Calendar/Button" to="Menu UI/Control - Calendar" method="_on_button_pressed"]

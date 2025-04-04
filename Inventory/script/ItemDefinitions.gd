@@ -25,6 +25,19 @@ const ITEM_DEFINITIONS = {
 		"miss_chance": 0.10,
 		"crit_chance": 0.15,
 		"break_chance": 0.10
+	},
+	
+	"Sword of Truth": {
+		"type": 0,
+		"name": "Sword of Truth",
+		"texture_path": "res://Inventory/assets/swordtruth.jpeg",
+		"stackable": false,
+		"count": 1,
+		"damage": 20,
+		"stun_chance": 0.30,
+		"miss_chance": 0.05,
+		"crit_chance": 0.30,
+		"break_chance": 0.05
 	}
 }
 
@@ -52,5 +65,21 @@ const SPELL_DEFINITIONS = {
 		"stackable": true,
 		"count": 1,
 		"exp_amount": 1
+	},
+	"Elixir of Life": {
+		"type": 1,
+		"name": "Elixir of Life",
+		"texture_path": "res://Inventory/assets/elixiroflife.webp",
+		"stackable": false,
+		"count": 1,
+		"heal_amount": 99
+	},
+	"Secret (Does Nothing?)": {
+		"type": 1,
+		"name": "Secret",
+		"texture_path": "res://Inventory/assets/notunlocked.png",
+		"stackable": false,
+		"count": 1,
+		"exp_amount": 20
 	}
 }

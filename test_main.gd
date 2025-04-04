@@ -3,6 +3,7 @@ extends Node2D
 var map = null
 var inventory = null
 var trivia_book = null
+var calendar = null
 var hud = null
 var abilitiesPreview = null
 var QuestMenuScene = null
@@ -29,6 +30,9 @@ func _ready():
 	
 	trivia_book = load("res://Trivia/scenes/trivia_book.tscn").instantiate()
 	add_child(trivia_book)
+	
+	calendar = load("res://Calendar/calendar.tscn").instantiate()
+	add_child(calendar)
 
 	# Load HUD
 	hud = load("res://Main HUD/Scenes/hud.tscn").instantiate()
@@ -148,7 +152,4 @@ func drop_item_on_floor(item_name: String, position: Vector2):
 	def["texture"] = load(def["texture_path"])
 	item_instance.item_data = def
 	item_instance.position = position
-	print("Adding to:", self.name)
-	print("Dropping at:", position)
-	print("Setting texture:", def["texture"])
 	add_child(item_instance)

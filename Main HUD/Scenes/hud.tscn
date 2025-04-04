@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ixadnea0fvxk"]
+[gd_scene load_steps=13 format=3 uid="uid://ixadnea0fvxk"]
 
 [ext_resource type="Script" path="res://Main HUD/Script/MainHUD.gd" id="1_3f0v0"]
 [ext_resource type="Script" path="res://Main HUD/Script/health_bar.gd" id="2_613hy"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dpbhwh0np56k0" path="res://menu_sound_effects/health-gain.wav" id="4_pm12q"]
 [ext_resource type="AudioStream" uid="uid://chbpgu2c322kd" path="res://menu_sound_effects/ring_inventory.wav" id="6_mcdkk"]
 [ext_resource type="AudioStream" uid="uid://bth8sm4lqrecc" path="res://menu_sound_effects/EXP-loss.wav" id="7_6441y"]
+[ext_resource type="Texture2D" uid="uid://cbm3do06va5xi" path="res://Settings/assets/pixel-art-ancient-scroll.jpg" id="8_6048b"]
 [ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="8_f58gb"]
 [ext_resource type="AudioStream" uid="uid://bc0e3qvmo0t6d" path="res://menu_sound_effects/sword-clash-241729.mp3" id="9_3h2x0"]
 [ext_resource type="AudioStream" uid="uid://d4fmsirq23ycq" path="res://menu_sound_effects/stun.wav" id="10_j0hkp"]
@@ -203,6 +204,52 @@ text = "Pinned Quests"
 
 [node name="QuestList" type="VBoxContainer" parent="CanvasLayer/PinnedQuestContainer"]
 layout_mode = 2
+
+[node name="CollectionTracker" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 300.0
+offset_top = 70.0
+offset_right = 1171.0
+offset_bottom = 776.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_6048b")
+
+[node name="Item Collection" type="Label" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 0
+offset_left = 385.0
+offset_top = 185.0
+offset_right = 485.0
+offset_bottom = 285.0
+
+[node name="CollectionButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -117.0
+offset_right = -9.0
+offset_bottom = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(-20, -20)
+theme_override_font_sizes/font_size = 24
+text = "Collections
+"
 
 [node name="AttackMissSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_f58gb")

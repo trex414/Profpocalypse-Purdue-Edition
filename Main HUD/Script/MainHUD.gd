@@ -10,6 +10,9 @@ extends Control
 @onready var quest_list = $CanvasLayer/PinnedQuestContainer/QuestList
 @onready var background_panel = $CanvasLayer/PinnedQuestContainer/BackgroundPanel
 @onready var potions_manager = preload("res://Main HUD/Script/potion.gd").new()
+@onready var collection_button = $CanvasLayer/CollectionButton
+@onready var collection_panel = $CanvasLayer/CollectionTracker
+
 
 
 var battle_ui = null
@@ -35,6 +38,9 @@ func _ready():
 	update_pinned_quests(QuestManager.pinned_quests)  # Initial load if needed
 	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
+	# connect collection_button to a function for clicking
+	collection_button.connect("pressed", Callable(self, "_on_CollectionButton_pressed"))
+	
 	# Connect Item Bar Slots to a function for clicking
 	for i in range(item_bar.get_child_count()):
 		var button = item_bar.get_child(i)
@@ -49,10 +55,10 @@ func _ready():
 		for i in range(item_bar_slots.size()):
 			if item_bar_slots[i] != null:
 				restore_item_bar(i, item_bar_slots[i])
-
-
-		
 	
+
+
+
 
 
 # Function to make sure inventory is a global call for main hud
@@ -548,3 +554,64 @@ func handle_battle_attack(slot_index):
 func set_battle_ui(ui):
 	battle_ui = ui
 	print("✅ Battle UI manually set:", battle_ui.name)
+	
+	
+func _on_CollectionButton_pressed():
+	collection_panel.visible = !collection_panel.visible  
+	
+	if collection_panel.visible:
+		update_collection_tracker()  
+	
+func update_collection_tracker():
+	var container = collection_panel.get_node("VBoxContainer")
+
+	# Clear old children
+	for child in container.get_children():
+		child.queue_free()
+
+	var all_items = ItemDefinitions.ITEM_DEFINITIONS.keys() + ItemDefinitions.SPELL_DEFINITIONS.keys()
+	var owned = get_inventory_item_names()
+
+	for item_name in all_items:
+		var texture = get_item_texture(item_name)
+
+	# Resize the texture before displaying
+		var resized_texture = resize_texture(texture, Vector2(32, 32))
+
+		var row = HBoxContainer.new()
+
+		var icon = TextureRect.new()
+		icon.texture = resized_texture
+		icon.custom_minimum_size = Vector2(32, 32)
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		row.add_child(icon)
+
+		var label = Label.new()
+		label.add_theme_color_override("font_color", Color.BLACK)
+		label.text = ("✅ " if item_name in owned else "❌ ") + item_name
+		row.add_child(label)
+
+		container.add_child(row)
+
+
+		
+func get_inventory_item_names() -> Array:
+	var names = []
+	for item in InventoryManager.inventory:
+		if item != null and item.has("name"):
+			names.append(item["name"])
+	return names
+	
+	
+func get_item_texture(item_name: String) -> Texture2D:
+	var def = null
+	if ItemDefinitions.ITEM_DEFINITIONS.has(item_name):
+		def = ItemDefinitions.ITEM_DEFINITIONS[item_name]
+	elif ItemDefinitions.SPELL_DEFINITIONS.has(item_name):
+		def = ItemDefinitions.SPELL_DEFINITIONS[item_name]
+
+	if def and def.has("texture_path"):
+		return load(def["texture_path"])
+
+	return null
+	
