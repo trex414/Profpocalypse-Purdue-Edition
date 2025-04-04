@@ -37,8 +37,8 @@ var abilities = {
 
 var health_bar: Control  # Declare health bar variable
 
-var health_per_GPA = 10  # Increase max health by 2 per GPA point
-var study_tokens = 30  # Global variable for Study Tokens
+var health_per_GPA = 20  # Increase max health by 2 per GPA point
+var study_tokens = 0  # Global variable for Study Tokens
 var level = 1
 
 func _ready():

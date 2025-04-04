@@ -151,5 +151,13 @@ offset_top = 4.0
 offset_right = 281.0
 offset_bottom = 346.0
 
+[node name="TEMPAdvisorMeetingButton" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 105.5
+offset_top = 455.5
+offset_right = 239.5
+offset_bottom = 486.5
+text = "Advisor Meeting"
+
 [node name="MajorInfoSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ble87")

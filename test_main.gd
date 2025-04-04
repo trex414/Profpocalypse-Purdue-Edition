@@ -7,6 +7,7 @@ var hud = null
 var abilitiesPreview = null
 var QuestMenuScene = null
 var majorInformation = null
+var advisorMeeting = null
 var is_customization_active = false
 var character_customization = null
 
@@ -44,6 +45,12 @@ func _ready():
 	
 	majorInformation = load("res://MajorInformation/Scenes/MajorInformation.tscn").instantiate()
 	add_child(majorInformation)
+	
+	advisorMeeting = load("res://MajorInformation/Scenes/Advisor_meeting.tscn").instantiate()
+	add_child(advisorMeeting)
+	
+	majorInformation.set_advisorMeeting(advisorMeeting)
+	advisorMeeting.set_majorInfo(majorInformation)
 	
 	QuestMenuScene.inventory = inventory
 	

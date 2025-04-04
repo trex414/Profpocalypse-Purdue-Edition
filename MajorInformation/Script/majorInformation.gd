@@ -90,7 +90,7 @@ var professors_data = {
 ]
 
 
-
+var advisorMeeting = null
 var current_semester: String = "Freshman Fall"  # Change this to switch displayed semester
 var semester_index: int = 0  # Tracks which semester we're on
 var last_pressed = 0
@@ -105,13 +105,18 @@ var last_pressed = 0
 @onready var popup = $CanvasLayer/Panel/PopupPanel  # Reference to the PopupPanel
 @onready var popup_vbox = popup.get_node("VBoxContainer")  # Get the VBox inside the popup
 
+#temporary!!!!!
+@onready var advisormeeting = $CanvasLayer/Panel/TEMPAdvisorMeetingButton
+
 
 func _ready():
+	
 	semester_index = PlayerData.semester_index
 	current_semester = PlayerData.current_semester
 	update_display()
 	CompleteSemester.pressed.connect(_on_complete_semester_pressed)
 	NewSemester.pressed.connect(_on_new_semester_pressed)
+	advisormeeting.pressed.connect(on_advisor_meeting_pressed)
 	progress_bar.value = semester_index
 	flowchart.visible = false
 	PrerequisiteFlowchartButton.pressed.connect(toggle_flowchart)
@@ -350,3 +355,9 @@ func populate_professors_tab():
 		)
 
 		professors_vbox.add_child(button)
+
+func on_advisor_meeting_pressed():
+	advisorMeeting.toggle_advisor_visibility()
+
+func set_advisorMeeting(givenMeeting):
+	advisorMeeting = givenMeeting
