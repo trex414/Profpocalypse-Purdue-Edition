@@ -186,3 +186,5 @@ func mark_enemy_defeated(enemy_name: String):
 
 func is_enemy_defeated(enemy_name: String) -> bool:
 	return enemy_name in defeated_enemies
+	
+	

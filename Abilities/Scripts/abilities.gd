@@ -48,6 +48,7 @@ func _ready():
 	for ability_name in ability_buttons.keys():
 		var button = ability_buttons[ability_name]
 		button.pressed.connect(func(): _on_ability_button_pressed(ability_name))
+	level = PlayerData.level
 	update_ui()
 
 # This function can be called when you want to increase the max health
@@ -147,6 +148,7 @@ func update_study_tokens_label():
 	tokens_label.text = "Study Tokens: " + str(study_tokens)
 	
 func levelup_abilities_update():
+	PlayerData.level += 1
 	level += 1
 	study_tokens += 2
 	if level == 3:

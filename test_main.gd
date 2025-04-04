@@ -37,6 +37,7 @@ func _ready():
 	# Load abilities preview
 	abilitiesPreview = load("res://Abilities/Scenes/AbilitiesPreview.tscn").instantiate()
 	add_child(abilitiesPreview)
+	Global.abilitiesMenu = abilitiesPreview
 
 	
 	# Load Quest Screen
