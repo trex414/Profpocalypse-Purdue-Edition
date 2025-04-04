@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://veai5ddalsew"]
+[gd_scene load_steps=80 format=4 uid="uid://veai5ddalsew"]
 
 [ext_resource type="Script" path="res://Main Map/scripts/profpocalypse_main_map.gd" id="1_cchdm"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_cmsoe"]
@@ -42,6 +42,8 @@
 [ext_resource type="Texture2D" uid="uid://btbc770n5p2ra" path="res://Main Map/assets/Purdue_Engineering_Fountain.png" id="28_acmim"]
 [ext_resource type="Script" path="res://MajorInformation/Script/advisor.-mapconnection.gd" id="41_w4h1g"]
 [ext_resource type="Texture2D" uid="uid://5qoh6kq3bmbm" path="res://MajorInformation/Assets/Screenshot 2025-04-03 at 9.30.54 PM.png" id="42_mm5fb"]
+[ext_resource type="Texture2D" uid="uid://qfp24uprbsxx" path="res://Inventory/assets/heal.png" id="43_6p3w3"]
+[ext_resource type="Script" path="res://Main Map/scenes/static_body_2d.gd" id="45_rvhfp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khlmg"]
 texture = ExtResource("1_cmsoe")
@@ -3250,6 +3252,8 @@ size = Vector2(90, 58.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb6rv"]
 size = Vector2(22, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_au12w"]
 
 [node name="Map" type="Node2D" groups=["Buildings"]]
 script = ExtResource("1_cchdm")
@@ -8081,6 +8085,25 @@ position = Vector2(3907, 3841)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Advisor/Area2D"]
 position = Vector2(-86, -34)
 shape = SubResource("RectangleShape2D_bb6rv")
+
+[node name="Collectible Object" type="Node2D" parent="."]
+position = Vector2(-26, -23)
+
+[node name="Area2D" type="Area2D" parent="Collectible Object"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collectible Object/Area2D"]
+input_pickable = true
+script = ExtResource("45_rvhfp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible Object/Area2D/StaticBody2D"]
+position = Vector2(3897, 2700)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_au12w")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectible Object/Area2D/StaticBody2D"]
+position = Vector2(3897, 2700)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("43_6p3w3")
 
 [connection signal="pressed" from="UI/DialogueBox/Panel/CloseButton" to="UI/DialogueBox" method="_on_close_button_pressed"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]

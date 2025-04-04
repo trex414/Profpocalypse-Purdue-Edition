@@ -131,3 +131,24 @@ func _load_new_map(new_map_path: String):
 	map = load(new_map_path).instantiate()  # Load the new map
 	add_child(map)  # Add the new map to the scene
 	move_child(map, 0)  # Ensure the map is at the bottom (below UI)
+	
+func drop_item_on_floor(item_name: String, position: Vector2):
+	var item_scene = preload("res://Object/ItemOnFloor.tscn")
+	var item_instance = item_scene.instantiate()
+
+	var def = {}
+	if ItemDefinitions.ITEM_DEFINITIONS.has(item_name):
+		def = ItemDefinitions.ITEM_DEFINITIONS[item_name].duplicate(true)
+	elif ItemDefinitions.SPELL_DEFINITIONS.has(item_name):
+		def = ItemDefinitions.SPELL_DEFINITIONS[item_name].duplicate(true)
+	else:
+		print("Unknown item:", item_name)
+		return
+
+	def["texture"] = load(def["texture_path"])
+	item_instance.item_data = def
+	item_instance.position = position
+	print("Adding to:", self.name)
+	print("Dropping at:", position)
+	print("Setting texture:", def["texture"])
+	add_child(item_instance)

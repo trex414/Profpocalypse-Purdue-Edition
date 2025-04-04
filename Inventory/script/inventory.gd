@@ -51,6 +51,7 @@ func _ready():
 	delete_button.connect("pressed", Callable(self, "delete_item"))
 	use_button.connect("pressed", Callable(self, "use_item"))
 	toggle_inventory()
+	add_to_group("Inventory")
 
 # Function to be able to global call main hud
 func set_main_hud(hud):
@@ -84,6 +85,7 @@ func setup_inventory():
 		slot.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		slot.expand_icon = true
 		slot.connect("pressed", Callable(self, "select_item").bind(i))
+		slot.connect("gui_input", Callable(self, "_on_slot_gui_input").bind(i))
 		grid_container.add_child(slot)
 		inventory.append(null)
 	inventory = InventoryManager.inventory
@@ -519,3 +521,25 @@ func restore_item_at_slot(slot_index: int, saved_item: Dictionary):
 	# Set this restored item in the inventory.
 	inventory[slot_index] = item_data
 	update_inventory()
+	
+	
+func drop_selected_item(slot_index: int):
+	if inventory[slot_index] == null:
+		return
+
+	var item = inventory[slot_index]
+	inventory[slot_index] = null
+	PlayerData.inventory = inventory.duplicate(true)
+	update_inventory()
+	deselect_item()
+
+	var player = get_node("/root/TestMain/Map/TemporaryPlayer")
+	print("Player found at:", player.name, "Position:", player.global_position)
+	var world = get_tree().get_root().get_node("TestMain")
+	if world and world.has_method("drop_item_on_floor"):
+		world.drop_item_on_floor(item["name"], player.global_position)
+
+func _on_slot_gui_input(event: InputEvent, slot_index: int):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		print("Right-clicked slot", slot_index)
+		drop_selected_item(slot_index)
