@@ -46,6 +46,7 @@ func add_exp(amount: int):
 	while current_exp >= get_exp_to_next_level(current_level):
 		current_exp -= get_exp_to_next_level(current_level)  
 		current_level += 1
+		Global.abilitiesMenu.levelup_abilities_update()
 		#DEBUG
 		print("Leveled up! New level:", current_level)
 		

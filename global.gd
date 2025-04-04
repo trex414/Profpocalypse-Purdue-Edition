@@ -4,6 +4,9 @@ var tutorial_screen = null
 
 var in_battle: bool = false
 
+var advisorMeeting = null
+var abilitiesMenu = null
+
 var enemy_database = {
 	"red": {
 		"name": "red",

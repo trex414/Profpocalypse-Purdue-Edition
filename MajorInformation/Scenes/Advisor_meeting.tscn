@@ -14,6 +14,7 @@ outline_color = Color(0.141176, 0.478431, 1, 1)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_coxrh"]
 
 [node name="AdvisorMeeting" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

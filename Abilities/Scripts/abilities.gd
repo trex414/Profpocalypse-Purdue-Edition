@@ -48,6 +48,12 @@ func _ready():
 	for ability_name in ability_buttons.keys():
 		var button = ability_buttons[ability_name]
 		button.pressed.connect(func(): _on_ability_button_pressed(ability_name))
+	level = PlayerData.level
+	study_tokens = PlayerData.study_tokens
+	var keys = abilities.keys()
+	for i in range(keys.size()):
+		var key = keys[i]
+		abilities[key]["current_value"] = PlayerData.abilities_levels[i]
 	update_ui()
 
 # This function can be called when you want to increase the max health
@@ -126,7 +132,13 @@ func _on_open_abilities_button_pressed():
 func _on_ability_button_pressed(ability_name):
 	if study_tokens > 0 and abilities[ability_name]["current_value"] < 10:
 		abilities[ability_name]["current_value"] += 1
+		var keys = abilities.keys()
+		for i in range(keys.size()):
+			if keys[i] == ability_name:
+				PlayerData.abilities_levels[i] = abilities[ability_name]["current_value"]
+				break
 		study_tokens -= 1
+		PlayerData.study_tokens = study_tokens
 		
 		# If GPA is upgraded, increase max health
  		# Increase max health by 10 (or any desired value)
@@ -140,6 +152,7 @@ func _on_ability_button_pressed(ability_name):
 # Handles Study Tokens button press
 func _on_tokens_button_pressed():
 	study_tokens += 1  # Increase Study Tokens
+	PlayerData.study_tokens = study_tokens
 	update_detailed_view()  # Refresh everything including buttons
 
 # Updates Study Tokens label
@@ -149,6 +162,7 @@ func update_study_tokens_label():
 func levelup_abilities_update():
 	level += 1
 	study_tokens += 2
+	PlayerData.study_tokens = study_tokens
 	if level == 3:
 		abilities["Brownie Points"]["current_value"] = 0
 	if level == 5:
