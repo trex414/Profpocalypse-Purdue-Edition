@@ -7,7 +7,7 @@ var hud = null
 var abilitiesPreview = null
 var QuestMenuScene = null
 var majorInformation = null
-var advisorMeeting = null
+var Advisor_meeting = null
 var is_customization_active = false
 var character_customization = null
 
@@ -46,11 +46,12 @@ func _ready():
 	majorInformation = load("res://MajorInformation/Scenes/MajorInformation.tscn").instantiate()
 	add_child(majorInformation)
 	
-	advisorMeeting = load("res://MajorInformation/Scenes/Advisor_meeting.tscn").instantiate()
-	add_child(advisorMeeting)
+	Advisor_meeting = load("res://MajorInformation/Scenes/Advisor_meeting.tscn").instantiate()
+	add_child(Advisor_meeting)
 	
-	majorInformation.set_advisorMeeting(advisorMeeting)
-	advisorMeeting.set_majorInfo(majorInformation)
+	majorInformation.set_advisorMeeting(Advisor_meeting)
+	Advisor_meeting.set_majorInfo(majorInformation)
+	Global.advisorMeeting = Advisor_meeting
 	
 	QuestMenuScene.inventory = inventory
 	
@@ -88,6 +89,7 @@ func _ready():
 		window.size = Vector2(1280, 720)
 		
 	PlayerData.ready
+
 	
 
 
