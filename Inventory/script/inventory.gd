@@ -15,6 +15,8 @@ const ROWS = 4
 @onready var add_button = $"CanvasLayer/Panel/Add Item"
 @onready var message_label = $CanvasLayer/Panel/Label
 @onready var use_button = $"CanvasLayer/Panel/Use Usable"
+@onready var info_panel = $"CanvasLayer/Info panel"  # Or the correct path to your InfoPanel node.
+@onready var info_button = $"CanvasLayer/Panel/Info"
 
 # Variables
 var main_hud = null 
@@ -50,8 +52,10 @@ func _ready():
 	add_button.connect("pressed", Callable(self, "add_item"))
 	delete_button.connect("pressed", Callable(self, "delete_item"))
 	use_button.connect("pressed", Callable(self, "use_item"))
+	info_button.connect("pressed", Callable(self, "on_info_pressed"))
 	toggle_inventory()
 	add_to_group("Inventory")
+	info_panel.visible = false
 
 # Function to be able to global call main hud
 func set_main_hud(hud):
@@ -64,12 +68,13 @@ func toggle_inventory():
 	$InventorySFX.play()
 	deselect_item()
 
-	# Update inventory UI when opening
 	if panel.visible:
 		update_inventory()
 		print("Inventory opened.")
 	else:
 		print("Inventory closed.")
+		info_panel.visible = false  # Ensure the info panel is hidden when the inventory is closed.
+
 
 # Function to generate inventory slots dynamically
 func setup_inventory():
@@ -123,34 +128,28 @@ func update_inventory():
 
 # Function to select an item slot
 func select_item(slot_index):
-	# If no item is selected, pick up the item
 	if selected_slot == null:
 		if inventory[slot_index] != null:
 			selected_slot = slot_index
 			print("Picked up item from slot:", slot_index)
-		if inventory[slot_index] != null:
-			selected_slot = slot_index
-
+			# If you want the info panel to update automatically:
+			info_panel.update_info(inventory[slot_index])
+			info_panel.visible = false
+		# (Your code here for double-checking and picking up the item)
 	else:
-		# If an item is already selected, move or swap it
 		if selected_slot != slot_index:
-			# Swap items if destination slot is occupied
 			var temp = inventory[slot_index]
 			inventory[slot_index] = inventory[selected_slot]
 			inventory[selected_slot] = temp
 			print("Moved item from slot", selected_slot, "to slot", slot_index)
-
-		# Reset selection after moving
 		selected_slot = null
-		
 		PlayerData.inventory = inventory.duplicate(true)
-		
 		update_inventory()
-
-	# Highlight selected slot (only if still selected)
+		
 	for i in range(SLOT_COUNT):
 		var slot = grid_container.get_child(i)
-		slot.modulate = Color(1, 1, 1, 1) if i != selected_slot else Color(1, 1, 0.5, 1)  
+		slot.modulate = Color(1, 1, 1, 1) if i != selected_slot else Color(1, 1, 0.5, 1)
+
 
 # Function to un-select a specific slot
 func deselect_item():
@@ -531,3 +530,15 @@ func _on_slot_gui_input(event: InputEvent, slot_index: int):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		print("Right-clicked slot", slot_index)
 		drop_selected_item(slot_index)
+		
+func on_info_pressed():
+	if selected_slot != null and inventory[selected_slot] != null:
+		var item = inventory[selected_slot]
+		info_panel.update_info(item)
+		info_panel.visible = true
+		deselect_item()
+		print("Showing info for", item["name"])
+	else:
+		print("No item selected for info.")
+		info_panel.visible = false
+		deselect_item()
