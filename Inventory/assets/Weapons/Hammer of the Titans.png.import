@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsedsj3ljuth2"
-path="res://.godot/imported/Pickaxe.jpg-09682baa20c2a094bd51255da548e273.ctex"
+uid="uid://c60ovmibnwc78"
+path="res://.godot/imported/Hammer of the Titans.png-cef26e018b904afc3445b179e4288242.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/assets/Pickaxe.jpg"
-dest_files=["res://.godot/imported/Pickaxe.jpg-09682baa20c2a094bd51255da548e273.ctex"]
+source_file="res://Inventory/assets/Weapons/Hammer of the Titans.png"
+dest_files=["res://.godot/imported/Hammer of the Titans.png-cef26e018b904afc3445b179e4288242.ctex"]
 
 [params]
 

@@ -131,7 +131,7 @@ func try_leave_fight():
 	if turn_locked:
 		return
 
-	if rng.randf() <= 0.6:
+	if rng.randf() <= 0.7:
 		show_battle_message("Successfully escaped!")
 		
 		await get_tree().create_timer(2).timeout

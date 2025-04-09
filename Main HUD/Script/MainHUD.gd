@@ -144,6 +144,8 @@ func use_item_bar(slot_index):
 
 #Function if the inventoy is closed you can click potions on potion bar and will be used
 func use_potion_bar(slot_index):
+	
+	
 	# Get the potion from the potion bar slot
 	var item = potion_bar_slots[slot_index]
 	if item == null:
@@ -154,7 +156,7 @@ func use_potion_bar(slot_index):
 	var used = false
 	
 	# Apply the potion's effect based on its type
-	if potion_name == "Health Potion":
+	if potion_name == "Health Potion" or potion_name == "Small Health Potion" or potion_name == "Medium Health Potion" or potion_name == "Large Health Potion":
 		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")
 		used = potions_manager.use_health_potion(health_manager, item)
 	elif potion_name == "EXP Potion":
@@ -252,7 +254,6 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 		print("ERROR: Inventory not assigned to HUD!")
 		return
 
-	# Ensure the inventory is open before moving the potion
 	if not inventory.is_inventory_open():
 		print("Inventory is closed. Cannot move potion.")
 		return
@@ -262,35 +263,25 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 		print("No potion in hotbar slot", slot_index)
 		return
 
-	var potion_name = potion["name"]
-	var potion_count = potion["count"]
-	var potion_texture = potion["texture"]
-
-	# Check if the inventory has space for the potion before removing it from the HUD
-	if not inventory.has_space_for_item():
-		print("Inventory full! Potion remains in hotbar.")
-		return 
-
-	# Remove the potion from the potion bar
+	# Remove the potion from the HUD's potion bar.
 	potion_bar_slots[slot_index] = null
 	var button = potion_bar.get_child(slot_index)
 	button.icon = null
 	button.text = ""
 	PlayerData.item_bar = item_bar_slots.duplicate(true)
 
-	# Add the potion back to the inventory with the correct count and texture
-	var success = inventory.add_potion_from_hotbar(potion_name, potion_count, potion_texture)
+	# Call the inventory function using the full item object.
+	var success = inventory.add_potion_from_hotbar(potion)
 	if not success:
 		print("Inventory full! Cannot move potion from hotbar.")
 
-	#print("Moved", potion_count, potion_name, "from potion hotbar slot", slot_index, "to inventory")
-
-	# If in battle and the turn isn't locked, hide the inventory panel, lock the turn, show a battle message, and trigger CPU attack
+	# Additional battle logic if necessary.
 	if Global.in_battle and not battle_ui.turn_locked:
 		inventory.get_node("CanvasLayer/Panel").visible = false
 		await battle_ui.lock_turn()
 		await battle_ui.show_battle_message("Used turn to move potion to inventory.")
 		await battle_ui.cpu_attack()
+
 
 # Function to move an item from inventory to item bar
 func move_to_item_bar(item, slot_index):
@@ -332,12 +323,13 @@ func move_to_potion_bar(item, slot_index):
 			potion_bar_slots[slot_index]["count"] += potion_count
 		else:
 			if potion_bar_slots[slot_index] == null:
-				# Assign a new potion entry with the correct count and a resized texture
-				potion_bar_slots[slot_index] = { 
-					"name": potion_name, 
-					"texture": resize_texture(item["texture"], Vector2(64, 64)),
-					"count": potion_count 
-				}
+	# Duplicate the entire item so that all properties (heal_amount, etc.) are kept.
+				var new_potion = item.duplicate(true)
+	# Optionally update the texture if you want consistent sizing.
+				new_potion["texture"] = resize_texture(item["texture"], Vector2(64, 64))
+	# Set the count (if needed, although it might already be in the object)
+				new_potion["count"] = potion_count
+				potion_bar_slots[slot_index] = new_potion
 			else:
 				print("Potion slot is already occupied!")
 				return
@@ -533,6 +525,7 @@ func handle_battle_attack(slot_index):
 		await battle_ui.show_battle_message("%s broke!" % item["name"])
 		item_bar_slots[slot_index] = null
 		item_bar.get_child(slot_index).icon = null
+		PlayerData.item_bar = item_bar_slots.duplicate(true)
 		await get_tree().create_timer(2).timeout
 		await battle_ui.cpu_attack()
 		return
@@ -576,12 +569,13 @@ func update_collection_tracker():
 		var texture = get_item_texture(item_name)
 
 	# Resize the texture before displaying
-		var resized_texture = resize_texture(texture, Vector2(32, 32))
+	#HAD TO STOP FOR ERROR
+		#var resized_texture = resize_texture(texture, Vector2(32, 32))
 
 		var row = HBoxContainer.new()
 
 		var icon = TextureRect.new()
-		icon.texture = resized_texture
+		#icon.texture = resized_texture
 		icon.custom_minimum_size = Vector2(32, 32)
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		row.add_child(icon)

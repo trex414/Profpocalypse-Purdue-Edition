@@ -9,11 +9,11 @@ func use_health_potion(health_manager, item):
 		return false
 	
 	# Use the heal_amount from the item definition; default to 20 if not provided.
-	var heal_amt = item.get("heal_amount", 10)
-	
+	#var heal_amt = item.get("heal_amount", 10)
+	var heal_amount = item.get("heal_amount", 0)
 	if health_manager.current_health < health_manager.max_health:
-		health_manager.add_health(heal_amt)
-		print("Health Potion used! Health increased by %d." % heal_amt)
+		health_manager.add_health(heal_amount)
+		print("Health Potion used! Health increased by %d." % heal_amount)
 		return true
 	else:
 		print("Health is already full. Cannot use potion.")

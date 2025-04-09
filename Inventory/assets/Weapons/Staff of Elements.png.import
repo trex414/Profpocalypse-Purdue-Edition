@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s73q0sn1osau"
-path="res://.godot/imported/elixiroflife.webp-63b16bcb1356f5d2072777390494095f.ctex"
+uid="uid://dm5rs0sio8rn2"
+path="res://.godot/imported/Staff of Elements.png-385e792edcc1ae12f75f7d925c8cf0aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/assets/elixiroflife.webp"
-dest_files=["res://.godot/imported/elixiroflife.webp-63b16bcb1356f5d2072777390494095f.ctex"]
+source_file="res://Inventory/assets/Weapons/Staff of Elements.png"
+dest_files=["res://.godot/imported/Staff of Elements.png-385e792edcc1ae12f75f7d925c8cf0aa.ctex"]
 
 [params]
 

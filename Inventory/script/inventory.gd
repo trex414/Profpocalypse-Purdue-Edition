@@ -221,7 +221,7 @@ func use_item():
 		var exp_amount  = item.get("exp_amount", 0)
 		# You can add more, e.g. speed_boost, etc.
 
-		if spell_name == "Health Potion":
+		if spell_name == "Health Potion" or spell_name == "Small Health Potion" or spell_name == "Medium Health Potion" or spell_name == "Large Health Potion":
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
@@ -363,50 +363,38 @@ func add_item_from_hotbar(item) -> bool:
 	return false
 
 # Function move potion from potion bar to inventory
-func add_potion_from_hotbar(potion_name, potion_count, potion_texture) -> bool:
+func add_potion_from_hotbar(item: Dictionary) -> bool:
 	$SpellSFX.play()
 	deselect_item()
-	# Try to stack potion if it already exists in inventory
+	
+	# Try stacking the potion if it already exists in the inventory.
 	for i in range(SLOT_COUNT):
-		if inventory[i] != null and inventory[i]["name"] == potion_name:
-			inventory[i]["count"] += potion_count
-			
+		if inventory[i] != null and inventory[i]["name"] == item["name"]:
+			inventory[i]["count"] += item["count"]
+			# Also update the global potion bar data to remove the used amount.
 			for j in range(PlayerData.potion_bar.size()):
-				if PlayerData.potion_bar[j].name == potion_name:
-					if PlayerData.potion_bar[j].count > potion_count:
-						PlayerData.potion_bar[j].count -= potion_count
+				if PlayerData.potion_bar[j] != null and PlayerData.potion_bar[j]["name"] == item["name"]:
+					if PlayerData.potion_bar[j]["count"] > item["count"]:
+						PlayerData.potion_bar[j]["count"] -= item["count"]
 					else:
 						PlayerData.potion_bar[j] = null
-			
 			PlayerData.inventory = inventory.duplicate(true)
-			
 			update_inventory()
-			print("Stacked", potion_count, potion_name, "in inventory slot", i)
+			print("Stacked", item["count"], item["name"], "in inventory slot", i)
 			return true
 
-	# Find the first empty slot
+	# Find the first empty slot in the inventory.
 	for i in range(SLOT_COUNT):
 		if inventory[i] == null:
-			inventory[i] = {
-				"type": ItemType.SPELL,
-				"name": potion_name,
-				"texture": potion_texture,  
-				"stackable": true,
-				"count": potion_count
-			}
-			for j in range(PlayerData.potion_bar.size()):
-				if PlayerData.potion_bar[j] == null || PlayerData.potion_bar[j].is_empty():
-					continue
-				if PlayerData.potion_bar[j].name == potion_name:
-					PlayerData.potion_bar[j] = null
-			
+			# Duplicate the full potion object so that all properties (heal_amount, etc.) are preserved.
+			inventory[i] = item.duplicate(true)
 			PlayerData.inventory = inventory.duplicate(true)
-			
 			update_inventory()
-			print("Added new potion:", potion_name, "x", potion_count, "to slot", i)
+			print("Added new potion:", item["name"], "x", item["count"], "to slot", i)
 			return true
 
-	return false  
+	return false
+
 
 func is_inventory_open() -> bool:
 	var panel = $CanvasLayer/Panel

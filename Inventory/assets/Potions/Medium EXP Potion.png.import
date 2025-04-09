@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtdbe1jmu5258"
-path="res://.godot/imported/notunlocked.png-2b8d433bb46eeec247d41eb76d5c8be2.ctex"
+uid="uid://bsdkqfeb21sst"
+path="res://.godot/imported/Medium EXP Potion.png-eb5c815fdefbc8b85e6ec5e1746cdc1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/assets/notunlocked.png"
-dest_files=["res://.godot/imported/notunlocked.png-2b8d433bb46eeec247d41eb76d5c8be2.ctex"]
+source_file="res://Inventory/assets/Potions/Medium EXP Potion.png"
+dest_files=["res://.godot/imported/Medium EXP Potion.png-eb5c815fdefbc8b85e6ec5e1746cdc1a.ctex"]
 
 [params]
 

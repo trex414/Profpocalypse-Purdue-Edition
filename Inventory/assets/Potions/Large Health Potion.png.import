@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7tsr1apti8ew"
-path="res://.godot/imported/Axe.png-975ae3a3f3d3942a6cbb5d65f1728a80.ctex"
+uid="uid://va13lnxltnxw"
+path="res://.godot/imported/Large Health Potion.png-d06dadd1c5c60b4fc4833b585cc654d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Inventory/assets/Axe.png"
-dest_files=["res://.godot/imported/Axe.png-975ae3a3f3d3942a6cbb5d65f1728a80.ctex"]
+source_file="res://Inventory/assets/Potions/Large Health Potion.png"
+dest_files=["res://.godot/imported/Large Health Potion.png-d06dadd1c5c60b4fc4833b585cc654d1.ctex"]
 
 [params]
 
