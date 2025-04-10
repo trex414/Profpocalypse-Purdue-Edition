@@ -159,6 +159,23 @@ func use_potion_bar(slot_index):
 		used = potions_manager.use_exp_potion(exp_manager, item)
 	elif item.has("speed_boost"):
 		used = potions_manager.use_speed_potion(item)
+	elif item.has("damage_amount"):
+		if not Global.in_battle:
+			print("Can only use damage potion in battle!")
+			return
+
+		if battle_ui == null or battle_ui.turn_locked:
+			print("Battle UI not available or turn is locked.")
+			return
+
+		var damage = item["damage_amount"]
+		print("💥 Used Damage Potion for", damage, "damage!")
+
+		await battle_ui.lock_turn()
+		battle_ui.enemy_bar.take_damage(damage)
+		await battle_ui.unlock_turn()
+		used = true
+
 	else:
 		print("This is not a valid potion.")
 	

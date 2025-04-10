@@ -17,6 +17,8 @@ const ROWS = 4
 @onready var use_button = $"CanvasLayer/Panel/Use Usable"
 @onready var info_panel = $"CanvasLayer/Info panel"  # Or the correct path to your InfoPanel node.
 @onready var info_button = $"CanvasLayer/Panel/Info"
+@onready var item_popup = $CanvasLayer/ItemPopupPanel
+@onready var item_list_container = $CanvasLayer/ItemPopupPanel/ItemScroll/VBoxContainer
 
 # Variables
 var main_hud = null 
@@ -49,7 +51,8 @@ func _ready():
 	$CanvasLayer/Panel/Label/ColorRect.visible = false
 	inventory = PlayerData.inventory.duplicate(true)
 	setup_inventory()
-	add_button.connect("pressed", Callable(self, "add_item"))
+	add_button.connect("pressed", Callable(self, "open_item_selector"))
+
 	delete_button.connect("pressed", Callable(self, "delete_item"))
 	use_button.connect("pressed", Callable(self, "use_item"))
 	info_button.connect("pressed", Callable(self, "on_info_pressed"))
@@ -74,6 +77,7 @@ func toggle_inventory():
 	else:
 		print("Inventory closed.")
 		info_panel.visible = false  # Ensure the info panel is hidden when the inventory is closed.
+		item_popup.hide()
 
 
 # Function to generate inventory slots dynamically
@@ -274,6 +278,31 @@ func use_item():
 				used = true
 			else:
 				print("ERROR: Player node not found.")
+				
+		elif item.has("damage_amount"):
+			if not Global.in_battle:
+				print_centered("Can only use this in battle!")
+				return
+
+			if main_hud == null or main_hud.battle_ui == null:
+				print("Battle UI not available.")
+				return
+
+			var damage = item["damage_amount"]
+			print("💥 Used Legendary Damage Potion for", damage, "damage!")
+			
+			item["count"] -= 1
+			if item["count"] <= 0:
+				inventory[selected_slot] = null
+			info_panel.visible = false
+
+			main_hud.battle_ui.enemy_bar.take_damage(damage)
+			main_hud.battle_ui.show_battle_message("You used a Legendary Damage Potion!")
+
+			PlayerData.inventory = inventory.duplicate(true)
+			update_inventory()
+			used = true
+					
 
 		# If you have more potions, either check for them by name or rely on other keys:
 		elif spell_name in spell_messages:
@@ -556,3 +585,59 @@ func on_info_pressed():
 		print("No item selected for info.")
 		info_panel.visible = false
 		deselect_item()
+		
+func open_item_selector():
+	if item_popup.visible:
+		item_popup.hide()
+		return
+
+	for child in item_list_container.get_children():
+		child.queue_free()
+
+	var all_items = ITEM_DEFINITIONS.keys() + SPELL_DEFINITIONS.keys()
+	for item_name in all_items:
+		var button = HBoxContainer.new()
+
+		var icon_texture = load(ITEM_DEFINITIONS.get(item_name, {}).get("texture_path", SPELL_DEFINITIONS.get(item_name, {}).get("texture_path", "")))
+		var texture_rect = TextureRect.new()
+		texture_rect.texture = icon_texture
+		texture_rect.custom_minimum_size = Vector2(20, 20)
+		texture_rect.expand = true
+		texture_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
+		var label = Label.new()
+		label.text = item_name
+
+		# Optional spacing for cleaner layout
+		label.add_theme_constant_override("margin_left", 6)
+
+		# Color name by rarity
+		var rarity = ITEM_DEFINITIONS.get(item_name, {}).get("rarity", SPELL_DEFINITIONS.get(item_name, {}).get("rarity", ""))
+		match rarity:
+			"common": label.add_theme_color_override("font_color", Color.WHITE)
+			"rare": label.add_theme_color_override("font_color", Color(0.3, 0.6, 1.0))  # Light blue
+			"epic": label.add_theme_color_override("font_color", Color(0.6, 0.2, 0.8))  # Purple
+			"legendary": label.add_theme_color_override("font_color", Color(1.0, 0.7, 0.1))  # Gold
+
+		button.add_child(texture_rect)
+		button.add_child(label)
+		button.mouse_filter = Control.MOUSE_FILTER_STOP
+		button.connect("gui_input", Callable(self, "_on_item_gui_input").bind(item_name))
+		item_list_container.add_child(button)
+
+	item_popup.popup_centered()
+
+
+
+
+
+	
+func _on_item_selected(item_name: String):
+	item_popup.hide()
+	add_named_item(item_name)
+	
+func _on_item_gui_input(event: InputEvent, item_name: String):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_on_item_selected(item_name)
+
+	
