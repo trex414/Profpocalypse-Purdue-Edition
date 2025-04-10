@@ -271,7 +271,7 @@ const SPELL_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Potions/Small Speed Potion.png",
 		"stackable": true,
 		"count": 1,
-		"speed_boost": 5,
+		"speed_boost": 10,
 		"rarity": "common"
 	},
 	"Medium Speed Potion": {
@@ -280,7 +280,7 @@ const SPELL_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Potions/Medium Speed Potion.png",
 		"stackable": true,
 		"count": 1,
-		"speed_boost": 10,
+		"speed_boost": 30,
 		"rarity": "uncommon"
 	},
 	"Large Speed Potion": {
@@ -289,7 +289,7 @@ const SPELL_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Potions/Large Speed Potion.png",
 		"stackable": true,
 		"count": 1,
-		"speed_boost": 20,
+		"speed_boost": 60,
 		"rarity": "rare"
 	},
 	# EXP Potions: Small, Medium, Large
@@ -376,6 +376,16 @@ const SPELL_DEFINITIONS = {
 		"exp_amount": 100,
 		"rarity": "legendary"
 	},
+	"Wings of Zephyr": {
+		"type": 1,
+		"name": "Wings of Zephyr",
+		"texture_path": "res://Inventory/assets/Potions/Wings of Zephyr.png",
+		"stackable": true,
+		"count": 1,
+		"speed_boost": 200,
+		"rarity": "legendary"
+	},
+	
 	# Existing Unique Potions:
 	"Elixir of Life": {
 		"type": 1,

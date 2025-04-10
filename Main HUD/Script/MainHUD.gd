@@ -12,6 +12,7 @@ extends Control
 @onready var potions_manager = preload("res://Main HUD/Script/potion.gd").new()
 @onready var collection_button = $CanvasLayer/CollectionButton
 @onready var collection_panel = $CanvasLayer/CollectionTracker
+@onready var timer_bar = $CanvasLayer/SpeedBoostTimer
 
 
 
@@ -55,12 +56,8 @@ func _ready():
 		for i in range(item_bar_slots.size()):
 			if item_bar_slots[i] != null:
 				restore_item_bar(i, item_bar_slots[i])
+	timer_bar.visible = false
 	
-
-
-
-
-
 # Function to make sure inventory is a global call for main hud
 func set_inventory(inv):
 	inventory = inv
@@ -144,8 +141,6 @@ func use_item_bar(slot_index):
 
 #Function if the inventoy is closed you can click potions on potion bar and will be used
 func use_potion_bar(slot_index):
-	
-	
 	# Get the potion from the potion bar slot
 	var item = potion_bar_slots[slot_index]
 	if item == null:
@@ -156,12 +151,14 @@ func use_potion_bar(slot_index):
 	var used = false
 	
 	# Apply the potion's effect based on its type
-	if potion_name == "Health Potion" or potion_name == "Small Health Potion" or potion_name == "Medium Health Potion" or potion_name == "Large Health Potion":
+	if item.has("heal_amount"):
 		var health_manager = get_node_or_null("CanvasLayer/Health_Bar")
 		used = potions_manager.use_health_potion(health_manager, item)
-	elif potion_name == "EXP Potion":
+	elif item.has("exp_amount"):
 		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")
 		used = potions_manager.use_exp_potion(exp_manager, item)
+	elif item.has("speed_boost"):
+		used = potions_manager.use_speed_potion(item)
 	else:
 		print("This is not a valid potion.")
 	
@@ -608,4 +605,54 @@ func get_item_texture(item_name: String) -> Texture2D:
 		return load(def["texture_path"])
 
 	return null
+	
+var speed_remaining_time: float = 0.0
+var speed_timer_tween: Tween = null
+
+func show_speed_timer(duration: float):
+	print("Showing speed timer for", duration, "seconds")
+
+	# Extend time if already running
+	if speed_remaining_time > 0.0:
+		speed_remaining_time += duration
+	else:
+		speed_remaining_time = duration
+		timer_bar.visible = true
+
+	# Reset tween if needed
+	if speed_timer_tween and speed_timer_tween.is_running():
+		speed_timer_tween.kill()
+
+	timer_bar.max_value = speed_remaining_time
+	timer_bar.value = speed_remaining_time
+
+	# Start new tween
+	speed_timer_tween = create_tween()
+	speed_timer_tween.tween_property(timer_bar, "value", 0.0, speed_remaining_time).set_trans(Tween.TRANS_LINEAR)
+
+	# Update label every second
+	var time_label = timer_bar.get_node("TimeLabel")
+	time_label.visible = true
+
+	# Update every 0.1s
+	var update_timer := Timer.new()
+	update_timer.wait_time = 0.1
+	update_timer.one_shot = false
+	update_timer.autostart = true
+	add_child(update_timer)
+
+	update_timer.timeout.connect(func ():
+		speed_remaining_time -= 0.1
+		speed_remaining_time = max(speed_remaining_time, 0)
+
+		time_label.text = str(int(ceil(speed_remaining_time))) + "s"
+
+		if speed_remaining_time <= 0:
+			timer_bar.visible = false
+			time_label.visible = false
+			update_timer.queue_free()
+	)
+
+
+
 	

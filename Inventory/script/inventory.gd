@@ -220,7 +220,7 @@ func use_item():
 		var exp_amount  = item.get("exp_amount", 0)
 		# You can add more, e.g. speed_boost, etc.
 
-		if spell_name == "Health Potion" or spell_name == "Small Health Potion" or spell_name == "Medium Health Potion" or spell_name == "Large Health Potion":
+		if item.has("heal_amount"):
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
@@ -242,7 +242,7 @@ func use_item():
 			else:
 				print("ERROR: HealthContainer node not found in HUD.")
 
-		elif spell_name == "EXP Potion":
+		elif item.has("exp_amount"):
 			if main_hud == null:
 				print("ERROR: Main HUD reference is missing!")
 				return
@@ -260,6 +260,20 @@ func use_item():
 				used = true
 			else:
 				print("ERROR: EXPContainer node not found in HUD.")
+				
+		elif item.has("speed_boost"):
+			var player = get_node("/root/TestMain/Map/TemporaryPlayer")
+			if player != null:
+				player.apply_speed_boost(item["speed_boost"], 30.0)
+				print("Speed potion used! Boosted by %d." % item["speed_boost"])
+				item["count"] -= 1
+				if item["count"] <= 0:
+					inventory[selected_slot] = null
+				PlayerData.inventory = inventory.duplicate(true)
+				update_inventory()
+				used = true
+			else:
+				print("ERROR: Player node not found.")
 
 		# If you have more potions, either check for them by name or rely on other keys:
 		elif spell_name in spell_messages:

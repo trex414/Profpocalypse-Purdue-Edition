@@ -81,8 +81,6 @@ func _ready():
 	var health_bar = hud.get_node("CanvasLayer/Health_Bar")
 	battle_ui.set_health_bar(health_bar)
 	abilitiesPreview.set_health_bar(health_bar)  # Pass health bar reference to abilitiesPreview
-
-
 # Pass to HUD
 	hud.set_battle_ui(battle_ui)
 	
@@ -98,7 +96,7 @@ func _ready():
 	# Set the window size to 1280x720 (720p resolution)
 	var window = get_viewport().get_window()
 	if window:
-		window.size = Vector2(1280, 720)
+		window.size = Vector2(1920, 1080)
 		
 	PlayerData.ready
 
