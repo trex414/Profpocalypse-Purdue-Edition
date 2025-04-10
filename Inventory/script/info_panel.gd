@@ -33,7 +33,6 @@ func update_info(item: Dictionary) -> void:
 			rarity_label.text = "Rarity: " + str(item.get("rarity", "Common"))
 		else:
 			#title_label.text = "POTION INFO"
-			icon_texture_rect.visible = false
 			colorize_by_rarity(item.get("rarity", "Common"))
 			if item.has("heal_amount"):
 				damage_label.text = "Heal Amount: " + str(item["heal_amount"])
@@ -41,6 +40,8 @@ func update_info(item: Dictionary) -> void:
 				damage_label.text = "EXP Amount: " + str(item["exp_amount"])
 			elif item.has("speed_boost"):
 				damage_label.text = "Speed Boost: " + str(item["speed_boost"])
+			elif item.has("damage_amount"):
+				damage_label.text = "Damage Boost: " + str(item["damage_amount"])
 			else:
 				damage_label.text = "Value: " + str(item.get("value", 0))
 			# For potions, clear out the stats that don't apply.

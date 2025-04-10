@@ -31,20 +31,3 @@ func use_exp_potion(exp_manager, item):
 	print("EXP Potion used! Gained %d experience." % exp_amt)
 	return true
 	
-# Function to handle speed potion consumption
-func use_speed_potion(item: Dictionary) -> bool:
-	if item == null or not item.has("speed_boost"):
-		print("ERROR: Invalid speed potion.")
-		return false
-
-	var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
-	if player == null:
-		print("ERROR: Player node not found.")
-		return false
-
-	var speed_boost = item["speed_boost"]
-	var duration = 30.0  # seconds
-
-	player.apply_speed_boost(speed_boost, duration)
-	print("Speed potion used! Boosted by %d for %ds." % [speed_boost, duration])
-	return true

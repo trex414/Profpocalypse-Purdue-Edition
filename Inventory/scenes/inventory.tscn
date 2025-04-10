@@ -206,6 +206,11 @@ offset_right = 21.0
 offset_bottom = 183.0
 text = "INFO"
 
+[node name="HoverLabel" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 51.0
+
 [node name="ItemPopupPanel" type="PopupPanel" parent="CanvasLayer"]
 auto_translate_mode = 1
 position = Vector2i(100, 0)

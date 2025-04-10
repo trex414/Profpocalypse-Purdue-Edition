@@ -324,31 +324,39 @@ const SPELL_DEFINITIONS = {
 	"Small Strength Potion": {
 		"type": 1,
 		"name": "Small Strength Potion",
-		"texture_path": "res://Inventory/assets/small_strength.png",
+		"texture_path": "res://Inventory/assets/Potions/Small Strength Potion.png",
 		"stackable": true,
 		"count": 1,
 		"strength_boost": 3,
-		"rarity": "epic"
+		"rarity": "common"
 	},
 	"Medium Strength Potion": {
 		"type": 1,
 		"name": "Medium Strength Potion",
-		"texture_path": "res://Inventory/assets/medium_strength.png",
+		"texture_path": "res://Inventory/assets/Potions/Medium Strength Potion.png",
 		"stackable": true,
 		"count": 1,
 		"strength_boost": 7,
-		"rarity": "uncommon"
+		"rarity": "rare"
 	},
 	"Large Strength Potion": {
 		"type": 1,
 		"name": "Large Strength Potion",
-		"texture_path": "res://Inventory/assets/large_strength.png",
+		"texture_path": "res://Inventory/assets/Potions/Large Strength Potion.png",
 		"stackable": true,
 		"count": 1,
-		"strength_boost": 12,
+		"strength_boost": 20,
+		"rarity": "epic"
+	},
+	"Titan’s Fury Elixir": {
+		"type": 1,
+		"name": "Titan’s Fury Elixir",
+		"texture_path": "res://Inventory/assets/Potions/Titan’s Fury Elixir.png",
+		"stackable": true,
+		"count": 1,
+		"strength_boost": 35,
 		"rarity": "legendary"
 	},
-	
 	"Legendary Health Potion": {
 		"type": 1,
 		"name": "Legendary Health Potion",
@@ -386,7 +394,7 @@ const SPELL_DEFINITIONS = {
 		"rarity": "legendary"
 	},
 	
-	# Existing Unique Potions:
+	# Existing Unique Potions: this will heal of an amount of time
 	"Elixir of Life": {
 		"type": 1,
 		"name": "Elixir of Life",

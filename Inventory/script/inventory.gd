@@ -60,6 +60,7 @@ func _ready():
 	add_to_group("Inventory")
 	info_panel.visible = false
 
+
 # Function to be able to global call main hud
 func set_main_hud(hud):
 	main_hud = hud
@@ -95,6 +96,8 @@ func setup_inventory():
 		slot.expand_icon = true
 		slot.connect("pressed", Callable(self, "select_item").bind(i))
 		slot.connect("gui_input", Callable(self, "_on_slot_gui_input").bind(i))
+		slot.connect("mouse_entered", Callable(self, "_on_slot_mouse_entered").bind(i))
+		slot.connect("mouse_exited", Callable(self, "_on_slot_mouse_exited"))
 		grid_container.add_child(slot)
 		inventory.append(null)
 	inventory = InventoryManager.inventory
@@ -268,14 +271,17 @@ func use_item():
 		elif item.has("speed_boost"):
 			var player = get_node("/root/TestMain/Map/TemporaryPlayer")
 			if player != null:
-				player.apply_speed_boost(item["speed_boost"], 30.0)
-				print("Speed potion used! Boosted by %d." % item["speed_boost"])
-				item["count"] -= 1
-				if item["count"] <= 0:
-					inventory[selected_slot] = null
-				PlayerData.inventory = inventory.duplicate(true)
-				update_inventory()
-				used = true
+				if player.active_potion_type == "":
+					player.apply_speed_boost(item["speed_boost"], 30.0)
+					print("Speed potion used! Boosted by %d." % item["speed_boost"])
+					item["count"] -= 1
+					if item["count"] <= 0:
+						inventory[selected_slot] = null
+					PlayerData.inventory = inventory.duplicate(true)
+					update_inventory()
+					used = true
+				else:
+					print_centered("❌ Already under potion effect!")
 			else:
 				print("ERROR: Player node not found.")
 				
@@ -302,6 +308,24 @@ func use_item():
 			PlayerData.inventory = inventory.duplicate(true)
 			update_inventory()
 			used = true
+			
+		elif item.has("strength_boost"):
+			var player = get_node("/root/TestMain/Map/TemporaryPlayer")
+			if player != null:
+				if player.active_potion_type == "":
+					player.apply_strength_boost(item["strength_boost"], 30.0)  # 60-second buff
+					print("Strength potion used! +%d damage for 60s." % item["strength_boost"])
+					item["count"] -= 1
+					if item["count"] <= 0:
+						inventory[selected_slot] = null
+					PlayerData.inventory = inventory.duplicate(true)
+					update_inventory()
+					used = true
+				else:
+					print_centered("❌ Already under potion effect!")
+			else:
+				print("ERROR: Player node not found.")
+
 					
 
 		# If you have more potions, either check for them by name or rely on other keys:
@@ -615,9 +639,11 @@ func open_item_selector():
 		var rarity = ITEM_DEFINITIONS.get(item_name, {}).get("rarity", SPELL_DEFINITIONS.get(item_name, {}).get("rarity", ""))
 		match rarity:
 			"common": label.add_theme_color_override("font_color", Color.WHITE)
+			"uncommon": label.add_theme_color_override("font_color", Color(0.0, 1.0, 0.0))  # Green
 			"rare": label.add_theme_color_override("font_color", Color(0.3, 0.6, 1.0))  # Light blue
 			"epic": label.add_theme_color_override("font_color", Color(0.6, 0.2, 0.8))  # Purple
 			"legendary": label.add_theme_color_override("font_color", Color(1.0, 0.7, 0.1))  # Gold
+
 
 		button.add_child(texture_rect)
 		button.add_child(label)

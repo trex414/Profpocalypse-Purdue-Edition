@@ -1,4 +1,5 @@
 extends Control
+var player: Node = null
 
 var player_health_bar = null
 var player_texture = null
@@ -149,11 +150,12 @@ func player_attack(damage):
 	if turn_locked:
 		return
 	lock_turn()
-
-	show_battle_message("Successfully attacked for %d damage" % damage)
+	player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
+	var final_damage = damage + player.get_total_strength()
+	show_battle_message("Successfully attacked for %d damage" % final_damage)
 
 	$AttackSuccessSFX.play()
-	enemy_bar.take_damage(damage)  # ✅ Directly call it here
+	enemy_bar.take_damage(final_damage)  # ✅ Directly call it here
 
 	if enemy_bar.current_health <= 0:
 		await get_tree().create_timer(2).timeout

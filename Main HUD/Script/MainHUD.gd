@@ -14,6 +14,11 @@ extends Control
 @onready var collection_panel = $CanvasLayer/CollectionTracker
 @onready var timer_bar = $CanvasLayer/SpeedBoostTimer
 
+var strength_remaining_time: float = 0.0
+var strength_timer_tween: Tween = null
+@onready var strength_timer_bar = $CanvasLayer/SpeedBoostTimer  # make sure this node exists!
+
+
 
 
 var battle_ui = null
@@ -158,7 +163,17 @@ func use_potion_bar(slot_index):
 		var exp_manager = get_node_or_null("CanvasLayer/EXP_Bar")
 		used = potions_manager.use_exp_potion(exp_manager, item)
 	elif item.has("speed_boost"):
-		used = potions_manager.use_speed_potion(item)
+		var player = get_node("/root/TestMain/Map/TemporaryPlayer")
+		if player != null:
+			if player.active_potion_type == "":
+				player.apply_speed_boost(item["speed_boost"], 30.0)
+				print("Speed potion used! Boosted by %d." % item["speed_boost"])
+				used = true
+			else:
+				print("❌ Already under potion effect!")
+		else:
+			print("ERROR: Player node not found.")
+
 	elif item.has("damage_amount"):
 		if not Global.in_battle:
 			print("Can only use damage potion in battle!")
@@ -175,6 +190,18 @@ func use_potion_bar(slot_index):
 		battle_ui.enemy_bar.take_damage(damage)
 		await battle_ui.unlock_turn()
 		used = true
+	elif item.has("strength_boost"):
+		var player = get_node("/root/TestMain/Map/TemporaryPlayer")
+		if player != null:
+			if player.active_potion_type == "":
+				player.apply_strength_boost(item["strength_boost"], 30.0)
+				print("Strength potion used! +%d damage for 60s." % item["strength_boost"])
+				used = true
+			else:
+				print("❌ Already under potion effect!")
+		else:
+			print("ERROR: Player node not found.")
+
 
 	else:
 		print("This is not a valid potion.")
@@ -631,6 +658,8 @@ var speed_timer_tween: Tween = null
 
 func show_speed_timer(duration: float):
 	print("Showing speed timer for", duration, "seconds")
+	timer_bar.add_theme_color_override("progress_color", Color(0.2, 0.5, 1))  # blue for speed
+
 
 	# Extend time if already running
 	if speed_remaining_time > 0.0:
@@ -673,6 +702,50 @@ func show_speed_timer(duration: float):
 			update_timer.queue_free()
 	)
 
+func show_strength_timer(duration: float):
+	print("Showing strength timer for", duration, "seconds")
+	strength_timer_bar.add_theme_color_override("progress_color", Color(1, 0.2, 0.2))  # red for strength
+
+	# Extend time if already running
+	if strength_remaining_time > 0.0:
+		strength_remaining_time += duration
+	else:
+		strength_remaining_time = duration
+		strength_timer_bar.visible = true
+
+	# Reset tween if needed
+	if strength_timer_tween and strength_timer_tween.is_running():
+		strength_timer_tween.kill()
+
+	strength_timer_bar.max_value = strength_remaining_time
+	strength_timer_bar.value = strength_remaining_time
+
+	# Start new tween
+	strength_timer_tween = create_tween()
+	strength_timer_tween.tween_property(strength_timer_bar, "value", 0.0, strength_remaining_time).set_trans(Tween.TRANS_LINEAR)
+
+	# Update label every second
+	var time_label = strength_timer_bar.get_node("TimeLabel")
+	time_label.visible = true
+
+	# Update every 0.1s
+	var update_timer := Timer.new()
+	update_timer.wait_time = 0.1
+	update_timer.one_shot = false
+	update_timer.autostart = true
+	add_child(update_timer)
+
+	update_timer.timeout.connect(func ():
+		strength_remaining_time -= 0.1
+		strength_remaining_time = max(strength_remaining_time, 0)
+
+		time_label.text = str(int(ceil(strength_remaining_time))) + "s"
+
+		if strength_remaining_time <= 0:
+			strength_timer_bar.visible = false
+			time_label.visible = false
+			update_timer.queue_free()
+	)
 
 
 	
