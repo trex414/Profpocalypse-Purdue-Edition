@@ -14,6 +14,13 @@ var character_customization = null
 
 
 func _ready():
+	
+	# Make sure we are not in fullscreen mode
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+# Set the window size (e.g., 1280x720)
+	DisplayServer.window_set_size(Vector2i(1280, 720))
+
 
 	Global.tutorial_screen = $"Tutorial UI"
 	
