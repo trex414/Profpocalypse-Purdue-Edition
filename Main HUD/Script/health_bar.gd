@@ -11,6 +11,7 @@ var current_health: int = max_health
 @onready var health_bar = $Health 
 @onready var stylebox = health_bar.get("theme_override_styles/fill")
 @onready var lose_health_button = $Lose_Health
+@onready var health_label = $health
 
 # initilize the Health bar as well as ignoring mouse so we can interact with other layers
 func _ready():
@@ -19,6 +20,7 @@ func _ready():
 	update_health_color()
 	lose_health_button.connect("pressed", Callable(self, "on_lose_health_pressed"))
 	self.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	update_health_bar()
 	
 # Function to test attack with button
 func on_lose_health_pressed():
@@ -60,6 +62,7 @@ func add_health(amount: int):
 func update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = current_health
+	health_label.text = "%d / %d" % [current_health, max_health]
 	update_health_color()
 
 # Function to change the health bar color based on health level

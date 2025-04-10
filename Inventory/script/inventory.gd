@@ -19,6 +19,7 @@ const ROWS = 4
 @onready var info_button = $"CanvasLayer/Panel/Info"
 @onready var item_popup = $CanvasLayer/ItemPopupPanel
 @onready var item_list_container = $CanvasLayer/ItemPopupPanel/ItemScroll/VBoxContainer
+@onready var hover_label = $CanvasLayer/Panel/HoverLabel
 
 # Variables
 var main_hud = null 
@@ -373,18 +374,20 @@ func print_centered(message):
 func move_item_to_item_bar(slot_index, hud, bar_slot):
 	$WeaponSFX.play()
 	deselect_item()
+
 	if inventory[slot_index] != null and inventory[slot_index]["type"] == 0:
-		PlayerData.item_bar[bar_slot] = inventory[slot_index]
-		print("Added this weapon to bar: ", inventory[slot_index])
-		hud.move_to_item_bar(inventory[slot_index], bar_slot)
-		inventory[slot_index] = null
-		selected_slot = null
-		
-		PlayerData.inventory = inventory.duplicate(true)
-		
-		update_inventory()
+		var accepted = await hud.move_to_item_bar(inventory[slot_index], bar_slot)
+		if accepted:
+			PlayerData.item_bar[bar_slot] = inventory[slot_index]
+			inventory[slot_index] = null
+			selected_slot = null
+			PlayerData.inventory = inventory.duplicate(true)
+			update_inventory()
+		else:
+			print_centered("❌ That item is already in the Item Bar!")
 	else:
 		print("Only weapons can go here!")
+
 
 
 
@@ -665,5 +668,25 @@ func _on_item_selected(item_name: String):
 func _on_item_gui_input(event: InputEvent, item_name: String):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_on_item_selected(item_name)
+func _on_slot_mouse_entered(slot_index):
+	var item = inventory[slot_index]
+	if item != null:
+		hover_label.text = item["name"]
+		hover_label.visible = true
+
+		var rarity = item.get("rarity", "common").to_lower()
+		if ItemDefinitions.RARITY_COLORS.has(rarity):
+			hover_label.add_theme_color_override("font_color", ItemDefinitions.RARITY_COLORS[rarity])
+		else:
+			hover_label.add_theme_color_override("font_color", Color.WHITE)
+
+		# Optional: position label above mouse
+		var mouse_pos = get_viewport().get_mouse_position()
+		hover_label.global_position = mouse_pos + Vector2(10, -20)
+func _on_slot_mouse_exited():
+	hover_label.visible = false
+func _process(delta):
+	if hover_label.visible:
+		hover_label.global_position = get_viewport().get_mouse_position() + Vector2(10, -20)
 
 	

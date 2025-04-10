@@ -49,6 +49,19 @@ offset_bottom = 152.0
 grow_horizontal = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_akw03")
 step = 1.0
+show_percentage = false
+
+[node name="health_label" type="Label" parent="CanvasLayer/Enemy_Health_Bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 255.0
+offset_top = 103.0
+offset_right = 446.0
+offset_bottom = 154.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
 
 [node name="Enemy_EXP_Bar" type="Control" parent="CanvasLayer"]
 layout_mode = 3

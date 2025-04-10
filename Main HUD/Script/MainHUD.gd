@@ -51,16 +51,22 @@ func _ready():
 	for i in range(item_bar.get_child_count()):
 		var button = item_bar.get_child(i)
 		button.connect("pressed", Callable(self, "hotbar_slot_clicked").bind(i))
-	
+
 	for i in range(potion_bar.get_child_count()):
 		var button = potion_bar.get_child(i)
 		button.connect("pressed", Callable(self, "hotbar_potion_slot_clicked").bind(i))
+
 		
 	if PlayerData.item_bar:
-		item_bar_slots = PlayerData.item_bar.duplicate(true)
+		var loaded_slots = PlayerData.item_bar.duplicate(true)
 		for i in range(item_bar_slots.size()):
-			if item_bar_slots[i] != null:
+			if i < loaded_slots.size() and loaded_slots[i] != null and typeof(loaded_slots[i]) == TYPE_DICTIONARY and loaded_slots[i].has("name"):
+				item_bar_slots[i] = loaded_slots[i]
 				restore_item_bar(i, item_bar_slots[i])
+			else:
+				item_bar_slots[i] = null
+
+
 	timer_bar.visible = false
 	
 # Function to make sure inventory is a global call for main hud
@@ -325,27 +331,37 @@ func move_potion_from_hotbar_to_inventory(slot_index):
 
 
 # Function to move an item from inventory to item bar
-func move_to_item_bar(item, slot_index):
+func move_to_item_bar(item, slot_index) -> bool:
 	if slot_index < item_bar_slots.size():
-		if item != null and item.has("name") and item.has("texture"):
-			# Force items to have a count of 1
-			item["count"] = 1
-			item_bar_slots[slot_index] = item
-		else:
+		if item == null or not item.has("name") or not item.has("texture"):
 			print("❌ Tried to assign invalid item to hotbar:", item)
-			return
+			return false
+
+		var item_name = item["name"]
+		for existing_item in item_bar_slots:
+			if existing_item != null and existing_item.has("name") and existing_item["name"] == item_name:
+				print("❌ Item already in the Item Bar:", item_name)
+				return false  # 🔴 Duplicate detected
+
+		item["count"] = 1
+		item_bar_slots[slot_index] = item
+
 		var button = item_bar.get_child(slot_index)
-		# Use resized texture for consistency with potions
 		button.icon = resize_texture(item["texture"], Vector2(64, 64))
 		setup_hotbar_button(button)
 		PlayerData.item_bar = item_bar_slots.duplicate(true)
 		update_item_display()
-		
+
 		if Global.in_battle and not battle_ui.turn_locked:
 			inventory.get_node("CanvasLayer/Panel").visible = false
 			await battle_ui.lock_turn()
 			await battle_ui.show_battle_message("Used turn to assign item.")
 			await battle_ui.cpu_attack()
+
+		return true  # ✅ Success
+	return false
+
+
 
 
 
@@ -528,8 +544,6 @@ func update_pinned_quests(pinned_quests: Array[Quest]):
 	
 func handle_battle_attack(slot_index):
 	var item = item_bar_slots[slot_index]
-	if item == null:
-		return
 
 	if battle_ui.turn_locked:
 		print("Turn is locked. Wait for CPU.")
@@ -537,7 +551,7 @@ func handle_battle_attack(slot_index):
 
 	# Pull stats from the item dictionary, using defaults if missing
 	var base_damage  = item.get("damage", 1)
-	var miss_rate    = item.get("miss_chance", 0.00)
+	var miss_rate    = item.get("miss_chance", 0.30)
 	var crit_rate    = item.get("crit_chance", 0.0)
 	var break_rate   = item.get("break_chance", 0.0)
 	var stun_rate    = item.get("stun_chance", 0.0)  # If you want a stun effect

@@ -5,6 +5,8 @@ var current_health: int = max_health
 
 @onready var health_bar = $Health
 @onready var stylebox = health_bar.get("theme_override_styles/fill")
+@onready var health_label = $health_label
+
 
 func initialize(enemy_data: Dictionary):
 	if "max_health" in enemy_data:
@@ -33,8 +35,11 @@ func heal(amount: int):
 	update_health_bar()
 
 func update_health_bar():
+	health_bar.max_value = max_health
 	health_bar.value = current_health
+	health_label.text = "%d / %d" % [current_health, max_health]
 	update_health_color()
+
 
 func update_health_color():
 	var new_stylebox = StyleBoxFlat.new()

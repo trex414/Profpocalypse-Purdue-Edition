@@ -100,6 +100,7 @@ offset_right = 376.0
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_4vvx0")
 step = 1.0
+show_percentage = false
 
 [node name="Lose_Health" type="Button" parent="CanvasLayer/Health_Bar"]
 layout_mode = 1
@@ -121,6 +122,18 @@ pitch_scale = 4.0
 stream = ExtResource("4_pm12q")
 volume_db = -2.0
 pitch_scale = 4.0
+
+[node name="health" type="Label" parent="CanvasLayer/Health_Bar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -40.0
+offset_right = 355.0
+offset_bottom = 11.0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 
 [node name="EXP_Bar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
