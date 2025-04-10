@@ -3,6 +3,7 @@ extends Control
 var player_health_bar = null
 var player_texture = null
 var turn_locked = false
+var enemy_stunned = false
 var rng = RandomNumberGenerator.new()
 @onready var enemy_bar = $CanvasLayer/Enemy_Health_Bar
 
@@ -164,7 +165,7 @@ func player_attack(damage):
 		enemy_node_reference.queue_free()
 		enemy_node_reference = null
 		restore_gameplay()
-	else:
+	elif (!enemy_stunned):
 		await get_tree().create_timer(2).timeout
 		cpu_attack()
 

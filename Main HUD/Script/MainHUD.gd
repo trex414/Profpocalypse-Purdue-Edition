@@ -534,11 +534,14 @@ func handle_battle_attack(slot_index):
 			await battle_ui.show_battle_message("You stunned the enemy!")
 			# e.g. battle_ui.apply_stun_to_enemy() if you have that logic
 			await get_tree().create_timer(2).timeout
-			await battle_ui.cpu_attack()
-			return
+			final_damage = int(base_damage * 0.5)
+			await battle_ui.unlock_turn()
+			battle_ui.enemy_stunned = true
 
 		# Otherwise do normal damage
 		battle_ui.player_attack(final_damage)
+		await battle_ui.unlock_turn()
+		battle_ui.enemy_stunned = false
 
 		
 func set_battle_ui(ui):
