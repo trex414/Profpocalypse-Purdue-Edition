@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dmtoj5p3sufu4"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_xldd3"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_c0bwl"]
+[ext_resource type="Resource" uid="uid://duw5l7dvtutgo" path="res://Quest/assets/Gust-stack.tres" id="2_t8tkr"]
+
+[sub_resource type="Resource" id="Resource_oh42h"]
+script = ExtResource("2_c0bwl")
+item_name = "Sword of Truth"
+amount = 1
+
+[resource]
+script = ExtResource("1_xldd3")
+quest_name = "Main Story: Prof. KernelComer"
+description = " A master of interrupts and kernel chaos. Time your moves and overcome stunning surprises."
+prerequisites = Array[ExtResource("1_xldd3")]([ExtResource("2_t8tkr")])
+rewards = Array[ExtResource("2_c0bwl")]([SubResource("Resource_oh42h")])
+is_completed = false
+pinned = false

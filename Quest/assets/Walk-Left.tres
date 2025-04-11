@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://b3s3vm4e2uqdb"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_10nua"]
+[ext_resource type="Resource" uid="uid://06jgpujbkn31" path="res://Quest/assets/Walk-Forward.tres" id="2_uir5n"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_uquup"]
+[ext_resource type="Resource" uid="uid://dshteg1t63do3" path="res://Quest/assets/Walk-Backwards.tres" id="3_i2jdc"]
+
+[sub_resource type="Resource" id="Resource_g5wwm"]
+script = ExtResource("2_uquup")
+item_name = "Small Health Potion"
+amount = 1
+
+[resource]
+script = ExtResource("1_10nua")
+quest_name = "Movement Training: Part 3 – Walk Left"
+description = "Explore the path less taken—move to the left."
+prerequisites = Array[ExtResource("1_10nua")]([ExtResource("2_uir5n"), ExtResource("3_i2jdc")])
+rewards = Array[ExtResource("2_uquup")]([SubResource("Resource_g5wwm")])
+is_completed = false
+pinned = false

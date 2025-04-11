@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://c6gemftqmjbmn"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_p3ovt"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_filn7"]
+[ext_resource type="Resource" uid="uid://dmtoj5p3sufu4" path="res://Quest/assets/Kernelcomer.tres" id="2_r86ns"]
+
+[sub_resource type="Resource" id="Resource_xfgxj"]
+script = ExtResource("2_filn7")
+item_name = "Medium Strength Potion"
+amount = 1
+
+[resource]
+script = ExtResource("1_p3ovt")
+quest_name = "Main Story: Prof. CodeZhang"
+description = " It’s a two-front war. Fight Prof. CodeZhang and their TA in tandem in this coordination-based battle."
+prerequisites = Array[ExtResource("1_p3ovt")]([ExtResource("2_r86ns")])
+rewards = Array[ExtResource("2_filn7")]([SubResource("Resource_xfgxj")])
+is_completed = false
+pinned = false

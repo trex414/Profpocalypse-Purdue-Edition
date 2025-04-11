@@ -536,7 +536,13 @@ func update_pinned_quests(pinned_quests: Array[Quest]):
 	for quest in pinned_quests:
 		var label = Label.new()
 		label.text = quest.quest_name
-		label.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow text
+		if QuestManager.ready_to_complete.has(quest.quest_name):
+			label.text = quest.quest_name + " (Complete)"
+			label.add_theme_color_override("font_color", Color(0.4, 1.0, 0.4))  # Green
+		else:
+			label.text = quest.quest_name
+			label.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow
+
 		quest_list.add_child(label)
 
 	# Control visibility

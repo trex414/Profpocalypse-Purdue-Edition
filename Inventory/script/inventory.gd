@@ -76,6 +76,9 @@ func toggle_inventory():
 	if panel.visible:
 		update_inventory()
 		print("Inventory opened.")
+		if not QuestManager.is_quest_completed("OpenInventory"):
+			QuestManager.mark_ready_to_complete("OpenInventory")
+
 	else:
 		print("Inventory closed.")
 		info_panel.visible = false  # Ensure the info panel is hidden when the inventory is closed.

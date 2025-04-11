@@ -2,13 +2,11 @@ extends Control
 
 @onready var quest_list = $CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer/ScrollContainer/QuestListContent
 @onready var locked_quest_list = $CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer/ScrollContainerLocked/QuestListContent
-
 @onready var current_quest_label = $CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/CurrentQuestLabel
 @onready var reward_preview = $CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/RewardPreview
 @onready var complete_button = $CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/ButtonContainer/CompleteButton
 @onready var close_button = $CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/ButtonContainer/CloseButton
 @onready var pin_button = $CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer/ButtonContainer/Pin
-
 @onready var quest_list_container = $CanvasLayer/PanelContainer/HBoxContainer/QuestListContainer
 @onready var quest_details_container = $CanvasLayer/PanelContainer/HBoxContainer/QuestDetailsContainer
 
@@ -25,10 +23,13 @@ func _ready():
 
 	inventorymanager = get_node("/root/InventoryManager")  # or however you load inventory
 	QuestManager.quest_completed.connect(func(_name): update_quest())
+	QuestManager.set_quest_menu(self)
+
 	
 	# Initial setup for pin button
 	pin_button.pressed.connect(toggle_pin_current_quest)
 	pin_button.visible = false  # Hide until a quest is selected
+
 
 func update_quest():
 	# Clear out old buttons
@@ -36,6 +37,8 @@ func update_quest():
 		child.queue_free()
 	for child in locked_quest_list.get_children():
 		child.queue_free()
+	locked_quest_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	locked_quest_list.custom_minimum_size.x = 0
 
 	# Fetch all quests
 	var all_quests = QuestManager.get_all_quests()
@@ -68,14 +71,34 @@ func update_quest():
 		quest_button.text = quest.quest_name
 		quest_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		quest_button.custom_minimum_size.y = 40
+		quest_button.custom_minimum_size.x = 180  # Adjust width to fit your ScrollContainer
 
-		if quest.pinned:
-			quest_button.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow text for pinned quests
+		quest_button.autowrap_mode = TextServer.AUTOWRAP_WORD  # ✅ Enables word wrapping
+		quest_button.clip_text = false                          # ✅ Prevents text cutoff
+		quest_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_WORD_ELLIPSIS
+		
+		if QuestManager.ready_to_complete.has(quest.quest_name):
+			quest_button.add_theme_color_override("font_color", Color(0, 1, 0))  # Green
+			if !quest.pinned:
+				QuestManager.pin_quest(quest)
+		elif quest.pinned:
+			if QuestManager.ready_to_complete.has(quest.quest_name):
+				quest_button.add_theme_color_override("font_color", Color(0.4, 1.0, 0.4))  # Green if ready
+			else:
+				quest_button.add_theme_color_override("font_color", Color(1, 1, 0))  # Otherwise yellow
+
+
+
+		if QuestManager.ready_to_complete.has(quest.quest_name):
+			quest_button.add_theme_color_override("font_color", Color(0.4, 1.0, 0.4))  # Bright green
+		elif quest.pinned:
+			quest_button.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow
 
 		quest_button.pressed.connect(func(): show_quest_details(quest, false))
 
 		# Add Pin button inside an HBoxContainer
 		var quest_entry = HBoxContainer.new()
+		quest_entry.custom_minimum_size.y = 70  # Adds vertical space between entries
 		quest_entry.add_child(quest_button)
 
 		var pin_button = Button.new()
@@ -87,19 +110,42 @@ func update_quest():
 		quest_list.add_child(quest_entry)
 
 	# Create UI for locked quests (no Pin button here)
+	# Create UI for locked quests (styled same as available, but no pin)
 	for quest in locked_quests:
 		var quest_button = Button.new()
 		quest_button.text = quest.quest_name
 		quest_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		quest_button.custom_minimum_size.y = 40
+		quest_button.custom_minimum_size.x = 180
+
+		# Wrapping and truncation behavior (same as available)
+		quest_button.autowrap_mode = TextServer.AUTOWRAP_WORD
+		quest_button.clip_text = false
+		quest_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_WORD_ELLIPSIS
 
 		quest_button.pressed.connect(func(): show_quest_details(quest, true))
-		locked_quest_list.add_child(quest_button)
+
+		# Add to an HBoxContainer to match layout
+		var quest_entry = HBoxContainer.new()
+		quest_entry.custom_minimum_size.y = 70  # Match spacing
+
+		quest_entry.add_child(quest_button)
+
+		# Add to locked list
+		locked_quest_list.add_child(quest_entry)
 
 
 func show_quest_details(quest, is_locked: bool):
 	current_quest = quest
-	current_quest_label.text = quest.quest_name
+	if QuestManager.ready_to_complete.has(quest.quest_name):
+		current_quest_label.text = quest.quest_name + " (Complete)"
+		current_quest_label.add_theme_color_override("font_color", Color(0, 1, 0))  # Green
+		if !quest.pinned:
+			QuestManager.pin_quest(quest)
+	else:
+		current_quest_label.text = quest.quest_name
+		current_quest_label.remove_theme_color_override("font_color")
+
 
 	for child in reward_preview.get_children():
 		child.queue_free()
@@ -112,16 +158,23 @@ func show_quest_details(quest, is_locked: bool):
 	var rewards_label = Label.new()
 	rewards_label.text = "Rewards:"
 	reward_preview.add_child(rewards_label)
+	
 
-	for item_name in quest.rewards:
+	for reward in quest.rewards:
+		var item_name = reward.item_name
+		var amount = reward.amount
+
+		
 		var reward_label = Label.new()
-		reward_label.text = "- " + item_name
+		reward_label.text = "- %s x%d" % [item_name, amount]
 		reward_preview.add_child(reward_label)
+
 
 	if is_locked:
 		var prereq_label = Label.new()
 		prereq_label.text = "\nPrerequisites:"
 		reward_preview.add_child(prereq_label)
+		
 
 		for prereq_name in quest.prerequisites:
 			var status = "❌"
@@ -135,13 +188,21 @@ func show_quest_details(quest, is_locked: bool):
 		pin_button.visible = false  # No pin for locked
 	else:
 		complete_button.show()
+		
+		# Only show complete button if the quest is marked as completed
+		if quest.is_completed:
+			complete_button.hide()
+		elif QuestManager.ready_to_complete.has(quest.quest_name):
+			complete_button.show()
+		else:
+			complete_button.hide()
+
 
 		pin_button.visible = true
 		pin_button.text = "Unpin" if quest.pinned else "Pin"
 
 	quest_details_container.show()
-	quest_list_container.custom_minimum_size.x = 200
-
+	quest_list_container.custom_minimum_size.x = 250
 
 func toggle_pin_current_quest():
 	if current_quest == null:
@@ -159,10 +220,16 @@ func on_complete_pressed():
 	if current_quest == null:
 		return
 
-	for item_name in current_quest.rewards:
-		if !inventory.add_named_item(item_name):
-			prompt_inventory_full(item_name)
-			return
+	for reward in current_quest.rewards:
+		var item_name = reward.item_name
+		var amount = reward.amount
+
+		for i in range(amount):
+			if !inventory.add_named_item(item_name):
+				prompt_inventory_full(item_name)
+				return
+
+
 
 	QuestManager.complete_quest(current_quest.quest_name)
 
@@ -178,7 +245,7 @@ func on_close_pressed():
 
 func close_quest_details():
 	quest_details_container.hide()
-	quest_list_container.custom_minimum_size.x = 400
+	quest_list_container.custom_minimum_size.x = 250
 	pin_button.visible = false  # Hide pin button when no quest is selected
 
 func toggle_questmenu():
@@ -190,16 +257,29 @@ func toggle_questmenu():
 	if panel.visible:
 		update_quest()
 		close_quest_details()
-		
+
 func toggle_pin_quest(quest: Quest, pin_button: Button, quest_button: Button):
-	$QuestPinSFX.play()
 	if quest.pinned:
 		QuestManager.unpin_quest(quest)
 		pin_button.text = "Pin"
-		quest_button.remove_theme_color_override("font_color")  # Reset color
+		quest_button.remove_theme_color_override("font_color")
 	else:
 		QuestManager.pin_quest(quest)
 		pin_button.text = "Unpin"
-		quest_button.add_theme_color_override("font_color", Color(1, 1, 0))  # Yellow for pinned
+		quest_button.add_theme_color_override("font_color", Color(1, 1, 0))
 
-	update_quest()  # Refresh to reorder
+	update_quest()  # Refresh to reorder list if needed
+	
+func display_complete_button(quest: Quest):
+	if current_quest != null and current_quest.quest_name == quest.quest_name:
+		complete_button.show()
+		
+func get_item_texture(item_name: String) -> Texture:
+	var item = ItemDefinitions.ITEM_DEFINITIONS.get(item_name, null)
+	if item == null:
+		item = ItemDefinitions.SPELL_DEFINITIONS.get(item_name, null)
+
+	if item != null and item.has("texture_path"):
+		return load(item["texture_path"])
+	
+	return null

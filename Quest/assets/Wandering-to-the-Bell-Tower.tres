@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://bs171wrsn8omy"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_jq1s6"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_48cmh"]
+
+[sub_resource type="Resource" id="Resource_7y5yp"]
+script = ExtResource("1_jq1s6")
+quest_name = ""
+description = ""
+prerequisites = Array[ExtResource("1_jq1s6")]([])
+rewards = Array[ExtResource("2_48cmh")]([])
+is_completed = false
+pinned = false
+
+[sub_resource type="Resource" id="Resource_w52of"]
+script = ExtResource("2_48cmh")
+item_name = ""
+amount = 1
+
+[resource]
+script = ExtResource("1_jq1s6")
+quest_name = "Wandering to the Bell Tower"
+description = "Visit the Purdue Bell Tower and listen to it chime."
+prerequisites = Array[ExtResource("1_jq1s6")]([SubResource("Resource_7y5yp")])
+rewards = Array[ExtResource("2_48cmh")]([SubResource("Resource_w52of")])
+is_completed = false
+pinned = false

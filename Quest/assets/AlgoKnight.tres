@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://uyjgcqbfvue3"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_xwh4q"]
+[ext_resource type="Resource" uid="uid://c6gemftqmjbmn" path="res://Quest/assets/Codezhang.tres" id="2_gxwgm"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_q6uda"]
+
+[sub_resource type="Resource" id="Resource_v1k36"]
+script = ExtResource("2_q6uda")
+item_name = "Dagger of Shadows"
+amount = 1
+
+[resource]
+script = ExtResource("1_xwh4q")
+quest_name = "Main Story: Prof. AlgoKnight"
+description = " They know every move before you make it. Break through his pattern-heavy AI and claim your place."
+prerequisites = Array[ExtResource("1_xwh4q")]([ExtResource("2_gxwgm")])
+rewards = Array[ExtResource("2_q6uda")]([SubResource("Resource_v1k36")])
+is_completed = false
+pinned = false
