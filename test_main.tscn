@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0mcfe40m7h7i"]
+[gd_scene load_steps=14 format=3 uid="uid://d0mcfe40m7h7i"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://b3vcqv84wmkxv" path="res://Main Map/assets/book_icon.png" id="6_gbhu0"]
 [ext_resource type="Texture2D" uid="uid://8gkswdnfgs64" path="res://Calendar/Assets/calendar.png" id="7_gdve1"]
 [ext_resource type="Script" path="res://control___calendar.gd" id="7_l4cmt"]
+[ext_resource type="Script" path="res://control___phone.gd" id="9_7plrh"]
+[ext_resource type="Texture2D" uid="uid://c0icqgx3rmp4u" path="res://MajorInformation/Assets/pngtree-pixel-phone-mobile-art-bit-png-image_4676859.png" id="10_v0jmo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvon8"]
 bg_color = Color(0.529412, 0.411765, 0.105882, 1)
@@ -79,6 +81,30 @@ offset_left = 268.0
 offset_top = 11.0
 offset_right = 312.0
 offset_bottom = 57.0
+
+[node name="Control - Phone" type="Control" parent="Menu UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 339.0
+offset_top = 9.0
+offset_right = 379.0
+offset_bottom = 49.0
+script = ExtResource("9_7plrh")
+
+[node name="Panel" type="Panel" parent="Menu UI/Control - Phone"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="phoneButton" type="TextureButton" parent="Menu UI/Control - Phone/Panel"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = -8.0
+offset_right = 57.0
+offset_bottom = 56.0
+texture_normal = ExtResource("10_v0jmo")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="MusicManager" parent="." instance=ExtResource("5_2xhnb")]
 script = ExtResource("5_pyw2q")
