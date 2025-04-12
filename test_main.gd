@@ -11,6 +11,7 @@ var majorInformation = null
 var Advisor_meeting = null
 var is_customization_active = false
 var character_customization = null
+var phone = null
 
 
 func _ready():
@@ -50,7 +51,6 @@ func _ready():
 	add_child(abilitiesPreview)
 	Global.abilitiesMenu = abilitiesPreview
 
-	
 	# Load Quest Screen
 	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
 	add_child(QuestMenuScene)
@@ -64,6 +64,18 @@ func _ready():
 	majorInformation.set_advisorMeeting(Advisor_meeting)
 	Advisor_meeting.set_majorInfo(majorInformation)
 	Global.advisorMeeting = Advisor_meeting
+	
+	phone = load("res://Phone/Scenes/phone.tscn").instantiate()
+	add_child(phone)
+	phone.set_courses(majorInformation)
+	#phone.set_settings()
+	#phone.set_achievements()
+	phone.set_calendar(calendar)
+	phone.set_abilities(abilitiesPreview)
+	phone.set_collections(hud)
+	phone.set_trivia(trivia_book)
+	phone.set_quests(QuestMenuScene)
+	
 	
 	QuestMenuScene.inventory = inventory
 	

@@ -124,10 +124,13 @@ func update_detailed_view():
 
 # Toggles the detailed ability view
 func _on_open_abilities_button_pressed():
+	toggle_abilities()
+
+func toggle_abilities():
 	details_panel.visible = !details_panel.visible
 	if details_panel.visible:
 		update_detailed_view()
-
+		
 # Handles ability button press
 func _on_ability_button_pressed(ability_name):
 	if study_tokens > 0 and abilities[ability_name]["current_value"] < 10:

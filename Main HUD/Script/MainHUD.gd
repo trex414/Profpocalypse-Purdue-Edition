@@ -617,6 +617,9 @@ func set_battle_ui(ui):
 	
 	
 func _on_CollectionButton_pressed():
+	toggle_Collections()
+
+func toggle_Collections():
 	collection_panel.visible = !collection_panel.visible  
 	
 	if collection_panel.visible:
