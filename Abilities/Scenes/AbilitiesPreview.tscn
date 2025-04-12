@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6xcw6wn5at5d"]
+[gd_scene load_steps=4 format=3 uid="uid://b6xcw6wn5at5d"]
 
 [ext_resource type="Script" path="res://Abilities/Scripts/abilities.gd" id="1_l0eos"]
+[ext_resource type="Texture2D" uid="uid://47xj2ygipps2" path="res://Phone/Assets/red-close-icon-free-png.webp" id="2_et0m5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdtdx"]
 bg_color = Color(0.378192, 0.46749, 0.550881, 1)
@@ -491,8 +492,12 @@ offset_right = 355.0
 offset_bottom = 40.0
 text = "Add Tokens"
 
-[node name="Button" type="Button" parent="CanvasLayer2/Panel"]
+[node name="CloseButton" type="TextureButton" parent="CanvasLayer2/Panel"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "level up"
+offset_left = 8.74408
+offset_top = 7.0
+offset_right = 40.7441
+offset_bottom = 38.0
+texture_normal = ExtResource("2_et0m5")
+ignore_texture_size = true
+stretch_mode = 0

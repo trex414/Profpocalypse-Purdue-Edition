@@ -26,7 +26,7 @@ var abilities = {
 @onready var tokens_label = $CanvasLayer2/Panel/tokenslabel
 @onready var tokens_button = $CanvasLayer2/Panel/tokensbutton
 
-@onready var level_button = $CanvasLayer2/Panel/Button
+@onready var close_button = $CanvasLayer2/Panel/CloseButton
 
 @onready var labels_container = $CanvasLayer/VBoxContainer  
 @onready var progress_container = $CanvasLayer/VBoxContainer2  
@@ -44,7 +44,7 @@ var level = 1
 func _ready():
 	open_detailed_view.pressed.connect(_on_open_abilities_button_pressed)
 	tokens_button.pressed.connect(_on_tokens_button_pressed)
-	level_button.pressed.connect(levelup_abilities_update)
+	close_button.pressed.connect(toggle_abilities)
 	for ability_name in ability_buttons.keys():
 		var button = ability_buttons[ability_name]
 		button.pressed.connect(func(): _on_ability_button_pressed(ability_name))

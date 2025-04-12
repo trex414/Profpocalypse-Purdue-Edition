@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvrxgp7n4t4jb"]
+[gd_scene load_steps=8 format=3 uid="uid://cvrxgp7n4t4jb"]
 
 [ext_resource type="Script" path="res://MajorInformation/Script/majorInformation.gd" id="1_6ocl2"]
 [ext_resource type="Texture2D" uid="uid://c0icqgx3rmp4u" path="res://MajorInformation/Assets/pngtree-pixel-phone-mobile-art-bit-png-image_4676859.png" id="2_kekh8"]
 [ext_resource type="Texture2D" uid="uid://diu8tqveqey0c" path="res://MajorInformation/Assets/PrerequisiteFlowchart.png" id="2_o3dfs"]
+[ext_resource type="Texture2D" uid="uid://47xj2ygipps2" path="res://Phone/Assets/red-close-icon-free-png.webp" id="4_5ut4l"]
 [ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://menu_sound_effects/turn_page.wav" id="4_ble87"]
 
 [sub_resource type="Theme" id="Theme_tiob2"]
@@ -151,13 +152,15 @@ offset_top = 4.0
 offset_right = 281.0
 offset_bottom = 346.0
 
-[node name="TEMPAdvisorMeetingButton" type="Button" parent="CanvasLayer/Panel"]
+[node name="CloseButton" type="TextureButton" parent="CanvasLayer/Panel"]
 layout_mode = 0
-offset_left = 105.5
-offset_top = 455.5
-offset_right = 239.5
-offset_bottom = 486.5
-text = "Advisor Meeting"
+offset_left = -11.5
+offset_top = -43.5
+offset_right = 28.5
+offset_bottom = -3.5
+texture_normal = ExtResource("4_5ut4l")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="MajorInfoSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ble87")

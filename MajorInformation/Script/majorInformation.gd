@@ -104,9 +104,7 @@ var last_pressed = 0
 @onready var vbox = $CanvasLayer/Panel/TabContainer/PlanOfStudy/VboxPlanOfStudy
 @onready var popup = $CanvasLayer/Panel/PopupPanel  # Reference to the PopupPanel
 @onready var popup_vbox = popup.get_node("VBoxContainer")  # Get the VBox inside the popup
-
-#temporary!!!!!
-@onready var advisormeeting = $CanvasLayer/Panel/TEMPAdvisorMeetingButton
+@onready var closeButton = $CanvasLayer/Panel/CloseButton
 
 
 func _ready():
@@ -116,7 +114,7 @@ func _ready():
 	update_display()
 	CompleteSemester.pressed.connect(_on_complete_semester_pressed)
 	NewSemester.pressed.connect(_on_new_semester_pressed)
-	advisormeeting.pressed.connect(on_advisor_meeting_pressed)
+	closeButton.pressed.connect(on_close_pressed)
 	progress_bar.value = semester_index
 	flowchart.visible = false
 	PrerequisiteFlowchartButton.pressed.connect(toggle_flowchart)
@@ -356,8 +354,8 @@ func populate_professors_tab():
 
 		professors_vbox.add_child(button)
 
-func on_advisor_meeting_pressed():
-	advisorMeeting.toggle_advisor_visibility()
+func on_close_pressed():
+	toggle_MajorInfo()
 
 func set_advisorMeeting(givenMeeting):
 	advisorMeeting = givenMeeting
