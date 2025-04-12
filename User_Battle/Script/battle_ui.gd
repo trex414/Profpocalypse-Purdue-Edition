@@ -75,12 +75,6 @@ func start_cutscene(enemy_name: String, enemy_node):
 	# Apply textures
 	$CanvasLayer/PlayerSprite.texture = player_texture
 
-	#var red_image = Image.create(32, 32, false, Image.FORMAT_RGBA8)
-	#red_image.fill(Color.RED)
-	#var red_texture = ImageTexture.create_from_image(red_image)
-	#$CanvasLayer/EnemySprite.texture = red_texture
-
-	#$CanvasLayer/EnemySprite.texture = load(Global.enemy_database["texture_path"])
 	var enemy_texture = load(enemy_data["texture_path"])
 	$CanvasLayer/EnemySprite.texture = enemy_texture
 	
@@ -89,13 +83,7 @@ func start_cutscene(enemy_name: String, enemy_node):
 	$CanvasLayer/PlayerSprite.position = Vector2(450, 500)
 	$CanvasLayer/EnemySprite.position = Vector2(850, 350)
 
-	#enemy_bar.reset_health(enemy_data["max_health"])
-	#$CanvasLayer/Enemy_Health_Bar/Health.value = Global.enemy_database["max_health"]
 	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL %d" % enemy_data["level"]
-
-
-	#$CanvasLayer/Enemy_Health_Bar/Health.value = 100
-	#$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL 5"
 
 	$CanvasLayer/PlayerSprite.show()
 	$CanvasLayer/EnemySprite.show()

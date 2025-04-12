@@ -20,8 +20,10 @@ script = ExtResource("1_nsodu")
 [node name="Menu UI" type="CanvasLayer" parent="."]
 
 [node name="Menu Button" type="Button" parent="Menu UI"]
-offset_right = 83.0
-offset_bottom = 83.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 95.0
+offset_bottom = 95.0
 icon = ExtResource("5_l84qr")
 script = ExtResource("6_75fvt")
 
