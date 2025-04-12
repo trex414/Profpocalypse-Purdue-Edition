@@ -157,8 +157,8 @@ const ITEM_DEFINITIONS = {
 		"damage": 55,
 		"stun_chance": 0.80,
 		"miss_chance": 0.20,
-		"crit_chance": 0.50,
-		"break_chance": 0.50,
+		"crit_chance": 0.10,
+		"break_chance": 0.10,
 		"rarity": "rare"
 		#"element_type": "earth",
 		#"special_effect": "Shockwave: Has a chance to deal area damage."

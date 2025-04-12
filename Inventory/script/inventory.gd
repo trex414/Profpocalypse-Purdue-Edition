@@ -354,6 +354,7 @@ func use_item():
 		await main_hud.battle_ui.lock_turn()
 		await main_hud.battle_ui.show_battle_message("Used turn for potion.")
 		$SpellSFX.play()
+		#main_hud.battle_ui.suppress_trivia_popup = true
 		await main_hud.battle_ui.cpu_attack()
 
 	deselect_item()

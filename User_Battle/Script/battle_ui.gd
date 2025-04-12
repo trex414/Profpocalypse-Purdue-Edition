@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 @export var new_music: AudioStream
 
 var input_blocker = null
+var suppress_trivia_popup = false
 
 var enemy_scene = preload("res://User_Battle/Scene/enemy.tscn")
 var current_enemy = null
@@ -96,19 +97,59 @@ func start_cutscene(enemy_name: String, enemy_node):
 	
 	current_enemy = enemy_data
 	enemy_node_reference = enemy_node
+	print("Check 3")
 	unlock_turn()
 
 
 func lock_turn():
 	turn_locked = true
 	input_blocker.visible = true
+	
 	#await get_tree().create_timer(2).timeout
 	#unlock_turn()
 
 func unlock_turn():
-	turn_locked = false
+	print("🔓 unlock_turn() called")
+	if suppress_trivia_popup:
+		suppress_trivia_popup = false  # reset it for next time
+		turn_locked = false
+		input_blocker.visible = false
+		return
+	
+	# Don't unlock the turn yet
+	turn_locked = true
+	
+	#Allow user to use mouse so they can answer question
 	input_blocker.visible = false
 
+	# Create and show trivia popup
+	var trivia_scene = preload("res://User_Battle/UI/trivia_popup.tscn")
+	var trivia_popup = trivia_scene.instantiate()
+	$CanvasLayer.add_child(trivia_popup)
+
+	# You could randomize this from a database later
+	var question = "What year was Purdue University founded?"
+	var answers = ["1869", "1856", "1902"]
+	var correct = "1869"
+	trivia_popup.setup_question(question, answers, correct)
+
+	# Wait for answer
+	trivia_popup.connect("answer_chosen", Callable(self, "_on_trivia_answer"))
+
+	
+	#turn_locked = false
+	#input_blocker.visible = false
+
+
+func _on_trivia_answer(correct: bool):
+	if correct:
+		turn_locked = false
+		input_blocker.visible = false
+		show_battle_message("Correct! You may take your turn.")
+	else:
+		show_battle_message("Incorrect... CPU will attack!")
+		await get_tree().create_timer(2).timeout
+		cpu_attack()
 
 
 func show_battle_message(msg: String) -> void:
@@ -174,6 +215,7 @@ func cpu_attack():
 	if miss:
 		$AttackMissSFX.play()
 		await show_battle_message("CPU missed their attack!")
+		print("Check 2")
 		unlock_turn() 
 		return
 
@@ -192,6 +234,7 @@ func cpu_attack():
 		
 
 	await show_battle_message("CPU attacked for %d damage" % final_damage)
+	print("Check 1")
 	unlock_turn() 
 
 	

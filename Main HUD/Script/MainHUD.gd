@@ -194,7 +194,8 @@ func use_potion_bar(slot_index):
 
 		await battle_ui.lock_turn()
 		battle_ui.enemy_bar.take_damage(damage)
-		await battle_ui.unlock_turn()
+		#await battle_ui.cpu_attack()
+		#await battle_ui.unlock_turn()
 		used = true
 	elif item.has("strength_boost"):
 		var player = get_node("/root/TestMain/Map/TemporaryPlayer")
@@ -599,12 +600,14 @@ func handle_battle_attack(slot_index):
 			# e.g. battle_ui.apply_stun_to_enemy() if you have that logic
 			await get_tree().create_timer(2).timeout
 			final_damage = int(base_damage * 0.5)
+			#await battle_ui.cpu_attack()
 			await battle_ui.unlock_turn()
 			battle_ui.enemy_stunned = true
 
 		# Otherwise do normal damage
 		battle_ui.player_attack(final_damage)
-		await battle_ui.unlock_turn()
+		#await battle_ui.cpu_attack()
+		#await battle_ui.unlock_turn()
 		battle_ui.enemy_stunned = false
 
 		
