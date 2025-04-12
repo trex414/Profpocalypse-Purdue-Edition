@@ -5,7 +5,6 @@ signal answer_chosen(correct: bool)
 var correct_answer = ""
 
 func setup_question(question: String, answers: Array, correct: String):
-	print("❓ Trivia question shown")
 	$Panel/VBoxContainer/QuestionLabel.text = question
 	correct_answer = correct
 	

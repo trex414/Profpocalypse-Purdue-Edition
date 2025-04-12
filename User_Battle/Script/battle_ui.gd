@@ -13,6 +13,8 @@ var rng = RandomNumberGenerator.new()
 var input_blocker = null
 var suppress_trivia_popup = false
 
+var used_trivia_questions = []
+
 var enemy_scene = preload("res://User_Battle/Scene/enemy.tscn")
 var current_enemy = null
 
@@ -109,7 +111,6 @@ func lock_turn():
 	#unlock_turn()
 
 func unlock_turn():
-	print("🔓 unlock_turn() called")
 	if suppress_trivia_popup:
 		suppress_trivia_popup = false  # reset it for next time
 		turn_locked = false
@@ -127,18 +128,51 @@ func unlock_turn():
 	var trivia_popup = trivia_scene.instantiate()
 	$CanvasLayer.add_child(trivia_popup)
 
-	# You could randomize this from a database later
-	var question = "What year was Purdue University founded?"
-	var answers = ["1869", "1856", "1902"]
-	var correct = "1869"
-	trivia_popup.setup_question(question, answers, correct)
+	var trivia = get_unused_trivia_question(Global.trivia_questions)
+	var question = trivia["question"]
+	var answers = trivia["choices"]
+	var correct = trivia["correct"]
+
+	var raw_question = get_unused_trivia_question(Global.trivia_questions)
+	
+	#Randomize correct answer location
+	var prepared = prepare_trivia_question(raw_question)
+
+	trivia_popup.setup_question(prepared["question"], prepared["choices"], prepared["correct"])
+
 
 	# Wait for answer
 	trivia_popup.connect("answer_chosen", Callable(self, "_on_trivia_answer"))
 
-	
-	#turn_locked = false
-	#input_blocker.visible = false
+func get_unused_trivia_question(all_questions: Array) -> Dictionary:
+	var unused = []
+	for q in all_questions:
+		if q not in used_trivia_questions:
+			unused.append(q)
+
+	if unused.size() == 0:
+		print("All trivia questions used - resetting...")
+		used_trivia_questions.clear()
+		unused = all_questions.duplicate()
+
+	var trng = RandomNumberGenerator.new()
+	trng.randomize()
+	var chosen = unused[trng.randi_range(0, unused.size() - 1)]
+	used_trivia_questions.append(chosen)
+	return chosen
+
+
+func prepare_trivia_question(original: Dictionary) -> Dictionary:
+	var shuffled = original["choices"].duplicate()
+	shuffled.shuffle()
+
+	var correct = original["correct"]
+	var result = {
+		"question": original["question"],
+		"choices": shuffled,
+		"correct": correct
+	}
+	return result
 
 
 func _on_trivia_answer(correct: bool):
@@ -256,6 +290,8 @@ func restore_gameplay():
 	quest.visible = true
 	
 	input_blocker.visible = false
+	
+	used_trivia_questions.clear()
 	
 	player.set_process(true)
 	player.set_physics_process(true)
