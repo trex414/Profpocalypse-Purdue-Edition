@@ -10,6 +10,9 @@ func _ready():
 		if PlayerData.is_enemy_defeated(enemy.enemy_name):
 			print("Free enemy from tree =======")
 			enemy.queue_free()
+			
+	var texture = load("res://Main Map/assets/Untitled_04-12-2025_04-58-04.png")
+	$Roads.tile_set.get_source(0).texture = texture
 
 func apply_font_to_labels(node):
 	if node is Label:
