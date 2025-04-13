@@ -8441,6 +8441,7 @@ Building
 (TEL)"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Buildings3/TEL"]
+position = Vector2(0, 16)
 
 [node name="WALD" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 position = Vector2(0, 16)
@@ -8459,6 +8460,7 @@ text = "Waldron Place II
 (WALD)"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Buildings3/WALD"]
+position = Vector2(0, 16)
 
 [node name="HAGL" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 position = Vector2(16, 0)
@@ -8478,6 +8480,7 @@ Hagle Hall
 (HAGL)"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Buildings3/HAGL"]
+position = Vector2(16, 0)
 
 [node name="HCRN" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
@@ -8640,6 +8643,7 @@ Design Center
 (BIDC)"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Buildings3/BIDC"]
+position = Vector2(16, 0)
 
 [node name="DMNT" type="Area2D" parent="Buildings3" groups=["Buildings"]]
 script = ExtResource("2_0pdya")
