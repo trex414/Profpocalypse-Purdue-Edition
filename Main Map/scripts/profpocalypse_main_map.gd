@@ -11,7 +11,7 @@ func _ready():
 			print("Free enemy from tree =======")
 			enemy.queue_free()
 			
-	var texture = load("res://Main Map/assets/Untitled_04-12-2025_04-58-04.png")
+	var texture = load("res://Main Map/assets/readjusted_road_again.png")
 	$Roads.tile_set.get_source(0).texture = texture
 
 func apply_font_to_labels(node):
