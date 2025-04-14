@@ -9,6 +9,8 @@ func _ready():
 				if child is StaticBody2D:
 					building.remove_child(child)
 					child.queue_free()  # Marks for deletion
+				if child is Label:
+					child.set_z_index(5)
 
 			# Create a new StaticBody2D if none exists
 			var static_body = StaticBody2D.new()

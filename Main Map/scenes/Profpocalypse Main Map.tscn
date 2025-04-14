@@ -8472,7 +8472,6 @@ volume_db = -4.0
 pitch_scale = 2.25
 
 [node name="Buildings3" type="Node2D" parent="."]
-visible = false
 script = ExtResource("6_fqmo0")
 
 [node name="ARMS" type="Area2D" parent="Buildings3" groups=["Buildings"]]
