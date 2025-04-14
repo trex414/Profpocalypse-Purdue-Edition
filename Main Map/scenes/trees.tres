@@ -12,7 +12,7 @@ tile_data = PackedInt32Array(0, 262147, 2, 65536, 262147, 3, 131072, 262147, 4, 
 [sub_resource type="TileMapPattern" id="TileMapPattern_e8nob"]
 tile_data = PackedInt32Array(0, 458755, 4, 65536, 458755, 5, 1, 524291, 4, 65537, 524291, 5)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_u6o46"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_4cdgp"]
 tile_data = PackedInt32Array(0, 589827, 4, 65536, 589827, 5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_32r28"]
@@ -559,4 +559,4 @@ sources/3 = SubResource("TileSetAtlasSource_kejbp")
 pattern_0 = SubResource("TileMapPattern_hwg4q")
 pattern_1 = SubResource("TileMapPattern_raqxb")
 pattern_2 = SubResource("TileMapPattern_e8nob")
-pattern_3 = SubResource("TileMapPattern_u6o46")
+pattern_3 = SubResource("TileMapPattern_4cdgp")
