@@ -341,8 +341,9 @@ func populate_professors_tab():
 		button.mouse_entered.connect(func():
 			var data = professors_data[professor]
 			var stars = "⭐".repeat(data["difficulty"])
-			button.text = "{name}\n{office}\n{stars}".format({
+			button.text = "{name}\n{course}\n{office}\n{stars}".format({
 				"name": professor,
+				"course": data["course"],
 				"office": data["office"],
 				"stars": stars
 			})
