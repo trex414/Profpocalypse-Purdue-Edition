@@ -156,6 +156,7 @@ func _on_save_pressed():
 	var last_character_file = FileAccess.open(last_character_path, FileAccess.WRITE)
 	last_character_file.store_string(JSON.stringify(save_data, "\t"))
 	last_character_file.close()
+	#load_character("cotton")
 	get_tree().change_scene_to_file("res://test_main.tscn")
 
 		
