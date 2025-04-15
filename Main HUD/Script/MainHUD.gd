@@ -583,6 +583,8 @@ func handle_battle_attack(slot_index):
 		crit_rate = item.get("crit_chance", 0.0)
 		break_rate = item.get("break_chance", 0.0)
 		stun_rate = item.get("stun_chance", 0.0)  # If you want a stun effect
+	if player:
+		crit_rate += PlayerData.brilliant_chance_bonus
 
 	# Evaluate random events
 	var miss_chance = randf() <= miss_rate

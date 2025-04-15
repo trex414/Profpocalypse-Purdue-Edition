@@ -165,25 +165,35 @@ func mark_ready_to_complete(name: String):
 		"Campus Curiosity Part 2: The Library Tour":
 			if is_library_quest_ready():
 				ready_to_complete[name] = true
+				if name not in PlayerData.ready_to_complete:
+					PlayerData.ready_to_complete.append(name)
 			else:
 				return
 		"Movement Mastery: Walk All Ways":
 			if is_movement_mastery_ready():
 				ready_to_complete[name] = true
+				if name not in PlayerData.ready_to_complete:
+					PlayerData.ready_to_complete.append(name)
 			else:
 				return
 		"Campus Curiosity Part 1: Landmarks of Lore":
 			if is_campus_curiosity_ready():
 				ready_to_complete[name] = true
+				if name not in PlayerData.ready_to_complete:
+					PlayerData.ready_to_complete.append(name)
 			else:
 				return
 		"Campus Curiosity Part 3: Professor’s Research":
 			if is_professors_research_ready():
 				ready_to_complete[name] = true
+				if name not in PlayerData.ready_to_complete:
+					PlayerData.ready_to_complete.append(name)
 			else:
 				return
 		_:  # Default
 			ready_to_complete[name] = true
+			if name not in PlayerData.ready_to_complete:
+				PlayerData.ready_to_complete.append(name)
 
 	# Now only update the UI if it's truly ready
 	print(ready_to_complete[name])

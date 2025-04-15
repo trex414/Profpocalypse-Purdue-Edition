@@ -18,6 +18,7 @@ var active_potion_type := ""  # "speed" or "strength"
 func _ready():
 	position = PlayerData.position
 	base_strength = PlayerData.permanent_strength
+	current_speed = base_speed + PlayerData.permanent_speed
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
@@ -97,6 +98,12 @@ func apply_speed_boost(boost: float, duration: float):
 	)
 
 	speed_timer.start()
+	
+func increase_permanent_speed(amount: float):
+	PlayerData.permanent_speed += amount
+	current_speed = base_speed + PlayerData.permanent_speed
+	print("🚀 Permanent speed increased! Current:", current_speed)
+
 
 func increase_permanent_strength(amount: int):
 	base_strength += amount
@@ -133,3 +140,7 @@ func _on_strength_boost_timeout():
 
 func get_total_strength() -> int:
 	return base_strength + strength_bonus
+	
+func increase_brilliant_chance(amount: float):
+	PlayerData.brilliant_chance_bonus += amount
+	print("🌟 Brilliant Answer % increased by", amount, "→ Total:", PlayerData.brilliant_chance_bonus)

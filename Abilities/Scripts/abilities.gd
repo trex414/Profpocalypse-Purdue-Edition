@@ -4,10 +4,9 @@ var abilities = {
 	"GPA": { "description": "Max health", "base_value": 10, "current_value": 0 },
 	"Luck": { "description": "Subtracted from hit chance", "base_value": 10, "current_value": 0 },
 	"Intelligence": { "description": "Reduce number of multiple choices for trivia questions", "base_value": 10, "current_value": 0 },
-	"Brownie Points": { "description": "Subtracted from damage", "base_value": 10, "current_value": -1 },
-	"Extra Credit": { "description": "HP that renews each round/combat (item-based)", "base_value": 10, "current_value": -1 },
-	"Brilliant Answer %": { "description": "% chance to deal 2x or 1.5x damage", "base_value": 10, "current_value": -1 },
+	"Brownie Points": { "description": "Add strength to player", "base_value": 10, "current_value": -1 },
 	"Move Speed": { "description": "Affects player movement", "base_value": 10, "current_value": -1 },
+	"Brilliant Answer %": { "description": "% increase for chance to deal 2x or 1.5x damage", "base_value": 10, "current_value": -1 },
 	"Hint Odds": { "description": "Chance to receive a cryptic hint", "base_value": 10, "current_value": -1 }
 	
 }
@@ -147,6 +146,16 @@ func _on_ability_button_pressed(ability_name):
 		# If GPA is upgraded, increase max health
  		# Increase max health by 10 (or any desired value)
 		# If this is the "Brownie Points" upgrade, also increase permanent strength
+		if ability_name == "Move Speed":
+			var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
+			if player and player.has_method("increase_permanent_speed"):
+				player.increase_permanent_speed(15.0)  # or whatever value you want per upgrade
+
+		if ability_name == "Brilliant Answer %":
+			var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
+			if player and player.has_method("increase_brilliant_chance"):
+				player.increase_brilliant_chance(0.1)  # 10% boost per point
+
 		if ability_name == "Brownie Points":
 			var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
 			if player and player.has_method("increase_permanent_strength"):
@@ -176,11 +185,9 @@ func levelup_abilities_update():
 	if level == 3:
 		abilities["Brownie Points"]["current_value"] = 0
 	if level == 5:
-		abilities["Extra Credit"]["current_value"] = 0
+		abilities["Move Speed"]["current_value"] = 0
 	if level == 7:
 		abilities["Brilliant Answer %"]["current_value"] = 0
-	if level == 10:
-		abilities["Move Speed"]["current_value"] = 0
 	if level == 12:
 		abilities["Hint Odds"]["current_value"] = 0
 	if level == 15:

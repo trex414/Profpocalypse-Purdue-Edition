@@ -33,6 +33,7 @@ var current_semester: String
 var current_quests: Dictionary
 static var completed_quests = []
 var pinned_quests = []
+var ready_to_complete: Array = []
 var defeated_enemies = []
 var abilities_levels = []
 var study_tokens: int
@@ -45,7 +46,10 @@ var move_right: Key
 var move_left: Key
 
 #player abilities
-var permanent_strength: int = 0
+var permanent_strength: int
+var permanent_speed: float
+var brilliant_chance_bonus: float
+
 
 
 
@@ -70,6 +74,10 @@ func get_game_state():
 			"study_tokens": study_tokens,
 			"permanent_strength": permanent_strength,
 			"max_health": max_health,
+			"ready_to_complete": ready_to_complete,
+			"permanent_speed": permanent_speed,
+			"brilliant_chance_bonus": brilliant_chance_bonus,
+
 		},
 		"keybindings": {
 			"inventory_key": inventory_key,
@@ -132,8 +140,21 @@ func apply_game_state(data):
 		
 		if "permanent_strength" in player_data:
 			permanent_strength = player_data.permanent_strength
+			
 		if "max_health" in player_data:
 			max_health = player_data.max_health
+			
+		if "ready_to_complete" in player_data:
+			ready_to_complete = player_data.ready_to_complete.duplicate()
+			for quest_name in ready_to_complete:
+				QuestManager.mark_ready_to_complete(quest_name)
+		if "permanent_speed" in player_data:
+			permanent_speed = player_data.permanent_speed
+			
+		if "brilliant_chance_bonus" in player_data:
+			brilliant_chance_bonus = player_data.brilliant_chance_bonus
+
+
 
 
 			
@@ -189,6 +210,7 @@ func set_default_values():
 	completed_quests = []
 	completed_quests.clear()
 	pinned_quests = []
+	ready_to_complete = []
 	defeated_enemies = []
 	abilities_levels = [0, 0, 0, -1, -1, -1, -1, -1]
 	study_tokens = 0
@@ -202,6 +224,9 @@ func set_default_values():
 	
 	permanent_strength = 1
 	max_health = 100
+	permanent_speed = 0.0
+	brilliant_chance_bonus = 0.0
+
 
 
 	 
