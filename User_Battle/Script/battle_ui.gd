@@ -81,10 +81,10 @@ func start_cutscene(enemy_name: String, enemy_node):
 	var enemy_texture = load(enemy_data["texture_path"])
 	$CanvasLayer/EnemySprite.texture = enemy_texture
 	
-	$CanvasLayer/EnemySprite.scale = Vector2(.5, .5)
+	$CanvasLayer/EnemySprite.scale = Vector2(.20, .20)
 	$CanvasLayer/PlayerSprite.scale = Vector2(.5, .5)
 	$CanvasLayer/PlayerSprite.position = Vector2(350, 500)
-	$CanvasLayer/EnemySprite.position = Vector2(850, 450)
+	$CanvasLayer/EnemySprite.position = Vector2(925, 375)
 
 	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL %d" % enemy_data["level"]
 

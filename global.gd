@@ -32,26 +32,26 @@ var visited_hicks_notes = false
 
 
 var enemy_database = {
-	"red": {
-		"name": "red",
-		"max_health": 100,
-		"level": 5,
-		"damage": 5,
-		"texture_path": "res://User_Battle/Sprites/red.png"
-	},
-	"blue": {
-		"name": "blue",
+	"Prof Doomsmore": {
+		"name": "Prof. Doomsmore",
 		"max_health": 100,
 		"level": 2,
 		"damage": 1,
-		"texture_path": "res://User_Battle/Sprites/blue.png"
+		"texture_path": "res://User_Battle/Sprites/Prof. Doomsmore.png"
 	},
-	"green": {
-		"name": "green",
-		"max_health": 100,
-		"level": 10,
+	"Prof Sel-Key": {
+		"name": "Prof. Sel-Key",
+		"max_health": 125,
+		"level": 5,
+		"damage": 5,
+		"texture_path": "res://User_Battle/Sprites/Prof. Sel-key.png"
+	},
+	"Prof Turkey": {
+		"name": "Prof. Turkey",
+		"max_health": 150,
+		"level": 8,
 		"damage": 8,
-		"texture_path": "res://User_Battle/Sprites/green.png"
+		"texture_path": "res://User_Battle/Sprites/Prof. Turkey.png"
 	}
 }
 
