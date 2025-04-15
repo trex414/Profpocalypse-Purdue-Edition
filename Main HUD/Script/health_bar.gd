@@ -3,9 +3,9 @@
 # This includes gaining health, losing health, changing the color, and print if dead
 extends Control
 
-# Create variables needed for the health bar
-@export var max_health: int = 100
-var current_health: int = max_health
+# Create variables needed for the health barwwwwwwwwww
+var current_health: int
+var max_health: int
 
 # Call the required scene items
 @onready var health_bar = $Health 
@@ -16,6 +16,7 @@ var current_health: int = max_health
 # initilize the Health bar as well as ignoring mouse so we can interact with other layers
 func _ready():
 	current_health = PlayerData.health
+	max_health = PlayerData.max_health  # Load saved max health
 	health_bar.value = current_health
 	update_health_color()
 	lose_health_button.connect("pressed", Callable(self, "on_lose_health_pressed"))
@@ -81,5 +82,7 @@ func increase_max_health(amount: int):
 	# Increase max health
 	max_health += amount
 	current_health += amount
+	PlayerData.max_health = max_health
+	PlayerData.health = current_health
 	update_health_bar()  # Refresh UI
 	

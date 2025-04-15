@@ -27,6 +27,7 @@ var item_bar = [null, null]
 var level: int
 var exp: int
 var health: int
+var max_health: int
 var semester_index: int
 var current_semester: String
 var current_quests: Dictionary
@@ -42,6 +43,9 @@ var move_up: Key
 var move_down: Key
 var move_right: Key
 var move_left: Key
+
+#player abilities
+var permanent_strength: int = 0
 
 
 
@@ -63,7 +67,9 @@ func get_game_state():
 			"pinned_quests": pinned_quests,
 			"defeated_enemies": defeated_enemies,
 			"abilities_levels": abilities_levels,
-			"study_tokens": study_tokens
+			"study_tokens": study_tokens,
+			"permanent_strength": permanent_strength,
+			"max_health": max_health,
 		},
 		"keybindings": {
 			"inventory_key": inventory_key,
@@ -123,6 +129,13 @@ func apply_game_state(data):
 		
 		if "study_tokens" in player_data:
 			study_tokens = player_data.study_tokens
+		
+		if "permanent_strength" in player_data:
+			permanent_strength = player_data.permanent_strength
+		if "max_health" in player_data:
+			max_health = player_data.max_health
+
+
 			
 	if "keybindings" in data:
 		var key_bindings = data["keybindings"]
@@ -186,6 +199,11 @@ func set_default_values():
 	move_right = 68
 	move_up = 87
 	move_down = 83
+	
+	permanent_strength = 1
+	max_health = 100
+
+
 	 
 	
 static func is_quest_completed(quest_id: String) -> bool:
