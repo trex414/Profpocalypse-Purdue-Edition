@@ -54,6 +54,7 @@ func _ready():
 	for i in range(keys.size()):
 		var key = keys[i]
 		abilities[key]["current_value"] = PlayerData.abilities_levels[i]
+		
 	update_ui()
 
 # This function can be called when you want to increase the max health
@@ -145,7 +146,13 @@ func _on_ability_button_pressed(ability_name):
 		
 		# If GPA is upgraded, increase max health
  		# Increase max health by 10 (or any desired value)
-		if health_bar:
+		# If this is the "Brownie Points" upgrade, also increase permanent strength
+		if ability_name == "Brownie Points":
+			var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
+			if player and player.has_method("increase_permanent_strength"):
+				player.increase_permanent_strength(1)  # Or scale with level/value if desired
+
+		if ability_name == "GPA":
 			health_bar.increase_max_health(health_per_GPA)  # Increase max health
 		else:
 			print("HealthBar node not found!")	

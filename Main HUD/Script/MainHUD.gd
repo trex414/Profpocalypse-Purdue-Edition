@@ -559,13 +559,30 @@ func handle_battle_attack(slot_index):
 	if battle_ui.turn_locked:
 		print("Turn is locked. Wait for CPU.")
 		return
-
+	var base_damage
+	var miss_rate
+	var crit_rate
+	var break_rate
+	var stun_rate 
+	var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
+	if item == null:
+		if player:
+			base_damage = player.get_total_strength()
+			print("🛡️ No weapon equipped. Using base strength:", base_damage)
+		else:
+			print("⚠️ No item and player not found — defaulting to damage = 1")
+			base_damage = 1
+		miss_rate = 0.30
+		crit_rate = 0.0
+		break_rate = 0.0
+		stun_rate = 0.0
 	# Pull stats from the item dictionary, using defaults if missing
-	var base_damage  = item.get("damage", 1)
-	var miss_rate    = item.get("miss_chance", 0.30)
-	var crit_rate    = item.get("crit_chance", 0.0)
-	var break_rate   = item.get("break_chance", 0.0)
-	var stun_rate    = item.get("stun_chance", 0.0)  # If you want a stun effect
+	else: 
+		base_damage  = item.get("damage", 1) + player.get_total_strength()
+		miss_rate = item.get("miss_chance", 0.30)
+		crit_rate = item.get("crit_chance", 0.0)
+		break_rate = item.get("break_chance", 0.0)
+		stun_rate = item.get("stun_chance", 0.0)  # If you want a stun effect
 
 	# Evaluate random events
 	var miss_chance = randf() <= miss_rate
