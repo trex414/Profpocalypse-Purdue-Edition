@@ -202,11 +202,17 @@ func mark_ready_to_complete(name: String):
 		quest_menu.display_complete_button(all_quests[name])
 
 	
-func is_library_quest_ready() -> bool:
-	return Global.visited_walc and Global.visited_hicks and Global.visited_armstrong and Global.visited_lilly and Global.visited_vet
 func is_movement_mastery_ready() -> bool:
-	return Global.move_forward >= 30 and Global.move_backward >= 30 and Global.move_left >= 30 and Global.move_right >= 30
+	return PlayerData.move_forward_count >= 30 \
+		and PlayerData.move_backward_count >= 30 \
+		and PlayerData.move_left_count >= 30 \
+		and PlayerData.move_right_count >= 30
+
+func is_library_quest_ready() -> bool:
+	return PlayerData.visited_walc and PlayerData.visited_hicks and PlayerData.visited_armstrong and PlayerData.visited_lilly and PlayerData.visited_vet
+
 func is_campus_curiosity_ready() -> bool:
-	return Global.visited_fountain and Global.visited_union and Global.visited_belltower and Global.visited_mall and Global.visited_corec
+	return PlayerData.visited_fountain and PlayerData.visited_union and PlayerData.visited_belltower and PlayerData.visited_mall and PlayerData.visited_corec
+
 func is_professors_research_ready() -> bool:
-	return Global.visited_cs and Global.visited_physics and Global.visited_chemistry and Global.visited_hicks_notes
+	return PlayerData.visited_cs and PlayerData.visited_physics and PlayerData.visited_chemistry and PlayerData.visited_hicks_notes

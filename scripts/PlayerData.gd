@@ -50,7 +50,28 @@ var permanent_strength: int
 var permanent_speed: float
 var brilliant_chance_bonus: float
 
+#quests
+var move_forward_count: int = 0
+var move_backward_count: int = 0
+var move_left_count: int = 0
+var move_right_count: int = 0
 
+var visited_walc := false
+var visited_hicks := false
+var visited_armstrong := false
+var visited_lilly := false
+var visited_vet := false
+
+var visited_fountain := false
+var visited_union := false
+var visited_belltower := false
+var visited_mall := false
+var visited_corec := false
+
+var visited_cs := false
+var visited_physics := false
+var visited_chemistry := false
+var visited_hicks_notes := false
 
 
 # Function to get current game state (pass this to the save function when saving)
@@ -85,7 +106,31 @@ func get_game_state():
 			"move_down": move_down,
 			"move_right": move_right,
 			"move_left": move_left,
+		},
+		"move_data": {
+			"move_forward_count": move_forward_count,
+			"move_backward_count": move_backward_count,
+			"move_left_count": move_left_count,
+			"move_right_count": move_right_count
+		},
+		"visited_locations": {
+			"visited_walc": visited_walc,
+			"visited_hicks": visited_hicks,
+			"visited_armstrong": visited_armstrong,
+			"visited_lilly": visited_lilly,
+			"visited_vet": visited_vet,
+			"visited_fountain": visited_fountain,
+			"visited_union": visited_union,
+			"visited_belltower": visited_belltower,
+			"visited_mall": visited_mall,
+			"visited_corec": visited_corec,
+			"visited_cs": visited_cs,
+			"visited_physics": visited_physics,
+			"visited_chemistry": visited_chemistry,
+			"visited_hicks_notes": visited_hicks_notes
 		}
+
+
 	}
 
 	# Function to apply loaded data (for loading)
@@ -148,11 +193,38 @@ func apply_game_state(data):
 			ready_to_complete = player_data.ready_to_complete.duplicate()
 			for quest_name in ready_to_complete:
 				QuestManager.mark_ready_to_complete(quest_name)
+				
 		if "permanent_speed" in player_data:
 			permanent_speed = player_data.permanent_speed
 			
 		if "brilliant_chance_bonus" in player_data:
 			brilliant_chance_bonus = player_data.brilliant_chance_bonus
+			
+		if "move_data" in data:
+			var move_data = data["move_data"]
+			move_forward_count = move_data.get("move_forward_count", 0)
+			move_backward_count = move_data.get("move_backward_count", 0)
+			move_left_count = move_data.get("move_left_count", 0)
+			move_right_count = move_data.get("move_right_count", 0)
+		
+		if "visited_locations" in player_data:
+			var visited = player_data["visited_locations"]
+			visited_walc = visited.get("visited_walc", false)
+			visited_hicks = visited.get("visited_hicks", false)
+			visited_armstrong = visited.get("visited_armstrong", false)
+			visited_lilly = visited.get("visited_lilly", false)
+			visited_vet = visited.get("visited_vet", false)
+			visited_fountain = visited.get("visited_fountain", false)
+			visited_union = visited.get("visited_union", false)
+			visited_belltower = visited.get("visited_belltower", false)
+			visited_mall = visited.get("visited_mall", false)
+			visited_corec = visited.get("visited_corec", false)
+			visited_cs = visited.get("visited_cs", false)
+			visited_physics = visited.get("visited_physics", false)
+			visited_chemistry = visited.get("visited_chemistry", false)
+			visited_hicks_notes = visited.get("visited_hicks_notes", false)
+
+
 
 
 

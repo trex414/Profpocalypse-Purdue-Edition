@@ -27,32 +27,32 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		PlayerData.position.x += 1
-		Global.move_right += 1
-		if (Global.move_right == 30):
+		PlayerData.move_right_count += 1
+		if (PlayerData.move_right_count == 30):
 			if not QuestManager.is_quest_completed("Movement Mastery: Walk All Ways"):
 				QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 		PlayerData.position.x -= 1
-		Global.move_left += 1
-		if (Global.move_left == 30):
+		PlayerData.move_left_count += 1
+		if (PlayerData.move_left_count == 30):
 			if not QuestManager.is_quest_completed("Movement Mastery: Walk All Ways"):
 				QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
 		PlayerData.position.y += 1
-		Global.move_backward += 1
-		if (Global.move_backward == 30):
+		PlayerData.move_backward_count += 1
+		if (PlayerData.move_backward_count == 30):
 			if not QuestManager.is_quest_completed("Movement Mastery: Walk All Ways"):
 				QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
 		PlayerData.position.y -= 1
-		Global.move_forward += 1
-		if (Global.move_forward == 30):
+		PlayerData.move_forward_count += 1
+		if (PlayerData.move_forward_count == 30):
 			if not QuestManager.is_quest_completed("Movement Mastery: Walk All Ways"):
 				QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
