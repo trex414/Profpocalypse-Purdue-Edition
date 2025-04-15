@@ -71,7 +71,7 @@ func start_cutscene(enemy_name: String, enemy_node):
 	player.set_physics_process(false)
 
 	# SET BACKGROUND IMAGE
-	var bg_texture = load("res://User_Battle/Backgrounds/Pokemonbackgroun 1.jpeg")
+	var bg_texture = load("res://User_Battle/Backgrounds/Purdue Room 2.png")
 	$CanvasLayer/BattleBackground.texture = bg_texture
 	$CanvasLayer/BattleBackground.show()
 
@@ -83,8 +83,8 @@ func start_cutscene(enemy_name: String, enemy_node):
 	
 	$CanvasLayer/EnemySprite.scale = Vector2(.5, .5)
 	$CanvasLayer/PlayerSprite.scale = Vector2(.5, .5)
-	$CanvasLayer/PlayerSprite.position = Vector2(450, 500)
-	$CanvasLayer/EnemySprite.position = Vector2(850, 350)
+	$CanvasLayer/PlayerSprite.position = Vector2(350, 500)
+	$CanvasLayer/EnemySprite.position = Vector2(850, 450)
 
 	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL %d" % enemy_data["level"]
 

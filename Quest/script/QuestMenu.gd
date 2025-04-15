@@ -62,8 +62,11 @@ func update_quest():
 			return true
 		if !a.pinned and b.pinned:
 			return false
-		return a.quest_name < b.quest_name  # Fallback alphabetical
+		if a.priority != b.priority:
+			return a.priority < b.priority
+		return a.quest_name < b.quest_name
 	)
+
 
 	# Create UI for available quests (with Pin button)
 	for quest in available_quests:
@@ -137,7 +140,8 @@ func update_quest():
 
 func show_quest_details(quest, is_locked: bool):
 	current_quest = quest
-	if QuestManager.ready_to_complete.has(quest.quest_name):
+	print(QuestManager.ready_to_complete)
+	if QuestManager.ready_to_complete.has(quest.quest_name) and QuestManager.ready_to_complete[quest.quest_name]:
 		current_quest_label.text = quest.quest_name + " (Complete)"
 		current_quest_label.add_theme_color_override("font_color", Color(0, 1, 0))  # Green
 		if !quest.pinned:
@@ -153,14 +157,37 @@ func show_quest_details(quest, is_locked: bool):
 	var description_label = Label.new()
 	description_label.text = quest.description
 	match quest.quest_name:
-		"Movement Training: Part 1 – Walk Forward":
-			description_label.text += "\nProgress: %d / 22 steps" % Global.move_forward
-		"Movement Training: Part 2 – Walk Backward":
-			description_label.text += "\nProgress: %d / 22 steps" % Global.move_backward
-		"Movement Training: Part 3 – Walk Left":
-			description_label.text += "\nProgress: %d / 22 steps" % Global.move_left
-		"Movement Training: Part 4 – Walk Right":
-			description_label.text += "\nProgress: %d / 22 steps" % Global.move_right
+		"Movement Mastery: Walk All Ways":
+			description_label.text = "Master movement by walking 30 steps in every direction:\n"
+			description_label.text += "- Forward: %d / 30\n" % Global.move_forward
+			description_label.text += "- Backward: %d / 30\n" % Global.move_backward
+			description_label.text += "- Left: %d / 30\n" % Global.move_left
+			description_label.text += "- Right: %d / 30\n" % Global.move_right
+
+		"Campus Curiosity Part 2: The Library Tour":
+			description_label.text = "Visit all five major Purdue libraries to gather research and inspiration:\n"
+			description_label.text += "- WALC (The Heart of Learning): %d/1\n" % int(Global.visited_walc)
+			description_label.text += "- Hicks Library (Science of Silence): %d/1\n" % int(Global.visited_hicks)
+			description_label.text += "- Armstrong Library (Archives of Armstrong): %d/1\n" % int(Global.visited_armstrong)
+			description_label.text += "- Lilly Library (Life Between the Shelves): %d/1\n" % int(Global.visited_lilly)
+			description_label.text += "- Vet Library (Feline Interference): %d/1\n" % int(Global.visited_vet)
+			
+		"Campus Curiosity Part 1: Landmarks of Lore":
+			description_label.text = "Explore iconic campus spots and uncover their lore:\n"
+			description_label.text += "- Engineering Fountain (Waters of Wisdom): %d/1\n" % int(Global.visited_fountain)
+			description_label.text += "- Union Building (Legacy Lounge): %d/1\n" % int(Global.visited_union)
+			description_label.text += "- Bell Tower (Timekeeper’s Toll): %d/1\n" % int(Global.visited_belltower)
+			description_label.text += "- Memorial Mall (Field of Futures): %d/1\n" % int(Global.visited_mall)
+			description_label.text += "- CoRec (Vault of Vitality): %d/1\n" % int(Global.visited_corec)
+			
+		"Campus Curiosity Part 3: Professor’s Research":
+			description_label.text = "Help recover the professor’s notes scattered around campus:\n"
+			description_label.text += "- CS Building Entrance (Algorithms at Dawn): %d/1\n" % int(Global.visited_cs)
+			description_label.text += "- Physics Building (Energy Entanglement): %d/1\n" % int(Global.visited_physics)
+			description_label.text += "- Chemistry Building (Formula Fragments): %d/1\n" % int(Global.visited_chemistry)
+			description_label.text += "- Hicks Library (Archives of the Mind): %d/1\n" % int(Global.visited_hicks_notes)
+
+
 
 	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	reward_preview.add_child(description_label)

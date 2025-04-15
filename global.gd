@@ -7,10 +7,29 @@ var in_battle: bool = false
 var advisorMeeting = null
 var abilitiesMenu = null
 
+#quests
 var move_forward := 0
 var move_backward := 0
 var move_left := 0
 var move_right := 0
+
+var visited_walc := false
+var visited_hicks := false
+var visited_armstrong := false
+var visited_lilly := false
+var visited_vet := false
+
+var visited_fountain := false
+var visited_union := false
+var visited_belltower := false
+var visited_mall := false
+var visited_corec := false
+
+var visited_cs = false
+var visited_physics = false
+var visited_chemistry = false
+var visited_hicks_notes = false
+
 
 var enemy_database = {
 	"red": {

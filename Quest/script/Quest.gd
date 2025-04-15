@@ -9,3 +9,4 @@ const Reward = preload("res://Quest/script/Reward.gd")
 @export var rewards: Array[Reward] = []
 @export var is_completed: bool = false
 @export var pinned: bool = false
+@export var priority: int = 0  # Lower number = higher priority

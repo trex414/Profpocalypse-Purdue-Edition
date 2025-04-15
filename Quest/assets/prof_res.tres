@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dpc1jgn374ekn"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_wryu1"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_0wrf5"]
+[ext_resource type="Resource" uid="uid://bcm100v01ptc0" path="res://Quest/assets/landmarks.tres" id="2_ksq3w"]
+[ext_resource type="Resource" uid="uid://bwixappg7vgbv" path="res://Quest/assets/library.tres" id="3_a1p4i"]
+
+[resource]
+script = ExtResource("1_wryu1")
+quest_name = "Campus Curiosity Part 3: Professor’s Research"
+description = ""
+prerequisites = Array[ExtResource("1_wryu1")]([ExtResource("2_ksq3w"), ExtResource("3_a1p4i")])
+rewards = Array[ExtResource("2_0wrf5")]([])
+is_completed = false
+pinned = false
+priority = 0

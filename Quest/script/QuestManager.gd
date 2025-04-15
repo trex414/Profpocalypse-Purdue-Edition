@@ -11,10 +11,10 @@ var ready_to_complete = {}  # quest_name -> true
 
 # All quests
 var open_inventory_quest = load("res://Quest/assets/OpenInventory.tres")
-var walk_forward_quest = load("res://Quest/assets/Walk-Forward.tres")
-var walk_backward_quest = load("res://Quest/assets/Walk-Backwards.tres")
-var walk_right_quest = load("res://Quest/assets/Walk-Right.tres")
-var walk_left_quest = load("res://Quest/assets/Walk-Left.tres")
+#var walk_forward_quest = load("res://Quest/assets/Walk-Forward.tres")
+#var walk_backward_quest = load("res://Quest/assets/Walk-Backwards.tres")
+#var walk_right_quest = load("res://Quest/assets/Walk-Right.tres")
+#var walk_left_quest = load("res://Quest/assets/Walk-Left.tres")
 var rising_lag_quest = load("res://Quest/assets/The-rising-lag.tres")
 var doomsmore_quest = load("res://Quest/assets/Doomsmore.tres")
 var turkey_quest = load("res://Quest/assets/Turkey.tres")
@@ -27,7 +27,10 @@ var codezhang_quest = load("res://Quest/assets/Codezhang.tres")
 var algoknight_quest = load("res://Quest/assets/AlgoKnight.tres")
 var capstonecrafter_quest = load("res://Quest/assets/Capstonecrafter.tres")
 var bugsquasher_quest = load("res://Quest/assets/Bugsquasher.tres")
-var bell_tower = load("res://Quest/assets/Wandering-to-the-Bell-Tower.tres")
+var library = load("res://Quest/assets/library.tres")
+var walk = load("res://Quest/assets/walk.tres")
+var landmark = load("res://Quest/assets/landmarks.tres")
+var prof_res = load("res://Quest/assets/prof_res.tres")
 
 
 signal pinned_quests_updated(pinned_quests: Array[Quest])
@@ -40,11 +43,10 @@ func _ready():
 	
 	# Load and register all quests here
 	add_quest(open_inventory_quest)
-	add_quest(walk_forward_quest)
-	add_quest(walk_backward_quest)
-	add_quest(walk_left_quest)
-	add_quest(walk_right_quest)
-	add_quest(bell_tower)
+	#add_quest(walk_forward_quest)
+	#add_quest(walk_backward_quest)
+	#add_quest(walk_left_quest)
+	#add_quest(walk_right_quest)
 	add_quest(rising_lag_quest)
 	add_quest(doomsmore_quest)
 	add_quest(turkey_quest)
@@ -57,6 +59,11 @@ func _ready():
 	add_quest(algoknight_quest)
 	add_quest(capstonecrafter_quest)
 	add_quest(bugsquasher_quest)
+	add_quest(library)
+	add_quest(walk)
+	add_quest(landmark)
+	add_quest(prof_res)
+	
 	
 
 	
@@ -152,10 +159,44 @@ func get_sorted_quests() -> Array[Quest]:
 	)
 
 func mark_ready_to_complete(name: String):
-	print(name)
-	if all_quests.has(name) and !all_quests[name].is_completed:
-		ready_to_complete[name] = true
-		if quest_menu:
-			quest_menu.show_quest_details(all_quests[name], false)
-			quest_menu.display_complete_button(all_quests[name])
-	print(all_quests)
+	if !all_quests.has(name) or all_quests[name].is_completed:
+		return
+	match name:
+		"Campus Curiosity Part 2: The Library Tour":
+			if is_library_quest_ready():
+				ready_to_complete[name] = true
+			else:
+				return
+		"Movement Mastery: Walk All Ways":
+			if is_movement_mastery_ready():
+				ready_to_complete[name] = true
+			else:
+				return
+		"Campus Curiosity Part 1: Landmarks of Lore":
+			if is_campus_curiosity_ready():
+				ready_to_complete[name] = true
+			else:
+				return
+		"Campus Curiosity Part 3: Professor’s Research":
+			if is_professors_research_ready():
+				ready_to_complete[name] = true
+			else:
+				return
+		_:  # Default
+			ready_to_complete[name] = true
+
+	# Now only update the UI if it's truly ready
+	print(ready_to_complete[name])
+	if ready_to_complete.get(name, false) and quest_menu:
+		quest_menu.show_quest_details(all_quests[name], false)
+		quest_menu.display_complete_button(all_quests[name])
+
+	
+func is_library_quest_ready() -> bool:
+	return Global.visited_walc and Global.visited_hicks and Global.visited_armstrong and Global.visited_lilly and Global.visited_vet
+func is_movement_mastery_ready() -> bool:
+	return Global.move_forward >= 30 and Global.move_backward >= 30 and Global.move_left >= 30 and Global.move_right >= 30
+func is_campus_curiosity_ready() -> bool:
+	return Global.visited_fountain and Global.visited_union and Global.visited_belltower and Global.visited_mall and Global.visited_corec
+func is_professors_research_ready() -> bool:
+	return Global.visited_cs and Global.visited_physics and Global.visited_chemistry and Global.visited_hicks_notes
