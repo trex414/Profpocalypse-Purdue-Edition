@@ -177,6 +177,7 @@ func mark_ready_to_complete(name: String):
 			else:
 				return
 		"Campus Curiosity Part 1: Landmarks of Lore":
+			print("inside")
 			if is_campus_curiosity_ready():
 				ready_to_complete[name] = true
 				if name not in PlayerData.ready_to_complete:

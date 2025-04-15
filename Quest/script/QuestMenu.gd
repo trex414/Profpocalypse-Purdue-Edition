@@ -165,7 +165,7 @@ func show_quest_details(quest, is_locked: bool):
 			description_label.text += "- Right: %d / 30\n" % PlayerData.move_right_count
 
 		"Campus Curiosity Part 2: The Library Tour":
-			description_label.text = "Visit all five major Purdue libraries to gather research and inspiration:\n"
+			description_label.text = "Visit all five major Purdue libraries to gather research and Inspiration by Clicking each Building:\n"
 			description_label.text += "- WALC (The Heart of Learning): %d/1\n" % int(PlayerData.visited_walc)
 			description_label.text += "- Hicks Library (Science of Silence): %d/1\n" % int(PlayerData.visited_hicks)
 			description_label.text += "- Armstrong Library (Archives of Armstrong): %d/1\n" % int(PlayerData.visited_armstrong)
@@ -175,17 +175,17 @@ func show_quest_details(quest, is_locked: bool):
 		"Campus Curiosity Part 1: Landmarks of Lore":
 			description_label.text = "Explore iconic campus spots and uncover their lore:\n"
 			description_label.text += "- Engineering Fountain (Waters of Wisdom): %d/1\n" % int(PlayerData.visited_fountain)
-			description_label.text += "- Union Building (Legacy Lounge): %d/1\n" % int(PlayerData.visited_union)
+			description_label.text += "- Union Building (Find and then click the union): %d/1\n" % int(PlayerData.visited_union)
 			description_label.text += "- Bell Tower (Timekeeper’s Toll): %d/1\n" % int(PlayerData.visited_belltower)
 			description_label.text += "- Memorial Mall (Field of Futures): %d/1\n" % int(PlayerData.visited_mall)
-			description_label.text += "- CoRec (Vault of Vitality): %d/1\n" % int(PlayerData.visited_corec)
+			description_label.text += "- Lions Fountain: %d/1\n" % int(PlayerData.visited_corec)
 
 		"Campus Curiosity Part 3: Professor’s Research":
-			description_label.text = "Help recover the professor’s notes scattered around campus:\n"
-			description_label.text += "- CS Building Entrance (Algorithms at Dawn): %d/1\n" % int(PlayerData.visited_cs)
+			description_label.text = "Help recover the professor’s notes scattered around campus Find and then Click Each Building:\n"
+			description_label.text += "- Lawson Building Entrance (Algorithms at Dawn): %d/1\n" % int(PlayerData.visited_cs)
 			description_label.text += "- Physics Building (Energy Entanglement): %d/1\n" % int(PlayerData.visited_physics)
 			description_label.text += "- Chemistry Building (Formula Fragments): %d/1\n" % int(PlayerData.visited_chemistry)
-			description_label.text += "- Hicks Library (Archives of the Mind): %d/1\n" % int(PlayerData.visited_hicks_notes)
+			description_label.text += "- Data Science and AI (Archives of the Computer): %d/1\n" % int(PlayerData.visited_hicks_notes)
 
 
 

@@ -5,6 +5,8 @@ extends Node2D
 @onready var fact_label = $"../../UI/DialogueBox/Panel/VBoxContainer/FactLabel"
 @onready var unlock_label = $"../../UI/DialogueBox/Panel/VBoxContainer/UnlockLabel"
 @onready var close_button = $"../../UI/DialogueBox/Panel/CloseButton"
+var can_trigger_enter := false
+
 
 func _ready():
 	# Ensure the Area2D node's input event is connected
@@ -13,6 +15,9 @@ func _ready():
 	var last_word = name_parts[-1]  # Get the last part
 	var number = last_word.to_int()  # Convert it to an integer
 	trivia_index = number - 1
+	$Area2D.connect("body_entered", Callable(self, "_on_body_entered"))
+	await get_tree().process_frame
+	can_trigger_enter = true
 
 	#print(trivia_index)
 
@@ -58,3 +63,20 @@ func show_dialogue(fact_text, is_new, sequential_number):
 			#close_button.connect("pressed", Callable(dialogue_box, "hide"), CONNECT_DEFERRED)
 	else:
 		print("Error: DialogueBox node not found in scene")
+
+func _on_body_entered(body):
+	if not can_trigger_enter:
+		return
+	match self.name:
+		"Trivia Source 15":
+			PlayerData.visited_fountain = true
+			QuestManager.mark_ready_to_complete("Campus Curiosity Part 1: Landmarks of Lore")
+		"Trivia Source 9":
+			PlayerData.visited_belltower = true
+			QuestManager.mark_ready_to_complete("Campus Curiosity Part 1: Landmarks of Lore")
+		"Trivia Source 4":
+			PlayerData.visited_mall = true
+			QuestManager.mark_ready_to_complete("Campus Curiosity Part 1: Landmarks of Lore")
+		"Trivia Source 20":
+			PlayerData.visited_corec = true
+			QuestManager.mark_ready_to_complete("Campus Curiosity Part 1: Landmarks of Lore")
