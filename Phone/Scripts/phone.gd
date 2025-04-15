@@ -47,6 +47,7 @@ func _on_courses_pressed():
 
 func _on_settings_pressed():
 	toggle_Phone()
+	settings.toggle_menu()
 	print("Settings")
 
 func _on_achievements_pressed():

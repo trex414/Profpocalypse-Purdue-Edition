@@ -83,7 +83,6 @@ text = "Abilities Detailed View"
 icon_alignment = 1
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer2"]
 anchors_preset = -1
@@ -203,7 +202,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
-text = "Subtracted From Hit Chance"
+text = "Reduce Miss Chance"
 horizontal_alignment = 2
 
 [node name="IntelligenceFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
@@ -293,52 +292,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 12
-text = "Subtracted From Damage"
-horizontal_alignment = 2
-
-[node name="ExtraCreditFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-theme_override_constants/h_separation = 20
-
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Extra Credit"
-horizontal_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
-custom_minimum_size = Vector2(150, 20)
-layout_mode = 2
-max_value = 10.0
-show_percentage = false
-
-[node name="Label2" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "0"
-
-[node name="Button" type="Button" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Add"
-
-[node name="DiscripExtraCredit" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/h_separation = 20
-
-[node name="Label" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripExtraCredit"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-
-[node name="Label6" type="Label" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer/DiscripExtraCredit"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 12
-text = "HP That Renews After Each Round"
+text = "Add Strength to Player"
 horizontal_alignment = 2
 
 [node name="BrilliantAnswerChanceFlowContainer" type="HFlowContainer" parent="CanvasLayer2/Panel/ScrollContainer/VBoxContainer"]

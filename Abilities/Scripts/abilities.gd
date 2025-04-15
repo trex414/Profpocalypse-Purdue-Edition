@@ -15,7 +15,6 @@ var abilities = {
 	"GPA": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/GPAFlowContainer/Button,
 	"Brownie Points": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer/Button,
 	"Luck": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/LuckFlowContainer/Button,
-	"Extra Credit": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer/Button,
 	"Brilliant Answer %": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer/Button,
 	"Move Speed": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer/Button,
 	"Hint Odds": $CanvasLayer2/Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer/Button,

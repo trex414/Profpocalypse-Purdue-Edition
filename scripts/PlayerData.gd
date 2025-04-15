@@ -212,7 +212,7 @@ func set_default_values():
 	pinned_quests = []
 	ready_to_complete = []
 	defeated_enemies = []
-	abilities_levels = [0, 0, 0, -1, -1, -1, -1, -1]
+	abilities_levels = []
 	study_tokens = 0
 	
 	#Key Binding Defaults
