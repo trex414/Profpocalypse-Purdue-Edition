@@ -83,6 +83,7 @@ text = "Abilities Detailed View"
 icon_alignment = 1
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer2"]
 anchors_preset = -1
