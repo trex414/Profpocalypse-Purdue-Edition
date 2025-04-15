@@ -25,18 +25,37 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		PlayerData.position.x += 1
+		if QuestManager.is_quest_completed("Movement Training: Part 3 – Walk Left"):
+			Global.move_right += 1
+		if (Global.move_right == 30):
+			if not QuestManager.is_quest_completed("Movement Training: Part 4 – Walk Right"):
+				QuestManager.mark_ready_to_complete("Movement Training: Part 4 – Walk Right")
 		is_moving = true
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 		PlayerData.position.x -= 1
+		if QuestManager.is_quest_completed("Movement Training: Part 2 – Walk Backward"):
+			Global.move_left += 1
+		if (Global.move_left == 30):
+			if not QuestManager.is_quest_completed("Movement Training: Part 3 – Walk Left"):
+				QuestManager.mark_ready_to_complete("Movement Training: Part 3 – Walk Left")
 		is_moving = true
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
 		PlayerData.position.y += 1
+		if QuestManager.is_quest_completed("Movement Training: Part 1 – Walk Forward"):
+			Global.move_backward += 1
+		if (Global.move_backward == 30):
+			if not QuestManager.is_quest_completed("Movement Training: Part 2 – Walk Backward"):
+				QuestManager.mark_ready_to_complete("Movement Training: Part 2 – Walk Backward")
 		is_moving = true
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
 		PlayerData.position.y -= 1
+		Global.move_forward += 1
+		if (Global.move_forward == 30):
+			if not QuestManager.is_quest_completed("Movement Training: Part 1 – Walk Forward"):
+				QuestManager.mark_ready_to_complete("Movement Training: Part 1 – Walk Forward")
 		is_moving = true
 
 	velocity = direction.normalized() * current_speed

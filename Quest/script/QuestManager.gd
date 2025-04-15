@@ -27,6 +27,7 @@ var codezhang_quest = load("res://Quest/assets/Codezhang.tres")
 var algoknight_quest = load("res://Quest/assets/AlgoKnight.tres")
 var capstonecrafter_quest = load("res://Quest/assets/Capstonecrafter.tres")
 var bugsquasher_quest = load("res://Quest/assets/Bugsquasher.tres")
+var bell_tower = load("res://Quest/assets/Wandering-to-the-Bell-Tower.tres")
 
 
 signal pinned_quests_updated(pinned_quests: Array[Quest])
@@ -43,6 +44,7 @@ func _ready():
 	add_quest(walk_backward_quest)
 	add_quest(walk_left_quest)
 	add_quest(walk_right_quest)
+	add_quest(bell_tower)
 	add_quest(rising_lag_quest)
 	add_quest(doomsmore_quest)
 	add_quest(turkey_quest)
@@ -55,6 +57,7 @@ func _ready():
 	add_quest(algoknight_quest)
 	add_quest(capstonecrafter_quest)
 	add_quest(bugsquasher_quest)
+	
 
 	
 	for quest in all_quests.values():
@@ -149,7 +152,10 @@ func get_sorted_quests() -> Array[Quest]:
 	)
 
 func mark_ready_to_complete(name: String):
+	print(name)
 	if all_quests.has(name) and !all_quests[name].is_completed:
 		ready_to_complete[name] = true
 		if quest_menu:
 			quest_menu.show_quest_details(all_quests[name], false)
+			quest_menu.display_complete_button(all_quests[name])
+	print(all_quests)

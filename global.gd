@@ -7,6 +7,11 @@ var in_battle: bool = false
 var advisorMeeting = null
 var abilitiesMenu = null
 
+var move_forward := 0
+var move_backward := 0
+var move_left := 0
+var move_right := 0
+
 var enemy_database = {
 	"red": {
 		"name": "red",

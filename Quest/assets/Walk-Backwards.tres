@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_7td5c"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_pm1ru"]
-[ext_resource type="Resource" uid="uid://06jgpujbkn31" path="res://Quest/assets/Walk-Forward.tres" id="2_raaqb"]
+[ext_resource type="Resource" uid="uid://syawykhg523t" path="res://Quest/assets/Walk-Forward.tres" id="2_raaqb"]
 
 [sub_resource type="Resource" id="Resource_olhtp"]
 script = ExtResource("2_pm1ru")

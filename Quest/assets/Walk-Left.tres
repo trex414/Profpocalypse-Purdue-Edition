@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://b3s3vm4e2uqdb"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_10nua"]
-[ext_resource type="Resource" uid="uid://06jgpujbkn31" path="res://Quest/assets/Walk-Forward.tres" id="2_uir5n"]
+[ext_resource type="Resource" uid="uid://syawykhg523t" path="res://Quest/assets/Walk-Forward.tres" id="2_uir5n"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_uquup"]
 [ext_resource type="Resource" uid="uid://dshteg1t63do3" path="res://Quest/assets/Walk-Backwards.tres" id="3_i2jdc"]
 

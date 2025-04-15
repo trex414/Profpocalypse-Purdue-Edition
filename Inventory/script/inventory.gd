@@ -76,8 +76,8 @@ func toggle_inventory():
 	if panel.visible:
 		update_inventory()
 		print("Inventory opened.")
-		if not QuestManager.is_quest_completed("OpenInventory"):
-			QuestManager.mark_ready_to_complete("OpenInventory")
+		if not QuestManager.is_quest_completed("Open Inventory"):
+			QuestManager.mark_ready_to_complete("Open Inventory")
 
 	else:
 		print("Inventory closed.")

@@ -152,6 +152,16 @@ func show_quest_details(quest, is_locked: bool):
 
 	var description_label = Label.new()
 	description_label.text = quest.description
+	match quest.quest_name:
+		"Movement Training: Part 1 – Walk Forward":
+			description_label.text += "\nProgress: %d / 22 steps" % Global.move_forward
+		"Movement Training: Part 2 – Walk Backward":
+			description_label.text += "\nProgress: %d / 22 steps" % Global.move_backward
+		"Movement Training: Part 3 – Walk Left":
+			description_label.text += "\nProgress: %d / 22 steps" % Global.move_left
+		"Movement Training: Part 4 – Walk Right":
+			description_label.text += "\nProgress: %d / 22 steps" % Global.move_right
+
 	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	reward_preview.add_child(description_label)
 
