@@ -583,6 +583,18 @@ func handle_battle_attack(slot_index):
 		crit_rate = item.get("crit_chance", 0.0)
 		break_rate = item.get("break_chance", 0.0)
 		stun_rate = item.get("stun_chance", 0.0)  # If you want a stun effect
+		if item.has("status_effect") and randf() < item.get("status_chance", 0.0):
+			var effect = item["status_effect"]
+			var duration = randi_range(item.get("status_duration_min", 2), item.get("status_duration_max", 4))
+			var damage_range = item.get("status_damage_range", Vector2i(1, 3))
+			
+			Global.status_effect_active = true
+			Global.status_effect_type = effect
+			Global.status_effect_turns_left = duration
+			Global.status_effect_damage_range = damage_range
+
+			print("🩸 Applied", effect, "for", duration, "turns!")
+
 	if player:
 		crit_rate += PlayerData.brilliant_chance_bonus
 
@@ -796,5 +808,17 @@ func show_strength_timer(duration: float):
 			update_timer.queue_free()
 	)
 
+func apply_status_effect_if_active():
+	if Global.status_effect_active:
+		var damage = randi_range(Global.status_effect_damage_range.x, Global.status_effect_damage_range.y)
+		print("💢", Global.status_effect_type.capitalize(), "effect dealt", damage, "damage!")
+
+		battle_ui.enemy_bar.take_damage(damage)
+		Global.status_effect_turns_left -= 1
+
+		if Global.status_effect_turns_left <= 0:
+			Global.status_effect_active = false
+			Global.status_effect_type = ""
+			print("✅ Status effect ended.")
 
 	

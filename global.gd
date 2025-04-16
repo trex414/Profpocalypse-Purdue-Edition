@@ -7,6 +7,13 @@ var in_battle: bool = false
 var advisorMeeting = null
 var abilitiesMenu = null
 
+#bleed
+var status_effect_active = false
+var status_effect_type = ""
+var status_effect_turns_left = 0
+var status_effect_damage_range = Vector2i(1, 3)
+
+
 
 var enemy_database = {
 	"Prof Doomsmore": {

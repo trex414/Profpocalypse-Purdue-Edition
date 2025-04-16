@@ -116,7 +116,10 @@ func unlock_turn():
 		turn_locked = false
 		input_blocker.visible = false
 		return
-	
+	if Global.status_effect_active:
+		var hud = get_tree().get_current_scene().get_node("Control - HUD")
+		if hud.has_method("apply_status_effect_if_active"):
+			hud.apply_status_effect_if_active()
 	# Don't unlock the turn yet
 	turn_locked = true
 	
