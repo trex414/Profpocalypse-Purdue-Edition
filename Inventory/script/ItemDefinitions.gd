@@ -106,9 +106,9 @@ const ITEM_DEFINITIONS = {
 		"break_chance": 0.15,
 		"rarity": "uncommon",
 		"effect_type": "bleed",
-		"effect_chance": 0.9,  # 40% chance to apply
-		"effect_damage_range": Vector2i(2, 5),
-		"effect_turns_range": Vector2i(2, 4)
+		"effect_chance": 0.1,  # 10% chance to apply
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3)
 	},
 	"Chilling Staff": {
 		"type": 0,

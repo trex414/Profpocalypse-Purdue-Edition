@@ -31,18 +31,22 @@ func on_lose_health_pressed():
 func lose_health(amount: int):
 	$HealthLossSFX.play()
 	if current_health <= 0:
-		#DEBUG
 		print("You died and cannot lose more.")
 		return
+
 	current_health -= amount
-	if current_health <= 0:
-		current_health = 0
-		#DEBUG
-		print("You died and cannot lose more.")
-	update_health_bar()
-	
-	# Update PlayerData
 	PlayerData.health = current_health
+	update_health_bar()
+
+	if current_health <= 0:
+		var hud = find_parent("Control - HUD") # adjust path as needed
+		var player = get_node("/root/TestMain/Map/TemporaryPlayer")
+		if hud and player:
+			await hud.show_death_and_respawn(player)
+		else:
+			print("❌ Player not found during respawn!")
+
+
 
 # Function to increase health
 func add_health(amount: int):

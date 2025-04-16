@@ -35,6 +35,9 @@ var potion_bar_slots = [null, null]
 
 # initilize the main hud along with the hot bars
 func _ready():
+	$CanvasLayer/DeathOverlay/fade.color = Color(0, 0, 0, 1)
+	$CanvasLayer/DeathOverlay/fade.modulate.a = 0.0
+	
 	var hud_ready_time = Time.get_ticks_msec()
 	var load_latency = hud_ready_time - SaveManager.game_start_time
 	print("HUD Load Latency (ms): ", load_latency)
@@ -831,5 +834,47 @@ func apply_status_effect_if_active():
 			Global.status_effect_active = false
 			Global.status_effect_type = ""
 			print("✅ Status effect ended.")
+			
+func show_death_and_respawn(player_node: Node2D):
+	battle_ui.lock_turn()
+	var fade_panel = $CanvasLayer/DeathOverlay/fade
+	var death_label = fade_panel.get_node("death")
 
-	
+	# Make the death text larger (set in code for now)
+	death_label.visible = true
+	death_label.text = "You Died..."
+	death_label.add_theme_font_size_override("font_size", 60)  # Adjust font size as needed
+
+	# Show and fade in the black panel
+	fade_panel.visible = true
+	fade_panel.modulate.a = 0.0
+	var fade_in = create_tween()
+	fade_in.tween_property(fade_panel, "modulate:a", 1.0, 1.0)
+	await fade_in.finished
+
+	# Hold on "You Died..." message
+	await get_tree().create_timer(1.5).timeout
+
+	# Change message to "Respawning..."
+	death_label.text = "Respawning..."
+	await get_tree().create_timer(1.5).timeout
+
+	# Respawn logic
+	PlayerData.health = PlayerData.max_health
+	player_node.position = Vector2(0, 0)
+	PlayerData.position = player_node.position
+
+	var health_manager = get_node_or_null("CanvasLayer/Health_Bar")
+	if health_manager:
+		health_manager.current_health = PlayerData.health
+		health_manager.update_health_bar()
+
+	# Fade out
+	death_label.text = ""
+	var fade_out = create_tween()
+	fade_out.tween_property(fade_panel, "modulate:a", 0.0, 1.0)
+	await fade_out.finished
+
+	fade_panel.visible = false
+	death_label.visible = false
+	battle_ui.unlock_turn()
