@@ -298,6 +298,8 @@ func set_default_values():
 	max_health = 100
 	permanent_speed = 0.0
 	brilliant_chance_bonus = 0.0
+	
+	SaveManager.set_volume(0.4)
 
 
 
