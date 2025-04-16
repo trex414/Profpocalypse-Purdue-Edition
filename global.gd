@@ -36,6 +36,48 @@ var enemy_database = {
 		"level": 8,
 		"damage": 8,
 		"texture_path": "res://User_Battle/Sprites/Prof. Turkey.png"
+	},
+	"Prof BugSquasher": {
+		"name": "Prof BugSquasher",
+		"max_health": 150,
+		"level": 8,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/Prof. BugSquasher.png"
+	},
+	"Prof CodeZhang": {
+		"name": "Prof CodeZhang",
+		"max_health": 150,
+		"level": 8,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/Prof. CodeZhang.png"
+	},
+	"Prof Gust-Codes": {
+		"name": "Prof Gust-Codes",
+		"max_health": 150,
+		"level": 8,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/Prof. Gust-Codes.png"
+	},
+	"Prof KernelComer": {
+		"name": "Prof KernelComer",
+		"max_health": 150,
+		"level": 8,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/Prof. KernelComer.png"
+	},
+	"Prof PosadaBytes": {
+		"name": "Prof PosadaBytes",
+		"max_health": 150,
+		"level": 8,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/Prof. PosadaBytes.png"
+	},
+	"Prof AlgoKnight": {
+		"name": "Prof AlgoKnight",
+		"max_health": 150,
+		"level": 8,
+		"damage": 8,
+		"texture_path": "res://User_Battle/Sprites/Prof. AlgoKnight.png"
 	}
 }
 

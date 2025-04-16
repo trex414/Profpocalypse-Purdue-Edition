@@ -144,3 +144,7 @@ func get_total_strength() -> int:
 func increase_brilliant_chance(amount: float):
 	PlayerData.brilliant_chance_bonus += amount
 	print("🌟 Brilliant Answer % increased by", amount, "→ Total:", PlayerData.brilliant_chance_bonus)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
