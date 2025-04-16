@@ -567,7 +567,7 @@ func handle_battle_attack(slot_index):
 	var player = get_node_or_null("/root/TestMain/Map/TemporaryPlayer")
 	if item == null:
 		if player:
-			base_damage = player.get_total_strength()
+			base_damage = player.get_total_strength() - 1
 			print("🛡️ No weapon equipped. Using base strength:", base_damage)
 		else:
 			print("⚠️ No item and player not found — defaulting to damage = 1")
@@ -578,23 +578,31 @@ func handle_battle_attack(slot_index):
 		stun_rate = 0.0
 	# Pull stats from the item dictionary, using defaults if missing
 	else: 
-		base_damage  = item.get("damage", 1) + player.get_total_strength()
+		base_damage  = item.get("damage", 1) + player.get_total_strength() - 2
 		miss_rate = item.get("miss_chance", 0.30)
 		crit_rate = item.get("crit_chance", 0.0)
 		break_rate = item.get("break_chance", 0.0)
 		stun_rate = item.get("stun_chance", 0.0)  # If you want a stun effect
-		if item.has("status_effect") and randf() < item.get("status_chance", 0.0):
-			var effect = item["status_effect"]
-			var duration = randi_range(item.get("status_duration_min", 2), item.get("status_duration_max", 4))
-			var damage_range = item.get("status_damage_range", Vector2i(1, 3))
-			
-			Global.status_effect_active = true
-			Global.status_effect_type = effect
-			Global.status_effect_turns_left = duration
-			Global.status_effect_damage_range = damage_range
+		
+		if item.has("effect_chance") and randf() < item.get("effect_chance", 0.0):
+			# Don't reapply if the same effect is already active
+			if Global.status_effect_active and Global.status_effect_type == item["effect_type"]:
+				print("❌ Status effect", item["effect_type"], "already active. Skipping.")
+			else:
+				var effect = item["effect_type"]
+				var duration = randi_range(item.get("effect_turns_range", Vector2i(2, 4)).x, item.get("effect_turns_range", Vector2i(2, 4)).y)
+				var damage_range = item.get("effect_damage_range", Vector2i(1, 3))
 
-			print("🩸 Applied", effect, "for", duration, "turns!")
+				Global.status_effect_active = true
+				Global.status_effect_type = effect
+				Global.status_effect_turns_left = duration
+				Global.status_effect_damage_range = damage_range
 
+				print("🩸 Applied", effect, "for", duration, "turns!")
+	
+				await battle_ui.show_battle_message("🩸 Applied %s for %d turns!" % [effect.capitalize(), duration])
+
+				await get_tree().create_timer(1).timeout
 	if player:
 		crit_rate += PlayerData.brilliant_chance_bonus
 
@@ -811,7 +819,10 @@ func show_strength_timer(duration: float):
 func apply_status_effect_if_active():
 	if Global.status_effect_active:
 		var damage = randi_range(Global.status_effect_damage_range.x, Global.status_effect_damage_range.y)
-		print("💢", Global.status_effect_type.capitalize(), "effect dealt", damage, "damage!")
+		var msg = "💢 %s effect dealt %d damage!" % [Global.status_effect_type.capitalize(), damage]
+		await battle_ui.show_battle_message(msg)
+
+		await get_tree().create_timer(1).timeout
 
 		battle_ui.enemy_bar.take_damage(damage)
 		Global.status_effect_turns_left -= 1

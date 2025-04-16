@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=25 format=3 uid="uid://c8n0vquj6jcn6"]
+[gd_resource type="TileSet" load_steps=25 format=3 uid="uid://610xfox0wyq0"]
 
 [ext_resource type="Texture2D" uid="uid://5xchgxt35y1o" path="res://Main Map/assets/pickedMedia1.png" id="2_4kjma"]
 [ext_resource type="Texture2D" uid="uid://0wam107gitcu" path="res://Main Map/assets/pixil-frame-0.png" id="2_ilvkn"]
