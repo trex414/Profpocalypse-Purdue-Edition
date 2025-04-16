@@ -10,21 +10,21 @@ var abilitiesMenu = null
 
 var enemy_database = {
 	"Prof Doomsmore": {
-		"name": "Prof. Doomsmore",
+		"name": "Prof Doomsmore",
 		"max_health": 100,
 		"level": 2,
 		"damage": 1,
 		"texture_path": "res://User_Battle/Sprites/Prof. Doomsmore.png"
 	},
 	"Prof Sel-Key": {
-		"name": "Prof. Sel-Key",
+		"name": "Prof Sel-Key",
 		"max_health": 125,
 		"level": 5,
 		"damage": 5,
 		"texture_path": "res://User_Battle/Sprites/Prof. Sel-key.png"
 	},
 	"Prof Turkey": {
-		"name": "Prof. Turkey",
+		"name": "Prof Turkey",
 		"max_health": 150,
 		"level": 8,
 		"damage": 8,
