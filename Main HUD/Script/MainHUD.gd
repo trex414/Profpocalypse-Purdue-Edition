@@ -176,6 +176,7 @@ func use_potion_bar(slot_index):
 		if player != null:
 			if player.active_potion_type == "":
 				player.apply_speed_boost(item["speed_boost"], 30.0)
+				$PotionSFX.play()
 				print("Speed potion used! Boosted by %d." % item["speed_boost"])
 				used = true
 			else:
@@ -197,14 +198,28 @@ func use_potion_bar(slot_index):
 
 		await battle_ui.lock_turn()
 		battle_ui.enemy_bar.take_damage(damage)
-		#await battle_ui.cpu_attack()
-		#await battle_ui.unlock_turn()
+		$DamageSFX.play()
+		
+		if battle_ui.enemy_bar.current_health <= 0:
+			await battle_ui.show_battle_message("You won!")
+		
+			PlayerData.mark_enemy_defeated(battle_ui.current_enemy["name"])
+		
+			battle_ui.enemy_node_reference.queue_free()
+			battle_ui.enemy_node_reference = null
+			battle_ui.restore_gameplay()
+		else:
+			await get_tree().create_timer(2).timeout
+			await battle_ui.cpu_attack()
+			#await battle_ui.unlock_turn()
+		
 		used = true
 	elif item.has("strength_boost"):
 		var player = get_node("/root/TestMain/Map/TemporaryPlayer")
 		if player != null:
 			if player.active_potion_type == "":
 				player.apply_strength_boost(item["strength_boost"], 30.0)
+				$PotionSFX.play()
 				print("Strength potion used! +%d damage for 60s." % item["strength_boost"])
 				used = true
 			else:

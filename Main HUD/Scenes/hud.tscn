@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ixadnea0fvxk"]
+[gd_scene load_steps=14 format=3 uid="uid://ixadnea0fvxk"]
 
 [ext_resource type="Script" path="res://Main HUD/Script/MainHUD.gd" id="1_3f0v0"]
 [ext_resource type="Script" path="res://Main HUD/Script/health_bar.gd" id="2_613hy"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="8_f58gb"]
 [ext_resource type="AudioStream" uid="uid://bc0e3qvmo0t6d" path="res://menu_sound_effects/sword-clash-241729.mp3" id="9_3h2x0"]
 [ext_resource type="AudioStream" uid="uid://d4fmsirq23ycq" path="res://menu_sound_effects/stun.wav" id="10_j0hkp"]
+[ext_resource type="AudioStream" uid="uid://bc8egw5tos4l6" path="res://menu_sound_effects/spell-bubble.wav" id="12_y1d3f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vvx0"]
 
@@ -319,3 +320,11 @@ pitch_scale = 2.0
 
 [node name="StunSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_j0hkp")
+
+[node name="PotionSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_y1d3f")
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cjxvh")
+volume_db = -1.0
+pitch_scale = 4.0
