@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_wch53"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/interior_map.gd" id="1_xhkqy"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/temporary_player_interior.gd" id="2_kx75e"]
-[ext_resource type="Texture2D" uid="uid://da60ixcyfybjq" path="res://CharacterImages/WhiteSquare.png" id="3_o1iu3"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/exit building.gd" id="5_r04oj"]
 [ext_resource type="AudioStream" uid="uid://ch6kn5xbrxmll" path="res://menu_sound_effects/footsteps2.mp3" id="5_xl0on"]
+[ext_resource type="PackedScene" uid="uid://bgtlq4o60sy43" path="res://CustomBody.tscn" id="6_1u4e1"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="7_l7w41"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqyv5"]
@@ -3177,11 +3177,6 @@ tile_set = SubResource("TileSet_beg8r")
 [node name="TemporaryPlayer" type="CharacterBody2D" parent="."]
 script = ExtResource("2_kx75e")
 
-[node name="Sprite2D" type="Sprite2D" parent="TemporaryPlayer"]
-position = Vector2(403.313, 662.562)
-scale = Vector2(0.100556, 0.102778)
-texture = ExtResource("3_o1iu3")
-
 [node name="Camera2D" type="Camera2D" parent="TemporaryPlayer"]
 position = Vector2(403.312, 662.562)
 zoom = Vector2(3, 3)
@@ -3198,6 +3193,10 @@ shape = SubResource("RectangleShape2D_38km8")
 stream = ExtResource("5_xl0on")
 volume_db = -4.0
 pitch_scale = 2.25
+
+[node name="body_root" parent="TemporaryPlayer" instance=ExtResource("6_1u4e1")]
+position = Vector2(363, 637)
+scale = Vector2(0.05, 0.05)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

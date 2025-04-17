@@ -9,28 +9,12 @@ func trigger_cutscene():
 	var hud = get_tree().current_scene.get_node("Control - HUD")
 	var battle_ui = hud.battle_ui
 
-
-	# Grab player texture from the main map
-	var player_sprite = get_tree().get_current_scene().get_node("Map/TemporaryPlayer/Sprite2D")
-	var player_texture = player_sprite.texture
-	
-	if player_texture == null:
-		print("⚠️ Player texture is null — applying fallback white box.")
-		var img = Image.create(32, 32, false, Image.FORMAT_RGBA8)
-		img.fill(Color.WHITE)
-		player_texture = ImageTexture.create_from_image(img)
-	print("Player texture:", player_texture)
-
-
-	# Wait for UI to initialize then assign texture
-	await get_tree().process_frame  # wait one frame after adding
-
 	enemy_instance = get_node(enemy_node_path)
 
-	battle_ui.set_player_texture(player_texture, enemy_name, enemy_instance)
+	battle_ui.start_cutscene(enemy_name, enemy_instance)
 
 
 func _on_body_entered(body):
-	print("Entered body: ", body.name)  # Debugging
+	print("Entered body: ", body.name)
 	if body.name == "TemporaryPlayer":
 		trigger_cutscene()

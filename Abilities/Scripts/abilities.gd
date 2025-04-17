@@ -51,7 +51,7 @@ func _ready():
 	var keys = abilities.keys()
 	for i in range(keys.size()):
 		var key = keys[i]
-		abilities[key]["current_value"] = PlayerData.abilities_levels[i]
+		#abilities[key]["current_value"] = PlayerData.abilities_levels[i]
 		
 	update_ui()
 
