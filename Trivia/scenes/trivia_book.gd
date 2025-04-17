@@ -159,3 +159,7 @@ func unlock_trivia(index):
 		return [!was_already_unlocked, index + 1, fact_text]
 
 	return [false, index + 1, "Unknown Trivia"]
+
+
+func _on_close_pressed() -> void:
+	toggle_book()
