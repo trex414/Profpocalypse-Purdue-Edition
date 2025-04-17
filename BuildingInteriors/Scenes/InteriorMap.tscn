@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://b0usbgwoj0ryx"]
+[gd_scene load_steps=29 format=4 uid="uid://b0usbgwoj0ryx"]
 
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="1_wch53"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/interior_map.gd" id="1_xhkqy"]
@@ -3101,6 +3101,48 @@ sources/0 = SubResource("TileSetAtlasSource_35w7e")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38km8"]
 size = Vector2(24, 24)
 
+[sub_resource type="Animation" id="Animation_gctuh"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_01ttk"]
+resource_name = "walk_bob"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eqqaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qney5"]
+_data = {
+"RESET": SubResource("Animation_eqqaw"),
+"new_animation": SubResource("Animation_gctuh"),
+"walk_bob": SubResource("Animation_01ttk")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ug71"]
 size = Vector2(1175, 55)
 
@@ -3194,7 +3236,15 @@ stream = ExtResource("5_xl0on")
 volume_db = -4.0
 pitch_scale = 2.25
 
-[node name="body_root" parent="TemporaryPlayer" instance=ExtResource("6_1u4e1")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TemporaryPlayer"]
+root_node = NodePath("../CharacterVisuals")
+libraries = {
+"": SubResource("AnimationLibrary_qney5")
+}
+
+[node name="CharacterVisuals" type="Node2D" parent="TemporaryPlayer"]
+
+[node name="body_root" parent="TemporaryPlayer/CharacterVisuals" instance=ExtResource("6_1u4e1")]
 position = Vector2(363, 637)
 scale = Vector2(0.05, 0.05)
 

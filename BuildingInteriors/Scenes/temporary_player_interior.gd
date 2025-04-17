@@ -15,24 +15,21 @@ func load_character(character_name):
 	var save_data = JSON.parse_string(file.get_as_text())
 	file.close()
 
-	$body_root/face.texture = load(save_data["face_texture"])
-	$body_root/face/features.texture = load(save_data["features_texture"])
-	$body_root/face/features/hair.texture = load(save_data["hair_texture"])
-	$body_root/shirt.texture = load(save_data["shirt_texture"])
-	$body_root/pant.texture = load(save_data["pant_texture"])
-	$body_root/pant/pant2.texture = load(save_data["pant2_texture"])
-	$body_root/pant/pant2/shoe.texture = load(save_data["shoe1_texture"])
-	$body_root/pant/pant2/shoe2.texture = load(save_data["shoe2_texture"])
-	$body_root/sleeve.texture = load(save_data["arm_texture"])
-	$body_root/sleeve/sleeve2.texture = load(save_data["arm2_texture"])
-	$body_root/sleeve/sleeve2/hand.texture = load(save_data["hand_texture"])
-	$body_root/sleeve/sleeve2/hand2.texture = load(save_data["hand2_texture"])
-	$body_root/shirt/neck.texture = load(save_data["neck_texture"])
-	$body_root/pant/pant2/belt.texture = load(save_data["belt_texture"])
-	$body_root/shirt/class.texture = load(save_data["class_texture"])
-	
-
-	
+	$CharacterVisuals/body_root/face.texture = load(save_data["face_texture"])
+	$CharacterVisuals/body_root/face/features.texture = load(save_data["features_texture"])
+	$CharacterVisuals/body_root/face/features/hair.texture = load(save_data["hair_texture"])
+	$CharacterVisuals/body_root/shirt.texture = load(save_data["shirt_texture"])
+	$CharacterVisuals/body_root/pant.texture = load(save_data["pant_texture"])
+	$CharacterVisuals/body_root/pant/pant2.texture = load(save_data["pant2_texture"])
+	$CharacterVisuals/body_root/pant/pant2/shoe.texture = load(save_data["shoe1_texture"])
+	$CharacterVisuals/body_root/pant/pant2/shoe2.texture = load(save_data["shoe2_texture"])
+	$CharacterVisuals/body_root/sleeve.texture = load(save_data["arm_texture"])
+	$CharacterVisuals/body_root/sleeve/sleeve2.texture = load(save_data["arm2_texture"])
+	$CharacterVisuals/body_root/sleeve/sleeve2/hand.texture = load(save_data["hand_texture"])
+	$CharacterVisuals/body_root/sleeve/sleeve2/hand2.texture = load(save_data["hand2_texture"])
+	$CharacterVisuals/body_root/shirt/neck.texture = load(save_data["neck_texture"])
+	$CharacterVisuals/body_root/pant/pant2/belt.texture = load(save_data["belt_texture"])
+	$CharacterVisuals/body_root/shirt/class.texture = load(save_data["class_texture"])
 
 func _physics_process(delta):
 	var direction = Vector2.ZERO
@@ -60,9 +57,11 @@ func _physics_process(delta):
 	
 	PlayerData.building_interior_position = position
 
-	# Play walking sound
+	# Play walking sound + animation
 	if is_moving:
 		if not $WalkSFX.playing:
 			$WalkSFX.play()
+		$AnimationPlayer.play("walk_bob")
 	else:
 		$WalkSFX.stop()
+		$AnimationPlayer.stop()
