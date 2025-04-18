@@ -13,6 +13,12 @@ var status_effect_type := ""
 var status_effect_turns_left := 0
 var status_effect_damage_range := Vector2i(1, 3)
 
+var enemy_status_effect_active := false
+var enemy_status_effect_type := ""
+var enemy_status_effect_turns_left := 0
+var enemy_status_effect_damage_range := Vector2i(1, 3)
+
+
 
 
 var enemy_database = {
@@ -21,6 +27,12 @@ var enemy_database = {
 		"max_health": 100,
 		"level": 2,
 		"damage": 1,
+		"crit": 0.05,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. Doomsmore.png"
 	},
 	"Prof Sel-Key": {
@@ -28,6 +40,12 @@ var enemy_database = {
 		"max_health": 125,
 		"level": 5,
 		"damage": 5,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. Sel-key.png"
 	},
 	"Prof Turkey": {
@@ -35,6 +53,12 @@ var enemy_database = {
 		"max_health": 150,
 		"level": 8,
 		"damage": 8,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.2,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. Turkey.png"
 	},
 	"Prof BugSquasher": {
@@ -42,6 +66,12 @@ var enemy_database = {
 		"max_health": 250,
 		"level": 12,
 		"damage": 10,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.2,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. BugSquasher.png"
 	},
 	"Prof CodeZhang": {
@@ -49,13 +79,25 @@ var enemy_database = {
 		"max_health": 300,
 		"level": 17,
 		"damage": 15,
+		"crit": 0.33,
+		"miss": 0.15,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. CodeZhang.png"
 	},
 	"Prof Gust-Codes": {
 		"name": "Prof Gust-Codes",
 		"max_health": 400,
 		"level": 22,
-		"damage": 10,
+		"damage": 12,
+		"crit": 0.15,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. Gust-Codes.png"
 	},
 	"Prof KernelComer": {
@@ -63,6 +105,12 @@ var enemy_database = {
 		"max_health": 500,
 		"level": 40,
 		"damage": 20,
+		"crit": 0.20,
+		"miss": 0.10,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. KernelComer.png"
 	},
 	"Prof PosadaBytes": {
@@ -70,6 +118,12 @@ var enemy_database = {
 		"max_health": 275,
 		"level": 14,
 		"damage": 9,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.1,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. PosadaBytes.png"
 	},
 	"Prof AlgoKnight": {
@@ -77,6 +131,12 @@ var enemy_database = {
 		"max_health": 200,
 		"level": 10,
 		"damage": 10,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.5,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. AlgoKnight.png"
 	}
 }

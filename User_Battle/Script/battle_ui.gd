@@ -29,7 +29,6 @@ func _ready():
 	visible = false
 	$CanvasLayer.visible = false
 	
-	
 	var last_character_file = FileAccess.open("res://CharacterCustomization/last_saved_character.json", FileAccess.READ)
 	var last_character_data = JSON.parse_string(last_character_file.get_as_text())
 	last_character_file.close()
@@ -110,6 +109,9 @@ func start_cutscene(enemy_name: String, enemy_node):
 func lock_turn():
 	turn_locked = true
 	input_blocker.visible = true
+	
+	if Global.enemy_status_effect_active:
+		cpu_apply_status_effect_if_active()
 
 func unlock_turn():
 	if suppress_trivia_popup:
@@ -220,16 +222,52 @@ func player_heal(heal_amt):
 	await get_tree().create_timer(2).timeout
 	cpu_attack()
 
+func cpu_apply_status_effect_if_active():
+	if Global.enemy_status_effect_active:
+		var damage = randi_range(Global.enemy_status_effect_damage_range.x, Global.enemy_status_effect_damage_range.y)
+		var msg = "💢 %s effect dealt %d damage!" % [Global.enemy_status_effect_type.capitalize(), damage]
+		await show_battle_message(msg)
+
+		await get_tree().create_timer(1).timeout
+
+		player_health_bar.lose_health(damage)
+		Global.enemy_status_effect_turns_left -= 1
+
+		if Global.enemy_status_effect_turns_left <= 0:
+			Global.enemy_status_effect_active = false
+			Global.enemy_status_effect_type = ""
+			print("✅ Status effect ended.")
+
 func cpu_attack():
-	var miss = rng.randf() <= 0.05
+	var miss = rng.randf() <= current_enemy["miss"]
 	if miss:
 		$AttackMissSFX.play()
 		await show_battle_message("CPU missed their attack!")
 		unlock_turn() 
 		return
-	var crit = rng.randf() <= 0.10
+	var crit = rng.randf() <= current_enemy["crit"]
 	var base_damage = current_enemy["damage"]
 	var final_damage = int(base_damage * 1.5) if crit else base_damage
+
+	if rng.randf() < current_enemy["effect_chance"]:
+		# Don't reapply if the same effect is already active
+		if Global.enemy_status_effect_active and Global.enemy_status_effect_type == current_enemy["effect_type"]:
+			print("❌ Status effect", current_enemy["effect_type"], "already active. Skipping.")
+		else:
+			var effect = current_enemy["effect_type"]
+			var duration = randi_range(current_enemy["effect_turns_range"].x, current_enemy["effect_turns_range"].y)
+			var damage_range = current_enemy["effect_damage_range"]
+
+			Global.enemy_status_effect_active = true
+			Global.enemy_status_effect_type = effect
+			Global.enemy_status_effect_turns_left = duration
+			Global.enemy_status_effect_damage_range = damage_range
+
+			print("🩸 Applied", effect, "for", duration, "turns!")
+
+			await show_battle_message("🩸 Applied %s for %d turns!" % [effect.capitalize(), duration])
+
+			await get_tree().create_timer(1).timeout
 
 	if player_health_bar:
 		player_health_bar.lose_health(final_damage)

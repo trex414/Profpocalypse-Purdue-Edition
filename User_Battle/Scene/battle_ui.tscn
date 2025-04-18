@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://y1y4i0lvdt4l"]
+[gd_scene load_steps=10 format=3 uid="uid://y1y4i0lvdt4l"]
 
 [ext_resource type="Script" path="res://User_Battle/Script/battle_ui.gd" id="1_mt36e"]
+[ext_resource type="AudioStream" uid="uid://pwswji2goitr" path="res://Music/Tracks/battle.ogg" id="2_77bvq"]
 [ext_resource type="Script" path="res://User_Battle/Script/enemy.gd" id="2_kw82d"]
 [ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="4_0nwts"]
 [ext_resource type="PackedScene" uid="uid://bgtlq4o60sy43" path="res://CustomBody.tscn" id="4_uanh1"]
@@ -16,6 +17,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_mt36e")
+new_music = ExtResource("2_77bvq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 6
