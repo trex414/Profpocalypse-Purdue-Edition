@@ -92,7 +92,8 @@ func start_cutscene(enemy_name: String, enemy_node):
 	$CanvasLayer/PlayerSprite.hide()  # Hide player sprite
 	$CanvasLayer/EnemySprite.position = Vector2(925, 375)
 
-	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "LVL %d" % enemy_data["level"]
+	$CanvasLayer/Enemy_EXP_Bar/NameLabel.text = enemy_data["name"]
+	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.text = "Weakness: " + enemy_data["weakness"] + " | LVL %d" % enemy_data["level"]
 	$CanvasLayer/EnemySprite.show()
 	$CanvasLayer/Enemy_Health_Bar/Health.show()
 	$CanvasLayer/Enemy_EXP_Bar/LevelLabel.show()

@@ -3,6 +3,7 @@ extends Panel
 # Using your existing node paths; ensure these exactly match your scene tree.
 @onready var title_label       = $VBoxContainer/Title
 @onready var name_label        = $VBoxContainer/Name
+@onready var class_label       = $VBoxContainer/Class
 @onready var damage_label      = $VBoxContainer/"Damage Delt"
 @onready var stun_label        = $VBoxContainer/"Stun Chance"
 @onready var miss_label        = $VBoxContainer/"Miss Chance"
@@ -25,6 +26,7 @@ func update_info(item: Dictionary) -> void:
 		if item["type"] == 0:
 			colorize_by_rarity(item.get("rarity", "Common"))
 			#title_label.text = "WEAPON INFO"
+			class_label.text  = "Class: " + item["class"]
 			damage_label.text = "Damage: " + str(item.get("damage", 0))
 			stun_label.text   = "Stun Chance: " + str(int(item.get("stun_chance", 0) * 100)) + "%"
 			miss_label.text   = "Miss Chance: " + str(int(item.get("miss_chance", 0) * 100)) + "%"
@@ -53,6 +55,7 @@ func update_info(item: Dictionary) -> void:
 	else:
 		title_label.text = ""
 		name_label.text  = "No Item Selected"
+		class_label.text = ""
 		damage_label.text = ""
 		stun_label.text  = ""
 		miss_label.text  = ""

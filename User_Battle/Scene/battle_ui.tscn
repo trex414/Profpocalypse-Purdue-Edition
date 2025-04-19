@@ -89,7 +89,7 @@ max_value = 5.0
 step = 1.0
 show_percentage = false
 
-[node name="LevelLabel" type="Label" parent="CanvasLayer/Enemy_EXP_Bar"]
+[node name="NameLabel" type="Label" parent="CanvasLayer/Enemy_EXP_Bar"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -102,7 +102,23 @@ offset_right = 488.0
 offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
+text = "Professor"
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/Enemy_EXP_Bar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = 67.0
+offset_right = 488.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
 text = "LEVEL 1"
 
 [node name="Lose_EXP" type="Button" parent="CanvasLayer/Enemy_EXP_Bar"]
