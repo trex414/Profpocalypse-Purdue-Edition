@@ -20,7 +20,6 @@ var enemy_status_effect_damage_range := Vector2i(1, 3)
 
 
 
-
 var enemy_database = {
 	"Prof Doomsmore": {
 		"name": "Prof Doomsmore",
