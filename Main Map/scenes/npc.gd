@@ -2,8 +2,15 @@ extends Node2D
 
 @onready var speech_label = $Message
 
+@export var item: String = ""
+
+var inventorymanager = null
+var inventory = null
+
 func _ready():
 	speech_label.visible = false
+	
+	inventorymanager = get_node("/root/InventoryManager")
 
 func _on_mouse_entered():
 	speech_label.visible = true
@@ -16,5 +23,12 @@ func _input_event(viewport, event, shape_idx):
 		give_reward()
 
 func give_reward():
+	if !inventorymanager.inventory_node.add_named_item(item):
+		prompt_inventory_full(item)
+		return
+
 	# Reward logic
 	print("Reward given!")
+
+func prompt_inventory_full(new_item):
+	print("Inventory is full! Make room for: " + new_item)

@@ -5,6 +5,7 @@ extends Node
 # inventory variables
 const SLOT_COUNT = 12
 var inventory = []
+var inventory_node = null
 
 func _ready():
 	#SaveManager.connect("save_data_loaded", Callable(self, "_on_save_data_loaded"))

@@ -36,6 +36,8 @@ func _ready():
 	inventory = load("res://Inventory/scenes/inventory.tscn").instantiate()
 	add_child(inventory)
 	
+	InventoryManager.inventory_node = inventory
+	
 	trivia_book = load("res://Trivia/scenes/trivia_book.tscn").instantiate()
 	add_child(trivia_book)
 	
