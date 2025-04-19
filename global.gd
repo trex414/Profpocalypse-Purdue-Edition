@@ -23,6 +23,7 @@ var enemy_status_effect_damage_range := Vector2i(1, 3)
 var enemy_database = {
 	"Prof Doomsmore": {
 		"name": "Prof Doomsmore",
+		"weakness": "Spear",
 		"max_health": 100,
 		"level": 2,
 		"damage": 1,
@@ -36,6 +37,7 @@ var enemy_database = {
 	},
 	"Prof Sel-Key": {
 		"name": "Prof Sel-Key",
+		"weakness": "Blade",
 		"max_health": 125,
 		"level": 5,
 		"damage": 5,
@@ -49,6 +51,7 @@ var enemy_database = {
 	},
 	"Prof Turkey": {
 		"name": "Prof Turkey",
+		"weakness": "Blade",
 		"max_health": 150,
 		"level": 8,
 		"damage": 8,
@@ -62,6 +65,7 @@ var enemy_database = {
 	},
 	"Prof BugSquasher": {
 		"name": "Prof BugSquasher",
+		"weakness": "Range",
 		"max_health": 250,
 		"level": 12,
 		"damage": 10,
@@ -75,6 +79,7 @@ var enemy_database = {
 	},
 	"Prof CodeZhang": {
 		"name": "Prof CodeZhang",
+		"weakness": "Magic",
 		"max_health": 300,
 		"level": 17,
 		"damage": 15,
@@ -88,6 +93,7 @@ var enemy_database = {
 	},
 	"Prof Gust-Codes": {
 		"name": "Prof Gust-Codes",
+		"weakness": "Heavy",
 		"max_health": 400,
 		"level": 22,
 		"damage": 12,
@@ -101,6 +107,7 @@ var enemy_database = {
 	},
 	"Prof KernelComer": {
 		"name": "Prof KernelComer",
+		"weakness": "None",
 		"max_health": 500,
 		"level": 40,
 		"damage": 20,
@@ -114,6 +121,7 @@ var enemy_database = {
 	},
 	"Prof PosadaBytes": {
 		"name": "Prof PosadaBytes",
+		"weakness": "Heavy",
 		"max_health": 275,
 		"level": 14,
 		"damage": 9,
@@ -127,6 +135,7 @@ var enemy_database = {
 	},
 	"Prof AlgoKnight": {
 		"name": "Prof AlgoKnight",
+		"weakness": "Range",
 		"max_health": 200,
 		"level": 10,
 		"damage": 10,

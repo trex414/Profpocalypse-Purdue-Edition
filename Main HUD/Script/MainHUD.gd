@@ -666,6 +666,14 @@ func handle_battle_attack(slot_index):
 			battle_ui.enemy_stunned = true
 
 		# Otherwise do normal damage
+		print(battle_ui.current_enemy["weakness"])
+		print(item["class"])
+		if item["class"] == battle_ui.current_enemy["weakness"]:
+			print("Advantage damage")
+			final_damage += 7
+			battle_ui.show_battle_message("Advantage Damage!")
+			await get_tree().create_timer(1).timeout
+		
 		battle_ui.player_attack(final_damage)
 		#await battle_ui.cpu_attack()
 		#await battle_ui.unlock_turn()

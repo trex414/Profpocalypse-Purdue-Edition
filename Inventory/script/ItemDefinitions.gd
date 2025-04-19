@@ -15,6 +15,7 @@ const ITEM_DEFINITIONS = {
 	"Pickaxe": {
 		"type": 0,  # Assuming ItemType.ITEM is 0
 		"name": "Pickaxe",
+		"class": "None",
 		"texture_path": "res://Inventory/assets/Weapons/Pickaxe.png",
 		"stackable": false,
 		"count": 1,
@@ -28,6 +29,7 @@ const ITEM_DEFINITIONS = {
 	"Axe": {
 		"type": 0,
 		"name": "Axe",
+		"class": "Axe",
 		"texture_path": "res://Inventory/assets/Weapons/Axe.png",
 		"stackable": false,
 		"count": 1,
@@ -41,6 +43,7 @@ const ITEM_DEFINITIONS = {
 	"Rusty Sword": {
 		"type": 0,
 		"name": "Rusty Sword",
+		"class": "Blade",
 		"texture_path": "res://Inventory/assets/Weapons/Rusty Sword.png",
 		"stackable": false,
 		"count": 1,
@@ -55,6 +58,7 @@ const ITEM_DEFINITIONS = {
 	"Wooden Spear": {
 		"type": 0,
 		"name": "Wooden Spear",
+		"class": "Spear",
 		"texture_path": "res://Inventory/assets/Weapons/Wooden Spear.png",
 		"stackable": false,
 		"count": 1,
@@ -69,6 +73,7 @@ const ITEM_DEFINITIONS = {
 	"Spiked Mace": {
 		"type": 0,
 		"name": "Spiked Mace",
+		"class": "Heavy",
 		"texture_path": "res://Inventory/assets/Weapons/Spiked Mace.png",
 		"stackable": false,
 		"count": 1,
@@ -82,6 +87,7 @@ const ITEM_DEFINITIONS = {
 	"Flame Dagger": {
 		"type": 0,
 		"name": "Flame Dagger",
+		"class": "Blade",
 		"texture_path": "res://Inventory/assets/Weapons/Flame Dagger.png",
 		"stackable": false,
 		"count": 1,
@@ -96,6 +102,7 @@ const ITEM_DEFINITIONS = {
 	"Shortbow": {
 		"type": 0,
 		"name": "Shortbow",
+		"class": "Range",
 		"texture_path": "res://Inventory/assets/Weapons/Shortbow.png",
 		"stackable": false,
 		"count": 1,
@@ -113,6 +120,7 @@ const ITEM_DEFINITIONS = {
 	"Chilling Staff": {
 		"type": 0,
 		"name": "Chilling Staff",
+		"class": "Magic",
 		"texture_path": "res://Inventory/assets/Weapons/Chilling Staff.png",
 		"stackable": false,
 		"count": 1,
@@ -127,6 +135,7 @@ const ITEM_DEFINITIONS = {
 		"Stormcaller Wand": {
 		"type": 0,
 		"name": "Stormcaller Wand",
+		"class": "Magic",
 		"texture_path": "res://Inventory/assets/Weapons/Stormcaller Wand.png",
 		"stackable": false,
 		"count": 1,
@@ -142,6 +151,7 @@ const ITEM_DEFINITIONS = {
 	"Sword of Truth": {
 		"type": 0,
 		"name": "Sword of Truth",
+		"class": "Blade",
 		"texture_path": "res://Inventory/assets/Weapons/Sword of Truth.png",
 		"stackable": false,
 		"count": 1,
@@ -155,6 +165,7 @@ const ITEM_DEFINITIONS = {
 	"Hammer of the Titans": {
 		"type": 0,
 		"name": "Hammer of the Titans",
+		"class": "Heavy",
 		"texture_path": "res://Inventory/assets/Weapons/Hammer of the Titans.png",
 		"stackable": false,
 		"count": 1,
@@ -170,6 +181,7 @@ const ITEM_DEFINITIONS = {
 	"Dagger of Shadows": {
 		"type": 0,
 		"name": "Dagger of Shadows",
+		"class": "Blade",
 		"texture_path": "res://Inventory/assets/Weapons/Dagger of Shadows.png",
 		"stackable": false,
 		"count": 1,
@@ -185,6 +197,7 @@ const ITEM_DEFINITIONS = {
 	"Bow of Infinity": {
 		"type": 0,
 		"name": "Bow of Infinity",
+		"class": "Range",
 		"texture_path": "res://Inventory/assets/Weapons/Bow of Infinity.png",
 		"stackable": false,
 		"count": 1,
@@ -200,6 +213,7 @@ const ITEM_DEFINITIONS = {
 	"Staff of Elements": {
 		"type": 0,
 		"name": "Staff of Elements",
+		"class": "Magic",
 		"texture_path": "res://Inventory/assets/Weapons/Staff of Elements.png",
 		"stackable": false,
 		"count": 1,
