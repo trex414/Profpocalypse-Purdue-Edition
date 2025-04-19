@@ -73,6 +73,8 @@ var visited_physics := false
 var visited_chemistry := false
 var visited_hicks_notes := false
 
+#NPC Rewards
+var npc_rewards = {}
 
 # Function to get current game state (pass this to the save function when saving)
 func get_game_state():
@@ -128,9 +130,8 @@ func get_game_state():
 			"visited_physics": visited_physics,
 			"visited_chemistry": visited_chemistry,
 			"visited_hicks_notes": visited_hicks_notes
-		}
-
-
+		},
+		"npc_rewards": npc_rewards
 	}
 
 	# Function to apply loaded data (for loading)
@@ -223,12 +224,9 @@ func apply_game_state(data):
 			visited_physics = visited.get("visited_physics", false)
 			visited_chemistry = visited.get("visited_chemistry", false)
 			visited_hicks_notes = visited.get("visited_hicks_notes", false)
-
-
-
-
-
-
+			
+		if "npc_rewards" in data:
+			npc_rewards = data.npc_rewards
 			
 	if "keybindings" in data:
 		var key_bindings = data["keybindings"]
@@ -298,6 +296,16 @@ func set_default_values():
 	max_health = 100
 	permanent_speed = 0.0
 	brilliant_chance_bonus = 0.0
+	
+	#NPC Rewards
+	npc_rewards = {
+		"npc_drum": false,
+		"npc_fountain": false,
+		"npc_johnpurdue": false,
+		"npc_outskirts": false,
+		"npc_outskirts2": false,
+		"npc_business": false
+	}
 	
 	SaveManager.set_volume(0.4)
 
