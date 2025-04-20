@@ -37,6 +37,7 @@ var ready_to_complete: Array = []
 var defeated_enemies = []
 var abilities_levels = []
 var study_tokens: int
+var achievements_unlocked = []
 
 # Keybinding variables
 var inventory_key: Key
@@ -95,6 +96,7 @@ func get_game_state():
 			"defeated_enemies": defeated_enemies,
 			"abilities_levels": abilities_levels,
 			"study_tokens": study_tokens,
+			"achievements_unlocked": achievements_unlocked,
 			"permanent_strength": permanent_strength,
 			"max_health": max_health,
 			"ready_to_complete": ready_to_complete,
@@ -183,6 +185,9 @@ func apply_game_state(data):
 		
 		if "study_tokens" in player_data:
 			study_tokens = player_data.study_tokens
+		
+		if "achievements_unlocked" in player_data:
+			achievements_unlocked = player_data.achievements_unlocked
 		
 		if "permanent_strength" in player_data:
 			permanent_strength = player_data.permanent_strength
@@ -284,6 +289,7 @@ func set_default_values():
 	defeated_enemies = []
 	abilities_levels = [0, 0, 0, -1, -1, -1, -1]
 	study_tokens = 0
+	achievements_unlocked = [false, false, false, false, false, false, false, false, false, false, false, false]
 	
 	#Key Binding Defaults
 	inventory_key = 69

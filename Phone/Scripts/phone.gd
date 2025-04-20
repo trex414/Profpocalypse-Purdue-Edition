@@ -52,6 +52,7 @@ func _on_settings_pressed():
 
 func _on_achievements_pressed():
 	toggle_Phone()
+	achievements.toggle_achievements()
 	print("Achievements")
 
 func _on_calendar_pressed():
