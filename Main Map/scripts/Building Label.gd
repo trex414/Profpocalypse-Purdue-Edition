@@ -29,6 +29,7 @@ func _input_event(viewport, event, shape_idx):
 		label.hide()
 		enterpoplabel.text = ("Do you wish to enter " + str(label.get_parent().name) + "?")
 		enterpop.show()
+		Global.building_name = name
 		match name:
 			"PMU":  # Memorial Mall (example)
 				PlayerData.visited_union = true

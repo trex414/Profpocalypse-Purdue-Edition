@@ -62,6 +62,7 @@ func start_dialogue():
 	dialogue_queue.clear()
 
 	current_semester = PlayerData.semester_index
+	current_semester += 1
 	# Show greeting and semester info
 	dialogue_queue.append("Welcome to your academic advising session!")
 	if current_semester > 0:

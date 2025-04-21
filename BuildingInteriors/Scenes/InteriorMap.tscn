@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/temporary_player_interior.gd" id="2_kx75e"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/exit building.gd" id="5_r04oj"]
 [ext_resource type="AudioStream" uid="uid://ch6kn5xbrxmll" path="res://menu_sound_effects/footsteps2.mp3" id="5_xl0on"]
-[ext_resource type="PackedScene" uid="uid://bgtlq4o60sy43" path="res://CustomBody.tscn" id="6_1u4e1"]
+[ext_resource type="PackedScene" path="res://CustomBody.tscn" id="6_1u4e1"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="7_l7w41"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqyv5"]

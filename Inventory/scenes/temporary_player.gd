@@ -96,6 +96,10 @@ func apply_speed_boost(boost: float, duration: float):
 	current_speed += boost
 	print("⚡ Speed boost applied:", boost)
 
+	# ✅ Sync with PlayerData
+	PlayerData.active_potion_type = "speed"
+	PlayerData.active_speed_boost = boost
+
 	var hud = get_node("/root/TestMain/Control - HUD")
 	if hud and hud.has_method("show_speed_timer"):
 		hud.show_speed_timer(duration)
@@ -111,8 +115,13 @@ func apply_speed_boost(boost: float, duration: float):
 		active_speed = null
 		speed_timer = null
 		active_potion_type = ""
+
+		# ✅ Clear PlayerData
+		PlayerData.active_potion_type = ""
+		PlayerData.active_speed_boost = 0.0
 	)
 	speed_timer.start()
+
 
 func increase_permanent_speed(amount: float):
 	PlayerData.permanent_speed += amount
@@ -128,14 +137,19 @@ func apply_strength_boost(temp_amount: int, duration: float):
 	if active_potion_type != "" and active_potion_type != "strength":
 		print("❌ Cannot use strength potion while another potion is active.")
 		return
+
 	active_potion_type = "strength"
 	strength_bonus += temp_amount
 	print("⚔️ Temporary strength boost +%d for %.1f seconds." % [temp_amount, duration])
-	
+
+	# ✅ Sync with PlayerData
+	PlayerData.active_potion_type = "strength"
+	PlayerData.temp_strength_bonus = temp_amount
+
 	var hud = get_node("/root/TestMain/Control - HUD")
 	if hud and hud.has_method("show_strength_timer"):
 		hud.show_strength_timer(duration)
-		
+
 	if strength_boost_timer == null:
 		strength_boost_timer = Timer.new()
 		strength_boost_timer.one_shot = true
@@ -145,11 +159,17 @@ func apply_strength_boost(temp_amount: int, duration: float):
 	strength_boost_timer.stop()
 	strength_boost_timer.wait_time = duration
 	strength_boost_timer.start()
+
 	
 func _on_strength_boost_timeout():
 	print("⏱️ Temporary strength boost expired.")
 	strength_bonus = 0
 	active_potion_type = ""
+
+	# ✅ Clear PlayerData
+	PlayerData.active_potion_type = ""
+	PlayerData.temp_strength_bonus = 0
+
 
 func get_total_strength() -> int:
 	return base_strength + strength_bonus

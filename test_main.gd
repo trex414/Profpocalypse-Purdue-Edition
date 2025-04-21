@@ -12,6 +12,7 @@ var Advisor_meeting = null
 var is_customization_active = false
 var character_customization = null
 var phone = null
+var achivements = null
 
 
 func _ready():
@@ -52,6 +53,9 @@ func _ready():
 	abilitiesPreview = load("res://Abilities/Scenes/AbilitiesPreview.tscn").instantiate()
 	add_child(abilitiesPreview)
 	Global.abilitiesMenu = abilitiesPreview
+	
+	achivements = load("res://Achievements/Scenes/Achievements.tscn").instantiate()
+	add_child(achivements)
 
 	# Load Quest Screen
 	QuestMenuScene = load("res://Quest/scenes/QuestMenu.tscn").instantiate()
@@ -71,7 +75,7 @@ func _ready():
 	add_child(phone)
 	phone.set_courses(majorInformation)
 	#phone.set_settings()
-	#phone.set_achievements()
+	phone.set_achievements(achivements)
 	phone.set_calendar(calendar)
 	phone.set_abilities(abilitiesPreview)
 	phone.set_collections(hud)

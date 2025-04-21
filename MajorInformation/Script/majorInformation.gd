@@ -216,6 +216,12 @@ func complete_current_semester():
 		semester_index += 1  # Increment semester index
 		progress_bar.value = semester_index  # Update progress bar
 		PlayerData.semester_index = semester_index
+		if semester_index == 1:
+			PlayerData.achievements_unlocked[11] = true
+		if semester_index == 6:
+			PlayerData.achievements_unlocked[2] = true
+		if semester_index == 10:
+			PlayerData.achievements_unlocked[8] = true	
 		update_display()
 	else:
 		print("No more semesters!")  # Debug message

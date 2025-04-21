@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://pwswji2goitr" path="res://Music/Tracks/battle.ogg" id="2_77bvq"]
 [ext_resource type="Script" path="res://User_Battle/Script/enemy.gd" id="2_kw82d"]
 [ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="4_0nwts"]
-[ext_resource type="PackedScene" uid="uid://bgtlq4o60sy43" path="res://CustomBody.tscn" id="4_uanh1"]
+[ext_resource type="PackedScene" path="res://CustomBody.tscn" id="4_uanh1"]
 [ext_resource type="AudioStream" uid="uid://5pt0u5lby2ee" path="res://menu_sound_effects/success-48018.mp3" id="5_ch11x"]
 [ext_resource type="AudioStream" uid="uid://de23rb0p7sekd" path="res://click.wav" id="5_kvhev"]
 [ext_resource type="AudioStream" uid="uid://3muygngblxdi" path="res://menu_sound_effects/error-call-to-attention-129258.mp3" id="6_sscru"]
