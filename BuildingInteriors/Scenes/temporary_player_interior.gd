@@ -1,9 +1,21 @@
 extends CharacterBody2D
 
-@export var speed: float = 200  # Movement speed
+@export var base_speed: float = 200
+var current_speed: float = 200
+
+var active_speed = null
+var speed_timer = null
+
+var base_strength: int = 0
+var strength_bonus: int = 0
+var strength_boost_timer: Timer
+
+var active_potion_type := ""
 
 func _ready():
 	position = PlayerData.building_interior_position
+	base_strength = PlayerData.permanent_strength
+	current_speed = base_speed + PlayerData.permanent_speed
 	
 	var last_character_file = FileAccess.open("res://CharacterCustomization/last_saved_character.json", FileAccess.READ)
 	var last_character_data = JSON.parse_string(last_character_file.get_as_text())
@@ -32,27 +44,32 @@ func load_character(character_name):
 	$CharacterVisuals/body_root/shirt/class.texture = load(save_data["class_texture"])
 
 func _physics_process(delta):
+	update_stats()
 	var direction = Vector2.ZERO
 	var is_moving = false
 
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		PlayerData.position.x += 1
+		PlayerData.move_right_count += 1
 		is_moving = true
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 		PlayerData.position.x -= 1
+		PlayerData.move_left_count += 1
 		is_moving = true
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
 		PlayerData.position.y += 1
+		PlayerData.move_backward_count += 1
 		is_moving = true
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
 		PlayerData.position.y -= 1
+		PlayerData.move_forward_count += 1
 		is_moving = true
 
-	velocity = direction.normalized() * speed
+	velocity = direction.normalized() * current_speed
 	move_and_slide()
 	
 	PlayerData.building_interior_position = position
@@ -65,3 +82,14 @@ func _physics_process(delta):
 	else:
 		$WalkSFX.stop()
 		$AnimationPlayer.stop()
+		
+func update_stats():
+	base_strength = PlayerData.permanent_strength
+	current_speed = base_speed + PlayerData.permanent_speed
+	
+	if PlayerData.active_potion_type == "speed":
+		current_speed += PlayerData.active_speed_boost
+	if PlayerData.active_potion_type == "strength":
+		strength_bonus = PlayerData.temp_strength_bonus
+	else:
+		strength_bonus = 0

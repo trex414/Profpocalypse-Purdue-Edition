@@ -74,6 +74,12 @@ var visited_physics := false
 var visited_chemistry := false
 var visited_hicks_notes := false
 
+# Active potion tracking
+var active_potion_type: String = ""
+var active_speed_boost: float = 0.0
+var temp_strength_bonus: int = 0
+
+
 #NPC Rewards
 var npc_rewards = {}
 
@@ -102,6 +108,9 @@ func get_game_state():
 			"ready_to_complete": ready_to_complete,
 			"permanent_speed": permanent_speed,
 			"brilliant_chance_bonus": brilliant_chance_bonus,
+			"active_potion_type": active_potion_type,
+			"active_speed_boost": active_speed_boost,
+			"temp_strength_bonus": temp_strength_bonus,
 
 		},
 		"keybindings": {
@@ -230,6 +239,13 @@ func apply_game_state(data):
 			visited_chemistry = visited.get("visited_chemistry", false)
 			visited_hicks_notes = visited.get("visited_hicks_notes", false)
 			
+		if "active_potion_type" in player_data:
+			active_potion_type = player_data.active_potion_type
+		if "active_speed_boost" in player_data:
+			active_speed_boost = player_data.active_speed_boost
+		if "temp_strength_bonus" in player_data:
+			temp_strength_bonus = player_data.temp_strength_bonus
+			
 		if "npc_rewards" in data:
 			npc_rewards = data.npc_rewards
 			
@@ -302,6 +318,11 @@ func set_default_values():
 	max_health = 100
 	permanent_speed = 0.0
 	brilliant_chance_bonus = 0.0
+	
+	active_potion_type = ""
+	active_speed_boost = 0.0
+	temp_strength_bonus = 0
+
 	
 	#NPC Rewards
 	npc_rewards = {
