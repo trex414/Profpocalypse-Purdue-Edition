@@ -157,7 +157,7 @@ func _on_save_pressed():
 	last_character_file.store_string(JSON.stringify(save_data, "\t"))
 	last_character_file.close()
 	#load_character("cotton")
-	get_tree().change_scene_to_file("res://test_main.tscn")
+	get_tree().change_scene_to_file("res://Main Map/scenes/Profpocalypse Main Map.tscn")
 
 		
 
