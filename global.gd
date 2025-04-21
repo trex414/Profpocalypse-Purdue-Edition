@@ -7,6 +7,8 @@ var in_battle: bool = false
 var advisorMeeting = null
 var abilitiesMenu = null
 
+var building_name = ""
+
 #bleed
 var status_effect_active := false
 var status_effect_type := ""
