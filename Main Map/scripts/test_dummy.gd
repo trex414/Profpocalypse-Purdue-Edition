@@ -24,9 +24,6 @@ func trigger_cutscene():
 func _on_body_entered(body):
 	if body.name != "TemporaryPlayer":
 		return
-	if (!canbe):
-		norm = locked_label.position.y
-		canbe = true
 
 	# Doomsmore – no prereq
 	if enemy_name == "Prof Doomsmore":
@@ -37,13 +34,20 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. Doomsmore"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. Doomsmore first!")
+			
 
 	# Turkey → requires Doomsmore
 	elif enemy_name == "Prof Turkey":
 		if QuestManager.is_quest_completed("Main Story: Prof. Doomsmore"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. Doomsmore first!")
 
 	# Gust-Codes → requires Turkey
@@ -51,6 +55,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. Turkey"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. Turkey first!")
 
 	# PosadaBytes → requires Sel-key AND Turkey
@@ -58,6 +65,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. Sel-key") and QuestManager.is_quest_completed("Main Story: Prof. Turkey"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. Sel-key and Prof. Turkey first!")
 
 	# Gust-Stack → requires PosadaBytes AND Gust-Codes
@@ -65,6 +75,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. PosadaBytes") and QuestManager.is_quest_completed("Main Story: Prof. Gust-Codes"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. PosadaBytes and Prof. Gust-Codes first!")
 
 	# KernelComer → requires Gust-Stack
@@ -72,6 +85,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. Gust-Stack"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. Gust-Stack first!")
 
 	# CodeZhang → requires PosadaBytes
@@ -79,6 +95,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. PosadaBytes"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. PosadaBytes first!")
 
 	# AlgoKnight → requires PosadaBytes
@@ -86,6 +105,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. PosadaBytes"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. PosadaBytes first!")
 
 	# CapstoneCrafter → requires PosadaBytes
@@ -93,6 +115,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. PosadaBytes"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. PosadaBytes first!")
 
 	# BugSquasher → requires CodeZhang
@@ -100,6 +125,9 @@ func _on_body_entered(body):
 		if QuestManager.is_quest_completed("Main Story: Prof. CodeZhang"):
 			trigger_cutscene()
 		else:
+			if (!canbe):
+				norm = locked_label.position.y
+				canbe = true
 			show_locked_message("Must defeat Prof. CodeZhang first!")
 
 	else:
