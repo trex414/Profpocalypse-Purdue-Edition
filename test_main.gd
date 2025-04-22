@@ -1,6 +1,6 @@
 extends Node2D
 
-var character_customization = null
+
 
 var map = null
 var inventory = null
@@ -119,11 +119,7 @@ func _ready():
 		
 	PlayerData.ready
 	
-	# Load and add the CharacterCustomization UI
-	var customization_scene = load("res://CharacterCustomization/CharacterCustomization.tscn")
-	character_customization = customization_scene.instantiate()
-	character_customization.visible = false  # Start hidden
-	add_child(character_customization)
+
 	
 	
 	
@@ -155,7 +151,9 @@ func _process(delta):
 		else:
 			majorInformation.toggle_MajorInfo()
 	if Input.is_action_just_pressed("ui_customization"):
-		character_customization.visible = not character_customization.visible
+		get_tree().change_scene_to_file("res://CharacterCustomization/CharacterCustomization.tscn")
+
+
 		
 		
 		

@@ -95,6 +95,23 @@ func delete():
 	if FileAccess.file_exists("user://settings.cfg"):
 		DirAccess.remove_absolute("user://settings.cfg")
 		
+		# Overwrite last saved character with default
+	var default_path = "res://CharacterCustomization/CustomCharacters/default.json"
+	var last_save_path = "res://CharacterCustomization/last_saved_character.json"
+
+	if FileAccess.file_exists(default_path):
+		var default_file = FileAccess.open(default_path, FileAccess.READ)
+		var default_data = default_file.get_as_text()
+		default_file.close()
+
+		var overwrite_file = FileAccess.open(last_save_path, FileAccess.WRITE)
+		overwrite_file.store_string(default_data)
+		overwrite_file.close()
+
+		print("✅ last_saved_character.json successfully overwritten with default.")
+	else:
+		print("❌ Default character file not found.")
+		
 
 func set_volume(value):
 	volume = value

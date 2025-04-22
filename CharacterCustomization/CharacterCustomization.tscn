@@ -203,11 +203,11 @@ offset_bottom = 372.0
 text = "Class: The Band Geek; Always talking about rehearsals, concerts, and marching season. Probably carries a baton or drumsticks around for no reason.
 "
 
-[connection signal="pressed" from="save" to="save" method="_on_save_pressed"]
-[connection signal="pressed" from="change class" to="change features" method="_on_change_class_pressed"]
-[connection signal="pressed" from="change face" to="change face" method="_on_change_face_pressed"]
-[connection signal="pressed" from="change features" to="change features" method="_on_change_features_pressed"]
-[connection signal="pressed" from="change hair" to="save" method="_on_change_hair_pressed"]
-[connection signal="pressed" from="change pants" to="change pants" method="_on_change_pants_pressed"]
-[connection signal="pressed" from="change shoes" to="save" method="_on_change_shoes_pressed"]
-[connection signal="pressed" from="change shirts" to="save" method="_on_change_shirt_pressed"]
+[connection signal="pressed" from="save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="change class" to="." method="_on_change_class_pressed"]
+[connection signal="pressed" from="change face" to="." method="_on_change_face_pressed"]
+[connection signal="pressed" from="change features" to="." method="_on_change_features_pressed"]
+[connection signal="pressed" from="change hair" to="." method="_on_change_hair_pressed"]
+[connection signal="pressed" from="change pants" to="." method="_on_change_pants_pressed"]
+[connection signal="pressed" from="change shoes" to="." method="_on_change_shoes_pressed"]
+[connection signal="pressed" from="change shirts" to="." method="_on_change_shirt_pressed"]

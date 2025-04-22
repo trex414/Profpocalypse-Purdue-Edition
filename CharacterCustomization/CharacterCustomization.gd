@@ -2,7 +2,7 @@ extends Control
 
 @onready var face_sprite = $body_root/face  
 @onready var features_sprite = $body_root/face/features
-@onready var hair_sprite = $/root/CharacterCuztomization/body_root/face/features/hair
+@onready var hair_sprite = $body_root/face/features/hair
 @onready var shirt_sprite = $body_root/shirt
 @onready var pant_sprite = $body_root/pant
 @onready var pant2_sprite = $body_root/pant/pant2
@@ -157,11 +157,12 @@ func _on_save_pressed():
 	last_character_file.store_string(JSON.stringify(save_data, "\t"))
 	last_character_file.close()
 	#load_character("cotton")
-	get_tree().change_scene_to_file("res://Main Map/scenes/Profpocalypse Main Map.tscn")
+	get_tree().change_scene_to_file("res://test_main.tscn")
 
 		
 
 func load_character(character_name):
+	print("hii")
 	var save_path = "CharacterCustomization/CustomCharacters/" + character_name + ".json"
 	if not FileAccess.file_exists(save_path):
 		print("Error: No saved character found for", character_name)
@@ -169,20 +170,20 @@ func load_character(character_name):
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	var save_data = JSON.parse_string(file.get_as_text())
 	file.close()
-	#name_input.text = save_data["name"]
-	#face_sprite.texture = load(save_data["face_texture"]) if save_data["face_texture"] != "" else null
-	#features_sprite.texture = load(save_data["features_texture"]) if save_data["features_texture"] != "" else null
-	#hair_sprite.texture = load(save_data["hair_texture"]) if save_data["hair_texture"] != "" else null
-	#shirt_sprite.texture = load(save_data["shirt_texture"]) if save_data["shirt_texture"] != "" else null
-	#pant_sprite.texture = load(save_data["pant_texture"]) if save_data["pant_texture"] != "" else null
-	#pant2_sprite.texture = load(save_data["pant2_texture"]) if save_data["pant2_texture"] != "" else null
-	#shoe1_sprite.texture = load(save_data["shoe1_texture"]) if save_data["shoe1_texture"] != "" else null
-	#shoe2_sprite.texture = load(save_data["shoe2_texture"]) if save_data["shoe2_texture"] != "" else null
-	#arm_sprite.texture = load(save_data["arm_texture"]) if save_data["arm_texture"] != "" else null
-	#arm2_sprite.texture = load(save_data["arm2_texture"]) if save_data["arm2_texture"] != "" else null
-	#hand_sprite.texture = load(save_data["hand_texture"]) if save_data["hand_texture"] != "" else null
-	#hand2_sprite.texture = load(save_data["hand2_texture"]) if save_data["hand2_texture"] != "" else null
-	#neck_sprite.texture = load(save_data["neck_texture"]) if save_data["neck_texture"] != "" else null
-	#belt_sprite.texture = load(save_data["belt_texture"]) 
-	#class_sprite.texture = load(save_data["class_texture"]) if save_data.has("class_texture") else null
-	#class_description.text = save_data["class_description"] if save_data.has("class_description") else ""
+	name_input.text = save_data["name"]
+	face_sprite.texture = load(save_data["face_texture"]) if save_data["face_texture"] != "" else null
+	features_sprite.texture = load(save_data["features_texture"]) if save_data["features_texture"] != "" else null
+	hair_sprite.texture = load(save_data["hair_texture"]) if save_data["hair_texture"] != "" else null
+	shirt_sprite.texture = load(save_data["shirt_texture"]) if save_data["shirt_texture"] != "" else null
+	pant_sprite.texture = load(save_data["pant_texture"]) if save_data["pant_texture"] != "" else null
+	pant2_sprite.texture = load(save_data["pant2_texture"]) if save_data["pant2_texture"] != "" else null
+	shoe1_sprite.texture = load(save_data["shoe1_texture"]) if save_data["shoe1_texture"] != "" else null
+	shoe2_sprite.texture = load(save_data["shoe2_texture"]) if save_data["shoe2_texture"] != "" else null
+	arm_sprite.texture = load(save_data["arm_texture"]) if save_data["arm_texture"] != "" else null
+	arm2_sprite.texture = load(save_data["arm2_texture"]) if save_data["arm2_texture"] != "" else null
+	hand_sprite.texture = load(save_data["hand_texture"]) if save_data["hand_texture"] != "" else null
+	hand2_sprite.texture = load(save_data["hand2_texture"]) if save_data["hand2_texture"] != "" else null
+	neck_sprite.texture = load(save_data["neck_texture"]) if save_data["neck_texture"] != "" else null
+	belt_sprite.texture = load(save_data["belt_texture"]) 
+	class_sprite.texture = load(save_data["class_texture"]) if save_data.has("class_texture") else null
+	class_description.text = save_data["class_description"] if save_data.has("class_description") else ""
