@@ -124,23 +124,31 @@ func unlock_turn():
 		var hud = get_tree().get_current_scene().get_node("Control - HUD")
 		if hud.has_method("apply_status_effect_if_active"):
 			hud.apply_status_effect_if_active()
-	turn_locked = true
-	input_blocker.visible = false
+	print(enemy_stunned)
+	if enemy_stunned:
+		print("⛔ Enemy stunned — skipping trivia.")
+		enemy_stunned = false  # Reset stun for next turn
+		turn_locked = false
+		input_blocker.visible = false
+	else:
+		
+		turn_locked = true
+		input_blocker.visible = false
 
-	var trivia_scene = preload("res://User_Battle/UI/trivia_popup.tscn")
-	var trivia_popup = trivia_scene.instantiate()
-	$CanvasLayer.add_child(trivia_popup)
+		var trivia_scene = preload("res://User_Battle/UI/trivia_popup.tscn")
+		var trivia_popup = trivia_scene.instantiate()
+		$CanvasLayer.add_child(trivia_popup)
 
-	var trivia = get_unused_trivia_question(Global.trivia_questions)
-	var question = trivia["question"]
-	var answers = trivia["choices"]
-	var correct = trivia["correct"]
+		var trivia = get_unused_trivia_question(Global.trivia_questions)
+		var question = trivia["question"]
+		var answers = trivia["choices"]
+		var correct = trivia["correct"]
 
-	var raw_question = get_unused_trivia_question(Global.trivia_questions)
-	var prepared = prepare_trivia_question(raw_question)
+		var raw_question = get_unused_trivia_question(Global.trivia_questions)
+		var prepared = prepare_trivia_question(raw_question)
 
-	trivia_popup.setup_question(prepared["question"], prepared["choices"], prepared["correct"])
-	trivia_popup.connect("answer_chosen", Callable(self, "_on_trivia_answer"))
+		trivia_popup.setup_question(prepared["question"], prepared["choices"], prepared["correct"])
+		trivia_popup.connect("answer_chosen", Callable(self, "_on_trivia_answer"))
 
 func get_unused_trivia_question(all_questions: Array) -> Dictionary:
 	var unused = []
@@ -196,6 +204,9 @@ func try_leave_fight():
 		cpu_attack()
 
 func player_attack(damage):
+	if (enemy_stunned):
+		turn_locked = false
+		input_blocker.visible = false
 	if turn_locked:
 		return
 	lock_turn()
@@ -220,6 +231,11 @@ func player_attack(damage):
 	elif (!enemy_stunned):
 		await get_tree().create_timer(2).timeout
 		cpu_attack()
+	if (enemy_stunned):
+		enemy_stunned = false
+		turn_locked = false
+		input_blocker.visible = false
+		show_battle_message("You can attack again")
 
 func player_heal(heal_amt):
 	if turn_locked:
@@ -311,3 +327,4 @@ func restore_gameplay():
 	$CanvasLayer.visible = false
 
 	MusicManager.restore_previous_music()
+	

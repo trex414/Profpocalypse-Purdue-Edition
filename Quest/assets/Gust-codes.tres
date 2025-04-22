@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dppoxjqf5ab86"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_sf7lh"]
-[ext_resource type="Resource" uid="uid://sa3rxr07ycdp" path="res://Quest/assets/Sel-key.tres" id="2_ayqnh"]
+[ext_resource type="Resource" uid="uid://dx7l8s15ypgbk" path="res://Quest/assets/Turkey.tres" id="2_8qu6b"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_jupkr"]
 
 [sub_resource type="Resource" id="Resource_s4n8l"]
@@ -13,7 +13,7 @@ amount = 1
 script = ExtResource("1_sf7lh")
 quest_name = "Main Story: Prof Gust-Codes"
 description = " Architectural mayhem awaits. Survive code winds and system storms under Prof. Gust-Codes’ bizarre building blocks."
-prerequisites = Array[ExtResource("1_sf7lh")]([ExtResource("2_ayqnh")])
+prerequisites = Array[ExtResource("1_sf7lh")]([ExtResource("2_8qu6b")])
 rewards = Array[ExtResource("2_jupkr")]([SubResource("Resource_s4n8l")])
 is_completed = false
 pinned = false

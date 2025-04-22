@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://qc5ivpacwhcs"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_u0gwu"]
-[ext_resource type="Resource" uid="uid://mpcnrsvhj2q1" path="res://Quest/assets/Capstonecrafter.tres" id="2_qddh7"]
+[ext_resource type="Resource" uid="uid://c6gemftqmjbmn" path="res://Quest/assets/Codezhang.tres" id="2_txngf"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_ulh1e"]
 
 [sub_resource type="Resource" id="Resource_2tpff"]
@@ -13,7 +13,7 @@ amount = 1
 script = ExtResource("1_u0gwu")
 quest_name = "Main Story: Prof BugSquasher"
 description = " Face the true final boss. His AI adapts, counters, and punishes. Only the best will debug this battle."
-prerequisites = Array[ExtResource("1_u0gwu")]([ExtResource("2_qddh7")])
+prerequisites = Array[ExtResource("1_u0gwu")]([ExtResource("2_txngf")])
 rewards = Array[ExtResource("2_ulh1e")]([SubResource("Resource_2tpff")])
 is_completed = false
 pinned = false

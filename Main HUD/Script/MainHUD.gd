@@ -659,14 +659,14 @@ func handle_battle_attack(slot_index):
 			$StunSFX.play()
 			await battle_ui.show_battle_message("You stunned the enemy!")
 			# e.g. battle_ui.apply_stun_to_enemy() if you have that logic
-			await get_tree().create_timer(2).timeout
+			#await get_tree().create_timer(2).timeout
 			final_damage = int(base_damage * 0.5)
 			#await battle_ui.cpu_attack()
-			await battle_ui.unlock_turn()
 			battle_ui.enemy_stunned = true
+			#await battle_ui.unlock_turn()
 
 		# Check for advtange
-		if item["class"] == battle_ui.current_enemy["weakness"]:
+		if item["class"] == battle_ui.current_enemy["weakness"] and item != null:
 			print("Advantage damage +11")
 			final_damage += 11
 			battle_ui.show_battle_message("Advantage Damage!")
@@ -676,7 +676,7 @@ func handle_battle_attack(slot_index):
 		battle_ui.player_attack(final_damage)
 		#await battle_ui.cpu_attack()
 		#await battle_ui.unlock_turn()
-		battle_ui.enemy_stunned = false
+		#battle_ui.enemy_stunned = false
 
 		
 func set_battle_ui(ui):

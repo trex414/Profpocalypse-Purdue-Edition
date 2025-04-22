@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_p3ovt"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_filn7"]
-[ext_resource type="Resource" uid="uid://dmtoj5p3sufu4" path="res://Quest/assets/Kernelcomer.tres" id="2_r86ns"]
+[ext_resource type="Resource" uid="uid://dmm0g6lrq02a1" path="res://Quest/assets/Posadabytes.tres" id="2_hvvf1"]
 
 [sub_resource type="Resource" id="Resource_xfgxj"]
 script = ExtResource("2_filn7")
@@ -13,7 +13,7 @@ amount = 1
 script = ExtResource("1_p3ovt")
 quest_name = "Main Story: Prof CodeZhang"
 description = " It’s a two-front war. Fight Prof. CodeZhang and their TA in tandem in this coordination-based battle."
-prerequisites = Array[ExtResource("1_p3ovt")]([ExtResource("2_r86ns")])
+prerequisites = Array[ExtResource("1_p3ovt")]([ExtResource("2_hvvf1")])
 rewards = Array[ExtResource("2_filn7")]([SubResource("Resource_xfgxj")])
 is_completed = false
 pinned = false

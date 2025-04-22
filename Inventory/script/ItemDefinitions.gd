@@ -78,10 +78,10 @@ const ITEM_DEFINITIONS = {
 		"stackable": false,
 		"count": 1,
 		"damage": 13,
-		"stun_chance": 0.12,
-		"miss_chance": 0.10,
-		"crit_chance": 0.40,
-		"break_chance": 0.40,
+		"stun_chance": 1,
+		"miss_chance": 0.0,
+		"crit_chance": 0.0,
+		"break_chance": 0.0,
 		"rarity": "uncommon"
 	},
 	"Flame Dagger": {
