@@ -22,7 +22,6 @@ func trigger_cutscene():
 
 
 func _on_body_entered(body):
-	print(enemy_name)
 	if body.name != "TemporaryPlayer":
 		return
 
@@ -59,8 +58,9 @@ func _on_body_entered(body):
 	elif enemy_name == "Prof Gust-Codes":
 		if QuestManager.is_quest_completed("Main Story: Prof Turkey"):
 			trigger_cutscene()
-		elif QuestManager.is_quest_completed("Main Story: Prof Turkey"):
+		else:
 			norm = 0
+			print("in gustcodes")
 			show_locked_message("Must defeat Prof. Turkey first!")
 
 	# PosadaBytes → requires Sel-key AND Turkey
