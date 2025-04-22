@@ -278,7 +278,7 @@ func set_default_values():
 	print("No save detected ==========>>>>")
 	
 	# Player Data Defaults
-	position = Vector2(0, 0)
+	position = Vector2(781, 546)
 	inventory = []
 	
 	item_bar = []
