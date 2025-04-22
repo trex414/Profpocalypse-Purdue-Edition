@@ -60,7 +60,6 @@ func _on_body_entered(body):
 			trigger_cutscene()
 		else:
 			norm = 0
-			print("in gustcodes")
 			show_locked_message("Must defeat Prof. Turkey first!")
 
 	# PosadaBytes → requires Sel-key AND Turkey
