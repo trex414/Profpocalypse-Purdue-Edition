@@ -11,7 +11,7 @@ amount = 1
 
 [resource]
 script = ExtResource("1_3ayns")
-quest_name = "Main Story: Prof. PosadaBytes"
+quest_name = "Main Story: Prof PosadaBytes"
 description = " Ice flows through his binary. Face chilling concepts and win your first high-stakes battle."
 prerequisites = Array[ExtResource("1_3ayns")]([ExtResource("2_5fyp8")])
 rewards = Array[ExtResource("2_si0bx")]([SubResource("Resource_cmus3")])

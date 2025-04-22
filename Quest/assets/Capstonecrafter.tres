@@ -11,9 +11,10 @@ amount = 1
 
 [resource]
 script = ExtResource("1_6rguq")
-quest_name = "Main Story: Prof. CapstoneCrafter"
+quest_name = "Main Story: Prof CapstoneCrafter"
 description = " You’ve come far—but one last project remains. Solve her final puzzle to prove yourself."
 prerequisites = Array[ExtResource("1_6rguq")]([ExtResource("2_hxhhd")])
 rewards = Array[ExtResource("2_pkuym")]([SubResource("Resource_u7daa")])
 is_completed = false
 pinned = false
+priority = 0

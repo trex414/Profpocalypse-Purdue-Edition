@@ -204,12 +204,18 @@ func player_attack(damage):
 	show_battle_message("Successfully attacked for %d damage" % final_damage)
 	$AttackSuccessSFX.play()
 	enemy_bar.take_damage(final_damage)
+	#enemy killed
 	if enemy_bar.current_health <= 0:
 		await get_tree().create_timer(2).timeout
 		await show_battle_message("You won!")
 		PlayerData.mark_enemy_defeated(current_enemy["name"])
+		
+		var quest_name = "Main Story: " + current_enemy["name"]
+		QuestManager.mark_ready_to_complete(quest_name)
+
 		enemy_node_reference.queue_free()
 		enemy_node_reference = null
+		
 		restore_gameplay()
 	elif (!enemy_stunned):
 		await get_tree().create_timer(2).timeout

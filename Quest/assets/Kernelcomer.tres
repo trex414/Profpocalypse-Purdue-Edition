@@ -11,7 +11,7 @@ amount = 1
 
 [resource]
 script = ExtResource("1_xldd3")
-quest_name = "Main Story: Prof. KernelComer"
+quest_name = "Main Story: Prof KernelComer"
 description = " A master of interrupts and kernel chaos. Time your moves and overcome stunning surprises."
 prerequisites = Array[ExtResource("1_xldd3")]([ExtResource("2_t8tkr")])
 rewards = Array[ExtResource("2_c0bwl")]([SubResource("Resource_oh42h")])

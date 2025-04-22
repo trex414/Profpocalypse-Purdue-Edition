@@ -11,7 +11,7 @@ amount = 1
 
 [resource]
 script = ExtResource("1_ryxtc")
-quest_name = "Main Story: Prof. Gust-Stack"
+quest_name = "Main Story: Prof Gust-Stack"
 description = " Face your toughest logic yet—puzzles entwined with combat. Solve and survive Prof. Gust-Stack’s trial."
 prerequisites = Array[ExtResource("1_ryxtc")]([ExtResource("2_xkyy7")])
 rewards = Array[ExtResource("2_q1g7n")]([SubResource("Resource_3btg7")])

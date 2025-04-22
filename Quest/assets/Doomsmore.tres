@@ -10,7 +10,7 @@ amount = 1
 
 [resource]
 script = ExtResource("1_6k7er")
-quest_name = "Main Story: Prof. Doomsmore"
+quest_name = "Main Story: Prof Doomsmore"
 description = " Face the infamous Prof. Doomsmore and survive your first CS class. Use your wit and the pickaxe he drops to mine your path forward."
 prerequisites = Array[ExtResource("1_6k7er")]([])
 rewards = Array[ExtResource("3_5ndst")]([SubResource("Resource_fedw4")])
