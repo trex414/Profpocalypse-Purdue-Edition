@@ -16,6 +16,7 @@ var active_potion_type := ""
 
 func _ready():
 	position = PlayerData.position
+	print("player position: " + str(position))
 	base_strength = PlayerData.permanent_strength
 	current_speed = base_speed + PlayerData.permanent_speed
 	
