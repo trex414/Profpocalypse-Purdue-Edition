@@ -1,23 +1,23 @@
-extends MenuButton
+extends Control
 
-@onready var face_sprite = $/root/CharacterCuztomization/body_root/face  
-@onready var features_sprite = $/root/CharacterCuztomization/body_root/face/features
+@onready var face_sprite = $body_root/face  
+@onready var features_sprite = $body_root/face/features
 @onready var hair_sprite = $/root/CharacterCuztomization/body_root/face/features/hair
-@onready var shirt_sprite = $/root/CharacterCuztomization/body_root/shirt
-@onready var pant_sprite = $/root/CharacterCuztomization/body_root/pant
-@onready var pant2_sprite = $/root/CharacterCuztomization/body_root/pant/pant2
-@onready var shoe1_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/shoe
-@onready var shoe2_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/shoe2
-@onready var arm_sprite = $/root/CharacterCuztomization/body_root/sleeve
-@onready var arm2_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2
-@onready var hand_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2/hand
-@onready var hand2_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2/hand2
-@onready var neck_sprite = $/root/CharacterCuztomization/body_root/shirt/neck
-@onready var belt_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/belt  
-@onready var class_sprite = $/root/CharacterCuztomization/body_root/shirt/class
-@onready var class_description = $/root/CharacterCuztomization/class_description
-@onready var name_input = $/root/CharacterCuztomization/name
-@onready var save_button = $/root/CharacterCuztomization/save
+@onready var shirt_sprite = $body_root/shirt
+@onready var pant_sprite = $body_root/pant
+@onready var pant2_sprite = $body_root/pant/pant2
+@onready var shoe1_sprite = $body_root/pant/pant2/shoe
+@onready var shoe2_sprite = $body_root/pant/pant2/shoe2
+@onready var arm_sprite = $body_root/sleeve
+@onready var arm2_sprite = $body_root/sleeve/sleeve2
+@onready var hand_sprite = $body_root/sleeve/sleeve2/hand
+@onready var hand2_sprite = $body_root/sleeve/sleeve2/hand2
+@onready var neck_sprite = $body_root/shirt/neck
+@onready var belt_sprite = $body_root/pant/pant2/belt  
+@onready var class_sprite = $body_root/shirt/class
+@onready var class_description = $class_description
+@onready var name_input = $name
+@onready var save_button = $save
 
 var current_tint_index = 0
 var current_hair_color_index = 0

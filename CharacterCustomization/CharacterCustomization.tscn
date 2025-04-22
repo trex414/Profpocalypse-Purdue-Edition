@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://dglf42x0tiofe" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_arm.png" id="10_tn6jn"]
 [ext_resource type="Texture2D" uid="uid://coenx7x4uvfv" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_hand.png" id="11_e5bbv"]
 
-[node name="CharacterCuztomization" type="Node2D"]
+[node name="CharacterCuztomization" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_iqjwb")
 
 [node name="name" type="TextEdit" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = -3.053
 anchor_top = -4.719
