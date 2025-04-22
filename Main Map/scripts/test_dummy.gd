@@ -25,9 +25,13 @@ func _on_body_entered(body):
 	if body.name != "TemporaryPlayer":
 		return
 
+	if enemy_name == "HHS TA" or enemy_name == "Engineering TA" or enemy_name == "Science TA" or enemy_name == "Liberal Arts TA":
+		trigger_cutscene()
+
 	# Doomsmore – no prereq
 	if enemy_name == "Prof Doomsmore":
 		trigger_cutscene()
+		
 
 	# Sel-key → requires Doomsmore
 	elif enemy_name == "Prof Sel-Key":

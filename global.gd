@@ -161,7 +161,7 @@ var enemy_database = {
 		"effect_type": "bleed",
 		"effect_damage_range": Vector2i(2, 3),
 		"effect_turns_range": Vector2i(2, 3),
-		"texture_path": "res://User_Battle/Sprites/blue.png"
+		"texture_path": "res://User_Battle/Sprites/HHS_TA.png"
 	},
 	"Liberal Arts TA": {
 		"name": "Liberal Arts TA",
@@ -175,7 +175,7 @@ var enemy_database = {
 		"effect_type": "bleed",
 		"effect_damage_range": Vector2i(2, 3),
 		"effect_turns_range": Vector2i(2, 3),
-		"texture_path": "res://User_Battle/Sprites/blue.png"
+		"texture_path": "res://User_Battle/Sprites/LiberalArts_TA.png"
 	},
 	"Engineering TA": {
 		"name": "Engineering TA",
@@ -189,7 +189,7 @@ var enemy_database = {
 		"effect_type": "bleed",
 		"effect_damage_range": Vector2i(2, 3),
 		"effect_turns_range": Vector2i(2, 3),
-		"texture_path": "res://User_Battle/Sprites/blue.png"
+		"texture_path": "res://User_Battle/Sprites/Engineering_TA.png"
 	},
 	"Science TA": {
 		"name": "Science TA",
@@ -203,7 +203,7 @@ var enemy_database = {
 		"effect_type": "bleed",
 		"effect_damage_range": Vector2i(2, 3),
 		"effect_turns_range": Vector2i(2, 3),
-		"texture_path": "res://User_Battle/Sprites/blue.png"
+		"texture_path": "res://User_Battle/Sprites/Science_TA.png"
 	},
 }
 
