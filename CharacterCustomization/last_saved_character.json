@@ -1,6 +1,6 @@
 {
-	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 2/tint2_arm.png",
-	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 2/tint2_arm.png",
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_arm.png",
 	"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
 	"class_description": "The Band Geek – Always talking about rehearsals, concerts, and marching season. Probably carries a baton or drumsticks around for no reason.",
 	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/band.png",
