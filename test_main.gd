@@ -74,7 +74,7 @@ func _ready():
 	phone = load("res://Phone/Scenes/phone.tscn").instantiate()
 	add_child(phone)
 	phone.set_courses(majorInformation)
-	#phone.set_settings()
+	phone.set_settings(get_tree().current_scene.find_child("Control - Settings", true, false))
 	phone.set_achievements(achivements)
 	phone.set_calendar(calendar)
 	phone.set_abilities(abilitiesPreview)
