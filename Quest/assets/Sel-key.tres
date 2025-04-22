@@ -22,3 +22,4 @@ prerequisites = Array[ExtResource("1_fwmts")]([ExtResource("2_0l6m2")])
 rewards = Array[ExtResource("2_diah6")]([SubResource("Resource_ihs6m"), SubResource("Resource_bdlrq")])
 is_completed = false
 pinned = false
+priority = 0
