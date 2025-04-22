@@ -38,3 +38,4 @@ func give_reward():
 
 func prompt_inventory_full(new_item):
 	print("Inventory is full! Make room for: " + new_item)
+	

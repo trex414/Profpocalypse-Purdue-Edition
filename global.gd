@@ -148,7 +148,63 @@ var enemy_database = {
 		"effect_damage_range": Vector2i(2, 3),
 		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Prof. AlgoKnight.png"
-	}
+	},
+	"HHS TA": {
+		"name": "HHS TA",
+		"weakness": "Range",
+		"max_health": 100,
+		"level": 10,
+		"damage": 8,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
+		"texture_path": "res://User_Battle/Sprites/HHS_TA.png"
+	},
+	"Liberal Arts TA": {
+		"name": "Liberal Arts TA",
+		"weakness": "Heavy",
+		"max_health": 100,
+		"level": 10,
+		"damage": 8,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
+		"texture_path": "res://User_Battle/Sprites/LiberalArts_TA.png"
+	},
+	"Engineering TA": {
+		"name": "Engineering TA",
+		"weakness": "Blade",
+		"max_health": 100,
+		"level": 10,
+		"damage": 8,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
+		"texture_path": "res://User_Battle/Sprites/Engineering_TA.png"
+	},
+	"Science TA": {
+		"name": "Science TA",
+		"weakness": "Magic",
+		"max_health": 100,
+		"level": 10,
+		"damage": 8,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
+		"texture_path": "res://User_Battle/Sprites/Science_TA.png"
+	},
 }
 
 # ---------- Battle Trivia Data ---------- #

@@ -1,23 +1,23 @@
-extends MenuButton
+extends Control
 
-@onready var face_sprite = $/root/CharacterCuztomization/body_root/face  
-@onready var features_sprite = $/root/CharacterCuztomization/body_root/face/features
+@onready var face_sprite = $body_root/face  
+@onready var features_sprite = $body_root/face/features
 @onready var hair_sprite = $/root/CharacterCuztomization/body_root/face/features/hair
-@onready var shirt_sprite = $/root/CharacterCuztomization/body_root/shirt
-@onready var pant_sprite = $/root/CharacterCuztomization/body_root/pant
-@onready var pant2_sprite = $/root/CharacterCuztomization/body_root/pant/pant2
-@onready var shoe1_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/shoe
-@onready var shoe2_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/shoe2
-@onready var arm_sprite = $/root/CharacterCuztomization/body_root/sleeve
-@onready var arm2_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2
-@onready var hand_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2/hand
-@onready var hand2_sprite = $/root/CharacterCuztomization/body_root/sleeve/sleeve2/hand2
-@onready var neck_sprite = $/root/CharacterCuztomization/body_root/shirt/neck
-@onready var belt_sprite = $/root/CharacterCuztomization/body_root/pant/pant2/belt  
-@onready var class_sprite = $/root/CharacterCuztomization/body_root/shirt/class
-@onready var class_description = $/root/CharacterCuztomization/class_description
-@onready var name_input = $/root/CharacterCuztomization/name
-@onready var save_button = $/root/CharacterCuztomization/save
+@onready var shirt_sprite = $body_root/shirt
+@onready var pant_sprite = $body_root/pant
+@onready var pant2_sprite = $body_root/pant/pant2
+@onready var shoe1_sprite = $body_root/pant/pant2/shoe
+@onready var shoe2_sprite = $body_root/pant/pant2/shoe2
+@onready var arm_sprite = $body_root/sleeve
+@onready var arm2_sprite = $body_root/sleeve/sleeve2
+@onready var hand_sprite = $body_root/sleeve/sleeve2/hand
+@onready var hand2_sprite = $body_root/sleeve/sleeve2/hand2
+@onready var neck_sprite = $body_root/shirt/neck
+@onready var belt_sprite = $body_root/pant/pant2/belt  
+@onready var class_sprite = $body_root/shirt/class
+@onready var class_description = $class_description
+@onready var name_input = $name
+@onready var save_button = $save
 
 var current_tint_index = 0
 var current_hair_color_index = 0
@@ -157,7 +157,7 @@ func _on_save_pressed():
 	last_character_file.store_string(JSON.stringify(save_data, "\t"))
 	last_character_file.close()
 	#load_character("cotton")
-	get_tree().change_scene_to_file("res://test_main.tscn")
+	get_tree().change_scene_to_file("res://Main Map/scenes/Profpocalypse Main Map.tscn")
 
 		
 
@@ -169,20 +169,20 @@ func load_character(character_name):
 	var file = FileAccess.open(save_path, FileAccess.READ)
 	var save_data = JSON.parse_string(file.get_as_text())
 	file.close()
-	name_input.text = save_data["name"]
-	face_sprite.texture = load(save_data["face_texture"]) if save_data["face_texture"] != "" else null
-	features_sprite.texture = load(save_data["features_texture"]) if save_data["features_texture"] != "" else null
-	hair_sprite.texture = load(save_data["hair_texture"]) if save_data["hair_texture"] != "" else null
-	shirt_sprite.texture = load(save_data["shirt_texture"]) if save_data["shirt_texture"] != "" else null
-	pant_sprite.texture = load(save_data["pant_texture"]) if save_data["pant_texture"] != "" else null
-	pant2_sprite.texture = load(save_data["pant2_texture"]) if save_data["pant2_texture"] != "" else null
-	shoe1_sprite.texture = load(save_data["shoe1_texture"]) if save_data["shoe1_texture"] != "" else null
-	shoe2_sprite.texture = load(save_data["shoe2_texture"]) if save_data["shoe2_texture"] != "" else null
-	arm_sprite.texture = load(save_data["arm_texture"]) if save_data["arm_texture"] != "" else null
-	arm2_sprite.texture = load(save_data["arm2_texture"]) if save_data["arm2_texture"] != "" else null
-	hand_sprite.texture = load(save_data["hand_texture"]) if save_data["hand_texture"] != "" else null
-	hand2_sprite.texture = load(save_data["hand2_texture"]) if save_data["hand2_texture"] != "" else null
-	neck_sprite.texture = load(save_data["neck_texture"]) if save_data["neck_texture"] != "" else null
-	belt_sprite.texture = load(save_data["belt_texture"]) 
-	class_sprite.texture = load(save_data["class_texture"]) if save_data.has("class_texture") else null
-	class_description.text = save_data["class_description"] if save_data.has("class_description") else ""
+	#name_input.text = save_data["name"]
+	#face_sprite.texture = load(save_data["face_texture"]) if save_data["face_texture"] != "" else null
+	#features_sprite.texture = load(save_data["features_texture"]) if save_data["features_texture"] != "" else null
+	#hair_sprite.texture = load(save_data["hair_texture"]) if save_data["hair_texture"] != "" else null
+	#shirt_sprite.texture = load(save_data["shirt_texture"]) if save_data["shirt_texture"] != "" else null
+	#pant_sprite.texture = load(save_data["pant_texture"]) if save_data["pant_texture"] != "" else null
+	#pant2_sprite.texture = load(save_data["pant2_texture"]) if save_data["pant2_texture"] != "" else null
+	#shoe1_sprite.texture = load(save_data["shoe1_texture"]) if save_data["shoe1_texture"] != "" else null
+	#shoe2_sprite.texture = load(save_data["shoe2_texture"]) if save_data["shoe2_texture"] != "" else null
+	#arm_sprite.texture = load(save_data["arm_texture"]) if save_data["arm_texture"] != "" else null
+	#arm2_sprite.texture = load(save_data["arm2_texture"]) if save_data["arm2_texture"] != "" else null
+	#hand_sprite.texture = load(save_data["hand_texture"]) if save_data["hand_texture"] != "" else null
+	#hand2_sprite.texture = load(save_data["hand2_texture"]) if save_data["hand2_texture"] != "" else null
+	#neck_sprite.texture = load(save_data["neck_texture"]) if save_data["neck_texture"] != "" else null
+	#belt_sprite.texture = load(save_data["belt_texture"]) 
+	#class_sprite.texture = load(save_data["class_texture"]) if save_data.has("class_texture") else null
+	#class_description.text = save_data["class_description"] if save_data.has("class_description") else ""

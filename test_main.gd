@@ -1,5 +1,7 @@
 extends Node2D
 
+var character_customization = null
+
 var map = null
 var inventory = null
 var trivia_book = null
@@ -10,7 +12,6 @@ var QuestMenuScene = null
 var majorInformation = null
 var Advisor_meeting = null
 var is_customization_active = false
-var character_customization = null
 var phone = null
 var achivements = null
 
@@ -74,7 +75,7 @@ func _ready():
 	phone = load("res://Phone/Scenes/phone.tscn").instantiate()
 	add_child(phone)
 	phone.set_courses(majorInformation)
-	#phone.set_settings()
+	phone.set_settings(get_tree().current_scene.find_child("Control - Settings", true, false))
 	phone.set_achievements(achivements)
 	phone.set_calendar(calendar)
 	phone.set_abilities(abilitiesPreview)
@@ -117,6 +118,15 @@ func _ready():
 		window.size = Vector2(1920, 1080)
 		
 	PlayerData.ready
+	
+	# Load and add the CharacterCustomization UI
+	var customization_scene = load("res://CharacterCustomization/CharacterCustomization.tscn")
+	character_customization = customization_scene.instantiate()
+	character_customization.visible = false  # Start hidden
+	add_child(character_customization)
+	
+	
+	
 
 	
 
@@ -145,7 +155,9 @@ func _process(delta):
 		else:
 			majorInformation.toggle_MajorInfo()
 	if Input.is_action_just_pressed("ui_customization"):
-		get_tree().change_scene_to_file("res://CharacterCustomization/CharacterCustomization.tscn")
+		character_customization.visible = not character_customization.visible
+		
+		
 		
 			
 

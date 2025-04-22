@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://sa3rxr07ycdp"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_fwmts"]
-[ext_resource type="Resource" uid="uid://dx7l8s15ypgbk" path="res://Quest/assets/Turkey.tres" id="2_0l6m2"]
+[ext_resource type="Resource" uid="uid://crhgb8fqeu1ij" path="res://Quest/assets/Doomsmore.tres" id="2_2qysd"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_diah6"]
 
 [sub_resource type="Resource" id="Resource_ihs6m"]
@@ -16,9 +16,10 @@ amount = 1
 
 [resource]
 script = ExtResource("1_fwmts")
-quest_name = "Main Story: Prof. Sel-key"
+quest_name = "Main Story: Prof Sel-key"
 description = " To unlock the next stage, outsmart Prof. Sel-key’s logic puzzle and conquer his memory-based challenges."
-prerequisites = Array[ExtResource("1_fwmts")]([ExtResource("2_0l6m2")])
+prerequisites = Array[ExtResource("1_fwmts")]([ExtResource("2_2qysd")])
 rewards = Array[ExtResource("2_diah6")]([SubResource("Resource_ihs6m"), SubResource("Resource_bdlrq")])
 is_completed = false
 pinned = false
+priority = 0

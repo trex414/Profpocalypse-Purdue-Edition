@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://mpcnrsvhj2q1"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_6rguq"]
-[ext_resource type="Resource" uid="uid://uyjgcqbfvue3" path="res://Quest/assets/AlgoKnight.tres" id="2_hxhhd"]
+[ext_resource type="Resource" uid="uid://dmm0g6lrq02a1" path="res://Quest/assets/Posadabytes.tres" id="2_oawkn"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_pkuym"]
 
 [sub_resource type="Resource" id="Resource_u7daa"]
@@ -11,9 +11,10 @@ amount = 1
 
 [resource]
 script = ExtResource("1_6rguq")
-quest_name = "Main Story: Prof. CapstoneCrafter"
+quest_name = "Main Story: Prof CapstoneCrafter"
 description = " You’ve come far—but one last project remains. Solve her final puzzle to prove yourself."
-prerequisites = Array[ExtResource("1_6rguq")]([ExtResource("2_hxhhd")])
+prerequisites = Array[ExtResource("1_6rguq")]([ExtResource("2_oawkn")])
 rewards = Array[ExtResource("2_pkuym")]([SubResource("Resource_u7daa")])
 is_completed = false
 pinned = false
+priority = 0

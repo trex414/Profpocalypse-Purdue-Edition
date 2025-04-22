@@ -6,9 +6,10 @@
 
 [resource]
 script = ExtResource("1_p6ttt")
-quest_name = "Main Story: Prof. Turkey"
+quest_name = "Main Story: Prof Turkey"
 description = "Prof. Turkey demands recursive mastery and quick decisions. Defeat him to choose your spring course path."
 prerequisites = Array[ExtResource("1_p6ttt")]([ExtResource("2_0miw7")])
 rewards = Array[ExtResource("2_s44xd")]([])
 is_completed = false
 pinned = false
+priority = 0

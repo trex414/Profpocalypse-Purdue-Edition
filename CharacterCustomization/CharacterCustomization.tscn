@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://dglf42x0tiofe" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_arm.png" id="10_tn6jn"]
 [ext_resource type="Texture2D" uid="uid://coenx7x4uvfv" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_hand.png" id="11_e5bbv"]
 
-[node name="CharacterCuztomization" type="Node2D"]
+[node name="CharacterCuztomization" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_iqjwb")
 
 [node name="name" type="TextEdit" parent="."]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = -3.053
 anchor_top = -4.719
@@ -28,6 +32,7 @@ offset_bottom = 559.0
 placeholder_text = "name your character!"
 
 [node name="save" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 584.0
 offset_right = 661.0
@@ -37,6 +42,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="change class" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 836.0
 offset_top = 390.0
 offset_right = 1129.0
@@ -46,6 +52,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="header" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 335.0
 offset_top = 25.0
 offset_right = 857.0
@@ -54,6 +61,7 @@ text = "CUSTOMIZE YOUR CHARACTER (PRESS SAVE TO GO BACK TO GAME)"
 flat = false
 
 [node name="change face" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 51.0
 offset_top = 100.0
 offset_right = 336.0
@@ -63,6 +71,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="change features" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 52.0
 offset_top = 152.0
 offset_right = 333.0
@@ -72,6 +81,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="change hair" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 215.0
 offset_right = 333.0
@@ -81,6 +91,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="change pants" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 335.0
 offset_right = 333.0
@@ -90,6 +101,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="change shoes" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 400.0
 offset_right = 336.0
@@ -99,6 +111,7 @@ flat = false
 script = ExtResource("1_iqjwb")
 
 [node name="change shirts" type="MenuButton" parent="."]
+layout_mode = 0
 offset_left = 52.0
 offset_top = 277.0
 offset_right = 335.0
@@ -190,6 +203,7 @@ scale = Vector2(0.97119, 0.888101)
 texture = ExtResource("4_cueju")
 
 [node name="class_description" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 841.0
 offset_top = 95.0
 offset_right = 1126.0
