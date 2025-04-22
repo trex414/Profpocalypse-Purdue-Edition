@@ -13,6 +13,7 @@ extends Control
 @onready var collection_button = $CanvasLayer/CollectionButton
 @onready var collection_panel = $CanvasLayer/CollectionTracker
 @onready var timer_bar = $CanvasLayer/SpeedBoostTimer
+@onready var close_button_collections = $"CanvasLayer/CollectionTracker/Close Button"
 
 var strength_remaining_time: float = 0.0
 var strength_timer_tween: Tween = null
@@ -41,6 +42,9 @@ func _ready():
 	var hud_ready_time = Time.get_ticks_msec()
 	var load_latency = hud_ready_time - SaveManager.game_start_time
 	print("HUD Load Latency (ms): ", load_latency)
+	
+	#close button for the collections menu
+	close_button_collections.pressed.connect(toggle_menu)
 
 	setup_hotbars()
 	QuestManager.pinned_quests_updated.connect(update_pinned_quests)
@@ -694,7 +698,7 @@ func toggle_Collections():
 		update_collection_tracker()  
 	
 func update_collection_tracker():
-	var container = collection_panel.get_node("VBoxContainer")
+	var container = collection_panel.get_node("ScrollContainer/VBoxContainer")
 
 	# Clear old children
 	for child in container.get_children():
@@ -900,3 +904,7 @@ func show_death_and_respawn(player_node: Node2D):
 	fade_panel.visible = false
 	death_label.visible = false
 	battle_ui.unlock_turn()
+	
+	
+func toggle_menu():
+	collection_panel.visible = false
