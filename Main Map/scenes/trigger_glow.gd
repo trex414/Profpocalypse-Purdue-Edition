@@ -9,10 +9,10 @@ func _ready():
 	connect("mouse_exited", _on_mouse_exited)
 
 func _on_mouse_entered():
-	print("entered interactable!")
+	#print("entered interactable!")
 	if sprite.material:
 		sprite.material.set_shader_parameter("glow_enabled", true)
-		print("enabled glow")
+		#print("enabled glow")
 
 func _on_mouse_exited():
 	if sprite.material:
