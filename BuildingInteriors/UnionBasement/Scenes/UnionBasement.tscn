@@ -1,17 +1,18 @@
-[gd_scene load_steps=71 format=4 uid="uid://cxpsp1ciqflpk"]
+[gd_scene load_steps=121 format=4 uid="uid://cxpsp1ciqflpk"]
 
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/interior_map.gd" id="1_f418g"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="2_qagjt"]
 [ext_resource type="Texture2D" uid="uid://qc4pegd84l6j" path="res://BuildingInteriors/UnionBasement/Assets/tables and chairs.png" id="3_78rdu"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/temporary_player_interior.gd" id="3_i8edc"]
 [ext_resource type="AudioStream" uid="uid://ch6kn5xbrxmll" path="res://menu_sound_effects/footsteps2.mp3" id="4_qsvm7"]
-[ext_resource type="PackedScene" uid="uid://c75xir84uy3t7" path="res://CustomBody.tscn" id="5_rf7dq"]
+[ext_resource type="PackedScene" uid="uid://dcuyuccphbkf0" path="res://CustomBody.tscn" id="5_rf7dq"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/exit building.gd" id="6_4r8fy"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="7_8ed4j"]
 [ext_resource type="Script" path="res://BuildingInteriors/UnionBasement/Scripts/UnionPeople.gd" id="9_15lc6"]
 [ext_resource type="Texture2D" uid="uid://b0nps6orhokrh" path="res://BuildingInteriors/UnionBasement/Assets/Person1.png" id="9_a8ty8"]
 [ext_resource type="Texture2D" uid="uid://b73cw0x4nh7u2" path="res://BuildingInteriors/UnionBasement/Assets/Person2.png" id="10_n4xxs"]
 [ext_resource type="Texture2D" uid="uid://pfts3eoquv0x" path="res://BuildingInteriors/UnionBasement/Assets/Person3.png" id="11_a1ilk"]
+[ext_resource type="Texture2D" uid="uid://b7yucvg45l38" path="res://BuildingInteriors/UnionBasement/Assets/istockphoto-1313501857-612x612-removebg-preview copy 3.png" id="11_c4p5c"]
 [ext_resource type="Texture2D" uid="uid://hkou1xe6kgc2" path="res://BuildingInteriors/UnionBasement/Assets/Person4.png" id="12_u2dhl"]
 [ext_resource type="Texture2D" uid="uid://bmdyvgook7qoh" path="res://BuildingInteriors/UnionBasement/Assets/Person5.png" id="13_n0cpg"]
 [ext_resource type="Texture2D" uid="uid://br3pvogx6264x" path="res://BuildingInteriors/UnionBasement/Assets/Person6.png" id="14_vvgf8"]
@@ -19,12 +20,52 @@
 [ext_resource type="Texture2D" uid="uid://copuk3882j1qi" path="res://BuildingInteriors/UnionBasement/Assets/Person8.png" id="16_46cit"]
 [ext_resource type="Texture2D" uid="uid://dap21brit5a4l" path="res://BuildingInteriors/UnionBasement/Assets/Person9.png" id="17_h7qfg"]
 [ext_resource type="Texture2D" uid="uid://ccbgasi7j7t74" path="res://BuildingInteriors/UnionBasement/Assets/Person10.png" id="18_vi3ih"]
+[ext_resource type="Texture2D" uid="uid://3trvgpcuwmv5" path="res://BuildingInteriors/UnionBasement/Assets/check-mark-and-x-mark-icon-vector-removebg-preview copy.png" id="19_abw3k"]
 [ext_resource type="Texture2D" uid="uid://djya31d3c3ojv" path="res://BuildingInteriors/UnionBasement/Assets/Person11.png" id="19_xoxnj"]
+[ext_resource type="Texture2D" uid="uid://63qn1c8vo5c5" path="res://BuildingInteriors/UnionBasement/Assets/check-mark-and-x-mark-icon-vector-removebg-preview.png" id="20_mjelk"]
 [ext_resource type="Texture2D" uid="uid://1wrtef3oik4n" path="res://BuildingInteriors/UnionBasement/Assets/Person12.png" id="20_mq7o1"]
 [ext_resource type="Texture2D" uid="uid://baks0rqe6v2ey" path="res://BuildingInteriors/UnionBasement/Assets/Person13.png" id="21_h6hk3"]
 [ext_resource type="Texture2D" uid="uid://ds6776k6yrh25" path="res://BuildingInteriors/UnionBasement/Assets/Person14.png" id="22_b5o82"]
 [ext_resource type="Texture2D" uid="uid://buhbkt74i28n5" path="res://BuildingInteriors/UnionBasement/Assets/Person15.png" id="23_owp6w"]
 [ext_resource type="Texture2D" uid="uid://cl7idmk8tfjgd" path="res://BuildingInteriors/UnionBasement/Assets/Person16.png" id="24_8esai"]
+[ext_resource type="Texture2D" uid="uid://d2ynwf2istyki" path="res://BuildingInteriors/UnionBasement/Assets/Walkons.png" id="26_5pnvl"]
+[ext_resource type="Script" path="res://BuildingInteriors/UnionBasement/Scripts/UnionMenus.gd" id="26_khbtt"]
+[ext_resource type="Texture2D" uid="uid://buxjx4vkmot5o" path="res://BuildingInteriors/UnionBasement/Assets/sushiboss.png" id="27_jxdj1"]
+[ext_resource type="Texture2D" uid="uid://7jmqedh7bccq" path="res://BuildingInteriors/UnionBasement/Assets/tendersloveandchicken.png" id="28_6hvju"]
+[ext_resource type="Texture2D" uid="uid://ctn5hkes5gbnr" path="res://Inventory/assets/Potions/Small Speed Potion.png" id="28_6w5i1"]
+[ext_resource type="Texture2D" uid="uid://bg1g5c2uo7bsg" path="res://Inventory/assets/Potions/Medium Speed Potion.png" id="29_a3ev2"]
+[ext_resource type="Texture2D" uid="uid://0lsaqduhrpg3" path="res://BuildingInteriors/UnionBasement/Assets/rosemarket.png" id="29_q51db"]
+[ext_resource type="Texture2D" uid="uid://dabns3uupofh" path="res://Inventory/assets/Potions/Large Speed Potion.png" id="30_1dxjf"]
+[ext_resource type="Texture2D" uid="uid://cdj0amfkirwj8" path="res://BuildingInteriors/UnionBasement/Assets/burgersandfries.png" id="30_n3rqf"]
+[ext_resource type="Texture2D" uid="uid://dy5g74i3jjbkk" path="res://BuildingInteriors/UnionBasement/Assets/zen.png" id="31_7ma7b"]
+[ext_resource type="Texture2D" uid="uid://kg4ha61r8bev" path="res://Inventory/assets/Potions/Wings of Zephyr.png" id="31_w2dj8"]
+[ext_resource type="Texture2D" uid="uid://ysx2i6ovyi4c" path="res://Inventory/assets/Weapons/Chilling Staff.png" id="32_msuwe"]
+[ext_resource type="Texture2D" uid="uid://wdl5fvi8tk5v" path="res://Inventory/assets/Weapons/Flame Dagger.png" id="33_l8yyo"]
+[ext_resource type="Texture2D" uid="uid://vhkojtciv7ce" path="res://Inventory/assets/Weapons/Shortbow.png" id="34_d0ufq"]
+[ext_resource type="Texture2D" uid="uid://c1qfy68s0pk11" path="res://Inventory/assets/Potions/Small Health Potion.png" id="34_uemft"]
+[ext_resource type="Texture2D" uid="uid://b34kf2iinv44t" path="res://Inventory/assets/Potions/Medium Health Potion.png" id="35_3pko6"]
+[ext_resource type="Texture2D" uid="uid://b00ef2q04g8ux" path="res://Inventory/assets/Weapons/Axe.png" id="36_r8n28"]
+[ext_resource type="Texture2D" uid="uid://va13lnxltnxw" path="res://Inventory/assets/Potions/Large Health Potion.png" id="36_s8l0r"]
+[ext_resource type="Texture2D" uid="uid://ctfkm0qbashdo" path="res://Inventory/assets/Weapons/Stormcaller Wand.png" id="37_nq6vt"]
+[ext_resource type="Texture2D" uid="uid://cqptby012x3k4" path="res://Inventory/assets/Weapons/Pickaxe.png" id="37_ve31c"]
+[ext_resource type="Texture2D" uid="uid://d3rpksa8elqku" path="res://Inventory/assets/Weapons/Rusty Sword.png" id="38_kwrju"]
+[ext_resource type="Texture2D" uid="uid://h6e62wgqqjlx" path="res://Inventory/assets/Weapons/Sword of Truth.png" id="38_x4b3r"]
+[ext_resource type="Texture2D" uid="uid://cifvsefta3ika" path="res://Inventory/assets/Weapons/Spiked Mace.png" id="39_astgi"]
+[ext_resource type="Texture2D" uid="uid://b1n8tv3hgp5do" path="res://Inventory/assets/Potions/Small EXP Potion.png" id="39_ywus6"]
+[ext_resource type="Texture2D" uid="uid://bsdkqfeb21sst" path="res://Inventory/assets/Potions/Medium EXP Potion.png" id="40_0fbjw"]
+[ext_resource type="Texture2D" uid="uid://0wh4yjnv1fev" path="res://Inventory/assets/Weapons/Wooden Spear.png" id="40_b74y8"]
+[ext_resource type="Texture2D" uid="uid://bl51gwsgwqqmj" path="res://Inventory/assets/Potions/Large EXP Potion.png" id="41_gxodn"]
+[ext_resource type="Texture2D" uid="uid://c60ovmibnwc78" path="res://Inventory/assets/Weapons/Hammer of the Titans.png" id="44_py5ea"]
+[ext_resource type="Texture2D" uid="uid://0vhi44sd61px" path="res://Inventory/assets/Weapons/Bow of Infinity.png" id="45_uxshd"]
+[ext_resource type="Texture2D" uid="uid://d03jni48h1maf" path="res://Inventory/assets/Potions/Small Strength Potion.png" id="46_5qojy"]
+[ext_resource type="Texture2D" uid="uid://dm5rs0sio8rn2" path="res://Inventory/assets/Weapons/Staff of Elements.png" id="46_ux10l"]
+[ext_resource type="Texture2D" uid="uid://c2fbqjk8uie0l" path="res://Inventory/assets/Potions/Medium Strength Potion.png" id="47_8f1cg"]
+[ext_resource type="Texture2D" uid="uid://2b7bmfi4gr0s" path="res://Inventory/assets/Potions/Large Strength Potion.png" id="48_jr5rc"]
+[ext_resource type="Texture2D" uid="uid://ywvulsro07p3" path="res://Inventory/assets/Potions/Legendary Health Potion.png" id="51_85r2w"]
+[ext_resource type="Texture2D" uid="uid://s73q0sn1osau" path="res://Inventory/assets/Potions/elixiroflife.webp" id="52_grng7"]
+[ext_resource type="Texture2D" uid="uid://bsq0gixlixp4p" path="res://Inventory/assets/Potions/Titan’s Fury Elixir.png" id="57_03w7v"]
+[ext_resource type="Texture2D" uid="uid://cm762x27thi8b" path="res://Inventory/assets/Potions/Legendary Damage Potion.png" id="58_6i3fu"]
+[ext_resource type="Texture2D" uid="uid://doxu2l2rxjkmt" path="res://Inventory/assets/Potions/Legendary EXP Potion.png" id="62_dwfy6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqyv5"]
 texture = ExtResource("2_qagjt")
@@ -6876,53 +6917,79 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_giqur"]
-size = Vector2(17, 52)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_okumg"]
 size = Vector2(25.75, 57.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwbra"]
-size = Vector2(21, 56)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_32e4l"]
-size = Vector2(24, 54)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ertw"]
-size = Vector2(21, 53)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pggw5"]
-size = Vector2(22, 57.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_urb0p"]
-size = Vector2(25, 55)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6mau"]
-size = Vector2(20, 55)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5uq2"]
-size = Vector2(20, 51.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt1vn"]
-size = Vector2(18.5, 54.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xenf"]
-size = Vector2(20, 54)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjlcy"]
+size = Vector2(26, 59.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gewdx"]
 size = Vector2(20, 57.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_64flg"]
-size = Vector2(20.625, 53)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6xeq8"]
 size = Vector2(21.5, 53.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32e4l"]
+size = Vector2(24, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urb0p"]
+size = Vector2(25, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xslc"]
 size = Vector2(21, 53)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjlcy"]
-size = Vector2(26, 59.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ertw"]
+size = Vector2(21, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt1vn"]
+size = Vector2(18.5, 54.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64flg"]
+size = Vector2(20.625, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pggw5"]
+size = Vector2(22, 57.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5uq2"]
+size = Vector2(20, 51.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xenf"]
+size = Vector2(20, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_giqur"]
+size = Vector2(17, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwbra"]
+size = Vector2(21, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6mau"]
+size = Vector2(20, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfica"]
+size = Vector2(185, 67)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xelxa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jobt5"]
+size = Vector2(194.5, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4egq"]
+size = Vector2(73, 178.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saxdr"]
+size = Vector2(200, 73.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1fuc"]
+size = Vector2(75, 199.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvjar"]
+size = Vector2(211, 76.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lur2d"]
+size = Vector2(198.5, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yiqf"]
+size = Vector2(188, 67)
 
 [node name="InteriorMap2" type="Node2D"]
 position = Vector2(2, 0)
@@ -7393,13 +7460,13 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_dtx6c")
 text = "NO"
 
-[node name="Control2" type="Control" parent="UI"]
+[node name="MenuControl" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Panel" type="Panel" parent="UI/Control2"]
+[node name="Panel" type="Panel" parent="UI/MenuControl"]
 visible = false
 layout_mode = 0
 offset_left = 435.0
@@ -7407,271 +7474,78 @@ offset_top = 179.0
 offset_right = 705.0
 offset_bottom = 435.0
 
-[node name="Label" type="Label" parent="UI/Control2/Panel"]
+[node name="Label" type="Label" parent="UI/MenuControl/Panel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Study Tokens: #"
 
-[node name="Person1" type="Node2D" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MenuControl/Panel"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 48.0
+offset_right = 270.0
+offset_bottom = 256.0
+
+[node name="BurgerEmployee1" type="Node2D" parent="."]
 script = ExtResource("9_15lc6")
 
-[node name="TextureRect" type="TextureRect" parent="Person1"]
-offset_left = 214.0
-offset_top = 310.0
-offset_right = 228.0
-offset_bottom = 356.0
-texture = ExtResource("9_a8ty8")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person1/Area2D"]
-position = Vector2(221, 332)
-shape = SubResource("RectangleShape2D_giqur")
-
-[node name="Person2" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect2" type="TextureRect" parent="Person2"]
-offset_left = 219.0
-offset_top = -222.0
-offset_right = 236.0
-offset_bottom = -171.0
+[node name="TextureRect2" type="TextureRect" parent="BurgerEmployee1"]
+offset_left = 220.0
+offset_top = -212.0
+offset_right = 237.0
+offset_bottom = -161.0
 texture = ExtResource("10_n4xxs")
 expand_mode = 1
 
-[node name="Area2D" type="Area2D" parent="Person2"]
+[node name="Area2D" type="Area2D" parent="BurgerEmployee1"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person2/Area2D"]
-position = Vector2(229, -195)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurgerEmployee1/Area2D"]
+position = Vector2(229, -186)
 shape = SubResource("RectangleShape2D_okumg")
 
-[node name="Person3" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect3" type="TextureRect" parent="Person3"]
-offset_left = 576.0
-offset_top = 390.0
-offset_right = 591.0
-offset_bottom = 440.0
-texture = ExtResource("11_a1ilk")
+[node name="SpeechBubble" type="TextureRect" parent="BurgerEmployee1"]
+offset_left = 136.0
+offset_top = -172.0
+offset_right = 224.0
+offset_bottom = -84.0
+texture = ExtResource("11_c4p5c")
 expand_mode = 1
+flip_v = true
 
-[node name="Area2D" type="Area2D" parent="Person3"]
+[node name="SpeechText" type="Label" parent="BurgerEmployee1"]
+offset_left = 144.0
+offset_top = -145.0
+offset_right = 216.0
+offset_bottom = -103.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Burgers and Fries?"
+horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person3/Area2D"]
-position = Vector2(583.5, 414)
-shape = SubResource("RectangleShape2D_xwbra")
+[node name="yesButton" type="TextureButton" parent="BurgerEmployee1"]
+offset_left = 158.0
+offset_top = -104.0
+offset_right = 169.0
+offset_bottom = -93.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Person4" type="Node2D" parent="."]
+[node name="noButton" type="TextureButton" parent="BurgerEmployee1"]
+offset_left = 184.0
+offset_top = -105.0
+offset_right = 195.0
+offset_bottom = -93.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BurgerEmployee2" type="Node2D" parent="."]
 script = ExtResource("9_15lc6")
 
-[node name="TextureRect4" type="TextureRect" parent="Person4"]
-offset_left = -338.0
-offset_top = 134.0
-offset_right = -318.0
-offset_bottom = 187.0
-texture = ExtResource("12_u2dhl")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person4/Area2D"]
-position = Vector2(-328, 162)
-shape = SubResource("RectangleShape2D_32e4l")
-
-[node name="Person5" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect5" type="TextureRect" parent="Person5"]
-offset_left = 752.0
-offset_top = 290.0
-offset_right = 768.0
-offset_bottom = 340.0
-texture = ExtResource("13_n0cpg")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person5"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person5/Area2D"]
-position = Vector2(760, 315)
-shape = SubResource("RectangleShape2D_7ertw")
-
-[node name="Person6" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect6" type="TextureRect" parent="Person6"]
-offset_left = -6.0
-offset_top = 449.0
-offset_right = 12.0
-offset_bottom = 503.0
-texture = ExtResource("14_vvgf8")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person6"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person6/Area2D"]
-position = Vector2(3, 477.25)
-shape = SubResource("RectangleShape2D_pggw5")
-
-[node name="Person7" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect7" type="TextureRect" parent="Person7"]
-offset_left = -101.0
-offset_top = -239.0
-offset_right = -83.0
-offset_bottom = -187.0
-texture = ExtResource("15_prm84")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person7"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person7/Area2D"]
-position = Vector2(-92, -213)
-shape = SubResource("RectangleShape2D_urb0p")
-
-[node name="Person8" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect8" type="TextureRect" parent="Person8"]
-offset_left = 444.0
-offset_top = 384.0
-offset_right = 464.0
-offset_bottom = 435.0
-texture = ExtResource("16_46cit")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person8"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person8/Area2D"]
-position = Vector2(454, 409.5)
-shape = SubResource("RectangleShape2D_d6mau")
-
-[node name="Person9" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect9" type="TextureRect" parent="Person9"]
-offset_left = -96.0
-offset_top = 293.0
-offset_right = -78.0
-offset_bottom = 339.0
-texture = ExtResource("17_h7qfg")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person9"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person9/Area2D"]
-position = Vector2(-86, 314.75)
-shape = SubResource("RectangleShape2D_y5uq2")
-
-[node name="Person10" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect10" type="TextureRect" parent="Person10"]
-offset_left = 693.0
-offset_top = 643.0
-offset_right = 709.0
-offset_bottom = 692.0
-texture = ExtResource("18_vi3ih")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person10"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person10/Area2D"]
-position = Vector2(701, 668)
-shape = SubResource("RectangleShape2D_bt1vn")
-
-[node name="Person11" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect11" type="TextureRect" parent="Person11"]
-offset_left = -340.0
-offset_top = 423.0
-offset_right = -326.0
-offset_bottom = 468.0
-texture = ExtResource("19_xoxnj")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person11"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person11/Area2D"]
-position = Vector2(-333, 447)
-shape = SubResource("RectangleShape2D_2xenf")
-
-[node name="Person12" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect12" type="TextureRect" parent="Person12"]
-offset_left = 968.0
-offset_top = -109.0
-offset_right = 989.0
-offset_bottom = -57.0
-texture = ExtResource("20_mq7o1")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person12"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person12/Area2D"]
-position = Vector2(978, -82.75)
-shape = SubResource("RectangleShape2D_gewdx")
-
-[node name="Person13" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect13" type="TextureRect" parent="Person13"]
-offset_left = 975.0
-offset_top = 437.0
-offset_right = 991.0
-offset_bottom = 485.0
-texture = ExtResource("21_h6hk3")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person13"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person13/Area2D"]
-position = Vector2(983.688, 461.5)
-shape = SubResource("RectangleShape2D_64flg")
-
-[node name="Person14" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect14" type="TextureRect" parent="Person14"]
-offset_left = 991.0
-offset_top = 136.0
-offset_right = 1006.0
-offset_bottom = 185.0
-texture = ExtResource("22_b5o82")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person14"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person14/Area2D"]
-position = Vector2(998, 159.625)
-shape = SubResource("RectangleShape2D_6xeq8")
-
-[node name="Person15" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect15" type="TextureRect" parent="Person15"]
-offset_left = -215.0
-offset_top = 54.0
-offset_right = -197.0
-offset_bottom = 103.0
-texture = ExtResource("23_owp6w")
-expand_mode = 1
-
-[node name="Area2D" type="Area2D" parent="Person15"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person15/Area2D"]
-position = Vector2(-206, 78.5)
-shape = SubResource("RectangleShape2D_8xslc")
-
-[node name="Person16" type="Node2D" parent="."]
-script = ExtResource("9_15lc6")
-
-[node name="TextureRect16" type="TextureRect" parent="Person16"]
+[node name="TextureRect16" type="TextureRect" parent="BurgerEmployee2"]
 offset_left = 330.0
 offset_top = -74.0
 offset_right = 353.0
@@ -7679,12 +7553,2032 @@ offset_bottom = -17.0
 texture = ExtResource("24_8esai")
 expand_mode = 1
 
-[node name="Area2D" type="Area2D" parent="Person16"]
+[node name="Area2D" type="Area2D" parent="BurgerEmployee2"]
 position = Vector2(0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Person16/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurgerEmployee2/Area2D"]
 position = Vector2(341, -47.25)
 shape = SubResource("RectangleShape2D_bjlcy")
+
+[node name="SpeechBubble" type="TextureRect" parent="BurgerEmployee2"]
+offset_left = 350.0
+offset_top = -123.0
+offset_right = 438.0
+offset_bottom = -35.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="BurgerEmployee2"]
+offset_left = 361.0
+offset_top = -106.0
+offset_right = 432.0
+offset_bottom = -64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Burger and Fries?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="BurgerEmployee2"]
+offset_left = 376.0
+offset_top = -65.0
+offset_right = 387.0
+offset_bottom = -54.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="BurgerEmployee2"]
+offset_left = 397.0
+offset_top = -66.0
+offset_right = 408.0
+offset_bottom = -54.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RoseEmployee1" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect12" type="TextureRect" parent="RoseEmployee1"]
+offset_left = 875.0
+offset_top = -211.0
+offset_right = 896.0
+offset_bottom = -159.0
+texture = ExtResource("20_mq7o1")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="RoseEmployee1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoseEmployee1/Area2D"]
+position = Vector2(885, -185)
+shape = SubResource("RectangleShape2D_gewdx")
+
+[node name="SpeechBubble" type="TextureRect" parent="RoseEmployee1"]
+offset_left = 797.0
+offset_top = -168.0
+offset_right = 885.0
+offset_bottom = -80.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_v = true
+
+[node name="SpeechText" type="Label" parent="RoseEmployee1"]
+offset_left = 805.0
+offset_top = -146.0
+offset_right = 874.0
+offset_bottom = -104.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Rose Market?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="RoseEmployee1"]
+offset_left = 823.0
+offset_top = -100.0
+offset_right = 834.0
+offset_bottom = -89.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="RoseEmployee1"]
+offset_left = 848.0
+offset_top = -102.0
+offset_right = 859.0
+offset_bottom = -90.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RoseEmployee2" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect14" type="TextureRect" parent="RoseEmployee2"]
+offset_left = 990.0
+offset_top = 182.0
+offset_right = 1005.0
+offset_bottom = 231.0
+texture = ExtResource("22_b5o82")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="RoseEmployee2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoseEmployee2/Area2D"]
+position = Vector2(998, 204)
+shape = SubResource("RectangleShape2D_6xeq8")
+
+[node name="SpeechBubble" type="TextureRect" parent="RoseEmployee2"]
+offset_left = 905.0
+offset_top = 130.0
+offset_right = 993.0
+offset_bottom = 218.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="RoseEmployee2"]
+offset_left = 914.0
+offset_top = 146.0
+offset_right = 984.0
+offset_bottom = 188.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Rose Market?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="RoseEmployee2"]
+offset_left = 931.0
+offset_top = 188.0
+offset_right = 942.0
+offset_bottom = 199.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="RoseEmployee2"]
+offset_left = 952.0
+offset_top = 187.0
+offset_right = 963.0
+offset_bottom = 199.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SushiEmployee1" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect4" type="TextureRect" parent="SushiEmployee1"]
+offset_left = -338.0
+offset_top = 134.0
+offset_right = -318.0
+offset_bottom = 187.0
+texture = ExtResource("12_u2dhl")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="SushiEmployee1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SushiEmployee1/Area2D"]
+position = Vector2(-328, 162)
+shape = SubResource("RectangleShape2D_32e4l")
+
+[node name="SpeechBubble" type="TextureRect" parent="SushiEmployee1"]
+offset_left = -317.0
+offset_top = 90.0
+offset_right = -229.0
+offset_bottom = 178.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="SushiEmployee1"]
+offset_left = -305.0
+offset_top = 106.0
+offset_right = -238.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Sushi Boss?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="SushiEmployee1"]
+offset_left = -291.0
+offset_top = 148.0
+offset_right = -280.0
+offset_bottom = 159.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="SushiEmployee1"]
+offset_left = -270.0
+offset_top = 147.0
+offset_right = -259.0
+offset_bottom = 159.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SushiEmployee2" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect7" type="TextureRect" parent="SushiEmployee2"]
+offset_left = -57.0
+offset_top = -213.0
+offset_right = -39.0
+offset_bottom = -161.0
+texture = ExtResource("15_prm84")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="SushiEmployee2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SushiEmployee2/Area2D"]
+position = Vector2(-47, -186)
+shape = SubResource("RectangleShape2D_urb0p")
+
+[node name="SpeechBubble" type="TextureRect" parent="SushiEmployee2"]
+offset_left = -37.0
+offset_top = -194.0
+offset_right = 51.0
+offset_bottom = -106.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="SpeechText" type="Label" parent="SushiEmployee2"]
+offset_left = -23.0
+offset_top = -171.0
+offset_right = 44.0
+offset_bottom = -129.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Sushi Boss?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="SushiEmployee2"]
+offset_left = -6.0
+offset_top = -128.0
+offset_right = 5.0
+offset_bottom = -117.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="SushiEmployee2"]
+offset_left = 15.0
+offset_top = -129.0
+offset_right = 26.0
+offset_bottom = -117.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SushiEmployee3" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect15" type="TextureRect" parent="SushiEmployee3"]
+offset_left = -215.0
+offset_top = 54.0
+offset_right = -197.0
+offset_bottom = 103.0
+texture = ExtResource("23_owp6w")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="SushiEmployee3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SushiEmployee3/Area2D"]
+position = Vector2(-206, 78.5)
+shape = SubResource("RectangleShape2D_8xslc")
+
+[node name="SpeechBubble" type="TextureRect" parent="SushiEmployee3"]
+offset_left = -297.0
+offset_top = -12.0
+offset_right = -209.0
+offset_bottom = 76.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="SushiEmployee3"]
+offset_left = -285.0
+offset_top = 4.0
+offset_right = -218.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Sushi Boss?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="SushiEmployee3"]
+offset_left = -271.0
+offset_top = 46.0
+offset_right = -260.0
+offset_bottom = 57.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="SushiEmployee3"]
+offset_left = -250.0
+offset_top = 45.0
+offset_right = -239.0
+offset_bottom = 57.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TendersEmployee1" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect5" type="TextureRect" parent="TendersEmployee1"]
+offset_left = 752.0
+offset_top = 290.0
+offset_right = 768.0
+offset_bottom = 340.0
+texture = ExtResource("13_n0cpg")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="TendersEmployee1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TendersEmployee1/Area2D"]
+position = Vector2(760, 315)
+shape = SubResource("RectangleShape2D_7ertw")
+
+[node name="SpeechBubble" type="TextureRect" parent="TendersEmployee1"]
+offset_left = 659.0
+offset_top = 222.0
+offset_right = 760.0
+offset_bottom = 316.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="TendersEmployee1"]
+offset_left = 673.0
+offset_top = 234.0
+offset_right = 747.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Tenders, Love, and Chicken?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="TendersEmployee1"]
+offset_left = 693.0
+offset_top = 288.0
+offset_right = 704.0
+offset_bottom = 299.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="TendersEmployee1"]
+offset_left = 712.0
+offset_top = 288.0
+offset_right = 723.0
+offset_bottom = 300.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TendersEmployee2" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect10" type="TextureRect" parent="TendersEmployee2"]
+offset_left = 693.0
+offset_top = 643.0
+offset_right = 709.0
+offset_bottom = 692.0
+texture = ExtResource("18_vi3ih")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="TendersEmployee2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TendersEmployee2/Area2D"]
+position = Vector2(701, 668)
+shape = SubResource("RectangleShape2D_bt1vn")
+
+[node name="SpeechBubble" type="TextureRect" parent="TendersEmployee2"]
+offset_left = 601.0
+offset_top = 563.0
+offset_right = 699.0
+offset_bottom = 661.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="TendersEmployee2"]
+offset_left = 602.0
+offset_top = 576.0
+offset_right = 695.0
+offset_bottom = 633.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Tenders, Love, and Chicken?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="TendersEmployee2"]
+offset_left = 633.0
+offset_top = 631.0
+offset_right = 644.0
+offset_bottom = 642.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="TendersEmployee2"]
+offset_left = 654.0
+offset_top = 630.0
+offset_right = 665.0
+offset_bottom = 642.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TendersEmployee3" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect13" type="TextureRect" parent="TendersEmployee3"]
+offset_left = 975.0
+offset_top = 437.0
+offset_right = 991.0
+offset_bottom = 485.0
+texture = ExtResource("21_h6hk3")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="TendersEmployee3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TendersEmployee3/Area2D"]
+position = Vector2(983.688, 461.5)
+shape = SubResource("RectangleShape2D_64flg")
+
+[node name="SpeechBubble" type="TextureRect" parent="TendersEmployee3"]
+offset_left = 885.0
+offset_top = 365.0
+offset_right = 986.0
+offset_bottom = 459.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="TendersEmployee3"]
+offset_left = 894.0
+offset_top = 378.0
+offset_right = 978.0
+offset_bottom = 435.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Tenders, Love, and Chicken?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="TendersEmployee3"]
+offset_left = 921.0
+offset_top = 432.0
+offset_right = 932.0
+offset_bottom = 443.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="TendersEmployee3"]
+offset_left = 939.0
+offset_top = 431.0
+offset_right = 950.0
+offset_bottom = 443.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WalkOnsEmployee1" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect6" type="TextureRect" parent="WalkOnsEmployee1"]
+offset_left = -6.0
+offset_top = 449.0
+offset_right = 12.0
+offset_bottom = 503.0
+texture = ExtResource("14_vvgf8")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="WalkOnsEmployee1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkOnsEmployee1/Area2D"]
+position = Vector2(3, 477.25)
+shape = SubResource("RectangleShape2D_pggw5")
+
+[node name="SpeechBubble" type="TextureRect" parent="WalkOnsEmployee1"]
+offset_left = -88.0
+offset_top = 379.0
+offset_bottom = 467.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="WalkOnsEmployee1"]
+offset_left = -77.0
+offset_top = 396.0
+offset_right = -10.0
+offset_bottom = 438.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Walk-Ons?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="WalkOnsEmployee1"]
+offset_left = -63.0
+offset_top = 438.0
+offset_right = -52.0
+offset_bottom = 449.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="WalkOnsEmployee1"]
+offset_left = -42.0
+offset_top = 437.0
+offset_right = -31.0
+offset_bottom = 449.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WalkOnsEmployee2" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect9" type="TextureRect" parent="WalkOnsEmployee2"]
+offset_left = -96.0
+offset_top = 293.0
+offset_right = -78.0
+offset_bottom = 339.0
+texture = ExtResource("17_h7qfg")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="WalkOnsEmployee2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkOnsEmployee2/Area2D"]
+position = Vector2(-86, 314.75)
+shape = SubResource("RectangleShape2D_y5uq2")
+
+[node name="SpeechBubble" type="TextureRect" parent="WalkOnsEmployee2"]
+offset_left = -83.0
+offset_top = 225.0
+offset_right = 5.0
+offset_bottom = 313.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="WalkOnsEmployee2"]
+offset_left = -71.0
+offset_top = 241.0
+offset_right = -4.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Walk-Ons?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="WalkOnsEmployee2"]
+offset_left = -57.0
+offset_top = 283.0
+offset_right = -46.0
+offset_bottom = 294.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="WalkOnsEmployee2"]
+offset_left = -36.0
+offset_top = 282.0
+offset_right = -25.0
+offset_bottom = 294.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WalkOnsEmployee3" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect11" type="TextureRect" parent="WalkOnsEmployee3"]
+offset_left = -340.0
+offset_top = 425.0
+offset_right = -326.0
+offset_bottom = 470.0
+texture = ExtResource("19_xoxnj")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="WalkOnsEmployee3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkOnsEmployee3/Area2D"]
+position = Vector2(-333, 447)
+shape = SubResource("RectangleShape2D_2xenf")
+
+[node name="SpeechBubble" type="TextureRect" parent="WalkOnsEmployee3"]
+offset_left = -329.0
+offset_top = 360.0
+offset_right = -241.0
+offset_bottom = 448.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="WalkOnsEmployee3"]
+offset_left = -317.0
+offset_top = 377.0
+offset_right = -250.0
+offset_bottom = 419.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Walk-Ons?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="WalkOnsEmployee3"]
+offset_left = -303.0
+offset_top = 419.0
+offset_right = -292.0
+offset_bottom = 430.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="WalkOnsEmployee3"]
+offset_left = -282.0
+offset_top = 418.0
+offset_right = -271.0
+offset_bottom = 430.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ZenEmployee1" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect" type="TextureRect" parent="ZenEmployee1"]
+offset_left = 214.0
+offset_top = 310.0
+offset_right = 228.0
+offset_bottom = 356.0
+texture = ExtResource("9_a8ty8")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="ZenEmployee1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZenEmployee1/Area2D"]
+position = Vector2(221, 332)
+shape = SubResource("RectangleShape2D_giqur")
+
+[node name="SpeechBubble" type="TextureRect" parent="ZenEmployee1"]
+offset_left = 133.0
+offset_top = 248.0
+offset_right = 221.0
+offset_bottom = 336.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="ZenEmployee1"]
+offset_left = 145.0
+offset_top = 264.0
+offset_right = 212.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Zen?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="ZenEmployee1"]
+offset_left = 159.0
+offset_top = 306.0
+offset_right = 170.0
+offset_bottom = 317.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="ZenEmployee1"]
+offset_left = 180.0
+offset_top = 305.0
+offset_right = 191.0
+offset_bottom = 317.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ZenEmployee2" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect3" type="TextureRect" parent="ZenEmployee2"]
+offset_left = 569.0
+offset_top = 435.0
+offset_right = 584.0
+offset_bottom = 485.0
+texture = ExtResource("11_a1ilk")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="ZenEmployee2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZenEmployee2/Area2D"]
+position = Vector2(578, 459)
+shape = SubResource("RectangleShape2D_xwbra")
+
+[node name="SpeechBubble" type="TextureRect" parent="ZenEmployee2"]
+offset_left = 575.0
+offset_top = 365.0
+offset_right = 663.0
+offset_bottom = 453.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="ZenEmployee2"]
+offset_left = 586.0
+offset_top = 379.0
+offset_right = 653.0
+offset_bottom = 421.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Zen?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="ZenEmployee2"]
+offset_left = 602.0
+offset_top = 422.0
+offset_right = 613.0
+offset_bottom = 433.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="ZenEmployee2"]
+offset_left = 623.0
+offset_top = 421.0
+offset_right = 634.0
+offset_bottom = 432.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ZenEmployee3" type="Node2D" parent="."]
+script = ExtResource("9_15lc6")
+
+[node name="TextureRect8" type="TextureRect" parent="ZenEmployee3"]
+offset_left = 444.0
+offset_top = 384.0
+offset_right = 464.0
+offset_bottom = 435.0
+texture = ExtResource("16_46cit")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="ZenEmployee3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZenEmployee3/Area2D"]
+position = Vector2(454, 409.5)
+shape = SubResource("RectangleShape2D_d6mau")
+
+[node name="SpeechBubble" type="TextureRect" parent="ZenEmployee3"]
+offset_left = 466.0
+offset_top = 326.0
+offset_right = 554.0
+offset_bottom = 414.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="ZenEmployee3"]
+offset_left = 477.0
+offset_top = 342.0
+offset_right = 544.0
+offset_bottom = 384.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Zen?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="ZenEmployee3"]
+offset_left = 496.0
+offset_top = 385.0
+offset_right = 507.0
+offset_bottom = 396.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="noButton" type="TextureButton" parent="ZenEmployee3"]
+offset_left = 516.0
+offset_top = 385.0
+offset_right = 527.0
+offset_bottom = 397.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BurgersAndFries" type="Node2D" parent="."]
+script = ExtResource("26_khbtt")
+
+[node name="TextureRect" type="TextureRect" parent="BurgersAndFries"]
+offset_left = 325.0
+offset_top = -208.0
+offset_right = 484.0
+offset_bottom = -165.0
+texture = ExtResource("30_n3rqf")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="BurgersAndFries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BurgersAndFries/Area2D"]
+position = Vector2(406.5, -186.5)
+shape = SubResource("RectangleShape2D_rfica")
+
+[node name="Panel" type="Panel" parent="BurgersAndFries"]
+visible = false
+offset_right = 99.0
+offset_bottom = 114.0
+
+[node name="GridContainer" type="GridContainer" parent="BurgersAndFries/Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 98.0
+offset_bottom = 86.0
+columns = 3
+
+[node name="small strength" type="TextureRect" parent="BurgersAndFries/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("46_5qojy")
+expand_mode = 1
+
+[node name="medium strength" type="TextureRect" parent="BurgersAndFries/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("47_8f1cg")
+expand_mode = 1
+
+[node name="large strength" type="TextureRect" parent="BurgersAndFries/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("48_jr5rc")
+expand_mode = 1
+
+[node name="Titan\'s fury elixir" type="TextureRect" parent="BurgersAndFries/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("57_03w7v")
+expand_mode = 1
+
+[node name="Legendary damage" type="TextureRect" parent="BurgersAndFries/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("58_6i3fu")
+expand_mode = 1
+
+[node name="Label5" type="Label" parent="BurgersAndFries/Panel"]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 103.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 8
+text = "Talk to employees to purchase
+"
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="BurgersAndFries"]
+visible = false
+
+[node name="Panel" type="Panel" parent="BurgersAndFries/CanvasLayer"]
+offset_left = 479.0
+offset_top = 168.0
+offset_right = 799.0
+offset_bottom = 536.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xelxa")
+
+[node name="Label" type="Label" parent="BurgersAndFries/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 134.0
+offset_bottom = 36.0
+text = "Study Tokens: #"
+
+[node name="GridContainer" type="GridContainer" parent="BurgersAndFries/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 63.0
+offset_right = 277.0
+offset_bottom = 413.0
+columns = 4
+
+[node name="small strength" type="TextureRect" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("46_5qojy")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Small Strength Potion"
+
+[node name="Button" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label5" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="medium strength" type="TextureRect" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("47_8f1cg")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Medium Strength Potion"
+
+[node name="Button2" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label6" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="large strength" type="TextureRect" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("48_jr5rc")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Large Strength Potion"
+
+[node name="Button3" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label7" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Titan\'s fury elixir" type="TextureRect" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("57_03w7v")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Titan's Fury Elixir"
+
+[node name="Button4" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label8" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Legendary damage" type="TextureRect" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("58_6i3fu")
+expand_mode = 1
+
+[node name="Label9" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Legendary Damage"
+
+[node name="Button5" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label10" type="Label" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/Panel"]
+offset_left = 265.0
+offset_top = 13.0
+offset_right = 299.0
+offset_bottom = 47.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RoseMarket" type="Node2D" parent="."]
+script = ExtResource("26_khbtt")
+
+[node name="TextureRect" type="TextureRect" parent="RoseMarket"]
+offset_left = 663.0
+offset_top = -222.0
+offset_right = 816.0
+offset_bottom = -177.0
+texture = ExtResource("29_q51db")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="RoseMarket"]
+offset_left = 1005.0
+offset_top = -36.0
+offset_right = 1158.0
+offset_bottom = 9.0
+rotation = 1.5708
+texture = ExtResource("29_q51db")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="RoseMarket"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoseMarket/Area2D"]
+position = Vector2(738, -201)
+shape = SubResource("RectangleShape2D_jobt5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RoseMarket/Area2D"]
+position = Vector2(983.5, 38.75)
+shape = SubResource("RectangleShape2D_v4egq")
+
+[node name="Panel" type="Panel" parent="RoseMarket"]
+visible = false
+offset_right = 99.0
+offset_bottom = 115.0
+
+[node name="GridContainer" type="GridContainer" parent="RoseMarket/Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 98.0
+offset_bottom = 86.0
+columns = 3
+
+[node name="small health" type="TextureRect" parent="RoseMarket/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("34_uemft")
+expand_mode = 1
+
+[node name="medium health" type="TextureRect" parent="RoseMarket/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("35_3pko6")
+expand_mode = 1
+
+[node name="large health" type="TextureRect" parent="RoseMarket/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("36_s8l0r")
+expand_mode = 1
+
+[node name="legendary health" type="TextureRect" parent="RoseMarket/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("51_85r2w")
+expand_mode = 1
+
+[node name="elixir of life" type="TextureRect" parent="RoseMarket/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("52_grng7")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="RoseMarket/Panel"]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 103.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 8
+text = "Talk to employees to purchase
+"
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RoseMarket"]
+visible = false
+
+[node name="Panel" type="Panel" parent="RoseMarket/CanvasLayer"]
+offset_left = 500.0
+offset_top = 177.0
+offset_right = 813.0
+offset_bottom = 544.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xelxa")
+
+[node name="Label" type="Label" parent="RoseMarket/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 134.0
+offset_bottom = 36.0
+text = "Study Tokens: #"
+
+[node name="GridContainer" type="GridContainer" parent="RoseMarket/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 63.0
+offset_right = 277.0
+offset_bottom = 413.0
+columns = 4
+
+[node name="small health" type="TextureRect" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("34_uemft")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Small Health Potion"
+
+[node name="Button" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label5" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="medium health" type="TextureRect" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("35_3pko6")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Medium Health Potion"
+
+[node name="Button2" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label6" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="large health" type="TextureRect" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("36_s8l0r")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Large Health Potion"
+
+[node name="Button3" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label7" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="legendary health" type="TextureRect" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("51_85r2w")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Legenary Health Potion"
+
+[node name="Button4" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label8" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="elixir of life" type="TextureRect" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("52_grng7")
+expand_mode = 1
+
+[node name="Label9" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Elixer of Life"
+
+[node name="Button5" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label10" type="Label" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "7"
+
+[node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/Panel"]
+offset_left = 259.0
+offset_top = 13.0
+offset_right = 293.0
+offset_bottom = 47.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SushiBoss" type="Node2D" parent="."]
+script = ExtResource("26_khbtt")
+
+[node name="TextureRect" type="TextureRect" parent="SushiBoss"]
+offset_left = -292.0
+offset_top = -213.0
+offset_right = -116.0
+offset_bottom = -158.0
+texture = ExtResource("27_jxdj1")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="SushiBoss"]
+offset_left = -355.0
+offset_top = 73.0
+offset_right = -179.0
+offset_bottom = 128.0
+rotation = -1.5708
+texture = ExtResource("27_jxdj1")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="SushiBoss"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SushiBoss/Area2D"]
+position = Vector2(-205, -186.75)
+shape = SubResource("RectangleShape2D_saxdr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SushiBoss/Area2D"]
+position = Vector2(-327, -12.75)
+shape = SubResource("RectangleShape2D_j1fuc")
+
+[node name="Panel" type="Panel" parent="SushiBoss"]
+visible = false
+offset_right = 99.0
+offset_bottom = 114.0
+
+[node name="Label2" type="Label" parent="SushiBoss/Panel"]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 103.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 8
+text = "Talk to employees to purchase
+"
+autowrap_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="SushiBoss/Panel"]
+layout_mode = 0
+offset_right = 99.0
+offset_bottom = 87.0
+columns = 3
+
+[node name="pickaxe" type="TextureRect" parent="SushiBoss/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("37_ve31c")
+expand_mode = 1
+
+[node name="axe" type="TextureRect" parent="SushiBoss/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("36_r8n28")
+expand_mode = 1
+
+[node name="spikedMace" type="TextureRect" parent="SushiBoss/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("39_astgi")
+expand_mode = 1
+
+[node name="flame dagger" type="TextureRect" parent="SushiBoss/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("33_l8yyo")
+expand_mode = 1
+
+[node name="stormcaller wand" type="TextureRect" parent="SushiBoss/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("37_nq6vt")
+expand_mode = 1
+
+[node name="sword of truth" type="TextureRect" parent="SushiBoss/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("38_x4b3r")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SushiBoss"]
+visible = false
+
+[node name="Panel" type="Panel" parent="SushiBoss/CanvasLayer"]
+offset_left = 516.0
+offset_top = 138.0
+offset_right = 794.0
+offset_bottom = 558.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xelxa")
+
+[node name="Label" type="Label" parent="SushiBoss/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 134.0
+offset_bottom = 36.0
+text = "Study Tokens: #"
+
+[node name="GridContainer" type="GridContainer" parent="SushiBoss/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 63.0
+offset_right = 277.0
+offset_bottom = 413.0
+columns = 4
+
+[node name="pickaxe" type="TextureRect" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("37_ve31c")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Pickaxe"
+
+[node name="Button" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label5" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="axe" type="TextureRect" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("36_r8n28")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Axe"
+
+[node name="Button2" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label6" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="spikedMace" type="TextureRect" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("39_astgi")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Spiked Mace"
+
+[node name="Button3" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label7" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="flame dagger" type="TextureRect" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("33_l8yyo")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Flame Dagger"
+
+[node name="Button4" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label8" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="stormcaller wand" type="TextureRect" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("37_nq6vt")
+expand_mode = 1
+
+[node name="Label9" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Stormcaller Wand"
+
+[node name="Button5" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label10" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="sword of truth" type="TextureRect" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("38_x4b3r")
+expand_mode = 1
+
+[node name="Label11" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Sword of Truth"
+
+[node name="Button6" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label12" type="Label" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/Panel"]
+offset_left = 224.0
+offset_top = 12.0
+offset_right = 258.0
+offset_bottom = 46.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TendersLoveAndChicken" type="Node2D" parent="."]
+script = ExtResource("26_khbtt")
+
+[node name="TextureRect" type="TextureRect" parent="TendersLoveAndChicken"]
+offset_left = 826.0
+offset_top = 289.0
+offset_right = 1004.0
+offset_bottom = 342.0
+texture = ExtResource("28_6hvju")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="TendersLoveAndChicken"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TendersLoveAndChicken/Area2D"]
+position = Vector2(914, 318)
+shape = SubResource("RectangleShape2D_qvjar")
+
+[node name="Panel" type="Panel" parent="TendersLoveAndChicken"]
+visible = false
+offset_top = -1.0
+offset_right = 99.0
+offset_bottom = 144.0
+
+[node name="Label3" type="Label" parent="TendersLoveAndChicken/Panel"]
+layout_mode = 0
+offset_top = 116.0
+offset_right = 103.0
+offset_bottom = 143.0
+theme_override_font_sizes/font_size = 8
+text = "Talk to employees to purchase
+"
+autowrap_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TendersLoveAndChicken/Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 98.0
+offset_bottom = 115.0
+columns = 3
+
+[node name="rusty sword" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("38_kwrju")
+expand_mode = 1
+
+[node name="wooden spear" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("40_b74y8")
+expand_mode = 1
+
+[node name="short bow" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("34_d0ufq")
+expand_mode = 1
+
+[node name="chilling staff" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("32_msuwe")
+expand_mode = 1
+
+[node name="hammer of titans" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("44_py5ea")
+expand_mode = 1
+
+[node name="bow of infinity" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("45_uxshd")
+expand_mode = 1
+
+[node name="staff of elements" type="TextureRect" parent="TendersLoveAndChicken/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 35)
+layout_mode = 2
+texture = ExtResource("46_ux10l")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TendersLoveAndChicken"]
+visible = false
+
+[node name="Panel" type="Panel" parent="TendersLoveAndChicken/CanvasLayer"]
+offset_left = 517.0
+offset_top = 92.0
+offset_right = 795.0
+offset_bottom = 579.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xelxa")
+
+[node name="Label" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 134.0
+offset_bottom = 36.0
+text = "Study Tokens: #"
+
+[node name="GridContainer" type="GridContainer" parent="TendersLoveAndChicken/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 63.0
+offset_right = 277.0
+offset_bottom = 413.0
+columns = 4
+
+[node name="rusty sword" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("38_kwrju")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Rusty Sword"
+
+[node name="Button" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label5" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="wooden spear" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("40_b74y8")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Wooden Spear"
+
+[node name="Button2" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label6" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="short bow" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("34_d0ufq")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Short Bow"
+
+[node name="Button3" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label7" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="hammer of titans" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("44_py5ea")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Hammer of Titans"
+
+[node name="Button4" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label8" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="bow of infinity" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("45_uxshd")
+expand_mode = 1
+
+[node name="Label9" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Bow of Infinity"
+
+[node name="Button5" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label10" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="staff of elements" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("46_ux10l")
+expand_mode = 1
+
+[node name="Label11" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Staff of Elements"
+
+[node name="Button6" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label12" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="chilling staff" type="TextureRect" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("32_msuwe")
+expand_mode = 1
+
+[node name="Label13" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Chilling Staff"
+
+[node name="Button7" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label14" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "7"
+
+[node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/Panel"]
+offset_left = 224.0
+offset_top = 14.0
+offset_right = 258.0
+offset_bottom = 48.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WalkOns" type="Node2D" parent="."]
+script = ExtResource("26_khbtt")
+
+[node name="TextureRect" type="TextureRect" parent="WalkOns"]
+offset_left = -317.0
+offset_top = 286.0
+offset_right = -139.0
+offset_bottom = 339.0
+texture = ExtResource("26_5pnvl")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="WalkOns"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkOns/Area2D"]
+position = Vector2(-230.25, 311.5)
+shape = SubResource("RectangleShape2D_lur2d")
+
+[node name="Panel" type="Panel" parent="WalkOns"]
+visible = false
+offset_right = 99.0
+offset_bottom = 116.0
+
+[node name="GridContainer" type="GridContainer" parent="WalkOns/Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 98.0
+offset_bottom = 87.0
+columns = 3
+
+[node name="smallSpeed" type="TextureRect" parent="WalkOns/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("28_6w5i1")
+expand_mode = 1
+
+[node name="mediumSpeed" type="TextureRect" parent="WalkOns/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("29_a3ev2")
+expand_mode = 1
+
+[node name="largeSpeed" type="TextureRect" parent="WalkOns/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("30_1dxjf")
+expand_mode = 1
+
+[node name="WingsOfZephyr" type="TextureRect" parent="WalkOns/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("31_w2dj8")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="WalkOns/Panel"]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 103.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 8
+text = "Talk to employees to purchase
+"
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WalkOns"]
+visible = false
+
+[node name="Panel" type="Panel" parent="WalkOns/CanvasLayer"]
+offset_left = 464.0
+offset_top = 164.0
+offset_right = 766.0
+offset_bottom = 460.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xelxa")
+
+[node name="Label" type="Label" parent="WalkOns/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 134.0
+offset_bottom = 36.0
+text = "Study Tokens: #"
+
+[node name="GridContainer" type="GridContainer" parent="WalkOns/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 56.0
+offset_right = 277.0
+offset_bottom = 288.0
+columns = 4
+
+[node name="smallSpeed" type="TextureRect" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("28_6w5i1")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "small speed potion"
+
+[node name="Button" type="Button" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label5" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="mediumSpeed" type="TextureRect" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("29_a3ev2")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Medium Speed Potion"
+
+[node name="Button2" type="Button" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label6" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="largeSpeed" type="TextureRect" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("30_1dxjf")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Large Speed Potion"
+
+[node name="Button3" type="Button" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label7" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="WingsOfZephyr" type="TextureRect" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("31_w2dj8")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Wings of Zephyr"
+
+[node name="Button4" type="Button" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label8" type="Label" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 6.0
+offset_right = 292.0
+offset_bottom = 40.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Zen" type="Node2D" parent="."]
+script = ExtResource("26_khbtt")
+
+[node name="TextureRect" type="TextureRect" parent="Zen"]
+offset_left = 248.0
+offset_top = 404.0
+offset_right = 407.0
+offset_bottom = 447.0
+texture = ExtResource("31_7ma7b")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Zen"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zen/Area2D"]
+position = Vector2(329, 424.5)
+shape = SubResource("RectangleShape2D_8yiqf")
+
+[node name="Panel" type="Panel" parent="Zen"]
+visible = false
+offset_right = 99.0
+offset_bottom = 114.0
+
+[node name="GridContainer" type="GridContainer" parent="Zen/Panel"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 98.0
+offset_bottom = 86.0
+columns = 3
+
+[node name="small exp" type="TextureRect" parent="Zen/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("39_ywus6")
+expand_mode = 1
+
+[node name="medium exp" type="TextureRect" parent="Zen/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("40_0fbjw")
+expand_mode = 1
+
+[node name="large exp" type="TextureRect" parent="Zen/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("41_gxodn")
+expand_mode = 1
+
+[node name="legendary exp" type="TextureRect" parent="Zen/Panel/GridContainer"]
+custom_minimum_size = Vector2(30, 40)
+layout_mode = 2
+texture = ExtResource("62_dwfy6")
+expand_mode = 1
+
+[node name="Label6" type="Label" parent="Zen/Panel"]
+layout_mode = 0
+offset_top = 86.0
+offset_right = 103.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 8
+text = "Talk to employees to purchase
+"
+autowrap_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Zen"]
+visible = false
+
+[node name="Panel" type="Panel" parent="Zen/CanvasLayer"]
+offset_left = 521.0
+offset_top = 204.0
+offset_right = 812.0
+offset_bottom = 509.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xelxa")
+
+[node name="Label" type="Label" parent="Zen/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 134.0
+offset_bottom = 36.0
+text = "Study Tokens: #"
+
+[node name="GridContainer" type="GridContainer" parent="Zen/CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 63.0
+offset_right = 277.0
+offset_bottom = 413.0
+columns = 4
+
+[node name="small exp" type="TextureRect" parent="Zen/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("39_ywus6")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Small EXP Potion"
+
+[node name="Button" type="Button" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label5" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="medium exp" type="TextureRect" parent="Zen/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("40_0fbjw")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Medium EXP Potion"
+
+[node name="Button2" type="Button" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label6" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="large exp" type="TextureRect" parent="Zen/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("41_gxodn")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Large EXP Potion"
+
+[node name="Button3" type="Button" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label7" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="legendary exp" type="TextureRect" parent="Zen/CanvasLayer/Panel/GridContainer"]
+custom_minimum_size = Vector2(50, 55)
+layout_mode = 2
+texture = ExtResource("62_dwfy6")
+expand_mode = 1
+
+[node name="Label4" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Legenary EXP Potion"
+
+[node name="Button4" type="Button" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "Buy"
+
+[node name="Label8" type="Label" parent="Zen/CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/Panel"]
+offset_left = 246.0
+offset_top = 9.0
+offset_right = 280.0
+offset_bottom = 43.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
