@@ -304,7 +304,7 @@ func set_default_values():
 	ready_to_complete = []
 	defeated_enemies = []
 	abilities_levels = [0, 0, 0, -1, -1, -1, -1]
-	study_tokens = 0
+	study_tokens = 7
 	achievements_unlocked = [false, false, false, false, false, false, false, false, false, false, false, false]
 	
 	#Key Binding Defaults
