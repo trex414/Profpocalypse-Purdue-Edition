@@ -87,6 +87,7 @@ offset_bottom = 236.0
 color = Color(0.650989, 0.306057, 0.277603, 1)
 
 [node name="CustomizationLabel" type="RichTextLabel" parent="Menu UI/ColorRect"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 20.0
 offset_right = 348.0

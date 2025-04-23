@@ -209,6 +209,20 @@ var enemy_database = {
 		"effect_turns_range": Vector2i(2, 3),
 		"texture_path": "res://User_Battle/Sprites/Science_TA.png"
 	},
+	"Agriculture TA": {
+		"name": "Agriculture TA",
+		"weakness": "Spear",
+		"max_health": 100,
+		"level": 10,
+		"damage": 8,
+		"crit": 0.1,
+		"miss": 0.05,
+		"effect_chance": 0.0,
+		"effect_type": "bleed",
+		"effect_damage_range": Vector2i(2, 3),
+		"effect_turns_range": Vector2i(2, 3),
+		"texture_path": "res://User_Battle/Sprites/Agriculture_TA.png"
+	},
 }
 
 # ---------- Battle Trivia Data ---------- #
