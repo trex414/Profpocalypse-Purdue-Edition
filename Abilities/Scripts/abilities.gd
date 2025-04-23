@@ -179,7 +179,7 @@ func update_study_tokens_label():
 	
 func levelup_abilities_update():
 	level += 1
-	study_tokens += 2
+	study_tokens += 7
 	PlayerData.study_tokens = study_tokens
 	if level == 3:
 		abilities["Brownie Points"]["current_value"] = 0
