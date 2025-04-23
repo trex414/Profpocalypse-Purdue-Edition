@@ -8467,7 +8467,7 @@ expand_mode = 1
 layout_mode = 2
 text = "Small Strength Potion"
 
-[node name="Button" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
+[node name="Button1" type="Button" parent="BurgersAndFries/CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
 text = "Buy"
 
@@ -8552,6 +8552,55 @@ offset_left = 265.0
 offset_top = 13.0
 offset_right = 299.0
 offset_bottom = 47.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Purchased" type="Panel" parent="BurgersAndFries/CanvasLayer"]
+visible = false
+offset_left = 533.0
+offset_top = 233.0
+offset_right = 758.0
+offset_bottom = 292.0
+
+[node name="Label" type="Label" parent="BurgersAndFries/CanvasLayer/Purchased"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 171.0
+offset_bottom = 37.0
+text = "You bought an item!"
+
+[node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/Purchased"]
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 44.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NotEnough" type="Panel" parent="BurgersAndFries/CanvasLayer"]
+visible = false
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 775.0
+offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="BurgersAndFries/CanvasLayer/NotEnough"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 218.0
+offset_bottom = 37.0
+text = "Not enough Study Tokens!
+"
+
+[node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/NotEnough"]
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
+offset_bottom = 40.0
 texture_normal = ExtResource("20_mjelk")
 ignore_texture_size = true
 stretch_mode = 0
@@ -8675,7 +8724,7 @@ expand_mode = 1
 layout_mode = 2
 text = "Small Health Potion"
 
-[node name="Button" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
+[node name="Button1" type="Button" parent="RoseMarket/CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
 text = "Buy"
 
@@ -8760,6 +8809,55 @@ offset_left = 259.0
 offset_top = 13.0
 offset_right = 293.0
 offset_bottom = 47.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Purchased" type="Panel" parent="RoseMarket/CanvasLayer"]
+visible = false
+offset_left = 533.0
+offset_top = 233.0
+offset_right = 758.0
+offset_bottom = 292.0
+
+[node name="Label" type="Label" parent="RoseMarket/CanvasLayer/Purchased"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 171.0
+offset_bottom = 37.0
+text = "You bought an item!"
+
+[node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/Purchased"]
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 44.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NotEnough" type="Panel" parent="RoseMarket/CanvasLayer"]
+visible = false
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 775.0
+offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="RoseMarket/CanvasLayer/NotEnough"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 218.0
+offset_bottom = 37.0
+text = "Not enough Study Tokens!
+"
+
+[node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/NotEnough"]
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
+offset_bottom = 40.0
 texture_normal = ExtResource("20_mjelk")
 ignore_texture_size = true
 stretch_mode = 0
@@ -8887,7 +8985,7 @@ expand_mode = 1
 layout_mode = 2
 text = "Pickaxe"
 
-[node name="Button" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
+[node name="Button1" type="Button" parent="SushiBoss/CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
 text = "Buy"
 
@@ -8990,6 +9088,55 @@ offset_left = 224.0
 offset_top = 12.0
 offset_right = 258.0
 offset_bottom = 46.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Purchased" type="Panel" parent="SushiBoss/CanvasLayer"]
+visible = false
+offset_left = 533.0
+offset_top = 233.0
+offset_right = 758.0
+offset_bottom = 292.0
+
+[node name="Label" type="Label" parent="SushiBoss/CanvasLayer/Purchased"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 171.0
+offset_bottom = 37.0
+text = "You bought an item!"
+
+[node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/Purchased"]
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 44.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NotEnough" type="Panel" parent="SushiBoss/CanvasLayer"]
+visible = false
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 775.0
+offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="SushiBoss/CanvasLayer/NotEnough"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 218.0
+offset_bottom = 37.0
+text = "Not enough Study Tokens!
+"
+
+[node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/NotEnough"]
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
+offset_bottom = 40.0
 texture_normal = ExtResource("20_mjelk")
 ignore_texture_size = true
 stretch_mode = 0
@@ -9113,7 +9260,7 @@ expand_mode = 1
 layout_mode = 2
 text = "Rusty Sword"
 
-[node name="Button" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
+[node name="Button1" type="Button" parent="TendersLoveAndChicken/CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
 text = "Buy"
 
@@ -9238,6 +9385,55 @@ texture_normal = ExtResource("20_mjelk")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="Purchased" type="Panel" parent="TendersLoveAndChicken/CanvasLayer"]
+visible = false
+offset_left = 533.0
+offset_top = 233.0
+offset_right = 758.0
+offset_bottom = 292.0
+
+[node name="Label" type="Label" parent="TendersLoveAndChicken/CanvasLayer/Purchased"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 171.0
+offset_bottom = 37.0
+text = "You bought an item!"
+
+[node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/Purchased"]
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 44.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NotEnough" type="Panel" parent="TendersLoveAndChicken/CanvasLayer"]
+visible = false
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 775.0
+offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="TendersLoveAndChicken/CanvasLayer/NotEnough"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 218.0
+offset_bottom = 37.0
+text = "Not enough Study Tokens!
+"
+
+[node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/NotEnough"]
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
+offset_bottom = 40.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="WalkOns" type="Node2D" parent="."]
 script = ExtResource("26_khbtt")
 
@@ -9337,7 +9533,7 @@ expand_mode = 1
 layout_mode = 2
 text = "small speed potion"
 
-[node name="Button" type="Button" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
+[node name="Button1" type="Button" parent="WalkOns/CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
 text = "Buy"
 
@@ -9404,6 +9600,55 @@ layout_mode = 0
 offset_left = 258.0
 offset_top = 6.0
 offset_right = 292.0
+offset_bottom = 40.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Purchased" type="Panel" parent="WalkOns/CanvasLayer"]
+visible = false
+offset_left = 533.0
+offset_top = 233.0
+offset_right = 758.0
+offset_bottom = 292.0
+
+[node name="Label" type="Label" parent="WalkOns/CanvasLayer/Purchased"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 171.0
+offset_bottom = 37.0
+text = "You bought an item!"
+
+[node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/Purchased"]
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 44.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NotEnough" type="Panel" parent="WalkOns/CanvasLayer"]
+visible = false
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 775.0
+offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="WalkOns/CanvasLayer/NotEnough"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 218.0
+offset_bottom = 37.0
+text = "Not enough Study Tokens!
+"
+
+[node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/NotEnough"]
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
 offset_bottom = 40.0
 texture_normal = ExtResource("20_mjelk")
 ignore_texture_size = true
@@ -9509,7 +9754,7 @@ expand_mode = 1
 layout_mode = 2
 text = "Small EXP Potion"
 
-[node name="Button" type="Button" parent="Zen/CanvasLayer/Panel/GridContainer"]
+[node name="Button1" type="Button" parent="Zen/CanvasLayer/Panel/GridContainer"]
 layout_mode = 2
 text = "Buy"
 
@@ -9576,6 +9821,55 @@ offset_left = 246.0
 offset_top = 9.0
 offset_right = 280.0
 offset_bottom = 43.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Purchased" type="Panel" parent="Zen/CanvasLayer"]
+visible = false
+offset_left = 533.0
+offset_top = 233.0
+offset_right = 758.0
+offset_bottom = 292.0
+
+[node name="Label" type="Label" parent="Zen/CanvasLayer/Purchased"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 171.0
+offset_bottom = 37.0
+text = "You bought an item!"
+
+[node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/Purchased"]
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 44.0
+texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NotEnough" type="Panel" parent="Zen/CanvasLayer"]
+visible = false
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 775.0
+offset_bottom = 342.0
+
+[node name="Label" type="Label" parent="Zen/CanvasLayer/NotEnough"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 218.0
+offset_bottom = 37.0
+text = "Not enough Study Tokens!
+"
+
+[node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/NotEnough"]
+offset_left = 230.0
+offset_top = 6.0
+offset_right = 264.0
+offset_bottom = 40.0
 texture_normal = ExtResource("20_mjelk")
 ignore_texture_size = true
 stretch_mode = 0
