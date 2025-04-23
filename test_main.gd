@@ -17,6 +17,11 @@ var achivements = null
 
 
 func _ready():
+	if Global.menu_boolean:
+		get_node("Menu UI/CustomizationLabel").visible = false
+		get_node("Menu UI/CustomizationLabel/yes_custom").visible = false
+		get_node("Menu UI/CustomizationLabel/no_custom").visible = false
+		
 	
 	# Make sure we are not in fullscreen mode
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
@@ -150,8 +155,7 @@ func _process(delta):
 			print("Courses Information opened.")
 		else:
 			majorInformation.toggle_MajorInfo()
-	if Input.is_action_just_pressed("ui_customization"):
-		get_tree().change_scene_to_file("res://CharacterCustomization/CharacterCustomization.tscn")
+
 
 
 		
@@ -189,3 +193,21 @@ func drop_item_on_floor(item_name: String, position: Vector2):
 	item_instance.item_data = def
 	item_instance.position = position
 	add_child(item_instance)
+
+
+func _on_yes_custom_pressed() -> void:
+	get_node("Menu UI/CustomizationLabel").visible = false
+	get_node("Menu UI/CustomizationLabel/yes_custom").visible = false
+	get_node("Menu UI/CustomizationLabel/no_custom").visible = false
+
+	Global.input_blocker_for_custom = false
+	get_tree().change_scene_to_file("res://CharacterCustomization/CharacterCustomization.tscn")
+
+
+func _on_no_custom_pressed() -> void:
+	get_node("Menu UI/CustomizationLabel").visible = false
+	get_node("Menu UI/CustomizationLabel/yes_custom").visible = false
+	get_node("Menu UI/CustomizationLabel/no_custom").visible = false
+
+	Global.input_blocker_for_custom = false
+	

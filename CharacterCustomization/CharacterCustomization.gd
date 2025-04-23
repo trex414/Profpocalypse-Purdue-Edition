@@ -1,5 +1,7 @@
 extends Control
 
+
+
 @onready var face_sprite = $body_root/face  
 @onready var features_sprite = $body_root/face/features
 @onready var hair_sprite = $body_root/face/features/hair
@@ -27,6 +29,8 @@ var current_shirt_index = 0
 var current_pant_index = 0
 var current_shoe_index = 0
 var current_class_index = 0
+
+
 
 var hair_colors = ["Black", "Blonde", "Brown", "Red", "White"]
 var shirt_colors = ["blue", "green", "grey", "navy", "pine", "red", "white", "yellow"]
@@ -111,6 +115,7 @@ func _on_change_shoes_pressed():
 	shoe2_sprite.texture = load(shoe_texture_path)
 
 func _ready():
+	Global.menu_boolean = true
 	var last_character_path = "CharacterCustomization/last_saved_character.json"
 	if FileAccess.file_exists(last_character_path):
 		var last_character_file = FileAccess.open(last_character_path, FileAccess.READ)

@@ -1,5 +1,9 @@
 extends Node
 
+var menu_boolean = false
+
+var input_blocker_for_custom = true
+
 var tutorial_screen = null
 
 var in_battle: bool = false

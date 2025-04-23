@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0mcfe40m7h7i"]
+[gd_scene load_steps=12 format=3 uid="uid://d0mcfe40m7h7i"]
 
 [ext_resource type="Script" path="res://test_main.gd" id="1_nsodu"]
 [ext_resource type="PackedScene" uid="uid://ca3fmoi36r3x6" path="res://Settings/scenes/setting_menu.tscn" id="2_2ypww"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://control___calendar.gd" id="7_l4cmt"]
 [ext_resource type="Script" path="res://control___phone.gd" id="9_7plrh"]
 [ext_resource type="Texture2D" uid="uid://c0icqgx3rmp4u" path="res://MajorInformation/Assets/pngtree-pixel-phone-mobile-art-bit-png-image_4676859.png" id="10_v0jmo"]
+
+[sub_resource type="Theme" id="Theme_2agcq"]
 
 [node name="TestMain" type="Node2D"]
 script = ExtResource("1_nsodu")
@@ -77,7 +79,33 @@ texture_normal = ExtResource("10_v0jmo")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="CustomizationLabel" type="RichTextLabel" parent="Menu UI"]
+offset_left = 476.0
+offset_top = 80.0
+offset_right = 858.0
+offset_bottom = 250.0
+theme = SubResource("Theme_2agcq")
+text = "CUSTOMIZE CHARACTER TO YOUR LIKING??"
+
+[node name="yes_custom" type="MenuButton" parent="Menu UI/CustomizationLabel"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 86.0
+offset_right = 377.0
+offset_bottom = 117.0
+text = "Yes! Take me there"
+
+[node name="no_custom" type="MenuButton" parent="Menu UI/CustomizationLabel"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 86.0
+offset_right = 149.0
+offset_bottom = 117.0
+text = "No thanks!"
+
 [node name="MusicManager" parent="." instance=ExtResource("5_2xhnb")]
 script = ExtResource("5_pyw2q")
 
 [connection signal="pressed" from="Menu UI/Control - Calendar/Button" to="Menu UI/Control - Calendar" method="_on_button_pressed"]
+[connection signal="pressed" from="Menu UI/CustomizationLabel/yes_custom" to="." method="_on_yes_custom_pressed"]
+[connection signal="pressed" from="Menu UI/CustomizationLabel/no_custom" to="." method="_on_no_custom_pressed"]

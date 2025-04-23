@@ -47,6 +47,9 @@ func load_character(character_name):
 	$CharacterVisuals/body_root/shirt/class.texture = load(save_data["class_texture"])
 
 func _physics_process(delta):
+	if Global.input_blocker_for_custom:
+		return
+	
 	var direction = Vector2.ZERO
 	var is_moving = false
 
