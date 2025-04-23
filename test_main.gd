@@ -17,10 +17,12 @@ var achivements = null
 
 
 func _ready():
+	
 	if Global.menu_boolean:
-		get_node("Menu UI/CustomizationLabel").visible = false
-		get_node("Menu UI/CustomizationLabel/yes_custom").visible = false
-		get_node("Menu UI/CustomizationLabel/no_custom").visible = false
+		get_node("Menu UI/ColorRect/CustomizationLabel").visible = false
+		get_node("Menu UI/ColorRect/CustomizationLabel/yes_custom").visible = false
+		get_node("Menu UI/ColorRect/CustomizationLabel/no_custom").visible = false
+		get_node("Menu UI/ColorRect").visible = false
 		
 	
 	# Make sure we are not in fullscreen mode
@@ -196,18 +198,20 @@ func drop_item_on_floor(item_name: String, position: Vector2):
 
 
 func _on_yes_custom_pressed() -> void:
-	get_node("Menu UI/CustomizationLabel").visible = false
-	get_node("Menu UI/CustomizationLabel/yes_custom").visible = false
-	get_node("Menu UI/CustomizationLabel/no_custom").visible = false
+	get_node("Menu UI/ColorRect/CustomizationLabel").visible = false
+	get_node("Menu UI/ColorRect/CustomizationLabel/yes_custom").visible = false
+	get_node("Menu UI/ColorRect/CustomizationLabel/no_custom").visible = false
+	get_node("Menu UI/ColorRect").visible = false
 
 	Global.input_blocker_for_custom = false
 	get_tree().change_scene_to_file("res://CharacterCustomization/CharacterCustomization.tscn")
 
 
 func _on_no_custom_pressed() -> void:
-	get_node("Menu UI/CustomizationLabel").visible = false
-	get_node("Menu UI/CustomizationLabel/yes_custom").visible = false
-	get_node("Menu UI/CustomizationLabel/no_custom").visible = false
+	get_node("Menu UI/ColorRect/CustomizationLabel").visible = false
+	get_node("Menu UI/ColorRect/CustomizationLabel/yes_custom").visible = false
+	get_node("Menu UI/ColorRect/CustomizationLabel/no_custom").visible = false
+	get_node("Menu UI/ColorRect").visible = false
 
 	Global.input_blocker_for_custom = false
 	
