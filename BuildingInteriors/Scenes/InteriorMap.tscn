@@ -1038,7 +1038,7 @@ texture = ExtResource("1_wch53")
 [sub_resource type="TileSet" id="TileSet_wltm1"]
 sources/0 = SubResource("TileSetAtlasSource_fqyv5")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_43k0k"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22817"]
 texture = ExtResource("1_wch53")
 40:0/0 = 0
 41:0/0 = 0
@@ -2066,7 +2066,7 @@ texture = ExtResource("1_wch53")
 14:33/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6dchb"]
-sources/0 = SubResource("TileSetAtlasSource_43k0k")
+sources/0 = SubResource("TileSetAtlasSource_22817")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35w7e"]
 texture = ExtResource("1_wch53")
