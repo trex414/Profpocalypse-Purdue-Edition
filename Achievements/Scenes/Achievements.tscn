@@ -341,7 +341,7 @@ offset_top = 283.0
 offset_right = 449.0
 offset_bottom = 332.0
 text = "Leveled Up
-# Times"
+5 Times"
 horizontal_alignment = 1
 
 [node name="Lock9" type="TextureRect" parent="CanvasLayer/Panel"]
@@ -436,6 +436,7 @@ texture = ExtResource("2_xxo8q")
 expand_mode = 1
 
 [node name="TextureRect12" type="TextureRect" parent="CanvasLayer/Panel"]
+visible = false
 layout_mode = 0
 offset_left = 377.0
 offset_top = 358.0
@@ -445,6 +446,7 @@ texture = ExtResource("14_18v18")
 expand_mode = 1
 
 [node name="Label12" type="Label" parent="CanvasLayer/Panel"]
+visible = false
 layout_mode = 0
 offset_left = 341.0
 offset_top = 417.0

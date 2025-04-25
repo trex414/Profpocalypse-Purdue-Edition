@@ -72,8 +72,11 @@ func _ready():
 
 
 func update_achievements():
-	for i in range(PlayerData.achievements_unlocked.size()):
+	for i in range(0, 12, 1):
 		var unlocked = PlayerData.achievements_unlocked[i]
+		print(str(unlocked))
+		if i == 11:
+			unlocked = false
 		icon_nodes[i].visible = unlocked
 		label_nodes[i].visible = unlocked
 		lock_nodes[i].visible = not unlocked

@@ -216,7 +216,8 @@ func complete_current_semester():
 		semester_index += 1  # Increment semester index
 		progress_bar.value = semester_index  # Update progress bar
 		PlayerData.semester_index = semester_index
-		if semester_index == 2:
+		if semester_index == 3:
+			print("setting in majorInfo")
 			PlayerData.achievements_unlocked[11] = true
 		if semester_index == 6:
 			PlayerData.achievements_unlocked[2] = true

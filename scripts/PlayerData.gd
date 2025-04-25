@@ -313,7 +313,7 @@ func set_default_values():
 	defeated_enemies = []
 	abilities_levels = [0, 0, 0, -1, -1, -1, -1]
 	study_tokens = 7
-	achievements_unlocked = [false, false, false, false, false, false, false, false, false, false, false, false]
+	achievements_unlocked = [false, false, false, false, false, false, false, false, false, false, false, false, false]
 	
 	#Key Binding Defaults
 	inventory_key = 69
