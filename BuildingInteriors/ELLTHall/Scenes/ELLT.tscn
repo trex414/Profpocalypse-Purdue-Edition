@@ -1,0 +1,297 @@
+[gd_scene load_steps=27 format=3 uid="uid://djmrw23tetoby"]
+
+[ext_resource type="Script" path="res://BuildingInteriors/ELLTHall/Scenes/ellt.gd" id="1_xqrsn"]
+[ext_resource type="Script" path="res://BuildingInteriors/Scenes/temporary_player_interior.gd" id="2_nrusk"]
+[ext_resource type="AudioStream" uid="uid://ch6kn5xbrxmll" path="res://menu_sound_effects/footsteps2.mp3" id="3_nrwhj"]
+[ext_resource type="PackedScene" uid="uid://dcuyuccphbkf0" path="res://CustomBody.tscn" id="4_xh404"]
+[ext_resource type="Texture2D" uid="uid://cbx8wx4nvqjk6" path="res://BuildingInteriors/ELLTHall/Assets/Auditorium.png" id="5_b3fvk"]
+[ext_resource type="Script" path="res://BuildingInteriors/ELLTHall/Scenes/elltcontrol.gd" id="6_ro2aj"]
+[ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="7_8ofil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7s4s3"]
+size = Vector2(24, 24)
+
+[sub_resource type="Animation" id="Animation_eqqaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gctuh"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_01ttk"]
+resource_name = "walk_bob"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qney5"]
+_data = {
+"RESET": SubResource("Animation_eqqaw"),
+"new_animation": SubResource("Animation_gctuh"),
+"walk_bob": SubResource("Animation_01ttk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwrbq"]
+size = Vector2(465, 276.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rbnf"]
+size = Vector2(466, 294)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh8mt"]
+size = Vector2(1165, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsnfo"]
+size = Vector2(446, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_adhrj"]
+size = Vector2(537, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34ooq"]
+size = Vector2(286, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opxdc"]
+size = Vector2(328.5, 74.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p08ii"]
+size = Vector2(65, 251)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdtrs"]
+size = Vector2(86, 463)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtjak"]
+size = Vector2(331, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lviya"]
+size = Vector2(211, 77)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwfn4"]
+bg_color = Color(0.529412, 0.411765, 0.105882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwj7l"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wtkv"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="Ellt" type="Node2D"]
+script = ExtResource("1_xqrsn")
+
+[node name="TemporaryPlayer" type="CharacterBody2D" parent="."]
+z_index = 12
+script = ExtResource("2_nrusk")
+
+[node name="Camera2D" type="Camera2D" parent="TemporaryPlayer"]
+position = Vector2(646, 759)
+zoom = Vector2(1.2, 1.2)
+limit_left = -1000
+limit_top = -1000
+limit_right = 1200
+limit_bottom = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TemporaryPlayer"]
+position = Vector2(644, 756)
+shape = SubResource("RectangleShape2D_7s4s3")
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="TemporaryPlayer"]
+stream = ExtResource("3_nrwhj")
+volume_db = -4.0
+pitch_scale = 2.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TemporaryPlayer"]
+root_node = NodePath("../CharacterVisuals")
+libraries = {
+"": SubResource("AnimationLibrary_qney5")
+}
+
+[node name="CharacterVisuals" type="Node2D" parent="TemporaryPlayer"]
+
+[node name="body_root" parent="TemporaryPlayer/CharacterVisuals" instance=ExtResource("4_xh404")]
+position = Vector2(606, 732)
+scale = Vector2(0.05, 0.05)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(642, 394)
+scale = Vector2(1.43164, 0.788086)
+texture = ExtResource("5_b3fvk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(358.5, 485.75)
+shape = SubResource("RectangleShape2D_rwrbq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(926, 478)
+shape = SubResource("RectangleShape2D_3rbnf")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(645.5, 261)
+shape = SubResource("RectangleShape2D_wh8mt")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(298, 650)
+shape = SubResource("RectangleShape2D_tsnfo")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1023, 654.25)
+shape = SubResource("RectangleShape2D_adhrj")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(447, 304)
+shape = SubResource("RectangleShape2D_34ooq")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(858, 300.25)
+shape = SubResource("RectangleShape2D_opxdc")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(502, 668)
+shape = SubResource("RectangleShape2D_p08ii")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(792, 567)
+shape = SubResource("RectangleShape2D_wdtrs")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(645.5, 813)
+shape = SubResource("RectangleShape2D_vtjak")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(641.5, 753.5)
+shape = SubResource("RectangleShape2D_lviya")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -40.5
+offset_right = 88.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_ro2aj")
+
+[node name="Panel" type="Panel" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -90.0
+offset_right = 278.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hwfn4")
+
+[node name="Label" type="Label" parent="UI/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.325
+anchor_right = 0.5
+anchor_bottom = 0.325
+offset_left = -112.0
+offset_top = -12.35
+offset_right = 112.0
+offset_bottom = 40.65
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_8ofil")
+theme_override_font_sizes/font_size = 50
+text = "Do you wish to enter"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -84.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="Button" type="Button" parent="UI/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("7_8ofil")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_gwj7l")
+text = "YES"
+
+[node name="Button2" type="Button" parent="UI/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("7_8ofil")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_0wtkv")
+text = "NO"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button2" to="UI/Control" method="_on_button_2_pressed"]

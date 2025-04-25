@@ -7,7 +7,7 @@ func _ready():
 
 func _on_button_pressed() -> void:
 	print("you pressed yes")  # Change to interior map
-	var main_game = get_tree().root.get_node("TestMain")  # Adjust the path to your main game node
+	var main_game = get_tree().root.get_node("TestMain")
 	main_game.change_map("res://Main Map/scenes/Profpocalypse Main Map.tscn")
 	hide()
 
