@@ -1,0 +1,162 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs45pvgjl0vug"]
+
+[ext_resource type="Script" path="res://Trivia/scenes/trivia_book.gd" id="1_ortk4"]
+[ext_resource type="Texture2D" uid="uid://crm42yod8uney" path="res://Trivia/assets/book_middle.png" id="2_lxj22"]
+[ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="3_xi3h6"]
+[ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://menu_sound_effects/turn_page.wav" id="4_b33ey"]
+
+[node name="TriviaBook" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ortk4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -563.5
+offset_top = -268.0
+offset_right = 563.5
+offset_bottom = 268.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lxj22")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -235.0
+offset_right = 314.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xi3h6")
+theme_override_font_sizes/normal_font_size = 30
+text = "This is a very long line of trivia to test out if spacing works
+
+This is a very long line of trivia to test out if spacing works
+
+This is a very long line of trivia to test out if spacing works
+
+This is a very long line of trivia to test out if spacing works"
+tab_size = 11
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xi3h6")
+theme_override_font_sizes/normal_font_size = 30
+text = "This is a very long line of trivia to test out if spacing works
+
+This is a very long line of trivia to test out if spacing works
+
+This is a very long line of trivia to test out if spacing works
+
+This is a very long line of trivia to test out if spacing works"
+
+[node name="Next" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 164.0
+offset_right = 334.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xi3h6")
+theme_override_font_sizes/font_size = 70
+text = ">"
+flat = true
+
+[node name="Previous" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -286.0
+offset_top = 164.0
+offset_right = -241.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xi3h6")
+theme_override_font_sizes/font_size = 70
+text = "<"
+flat = true
+
+[node name="PageNumLeft" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 186.0
+offset_right = 14.0
+offset_bottom = 226.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xi3h6")
+theme_override_font_sizes/normal_font_size = 30
+text = "1"
+
+[node name="PageNumRight" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 186.0
+offset_right = 97.0
+offset_bottom = 226.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xi3h6")
+theme_override_font_sizes/normal_font_size = 30
+text = "2"
+
+[node name="Counter" type="RichTextLabel" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -218.0
+offset_top = 186.0
+offset_right = 60.0
+offset_bottom = 219.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_xi3h6")
+theme_override_font_sizes/normal_font_size = 30
+text = "Counter"
+
+[node name="Close" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -340.0
+offset_top = -247.0
+offset_right = -309.0
+offset_bottom = -191.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_xi3h6")
+theme_override_font_sizes/font_size = 60
+text = "X"
+flat = true
+
+[node name="TriviaBookSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_b33ey")
+volume_db = -2.0
+
+[connection signal="pressed" from="CanvasLayer/Panel/Next" to="." method="next_page"]
+[connection signal="pressed" from="CanvasLayer/Panel/Previous" to="." method="prev_page"]
+[connection signal="pressed" from="CanvasLayer/Panel/Close" to="." method="_on_close_pressed"]

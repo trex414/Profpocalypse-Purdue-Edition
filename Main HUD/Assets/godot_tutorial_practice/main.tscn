@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://xk7f56ymrupl"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_1tybh"]
+[ext_resource type="Texture2D" uid="uid://c7y23yx2g8wdd" path="res://icon.svg" id="2_6fs3h"]
+[ext_resource type="Script" path="res://tutorial.gd" id="3_4lbow"]
+[ext_resource type="Texture2D" uid="uid://cbjtmm4lf8pwv" path="res://DALL·E 2025-02-21 20.53.58 - A top-down 2D digital illustration of four paths intersecting in the middle of the image, forming a cross shape. The paths are made of dirt with small.webp" id="4_2ou7a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sov4v"]
+size = Vector2(124, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnapw"]
+size = Vector2(1442, 177.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp545"]
+size = Vector2(245, 898)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tssdx"]
+size = Vector2(1407, 201)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwb3e"]
+size = Vector2(217, 932)
+
+[node name="Main" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -507.0
+offset_top = 224.0
+offset_right = -243.0
+offset_bottom = 250.0
+text = "Use Arrow Keys or WASD to move!"
+script = ExtResource("3_4lbow")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(573, 325)
+scale = Vector2(1.54761, 1.0105)
+texture = ExtResource("4_2ou7a")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(576, 0)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_1tybh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-26, 658)
+texture = ExtResource("2_6fs3h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-26, 657)
+shape = SubResource("RectangleShape2D_sov4v")
+
+[node name="Borders" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2(572, -100)
+shape = SubResource("RectangleShape2D_pnapw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2(-111.5, 354)
+shape = SubResource("RectangleShape2D_pp545")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
+position = Vector2(560, 746)
+shape = SubResource("RectangleShape2D_tssdx")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1237, 336)
+shape = SubResource("RectangleShape2D_kwb3e")
+
+[node name="InnerBorders" type="StaticBody2D" parent="."]
+position = Vector2(1433, 154)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InnerBorders"]
+visible = false
+position = Vector2(-2.83533, -0.714218)
+scale = Vector2(0.996489, 1.00341)
+build_mode = 1
+polygon = PackedVector2Array(-235, -148, -674, 118, -655, 126, -229, 127)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="InnerBorders"]
+visible = false
+polygon = PackedVector2Array(-790, 594, -784, 239, -752, 233, -233, 233, -234, 589, -782, 594)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="InnerBorders"]
+visible = false
+polygon = PackedVector2Array(-946, 310, -945, 589, -1389, 596, -1379, 580)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="InnerBorders"]
+visible = false
+polygon = PackedVector2Array(-1040, 238, -1500, 236, -1503, 525)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="InnerBorders"]
+visible = false
+polygon = PackedVector2Array(-1502, 122, -955, 120, -955, -236, -1493, -236)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="InnerBorders"]
+visible = false
+polygon = PackedVector2Array(-786, 46, -346, -229, -789, -232)

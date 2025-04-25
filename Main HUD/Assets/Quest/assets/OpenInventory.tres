@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://cepj55ggdtxwj"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_rd2i5"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_htwfr"]
+
+[sub_resource type="Resource" id="Resource_p4yv4"]
+script = ExtResource("2_htwfr")
+item_name = "Small Health Potion"
+amount = 2
+
+[resource]
+script = ExtResource("1_rd2i5")
+quest_name = "Open Inventory"
+description = "Every hero must know their tools. Open your inventory and take your first step toward preparation."
+prerequisites = Array[ExtResource("1_rd2i5")]([])
+rewards = Array[ExtResource("2_htwfr")]([SubResource("Resource_p4yv4")])
+is_completed = false
+pinned = false
+priority = 5

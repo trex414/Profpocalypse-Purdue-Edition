@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://cnm7uq225cup3"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_eb101"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_nkbi7"]
+
+[sub_resource type="Resource" id="Resource_s0vsn"]
+script = ExtResource("2_nkbi7")
+item_name = "Pickaxe"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_cxjnj"]
+script = ExtResource("2_nkbi7")
+item_name = "Small Health Potion"
+amount = 2
+
+[resource]
+script = ExtResource("1_eb101")
+quest_name = "Main Story: Prologue – The Rising Lag"
+description = "The semester begins... but something feels off. Fight your way through corrupted code and meet your first real challenge. Get ready for the journey ahead."
+prerequisites = Array[ExtResource("1_eb101")]([])
+rewards = Array[ExtResource("2_nkbi7")]([SubResource("Resource_s0vsn"), SubResource("Resource_cxjnj")])
+is_completed = false
+pinned = false
+priority = 0

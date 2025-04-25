@@ -1,0 +1,19 @@
+{
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_arm.png",
+	"belt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/belt.png",
+	"class_description": "The Dorm DJ – Has the loudest speaker on the floor. Always curating a playlist no one asked for.",
+	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/dj.png",
+	"face_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_head.png",
+	"features_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Face/face2.png",
+	"hair_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Blonde/blondeMan5.png",
+	"hand2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_hand.png",
+	"hand_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_hand.png",
+	"name": "hihu",
+	"neck_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_neck.png",
+	"pant2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGreen_long.png",
+	"pant_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGreen_long.png",
+	"shirt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/greenShirt7.png",
+	"shoe1_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/BlueShoe3.png",
+	"shoe2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/BlueShoe3.png"
+}

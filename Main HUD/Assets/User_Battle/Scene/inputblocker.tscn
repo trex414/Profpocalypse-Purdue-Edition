@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://daachd7htlgiw"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 10
+
+[node name="Blocker" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0)

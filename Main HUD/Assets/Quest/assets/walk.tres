@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://c67fg21o5b8yw"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_bxe6l"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_swyso"]
+
+[resource]
+script = ExtResource("1_bxe6l")
+quest_name = "Movement Mastery: Walk All Ways"
+description = ""
+prerequisites = Array[ExtResource("1_bxe6l")]([])
+rewards = Array[ExtResource("2_swyso")]([])
+is_completed = false
+pinned = false

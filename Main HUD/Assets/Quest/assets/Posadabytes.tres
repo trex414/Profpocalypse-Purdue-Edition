@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://dmm0g6lrq02a1"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_3ayns"]
+[ext_resource type="Resource" uid="uid://dx7l8s15ypgbk" path="res://Quest/assets/Turkey.tres" id="2_bwo5j"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_si0bx"]
+[ext_resource type="Resource" uid="uid://sa3rxr07ycdp" path="res://Quest/assets/Sel-key.tres" id="3_f0pau"]
+
+[sub_resource type="Resource" id="Resource_cmus3"]
+script = ExtResource("2_si0bx")
+item_name = "Stormcaller Wand"
+amount = 1
+
+[resource]
+script = ExtResource("1_3ayns")
+quest_name = "Main Story: Prof PosadaBytes"
+description = " Ice flows through his binary. Face chilling concepts and win your first high-stakes battle."
+prerequisites = Array[ExtResource("1_3ayns")]([ExtResource("2_bwo5j"), ExtResource("3_f0pau")])
+rewards = Array[ExtResource("2_si0bx")]([SubResource("Resource_cmus3")])
+is_completed = false
+pinned = false
+priority = 0

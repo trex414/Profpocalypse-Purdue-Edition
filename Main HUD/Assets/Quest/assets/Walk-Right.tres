@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://oqwkb07dyqhu"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_eskvf"]
+[ext_resource type="Resource" uid="uid://syawykhg523t" path="res://Quest/assets/Walk-Forward.tres" id="2_x4k8o"]
+[ext_resource type="Resource" uid="uid://dshteg1t63do3" path="res://Quest/assets/Walk-Backwards.tres" id="3_ds3dk"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="4_2snac"]
+[ext_resource type="Resource" uid="uid://b3s3vm4e2uqdb" path="res://Quest/assets/Walk-Left.tres" id="4_e4xn5"]
+
+[sub_resource type="Resource" id="Resource_olhtp"]
+script = ExtResource("4_2snac")
+item_name = "Small Speed Potion"
+amount = 1
+
+[resource]
+script = ExtResource("1_eskvf")
+quest_name = "Movement Training: Part 4 – Walk Right"
+description = "Balance your movement and complete your training by stepping right 10 steps."
+prerequisites = Array[ExtResource("1_eskvf")]([ExtResource("2_x4k8o"), ExtResource("3_ds3dk"), ExtResource("4_e4xn5")])
+rewards = Array[ExtResource("4_2snac")]([SubResource("Resource_olhtp")])
+is_completed = false
+pinned = false

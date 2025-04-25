@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://kvfpj5wjshp3"]
+
+[ext_resource type="Script" path="res://User_Battle/Script/enemy.gd" id="1_kwrx3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tq0yw"]
+
+[node name="Enemy" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kwrx3")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+
+[node name="Health" type="ProgressBar" parent="EnemySprite"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 110.0
+offset_top = 101.0
+offset_right = 486.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_tq0yw")
+step = 1.0
+
+[node name="EXP" type="ProgressBar" parent="EnemySprite"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 35.0
+offset_right = 484.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_tq0yw")
+max_value = 5.0
+step = 1.0
+show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="EnemySprite"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = 31.0
+offset_right = 488.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "LEVEL 1"

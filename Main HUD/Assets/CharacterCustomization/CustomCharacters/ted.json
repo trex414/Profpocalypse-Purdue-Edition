@@ -1,0 +1,19 @@
+{
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 4/tint4_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 4/tint4_arm.png",
+	"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
+	"class_description": "The Pre-Med Machine – Shadowed a surgeon at 16, already worried about residency, and always smells faintly of hand sanitizer.",
+	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/med.png",
+	"face_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 4/tint4_head.png",
+	"features_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Face/face1.png",
+	"hair_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Black/blackMan7.png",
+	"hand2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 4/tint4_hand.png",
+	"hand_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 4/tint4_hand.png",
+	"name": "ted",
+	"neck_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 4/tint4_neck.png",
+	"pant2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png",
+	"pant_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png",
+	"shirt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/greyShirt7.png",
+	"shoe1_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/GreyShoe3.png",
+	"shoe2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/GreyShoe3.png"
+}

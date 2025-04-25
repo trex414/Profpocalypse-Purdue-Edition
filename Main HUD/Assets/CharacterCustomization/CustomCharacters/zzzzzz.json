@@ -1,0 +1,19 @@
+{
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_arm.png",
+	"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
+	"class_description": "The Professional Napper – Can fall asleep anywhere—library chair, bench, beanbag. A true talent.",
+	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/napper.png",
+	"face_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_head.png",
+	"features_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Face/face1.png",
+	"hair_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Blonde/blondeMan5.png",
+	"hand2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_hand.png",
+	"hand_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_hand.png",
+	"name": "zzzzzz",
+	"neck_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 5/tint5_neck.png",
+	"pant2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png",
+	"pant_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png",
+	"shirt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/navyShirt7.png",
+	"shoe1_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/BlueShoe3.png",
+	"shoe2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/BlueShoe3.png"
+}

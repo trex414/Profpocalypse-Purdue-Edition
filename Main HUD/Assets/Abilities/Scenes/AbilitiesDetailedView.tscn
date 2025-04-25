@@ -1,0 +1,343 @@
+[gd_scene format=3 uid="uid://3drkwmicrq5w"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -163.0
+offset_right = 170.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.503
+anchor_right = 0.498
+anchor_bottom = 0.503
+offset_left = -151.822
+offset_top = -117.475
+offset_right = 168.178
+offset_bottom = 150.525
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="GPAFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GPAFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "GPA"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/GPAFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/GPAFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DiscripGPA" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripGPA"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripGPA"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "Max Health"
+horizontal_alignment = 2
+
+[node name="BrowniePointsFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Brownie Points"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/BrowniePointsFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DescripBrowniePoints" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DescripBrowniePoints"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DescripBrowniePoints"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "Subtracted From Damage"
+horizontal_alignment = 2
+
+[node name="LuckFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/LuckFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Luck"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/LuckFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/LuckFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DescripLuck" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DescripLuck"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DescripLuck"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "Subtracted From Hit Chance"
+horizontal_alignment = 2
+
+[node name="ExtraCreditFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Extra Credit"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/ExtraCreditFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DiscripExtraCredit" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripExtraCredit"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripExtraCredit"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "HP That Renews After Each Round"
+horizontal_alignment = 2
+
+[node name="BrilliantAnswerChanceFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Brilliant Answer %"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/BrilliantAnswerChanceFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DiscripBrilliantAnswer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripBrilliantAnswer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripBrilliantAnswer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "% chance to deal 2x damage (max 50%)"
+horizontal_alignment = 2
+
+[node name="MoveSpeedFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Move Speed"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/MoveSpeedFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DiscripMoveSpeed" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripMoveSpeed"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripMoveSpeed"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "Affects Player Movement"
+horizontal_alignment = 2
+
+[node name="HintOddsFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Hint Odds"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/HintOddsFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DiscripHintOdds" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripHintOdds"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripHintOdds"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "Chance To Receive a Cryptic Hint"
+horizontal_alignment = 2
+
+[node name="IntelligenceFlowContainer" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Intelligence"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+show_percentage = false
+
+[node name="Button" type="Button" parent="Panel/ScrollContainer/VBoxContainer/IntelligenceFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Add"
+
+[node name="DiscripIntelligence" type="HFlowContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripIntelligence"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Panel/ScrollContainer/VBoxContainer/DiscripIntelligence"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 9
+text = "Reduce Number Of Multiple Choices for Trivia"
+horizontal_alignment = 2

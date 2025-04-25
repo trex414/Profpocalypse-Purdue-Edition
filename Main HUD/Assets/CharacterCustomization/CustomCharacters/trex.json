@@ -1,0 +1,19 @@
+{
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_arm.png",
+	"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
+	"class_description": "The Chill Philosopher – Spends hours debating the trolley problem and questioning reality. Probably wears a beanie and drinks herbal tea.",
+	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/philosophy.png",
+	"face_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_head.png",
+	"features_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Face/face2.png",
+	"hair_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Blonde/blondeMan5.png",
+	"hand2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_hand.png",
+	"hand_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_hand.png",
+	"name": "trex",
+	"neck_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_neck.png",
+	"pant2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png",
+	"pant_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png",
+	"shirt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/greenShirt7.png",
+	"shoe1_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/BrownShoe3.png",
+	"shoe2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/BrownShoe3.png"
+}
