@@ -1,15 +1,30 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://bwixappg7vgbv"]
+[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://bwixappg7vgbv"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_a0jiq"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_7h6v5"]
 [ext_resource type="Resource" uid="uid://bcm100v01ptc0" path="res://Quest/assets/landmarks.tres" id="2_28872"]
+
+[sub_resource type="Resource" id="Resource_2v8dk"]
+script = ExtResource("2_7h6v5")
+item_name = "Dagger of Shadows"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_ubd4x"]
+script = ExtResource("2_7h6v5")
+item_name = "Large Speed Potion"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_7a4a2"]
+script = ExtResource("2_7h6v5")
+item_name = "Medium EXP Potion"
+amount = 1
 
 [resource]
 script = ExtResource("1_a0jiq")
 quest_name = "Campus Curiosity Part 2: The Library Tour"
 description = ""
 prerequisites = Array[ExtResource("1_a0jiq")]([ExtResource("2_28872")])
-rewards = Array[ExtResource("2_7h6v5")]([])
+rewards = Array[ExtResource("2_7h6v5")]([SubResource("Resource_2v8dk"), SubResource("Resource_ubd4x"), SubResource("Resource_7a4a2")])
 is_completed = false
 pinned = false
 priority = 0

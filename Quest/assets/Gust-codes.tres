@@ -12,7 +12,7 @@ amount = 1
 [resource]
 script = ExtResource("1_sf7lh")
 quest_name = "Main Story: Prof Gust-Codes"
-description = " Architectural mayhem awaits. Survive code winds and system storms under Prof. Gust-Codes’ bizarre building blocks."
+description = "To the left of WALC"
 prerequisites = Array[ExtResource("1_sf7lh")]([ExtResource("2_8qu6b")])
 rewards = Array[ExtResource("2_jupkr")]([SubResource("Resource_s4n8l")])
 is_completed = false

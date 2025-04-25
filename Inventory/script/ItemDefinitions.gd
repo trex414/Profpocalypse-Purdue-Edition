@@ -37,7 +37,7 @@ const ITEM_DEFINITIONS = {
 		"stun_chance": 0.00,
 		"miss_chance": 0.00,
 		"crit_chance": 0.12,
-		"break_chance": 0.15,
+		"break_chance": 0.90,
 		"rarity": "common"
 	},
 	"Rusty Sword": {
@@ -113,7 +113,7 @@ const ITEM_DEFINITIONS = {
 		"break_chance": 0.15,
 		"rarity": "uncommon",
 		"effect_type": "bleed",
-		"effect_chance": 0.1,  # 10% chance to apply
+		"effect_chance": 1,  # 10% chance to apply
 		"effect_damage_range": Vector2i(2, 3),
 		"effect_turns_range": Vector2i(2, 3)
 	},
@@ -218,10 +218,10 @@ const ITEM_DEFINITIONS = {
 		"stackable": false,
 		"count": 1,
 		"damage": 65,
-		"stun_chance": 0.40,
+		"stun_chance": 0.80,
 		"miss_chance": 0.05,
 		"crit_chance": 0.30,
-		"break_chance": 0.10,
+		"break_chance": 0.0,
 		"rarity": "legendary"
 		#"element_type": "mixed",
 		#"special_effect": "Elemental Burst: Occasionally casts a random elemental spell."

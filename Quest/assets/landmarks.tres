@@ -1,13 +1,29 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://bcm100v01ptc0"]
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://bcm100v01ptc0"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_sp07v"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_gkg7i"]
+
+[sub_resource type="Resource" id="Resource_7vb68"]
+script = ExtResource("2_gkg7i")
+item_name = "Rusty Sword"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_0pyxw"]
+script = ExtResource("2_gkg7i")
+item_name = "Medium Health Potion"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_u4sbv"]
+script = ExtResource("2_gkg7i")
+item_name = "Medium Speed Potion"
+amount = 1
 
 [resource]
 script = ExtResource("1_sp07v")
 quest_name = "Campus Curiosity Part 1: Landmarks of Lore"
 description = ""
 prerequisites = Array[ExtResource("1_sp07v")]([])
-rewards = Array[ExtResource("2_gkg7i")]([])
+rewards = Array[ExtResource("2_gkg7i")]([SubResource("Resource_7vb68"), SubResource("Resource_0pyxw"), SubResource("Resource_u4sbv")])
 is_completed = false
 pinned = false
+priority = 0

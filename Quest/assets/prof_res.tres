@@ -1,16 +1,26 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://dpc1jgn374ekn"]
+[gd_resource type="Resource" script_class="Quest" load_steps=7 format=3 uid="uid://dpc1jgn374ekn"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_wryu1"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_0wrf5"]
 [ext_resource type="Resource" uid="uid://bcm100v01ptc0" path="res://Quest/assets/landmarks.tres" id="2_ksq3w"]
 [ext_resource type="Resource" uid="uid://bwixappg7vgbv" path="res://Quest/assets/library.tres" id="3_a1p4i"]
 
+[sub_resource type="Resource" id="Resource_4q278"]
+script = ExtResource("2_0wrf5")
+item_name = "Bow of Infinity"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_4grvk"]
+script = ExtResource("2_0wrf5")
+item_name = "Medium Health Potion"
+amount = 2
+
 [resource]
 script = ExtResource("1_wryu1")
 quest_name = "Campus Curiosity Part 3: Professor’s Research"
 description = ""
 prerequisites = Array[ExtResource("1_wryu1")]([ExtResource("2_ksq3w"), ExtResource("3_a1p4i")])
-rewards = Array[ExtResource("2_0wrf5")]([])
+rewards = Array[ExtResource("2_0wrf5")]([SubResource("Resource_4q278"), SubResource("Resource_4grvk")])
 is_completed = false
 pinned = false
 priority = 0

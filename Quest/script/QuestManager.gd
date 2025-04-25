@@ -64,7 +64,9 @@ func _ready():
 	add_quest(landmark)
 	add_quest(prof_res)
 	
-	
+	for quest_name in PlayerData.ready_to_complete:
+		ready_to_complete[quest_name] = true
+
 
 	
 	for quest in all_quests.values():
@@ -88,6 +90,13 @@ func complete_quest(name: String):
 		all_quests[name].is_completed = true
 		if name not in completed_quests:
 			completed_quests.append(name)
+			var scene = get_tree().get_current_scene()
+			var hud = scene.get_node_or_null("Control - HUD")
+			if hud:
+				var exp_bar = hud.get_node_or_null("CanvasLayer/EXP_Bar")
+				if exp_bar:
+					exp_bar.add_exp(1)  # 🔥 Give 5 EXP (or whatever you want)
+				
 		if quest1.pinned:
 			unpin_quest(quest1)
 		quest_completed.emit(name)

@@ -9,6 +9,11 @@ var rng = RandomNumberGenerator.new()
 @onready var enemy_bar = $CanvasLayer/Enemy_Health_Bar
 
 @export var new_music: AudioStream
+var exp_bar
+var hud
+
+
+
 
 var input_blocker = null
 var suppress_trivia_popup = false
@@ -69,10 +74,13 @@ func start_cutscene(enemy_name: String, enemy_node):
 
 	var scene = get_tree().get_current_scene()
 	var map = scene.get_node("Map")
-	var hud = scene.get_node("Control - HUD")
+	hud = scene.get_node("Control - HUD")
 	var inventory = scene.get_node("Control - Inventory")
 	var quest = scene.get_node("QuestMenu")
 	var player = map.get_node("TemporaryPlayer")
+	
+	if (hud):
+		exp_bar = hud.get_node("CanvasLayer/EXP_Bar")
 
 	map.visible = false
 	inventory.visible = false
@@ -221,8 +229,18 @@ func player_attack(damage):
 		await show_battle_message("You won!")
 		PlayerData.mark_enemy_defeated(current_enemy["name"])
 		
+		# Complete a quest
 		var quest_name = "Main Story: " + current_enemy["name"]
 		QuestManager.mark_ready_to_complete(quest_name)
+		
+		if QuestManager.ready_to_complete.has(quest_name):
+			PlayerData.enemies_defeated += 1
+			if exp_bar:
+				var defeated_count = PlayerData.enemies_defeated
+				var base_exp = 2
+				var exp_reward = base_exp * pow(1.5, defeated_count)
+
+				exp_bar.add_exp(int(exp_reward))
 
 		enemy_node_reference.queue_free()
 		enemy_node_reference = null
