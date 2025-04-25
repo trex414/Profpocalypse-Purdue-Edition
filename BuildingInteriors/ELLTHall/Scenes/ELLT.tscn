@@ -1,12 +1,15 @@
-[gd_scene load_steps=27 format=3 uid="uid://djmrw23tetoby"]
+[gd_scene load_steps=36 format=3 uid="uid://djmrw23tetoby"]
 
 [ext_resource type="Script" path="res://BuildingInteriors/ELLTHall/Scenes/ellt.gd" id="1_xqrsn"]
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/temporary_player_interior.gd" id="2_nrusk"]
 [ext_resource type="AudioStream" uid="uid://ch6kn5xbrxmll" path="res://menu_sound_effects/footsteps2.mp3" id="3_nrwhj"]
 [ext_resource type="PackedScene" uid="uid://dcuyuccphbkf0" path="res://CustomBody.tscn" id="4_xh404"]
+[ext_resource type="Texture2D" uid="uid://dpu82sadgtivs" path="res://BuildingInteriors/ELLTHall/Assets/Streamers.png" id="5_3iitw"]
 [ext_resource type="Texture2D" uid="uid://cbx8wx4nvqjk6" path="res://BuildingInteriors/ELLTHall/Assets/Auditorium.png" id="5_b3fvk"]
+[ext_resource type="Script" path="res://BuildingInteriors/ELLTHall/Scenes/animated_sprite_2d.gd" id="6_gl16f"]
 [ext_resource type="Script" path="res://BuildingInteriors/ELLTHall/Scenes/elltcontrol.gd" id="6_ro2aj"]
 [ext_resource type="FontFile" uid="uid://baehao2e87qk1" path="res://Main Map/assets/m5x7.ttf" id="7_8ofil"]
+[ext_resource type="AudioStream" uid="uid://c522nt3obun8p" path="res://BuildingInteriors/ELLTHall/Assets/Applause.wav" id="10_77y7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7s4s3"]
 size = Vector2(24, 24)
@@ -52,6 +55,42 @@ _data = {
 "new_animation": SubResource("Animation_gctuh"),
 "walk_bob": SubResource("Animation_01ttk")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yoq7"]
+atlas = ExtResource("5_3iitw")
+region = Rect2(0, 0, 256, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylg2p"]
+atlas = ExtResource("5_3iitw")
+region = Rect2(256, 0, 256, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1t2w"]
+atlas = ExtResource("5_3iitw")
+region = Rect2(512, 0, 256, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxuyx"]
+atlas = ExtResource("5_3iitw")
+region = Rect2(768, 0, 256, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vd7v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yoq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylg2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1t2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxuyx")
+}],
+"loop": true,
+"name": &"new",
+"speed": 2.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwrbq"]
 size = Vector2(465, 276.5)
@@ -120,6 +159,9 @@ expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wgms"]
+size = Vector2(290, 176)
+
 [node name="Ellt" type="Node2D"]
 script = ExtResource("1_xqrsn")
 
@@ -155,6 +197,51 @@ libraries = {
 [node name="body_root" parent="TemporaryPlayer/CharacterVisuals" instance=ExtResource("4_xh404")]
 position = Vector2(606, 732)
 scale = Vector2(0.05, 0.05)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(170, -58)
+scale = Vector2(1, 0.378906)
+sprite_frames = SubResource("SpriteFrames_8vd7v")
+animation = &"new"
+frame_progress = 0.517079
+script = ExtResource("6_gl16f")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(447, -11)
+scale = Vector2(1, 0.378906)
+sprite_frames = SubResource("SpriteFrames_8vd7v")
+animation = &"new"
+frame_progress = 0.0661906
+script = ExtResource("6_gl16f")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(703, -65)
+scale = Vector2(1, 0.378906)
+sprite_frames = SubResource("SpriteFrames_8vd7v")
+animation = &"new"
+frame_progress = 0.959384
+script = ExtResource("6_gl16f")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(1172, 80)
+scale = Vector2(1, 0.378906)
+sprite_frames = SubResource("SpriteFrames_8vd7v")
+animation = &"new"
+frame_progress = 0.545119
+script = ExtResource("6_gl16f")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(939, 41)
+scale = Vector2(1, 0.378906)
+sprite_frames = SubResource("SpriteFrames_8vd7v")
+animation = &"new"
+frame_progress = 0.891831
+script = ExtResource("6_gl16f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(642, 394)
@@ -204,6 +291,7 @@ position = Vector2(645.5, 813)
 shape = SubResource("RectangleShape2D_vtjak")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(641.5, 753.5)
@@ -291,7 +379,101 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_0wtkv")
 text = "NO"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_77y7q")
+volume_db = 12.876
+
+[node name="UI2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI2"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -40.5
+offset_right = 88.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -277.0
+offset_top = -292.0
+offset_right = 279.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hwfn4")
+
+[node name="Label" type="Label" parent="UI2/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.325
+anchor_right = 0.5
+anchor_bottom = 0.325
+offset_left = -112.0
+offset_top = -12.35
+offset_right = 112.0
+offset_bottom = 40.65
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_8ofil")
+theme_override_font_sizes/font_size = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI2/Control/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -84.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="ButtonNo" type="Button" parent="UI2/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("7_8ofil")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_gwj7l")
+text = "YES"
+
+[node name="ButtonYes" type="Button" parent="UI2/Control/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("7_8ofil")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_0wtkv")
+text = "NO"
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(645, 308)
+shape = SubResource("RectangleShape2D_1wgms")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button2" to="UI/Control" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI2/Control/Panel/HBoxContainer/ButtonNo" to="UI2/Control" method="_on_button_pressed"]
+[connection signal="pressed" from="UI2/Control/Panel/HBoxContainer/ButtonYes" to="UI2/Control" method="_on_button_2_pressed"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d2_body_exited"]
