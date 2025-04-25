@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://c8n0vquj6jcn6"]
+[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://c8n0vquj6jcn6"]
 
 [ext_resource type="Texture2D" uid="uid://5xchgxt35y1o" path="res://Main Map/assets/pickedMedia1.png" id="2_4kjma"]
 [ext_resource type="Texture2D" uid="uid://0wam107gitcu" path="res://Main Map/assets/pixil-frame-0.png" id="2_ilvkn"]
@@ -26,8 +26,6 @@ tile_data = PackedInt32Array(0, 589827, 4, 65536, 589827, 5)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_67poy"]
 tile_data = PackedInt32Array(0, 851969, 2, 65536, 786433, 2, 131072, 720897, 2)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_v0dlh"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_e0uyq"]
 tile_data = PackedInt32Array(0, 851969, 3, 65536, 786433, 4)
@@ -2185,6 +2183,5 @@ pattern_11 = SubResource("TileMapPattern_6cusm")
 pattern_12 = SubResource("TileMapPattern_3wyen")
 pattern_13 = SubResource("TileMapPattern_e5ybd")
 pattern_14 = SubResource("TileMapPattern_67poy")
-pattern_15 = SubResource("TileMapPattern_v0dlh")
-pattern_16 = SubResource("TileMapPattern_e0uyq")
-pattern_17 = SubResource("TileMapPattern_1ira8")
+pattern_15 = SubResource("TileMapPattern_e0uyq")
+pattern_16 = SubResource("TileMapPattern_1ira8")
