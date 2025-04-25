@@ -47,6 +47,9 @@ func add_exp(amount: int):
 		current_exp -= get_exp_to_next_level(current_level)  
 		current_level += 1
 		Global.abilitiesMenu.levelup_abilities_update()
+		if current_level == 5:
+			PlayerData.achievements_unlocked[7] = true
+
 		#DEBUG
 		print("Leveled up! New level:", current_level)
 		
