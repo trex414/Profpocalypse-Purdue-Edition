@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://syawykhg523t"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_atai2"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_n3igp"]
+
+[sub_resource type="Resource" id="Resource_mrsr1"]
+script = ExtResource("2_n3igp")
+item_name = "Small Health Potion"
+amount = 1
+
+[resource]
+script = ExtResource("1_atai2")
+quest_name = "Movement Training: Part 1 – Walk Forward"
+description = "Take your first step into the unknown. Walk forward into adventure."
+prerequisites = Array[ExtResource("1_atai2")]([])
+rewards = Array[ExtResource("2_n3igp")]([SubResource("Resource_mrsr1")])
+is_completed = false
+pinned = false

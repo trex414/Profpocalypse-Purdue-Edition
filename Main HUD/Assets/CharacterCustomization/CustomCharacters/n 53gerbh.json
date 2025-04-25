@@ -1,0 +1,19 @@
+{
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_arm.png",
+	"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
+	"class_description": "The Gamer – Runs on Mountain Dew and memes. Talks in Discord jargon. Might be wearing pajamas at noon.",
+	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/gaming.png",
+	"face_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_head.png",
+	"features_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Face/face1.png",
+	"hair_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Blonde/blondeMan5.png",
+	"hand2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_hand.png",
+	"hand_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_hand.png",
+	"name": "\\n 53gerbh",
+	"neck_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 7/tint7_neck.png",
+	"pant2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsWhite_long.png",
+	"pant_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsWhite_long.png",
+	"shirt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/redShirt7.png",
+	"shoe1_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/TanShoe3.png",
+	"shoe2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/TanShoe3.png"
+}

@@ -1,0 +1,19 @@
+{
+	"arm2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_arm.png",
+	"arm_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_arm.png",
+	"belt_texture": "CharacterCustomization/kenney_modular-characters/PNG/belt.png",
+	"class_description": "The Pre-Med Machine – Shadowed a surgeon at 16, already worried about residency, and always smells faintly of hand sanitizer.",
+	"class_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/med.png",
+	"face_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_head.png",
+	"features_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Face/face2.png",
+	"hair_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Black/blackMan7.png",
+	"hand2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_hand.png",
+	"hand_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_hand.png",
+	"name": "smartboi",
+	"neck_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 3/tint3_neck.png",
+	"pant2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsLightBlue_long.png",
+	"pant_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsLightBlue_long.png",
+	"shirt_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/navyShirt7.png",
+	"shoe1_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/GreyShoe3.png",
+	"shoe2_texture": "res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/GreyShoe3.png"
+}

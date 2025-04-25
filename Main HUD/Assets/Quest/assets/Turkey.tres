@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://dx7l8s15ypgbk"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_p6ttt"]
+[ext_resource type="Resource" uid="uid://crhgb8fqeu1ij" path="res://Quest/assets/Doomsmore.tres" id="2_0miw7"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_s44xd"]
+
+[resource]
+script = ExtResource("1_p6ttt")
+quest_name = "Main Story: Prof Turkey"
+description = "Prof. Turkey demands recursive mastery and quick decisions. Defeat him to choose your spring course path."
+prerequisites = Array[ExtResource("1_p6ttt")]([ExtResource("2_0miw7")])
+rewards = Array[ExtResource("2_s44xd")]([])
+is_completed = false
+pinned = false
+priority = 0

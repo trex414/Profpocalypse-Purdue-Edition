@@ -1,0 +1,208 @@
+[gd_scene load_steps=13 format=3 uid="uid://b26j6v2hvyw03"]
+
+[ext_resource type="Script" path="res://Phone/Scripts/phone.gd" id="1_coi6o"]
+[ext_resource type="Texture2D" uid="uid://c0icqgx3rmp4u" path="res://MajorInformation/Assets/pngtree-pixel-phone-mobile-art-bit-png-image_4676859.png" id="1_xi4gp"]
+[ext_resource type="Texture2D" uid="uid://g7dwvpi01sb7" path="res://Phone/Assets/Screenshot 2025-04-12 at 10.45.25 AM.png" id="2_ksjhf"]
+[ext_resource type="Texture2D" uid="uid://cc5cm4fmffttr" path="res://Phone/Assets/8348232.png" id="3_lofl1"]
+[ext_resource type="Texture2D" uid="uid://cmcj7ty7cfe7k" path="res://Phone/Assets/ChatGPT Image Apr 12, 2025 at 11_18_39 AM.png" id="4_hgq7l"]
+[ext_resource type="Texture2D" uid="uid://crm42yod8uney" path="res://Trivia/assets/book_middle.png" id="5_yktve"]
+[ext_resource type="Texture2D" uid="uid://8gkswdnfgs64" path="res://Calendar/Assets/calendar.png" id="7_ip16o"]
+[ext_resource type="Texture2D" uid="uid://b6lisqu3ukjgm" path="res://Phone/Assets/ChatGPT Image Apr 12, 2025 at 11_34_58 AM.png" id="8_vlp4a"]
+[ext_resource type="Texture2D" uid="uid://beivn6fgsw0g2" path="res://Phone/Assets/images.png" id="9_1fxl8"]
+[ext_resource type="Texture2D" uid="uid://crl1paw412chb" path="res://Phone/Assets/7139531.png" id="10_egbf7"]
+[ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://menu_sound_effects/turn_page.wav" id="11_dqmw3"]
+[ext_resource type="Texture2D" uid="uid://47xj2ygipps2" path="res://Phone/Assets/red-close-icon-free-png.webp" id="11_ilrse"]
+
+[node name="Phone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_coi6o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.486
+anchor_top = 0.5
+anchor_right = 0.486
+anchor_bottom = 0.5
+offset_left = -188.08
+offset_top = -241.0
+offset_right = 186.92
+offset_bottom = 211.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.5
+offset_top = -348.0
+offset_right = 455.5
+offset_bottom = 320.0
+texture = ExtResource("1_xi4gp")
+
+[node name="CoursesButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 33.0
+offset_right = 127.0
+offset_bottom = 91.0
+texture_normal = ExtResource("2_ksjhf")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CoursesLabel" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 91.0
+offset_right = 124.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "courses"
+
+[node name="AbilitiesButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 34.0
+offset_right = 333.0
+offset_bottom = 98.0
+rotation = 0.00095058
+texture_normal = ExtResource("4_hgq7l")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AbilitiesLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 270.0
+offset_top = 93.0
+offset_right = 332.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Abilities"
+
+[node name="TriviaButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 299.0
+offset_right = 145.0
+offset_bottom = 348.0
+rotation = -0.00077435
+texture_normal = ExtResource("5_yktve")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TriviaLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 75.0
+offset_top = 348.0
+offset_right = 118.0
+offset_bottom = 371.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Trivia"
+
+[node name="AchievementsButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 30.0
+offset_right = 234.0
+offset_bottom = 95.0
+texture_normal = ExtResource("3_lofl1")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AchievementsLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 146.0
+offset_top = 92.0
+offset_right = 255.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Achievements"
+
+[node name="CalendarButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 169.0
+offset_right = 234.0
+offset_bottom = 231.0
+texture_normal = ExtResource("7_ip16o")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CalendarLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 170.0
+offset_top = 232.0
+offset_right = 240.0
+offset_bottom = 255.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Calendar"
+
+[node name="CollectionsButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 163.0
+offset_right = 129.0
+offset_bottom = 230.0
+texture_normal = ExtResource("8_vlp4a")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CollectionsLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 54.0
+offset_top = 231.0
+offset_right = 139.0
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Collections"
+
+[node name="SettingsButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 167.0
+offset_right = 344.0
+offset_bottom = 232.0
+texture_normal = ExtResource("9_1fxl8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SettingsLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 279.0
+offset_top = 235.0
+offset_right = 341.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Settings"
+
+[node name="QuestsButton" type="TextureButton" parent="CanvasLayer/Panel"]
+offset_left = 174.0
+offset_top = 292.0
+offset_right = 240.0
+offset_bottom = 350.0
+texture_normal = ExtResource("10_egbf7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="QuestsLabel" type="Label" parent="CanvasLayer/Panel"]
+offset_left = 180.0
+offset_top = 350.0
+offset_right = 234.0
+offset_bottom = 373.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Quests"
+
+[node name="CloseButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -28.0
+offset_right = 56.0
+offset_bottom = 12.0
+texture_normal = ExtResource("11_ilrse")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MajorInfoSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dqmw3")

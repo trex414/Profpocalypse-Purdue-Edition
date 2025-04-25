@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcuyuccphbkf0"]
+
+[ext_resource type="Texture2D" uid="uid://blflpkrquwcv3" path="res://CharacterCustomization/kenney_modular-characters/PNG/Shirts/navyShirt7.png" id="1_ujjnl"]
+[ext_resource type="Texture2D" uid="uid://byqj7omadlfof" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_neck.png" id="2_fh0cf"]
+[ext_resource type="Texture2D" uid="uid://bngo2cm5o1ake" path="res://CharacterCustomization/kenney_modular-characters/PNG/art.png" id="3_wfydn"]
+[ext_resource type="Texture2D" uid="uid://criqlfxv7jv48" path="res://CharacterCustomization/kenney_modular-characters/PNG/Pants/pantsGrey_long.png" id="4_7naxk"]
+[ext_resource type="Texture2D" uid="uid://cvflwiv8i45hk" path="res://CharacterCustomization/kenney_modular-characters/PNG/Shoes/RedShoe3.png" id="5_nwx6f"]
+[ext_resource type="Texture2D" uid="uid://iynb4fmr5ljm" path="res://CharacterCustomization/kenney_modular-characters/PNG/belt.png" id="6_21qn6"]
+[ext_resource type="Texture2D" uid="uid://dglf42x0tiofe" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_arm.png" id="7_ri2uo"]
+[ext_resource type="Texture2D" uid="uid://coenx7x4uvfv" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_hand.png" id="8_jly5g"]
+[ext_resource type="Texture2D" uid="uid://u557eal274pp" path="res://CharacterCustomization/kenney_modular-characters/PNG/Skin/Tint 1/tint1_head.png" id="9_pg54e"]
+[ext_resource type="Texture2D" uid="uid://bx7sjuy26uvob" path="res://CharacterCustomization/kenney_modular-characters/PNG/Face/face1.png" id="10_qpyxv"]
+[ext_resource type="Texture2D" uid="uid://uvls0s0rivqk" path="res://CharacterCustomization/kenney_modular-characters/PNG/Hair/Black/blackMan5.png" id="11_khhga"]
+
+[node name="body_root" type="Sprite2D"]
+position = Vector2(184, 30)
+scale = Vector2(0.5, 0.5)
+
+[node name="shirt" type="Sprite2D" parent="."]
+position = Vector2(789.333, 539.559)
+scale = Vector2(1, 1.00304)
+texture = ExtResource("1_ujjnl")
+
+[node name="neck" type="Sprite2D" parent="shirt"]
+position = Vector2(-4, -77.6755)
+texture = ExtResource("2_fh0cf")
+
+[node name="class" type="Sprite2D" parent="shirt"]
+position = Vector2(-3.33302, 18.3851)
+scale = Vector2(0.876302, 0.84243)
+texture = ExtResource("3_wfydn")
+
+[node name="pant" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(840, 714.353)
+texture = ExtResource("4_7naxk")
+
+[node name="pant2" type="Sprite2D" parent="pant"]
+texture_filter = 1
+position = Vector2(-102.667, 0)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("4_7naxk")
+
+[node name="shoe2" type="Sprite2D" parent="pant/pant2"]
+position = Vector2(41.3333, 93.1765)
+texture = ExtResource("5_nwx6f")
+
+[node name="belt" type="Sprite2D" parent="pant/pant2"]
+position = Vector2(-52, -74.8235)
+texture = ExtResource("6_21qn6")
+
+[node name="shoe" type="Sprite2D" parent="pant/pant2"]
+position = Vector2(-146.667, 93.1765)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("5_nwx6f")
+
+[node name="sleeve" type="Sprite2D" parent="."]
+position = Vector2(928, 523.765)
+texture = ExtResource("7_ri2uo")
+
+[node name="sleeve2" type="Sprite2D" parent="sleeve"]
+position = Vector2(-284, 6.10352e-05)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("7_ri2uo")
+
+[node name="hand2" type="Sprite2D" parent="sleeve/sleeve2"]
+position = Vector2(-360, 70.588)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("8_jly5g")
+
+[node name="hand" type="Sprite2D" parent="sleeve/sleeve2"]
+position = Vector2(82.6667, 64.941)
+texture = ExtResource("8_jly5g")
+
+[node name="face" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(782, 318)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_pg54e")
+
+[node name="features" type="Sprite2D" parent="face"]
+texture_filter = 1
+position = Vector2(-2.66669, 3.52942)
+scale = Vector2(1.11565, 1.18954)
+texture = ExtResource("10_qpyxv")
+
+[node name="hair" type="Sprite2D" parent="face/features"]
+texture_filter = 1
+position = Vector2(8.36582, -41.077)
+scale = Vector2(0.97119, 0.888101)
+texture = ExtResource("11_khhga")

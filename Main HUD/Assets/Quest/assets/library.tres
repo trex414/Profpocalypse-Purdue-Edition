@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://bwixappg7vgbv"]
+
+[ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_a0jiq"]
+[ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_7h6v5"]
+[ext_resource type="Resource" uid="uid://bcm100v01ptc0" path="res://Quest/assets/landmarks.tres" id="2_28872"]
+
+[resource]
+script = ExtResource("1_a0jiq")
+quest_name = "Campus Curiosity Part 2: The Library Tour"
+description = ""
+prerequisites = Array[ExtResource("1_a0jiq")]([ExtResource("2_28872")])
+rewards = Array[ExtResource("2_7h6v5")]([])
+is_completed = false
+pinned = false
+priority = 0

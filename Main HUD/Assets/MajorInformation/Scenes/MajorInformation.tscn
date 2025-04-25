@@ -1,0 +1,166 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvrxgp7n4t4jb"]
+
+[ext_resource type="Script" path="res://MajorInformation/Script/majorInformation.gd" id="1_6ocl2"]
+[ext_resource type="Texture2D" uid="uid://c0icqgx3rmp4u" path="res://MajorInformation/Assets/pngtree-pixel-phone-mobile-art-bit-png-image_4676859.png" id="2_kekh8"]
+[ext_resource type="Texture2D" uid="uid://diu8tqveqey0c" path="res://MajorInformation/Assets/PrerequisiteFlowchart.png" id="2_o3dfs"]
+[ext_resource type="Texture2D" uid="uid://47xj2ygipps2" path="res://Phone/Assets/red-close-icon-free-png.webp" id="4_5ut4l"]
+[ext_resource type="AudioStream" uid="uid://crl83yd5ucwlw" path="res://menu_sound_effects/turn_page.wav" id="4_ble87"]
+
+[sub_resource type="Theme" id="Theme_tiob2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_42e1n"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Control-MajorInformation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ocl2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -218.5
+offset_right = 163.5
+offset_bottom = 218.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_tiob2")
+
+[node name="PhoneBackground" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.501
+anchor_right = 0.498
+anchor_bottom = 0.501
+offset_left = -457.846
+offset_top = -362.937
+offset_right = 458.154
+offset_bottom = 363.063
+texture = ExtResource("2_kekh8")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 8.0
+offset_right = 312.0
+offset_bottom = 35.0
+max_value = 8.0
+
+[node name="PercentComplete" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 145.0
+offset_bottom = 54.0
+text = "Percent 
+Complete:"
+label_settings = SubResource("LabelSettings_42e1n")
+
+[node name="PrerequisiteFlowchart" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 404.0
+offset_right = 291.0
+offset_bottom = 435.0
+text = "Show Prerequistie Flowchart"
+
+[node name="CompleteSemester" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 56.0
+offset_right = 162.0
+offset_bottom = 87.0
+text = "Complete Semester"
+
+[node name="NewSemester" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 57.0
+offset_right = 324.0
+offset_bottom = 88.0
+text = "New Semester"
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -2.5
+offset_top = 87.5
+offset_right = 332.5
+offset_bottom = 404.5
+tab_alignment = 1
+current_tab = 0
+
+[node name="CurrentSemester" type="GridContainer" parent="CanvasLayer/Panel/TabContainer"]
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 0
+
+[node name="PlanOfStudy" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VboxPlanOfStudy" type="VBoxContainer" parent="CanvasLayer/Panel/TabContainer/PlanOfStudy"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Professors" type="ScrollContainer" parent="CanvasLayer/Panel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxProfessors" type="VBoxContainer" parent="CanvasLayer/Panel/TabContainer/Professors"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProfessorInfoLabel" type="Label" parent="CanvasLayer/Panel/TabContainer/Professors/VBoxProfessors"]
+layout_mode = 2
+
+[node name="PrerequisiteFlowchartTexture" type="TextureRect" parent="CanvasLayer/Panel"]
+visible = false
+layout_mode = 0
+offset_left = -182.5
+offset_top = 42.5
+offset_right = 523.5
+offset_bottom = 399.5
+texture = ExtResource("2_o3dfs")
+expand_mode = 1
+
+[node name="PopupPanel" type="PopupPanel" parent="CanvasLayer/Panel"]
+initial_position = 1
+size = Vector2i(285, 350)
+visible = true
+min_size = Vector2i(285, 350)
+max_size = Vector2i(285, 350)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/PopupPanel"]
+offset_left = 19.0
+offset_top = 19.0
+offset_right = 266.0
+offset_bottom = 331.0
+
+[node name="CloseButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = -11.5
+offset_top = -43.5
+offset_right = 28.5
+offset_bottom = -3.5
+texture_normal = ExtResource("4_5ut4l")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MajorInfoSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ble87")

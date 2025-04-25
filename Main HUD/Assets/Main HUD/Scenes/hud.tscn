@@ -1,0 +1,343 @@
+[gd_scene load_steps=14 format=3 uid="uid://ixadnea0fvxk"]
+
+[ext_resource type="Script" path="res://Main HUD/Script/MainHUD.gd" id="1_3f0v0"]
+[ext_resource type="Script" path="res://Main HUD/Script/health_bar.gd" id="2_613hy"]
+[ext_resource type="Script" path="res://Main HUD/Script/exp_bar.gd" id="3_kvwqi"]
+[ext_resource type="AudioStream" uid="uid://w6b2pnrge31p" path="res://menu_sound_effects/health-loss.wav" id="4_cjxvh"]
+[ext_resource type="AudioStream" uid="uid://dpbhwh0np56k0" path="res://menu_sound_effects/health-gain.wav" id="4_pm12q"]
+[ext_resource type="AudioStream" uid="uid://chbpgu2c322kd" path="res://menu_sound_effects/ring_inventory.wav" id="6_mcdkk"]
+[ext_resource type="AudioStream" uid="uid://bth8sm4lqrecc" path="res://menu_sound_effects/EXP-loss.wav" id="7_6441y"]
+[ext_resource type="Texture2D" uid="uid://cbm3do06va5xi" path="res://Settings/assets/pixel-art-ancient-scroll.jpg" id="8_6048b"]
+[ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="8_f58gb"]
+[ext_resource type="AudioStream" uid="uid://bc0e3qvmo0t6d" path="res://menu_sound_effects/sword-clash-241729.mp3" id="9_3h2x0"]
+[ext_resource type="AudioStream" uid="uid://d4fmsirq23ycq" path="res://menu_sound_effects/stun.wav" id="10_j0hkp"]
+[ext_resource type="AudioStream" uid="uid://bc8egw5tos4l6" path="res://menu_sound_effects/spell-bubble.wav" id="12_y1d3f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vvx0"]
+
+[node name="Control - HUD" type="Control"]
+layout_mode = 3
+anchor_right = 1.014
+anchor_bottom = 1.061
+offset_left = 10.0
+offset_top = 11.0
+offset_right = -6.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3f0v0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 7
+
+[node name="Item Bar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -176.0
+offset_top = -64.0
+offset_right = 176.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button5" type="Button" parent="CanvasLayer/Item Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Potion Bar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Potion Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="CanvasLayer/Potion Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Health_Bar" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_613hy")
+
+[node name="Health" type="ProgressBar" parent="CanvasLayer/Health_Bar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -51.0
+offset_right = 376.0
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4vvx0")
+step = 1.0
+show_percentage = false
+
+[node name="Lose_Health" type="Button" parent="CanvasLayer/Health_Bar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+offset_right = 179.0
+offset_bottom = -53.0
+grow_vertical = 0
+text = "Lose Health"
+
+[node name="HealthLossSFX" type="AudioStreamPlayer" parent="CanvasLayer/Health_Bar"]
+stream = ExtResource("4_cjxvh")
+volume_db = -2.0
+pitch_scale = 4.0
+
+[node name="HealthGainSFX" type="AudioStreamPlayer" parent="CanvasLayer/Health_Bar"]
+stream = ExtResource("4_pm12q")
+volume_db = -2.0
+pitch_scale = 4.0
+
+[node name="health" type="Label" parent="CanvasLayer/Health_Bar"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -40.0
+offset_right = 355.0
+offset_bottom = 11.0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="EXP_Bar" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_kvwqi")
+
+[node name="EXP" type="ProgressBar" parent="CanvasLayer/EXP_Bar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -112.0
+offset_right = 184.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4vvx0")
+max_value = 5.0
+step = 1.0
+show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/EXP_Bar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -112.0
+offset_right = 184.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "LEVEL 1"
+
+[node name="Lose_EXP" type="Button" parent="CanvasLayer/EXP_Bar"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -224.0
+offset_right = 179.0
+offset_bottom = -165.0
+grow_vertical = 0
+text = "Lose EXP"
+
+[node name="EXPGainSFX" type="AudioStreamPlayer" parent="CanvasLayer/EXP_Bar"]
+stream = ExtResource("6_mcdkk")
+volume_db = -2.0
+
+[node name="EXPLossSFX" type="AudioStreamPlayer" parent="CanvasLayer/EXP_Bar"]
+stream = ExtResource("7_6441y")
+volume_db = -2.0
+
+[node name="PinnedQuestContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -33.0
+offset_right = -7.0
+offset_bottom = 34.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PinnedQuestContainer"]
+layout_mode = 2
+text = "Pinned Quests"
+horizontal_alignment = 2
+
+[node name="QuestList" type="VBoxContainer" parent="CanvasLayer/PinnedQuestContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CollectionTracker" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 300.0
+offset_top = 70.0
+offset_right = 1171.0
+offset_bottom = 776.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_6048b")
+
+[node name="Item Collection" type="Label" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 174.0
+offset_right = 806.0
+offset_bottom = 470.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CollectionTracker/ScrollContainer"]
+layout_mode = 2
+
+[node name="Close Button" type="Button" parent="CanvasLayer/CollectionTracker"]
+layout_mode = 0
+offset_left = 812.0
+offset_top = 180.0
+offset_right = 882.0
+offset_bottom = 222.0
+theme_override_font_sizes/font_size = 20
+text = "Close"
+
+[node name="CollectionButton" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -117.0
+offset_right = -9.0
+offset_bottom = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(-20, -20)
+theme_override_font_sizes/font_size = 24
+text = "Collections
+"
+
+[node name="SpeedBoostTimer" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 490.0
+offset_right = 770.0
+offset_bottom = 51.0
+show_percentage = false
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/SpeedBoostTimer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -13.5
+offset_right = 7.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathOverlay" type="CanvasLayer" parent="CanvasLayer"]
+
+[node name="fade" type="ColorRect" parent="CanvasLayer/DeathOverlay"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="death" type="Label" parent="CanvasLayer/DeathOverlay/fade"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -25.5
+offset_right = 8.5
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttackMissSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_f58gb")
+
+[node name="WeaponBreakSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3h2x0")
+pitch_scale = 2.0
+
+[node name="StunSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_j0hkp")
+
+[node name="PotionSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_y1d3f")
+
+[node name="DamageSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cjxvh")
+volume_db = -1.0
+pitch_scale = 4.0
