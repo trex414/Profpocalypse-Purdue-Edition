@@ -51,6 +51,7 @@ func _on_area_2d2_body_exited(body: Node2D) -> void:
 
 
 func _on_yes_pressed():
+	graduated = true
 	fade_and_do_something()
 
 func _on_no_pressed():
@@ -75,5 +76,6 @@ func fade_and_do_something():
 	streamer2.visible = true
 	streamer3.visible = true
 	streamer4.visible = true
+	music.play()
 	music.play()
 	fade_in()
