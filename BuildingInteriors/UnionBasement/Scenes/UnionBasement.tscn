@@ -8573,6 +8573,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -8598,6 +8599,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -8831,6 +8833,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -8856,6 +8859,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9111,6 +9115,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9136,6 +9141,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9405,6 +9411,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9430,6 +9437,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9625,6 +9633,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9650,6 +9659,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9846,6 +9856,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9871,6 +9882,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
