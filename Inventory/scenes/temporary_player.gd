@@ -57,21 +57,29 @@ func _physics_process(delta):
 		direction.x += 1
 		PlayerData.position.x += 1
 		PlayerData.move_right_count += 1
+		if QuestManager:
+			QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 		PlayerData.position.x -= 1
 		PlayerData.move_left_count += 1
+		if QuestManager:
+			QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
 		PlayerData.position.y += 1
 		PlayerData.move_backward_count += 1
+		if QuestManager:
+			QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
 		PlayerData.position.y -= 1
 		PlayerData.move_forward_count += 1
+		if QuestManager:
+			QuestManager.mark_ready_to_complete("Movement Mastery: Walk All Ways")
 		is_moving = true
 
 	velocity = direction.normalized() * current_speed

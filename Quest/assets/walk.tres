@@ -1,13 +1,24 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://c67fg21o5b8yw"]
+[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://c67fg21o5b8yw"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_bxe6l"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_swyso"]
+
+[sub_resource type="Resource" id="Resource_d6b3d"]
+script = ExtResource("2_swyso")
+item_name = "Large Speed Potion"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_pnuts"]
+script = ExtResource("2_swyso")
+item_name = "Medium Strength Potion"
+amount = 1
 
 [resource]
 script = ExtResource("1_bxe6l")
 quest_name = "Movement Mastery: Walk All Ways"
 description = ""
 prerequisites = Array[ExtResource("1_bxe6l")]([])
-rewards = Array[ExtResource("2_swyso")]([])
+rewards = Array[ExtResource("2_swyso")]([SubResource("Resource_d6b3d"), SubResource("Resource_pnuts")])
 is_completed = false
 pinned = false
+priority = 0

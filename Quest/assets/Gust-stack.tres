@@ -1,9 +1,7 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://duw5l7dvtutgo"]
+[gd_resource type="Resource" script_class="Quest" load_steps=4 format=3 uid="uid://duw5l7dvtutgo"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_ryxtc"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="2_q1g7n"]
-[ext_resource type="Resource" uid="uid://dmm0g6lrq02a1" path="res://Quest/assets/Posadabytes.tres" id="2_xkyy7"]
-[ext_resource type="Resource" uid="uid://dppoxjqf5ab86" path="res://Quest/assets/Gust-codes.tres" id="3_ipw6s"]
 
 [sub_resource type="Resource" id="Resource_3btg7"]
 script = ExtResource("2_q1g7n")
@@ -13,8 +11,8 @@ amount = 1
 [resource]
 script = ExtResource("1_ryxtc")
 quest_name = "Main Story: Prof Gust-Stack"
-description = " Face your toughest logic yet—puzzles entwined with combat. Solve and survive Prof. Gust-Stack’s trial."
-prerequisites = Array[ExtResource("1_ryxtc")]([ExtResource("2_xkyy7"), ExtResource("3_ipw6s")])
+description = "Test FINAL"
+prerequisites = Array[ExtResource("1_ryxtc")]([])
 rewards = Array[ExtResource("2_q1g7n")]([SubResource("Resource_3btg7")])
 is_completed = false
 pinned = false

@@ -96,6 +96,9 @@ func complete_quest(name: String):
 				var exp_bar = hud.get_node_or_null("CanvasLayer/EXP_Bar")
 				if exp_bar:
 					exp_bar.add_exp(1)  # 🔥 Give 5 EXP (or whatever you want)
+			if (name == "Main Story: Prof Gust-Stack" or name == "Main Story: Prof AlgoKnight"):
+				get_tree().change_scene_to_file("res://BuildingInteriors/ELLTHall/Scenes/ELLT.tscn")
+				
 				
 		if quest1.pinned:
 			unpin_quest(quest1)
@@ -181,8 +184,11 @@ func mark_ready_to_complete(name: String):
 		"Movement Mastery: Walk All Ways":
 			if is_movement_mastery_ready():
 				ready_to_complete[name] = true
+				# test
+				ready_to_complete["Main Story: Prof Gust-Stack"] = true
 				if name not in PlayerData.ready_to_complete:
 					PlayerData.ready_to_complete.append(name)
+					PlayerData.ready_to_complete.append("Main Story: Prof Gust-Stack")
 			else:
 				return
 		"Campus Curiosity Part 1: Landmarks of Lore":
