@@ -13,7 +13,7 @@ amount = 1
 [resource]
 script = ExtResource("1_3ayns")
 quest_name = "Main Story: Prof PosadaBytes"
-description = " Ice flows through his binary. Face chilling concepts and win your first high-stakes battle."
+description = "Right next to LYNN which is the vet school"
 prerequisites = Array[ExtResource("1_3ayns")]([ExtResource("2_bwo5j"), ExtResource("3_f0pau")])
 rewards = Array[ExtResource("2_si0bx")]([SubResource("Resource_cmus3")])
 is_completed = false

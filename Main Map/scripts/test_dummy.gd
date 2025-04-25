@@ -92,11 +92,11 @@ func _on_body_entered(body):
 
 	# KernelComer → requires Gust-Stack
 	elif enemy_name == "Prof KernelComer":
-		if QuestManager.is_quest_completed("Main Story: Prof Gust-Stack"):
+		if QuestManager.is_quest_completed("Main Story: Prof Gust-Codes"):
 			trigger_cutscene()
 		else:
 			norm = 0
-			show_locked_message("Must defeat Prof Gust-Stack first!")
+			show_locked_message("Must defeat Prof Gust-Codes first!")
 
 	# CodeZhang → requires PosadaBytes
 	elif enemy_name == "Prof CodeZhang":

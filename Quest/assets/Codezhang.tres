@@ -12,7 +12,7 @@ amount = 1
 [resource]
 script = ExtResource("1_p3ovt")
 quest_name = "Main Story: Prof CodeZhang"
-description = " It’s a two-front war. Fight Prof. CodeZhang and their TA in tandem in this coordination-based battle."
+description = "Right next to FSTC"
 prerequisites = Array[ExtResource("1_p3ovt")]([ExtResource("2_hvvf1")])
 rewards = Array[ExtResource("2_filn7")]([SubResource("Resource_xfgxj")])
 is_completed = false
