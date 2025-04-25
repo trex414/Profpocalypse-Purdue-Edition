@@ -469,6 +469,14 @@ text = "NO"
 position = Vector2(645, 308)
 shape = SubResource("RectangleShape2D_1wgms")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+offset_top = -222.0
+offset_right = 1527.0
+offset_bottom = 1090.0
+color = Color(0.000693898, 0.000693898, 0.000693898, 1)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="UI/Control/Panel/HBoxContainer/Button" to="UI/Control" method="_on_button_pressed"]

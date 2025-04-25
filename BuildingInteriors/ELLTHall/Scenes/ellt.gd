@@ -2,6 +2,8 @@ extends Node2D
 
 var entered = false
 var entered2 = true
+var graduated = false
+@onready var fade_rect = $ColorRect
 @onready var exitpop = $UI/Control
 @onready var exitpoplabel = $UI/Control/Panel/Label
 @onready var streamer = $AnimatedSprite2D
@@ -40,7 +42,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	
 
 func _on_area_2d2_body_entered(body: Node2D) -> void:
-	if entered2:
+	if entered2 && !graduated:
 		control.visible = true
 
 func _on_area_2d2_body_exited(body: Node2D) -> void:
@@ -49,14 +51,29 @@ func _on_area_2d2_body_exited(body: Node2D) -> void:
 
 
 func _on_yes_pressed():
-	control.visible = false
+	fade_and_do_something()
 
+func _on_no_pressed():
+	control.visible = false
+	
+	
+func fade_out():
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 1.0, 1.0)  # 1 sec fade to black
+
+func fade_in():
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 0.0, 1.0)  # 1 sec fade back to visible
+
+func fade_and_do_something():
+	control.visible = false
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 1.0, 1.0)  # Fade out
+	await tween.finished
 	streamer.visible = true
 	streamer1.visible = true
 	streamer2.visible = true
 	streamer3.visible = true
 	streamer4.visible = true
 	music.play()
-
-func _on_no_pressed():
-	control.visible = false
+	fade_in()
