@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=4 uid="uid://cxpsp1ciqflpk"]
+[gd_scene load_steps=126 format=4 uid="uid://cxpsp1ciqflpk"]
 
 [ext_resource type="Script" path="res://BuildingInteriors/Scenes/interior_map.gd" id="1_f418g"]
 [ext_resource type="Texture2D" uid="uid://dirbyuo6nw0nh" path="res://Main Map/assets/RF_Catacombs_v1.0/mainlevbuild.png" id="2_qagjt"]
@@ -29,13 +29,18 @@
 [ext_resource type="Texture2D" uid="uid://buhbkt74i28n5" path="res://BuildingInteriors/UnionBasement/Assets/Person15.png" id="23_owp6w"]
 [ext_resource type="Texture2D" uid="uid://cl7idmk8tfjgd" path="res://BuildingInteriors/UnionBasement/Assets/Person16.png" id="24_8esai"]
 [ext_resource type="Texture2D" uid="uid://d2ynwf2istyki" path="res://BuildingInteriors/UnionBasement/Assets/Walkons.png" id="26_5pnvl"]
+[ext_resource type="Script" path="res://BuildingInteriors/UnionBasement/Scripts/Students.gd" id="26_gb73t"]
 [ext_resource type="Script" path="res://BuildingInteriors/UnionBasement/Scripts/UnionMenus.gd" id="26_khbtt"]
+[ext_resource type="Texture2D" uid="uid://5b47mnssqyel" path="res://BuildingInteriors/UnionBasement/Assets/ChatGPT_Image_Apr_25__2025_at_02_14_52_AM-removebg-preview copy 2.png" id="27_8o037"]
 [ext_resource type="Texture2D" uid="uid://buxjx4vkmot5o" path="res://BuildingInteriors/UnionBasement/Assets/sushiboss.png" id="27_jxdj1"]
 [ext_resource type="Texture2D" uid="uid://7jmqedh7bccq" path="res://BuildingInteriors/UnionBasement/Assets/tendersloveandchicken.png" id="28_6hvju"]
 [ext_resource type="Texture2D" uid="uid://ctn5hkes5gbnr" path="res://Inventory/assets/Potions/Small Speed Potion.png" id="28_6w5i1"]
+[ext_resource type="Texture2D" uid="uid://ninokkgpmgv" path="res://BuildingInteriors/UnionBasement/Assets/ChatGPT_Image_Apr_25__2025_at_02_14_52_AM-removebg-preview.png" id="28_qj430"]
 [ext_resource type="Texture2D" uid="uid://bg1g5c2uo7bsg" path="res://Inventory/assets/Potions/Medium Speed Potion.png" id="29_a3ev2"]
+[ext_resource type="Texture2D" uid="uid://cbkkn2cnrqvb5" path="res://BuildingInteriors/UnionBasement/Assets/ChatGPT_Image_Apr_25__2025_at_02_14_52_AM-removebg-preview copy 3.png" id="29_b31gx"]
 [ext_resource type="Texture2D" uid="uid://0lsaqduhrpg3" path="res://BuildingInteriors/UnionBasement/Assets/rosemarket.png" id="29_q51db"]
 [ext_resource type="Texture2D" uid="uid://dabns3uupofh" path="res://Inventory/assets/Potions/Large Speed Potion.png" id="30_1dxjf"]
+[ext_resource type="Texture2D" uid="uid://cwhbramy8hgmi" path="res://BuildingInteriors/UnionBasement/Assets/ChatGPT_Image_Apr_25__2025_at_02_14_52_AM-removebg-preview copy.png" id="30_482vc"]
 [ext_resource type="Texture2D" uid="uid://cdj0amfkirwj8" path="res://BuildingInteriors/UnionBasement/Assets/burgersandfries.png" id="30_n3rqf"]
 [ext_resource type="Texture2D" uid="uid://dy5g74i3jjbkk" path="res://BuildingInteriors/UnionBasement/Assets/zen.png" id="31_7ma7b"]
 [ext_resource type="Texture2D" uid="uid://kg4ha61r8bev" path="res://Inventory/assets/Potions/Wings of Zephyr.png" id="31_w2dj8"]
@@ -6954,7 +6959,7 @@ size = Vector2(22, 57.5)
 size = Vector2(20, 51.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xenf"]
-size = Vector2(20, 54)
+size = Vector2(30, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_giqur"]
 size = Vector2(17, 52)
@@ -7981,6 +7986,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="TendersEmployee3" type="Node2D" parent="."]
+position = Vector2(-9, -4)
 script = ExtResource("9_15lc6")
 
 [node name="TextureRect13" type="TextureRect" parent="TendersEmployee3"]
@@ -8194,6 +8200,187 @@ offset_top = 418.0
 offset_right = -271.0
 offset_bottom = 430.0
 texture_normal = ExtResource("20_mjelk")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Student1" type="Node2D" parent="."]
+script = ExtResource("26_gb73t")
+
+[node name="TextureRect11" type="TextureRect" parent="Student1"]
+offset_left = 698.0
+offset_top = 474.0
+offset_right = 730.0
+offset_bottom = 543.0
+texture = ExtResource("27_8o037")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Student1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Student1/Area2D"]
+position = Vector2(714, 512.5)
+shape = SubResource("RectangleShape2D_2xenf")
+
+[node name="SpeechBubble" type="TextureRect" parent="Student1"]
+offset_left = 612.0
+offset_top = 430.0
+offset_right = 700.0
+offset_bottom = 518.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="Student1"]
+offset_left = 624.0
+offset_top = 447.0
+offset_right = 691.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="Student1"]
+offset_left = 668.0
+offset_top = 490.0
+offset_right = 679.0
+offset_bottom = 501.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Student2" type="Node2D" parent="."]
+script = ExtResource("26_gb73t")
+
+[node name="TextureRect11" type="TextureRect" parent="Student2"]
+offset_left = 73.0
+offset_top = 582.0
+offset_right = 103.0
+offset_bottom = 639.0
+texture = ExtResource("28_qj430")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Student2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Student2/Area2D"]
+position = Vector2(87, 614)
+shape = SubResource("RectangleShape2D_2xenf")
+
+[node name="SpeechBubble" type="TextureRect" parent="Student2"]
+offset_left = 91.0
+offset_top = 510.0
+offset_right = 179.0
+offset_bottom = 598.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="Student2"]
+offset_left = 103.0
+offset_top = 527.0
+offset_right = 170.0
+offset_bottom = 569.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Walk-Ons?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="Student2"]
+offset_left = 117.0
+offset_top = 569.0
+offset_right = 128.0
+offset_bottom = 580.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Student3" type="Node2D" parent="."]
+script = ExtResource("26_gb73t")
+
+[node name="TextureRect11" type="TextureRect" parent="Student3"]
+offset_left = -31.0
+offset_top = -57.0
+offset_right = -2.0
+offset_bottom = 5.0
+texture = ExtResource("29_b31gx")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Student3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Student3/Area2D"]
+position = Vector2(-16, -28)
+shape = SubResource("RectangleShape2D_2xenf")
+
+[node name="SpeechBubble" type="TextureRect" parent="Student3"]
+offset_left = -10.0
+offset_top = -120.0
+offset_right = 78.0
+offset_bottom = -32.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+flip_h = true
+
+[node name="SpeechText" type="Label" parent="Student3"]
+offset_left = 2.0
+offset_top = -103.0
+offset_right = 69.0
+offset_bottom = -61.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Walk-Ons?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="Student3"]
+offset_left = 16.0
+offset_top = -61.0
+offset_right = 27.0
+offset_bottom = -50.0
+texture_normal = ExtResource("19_abw3k")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Student4" type="Node2D" parent="."]
+script = ExtResource("26_gb73t")
+
+[node name="TextureRect11" type="TextureRect" parent="Student4"]
+offset_left = 740.0
+offset_top = -43.0
+offset_right = 762.0
+offset_bottom = 15.0
+texture = ExtResource("30_482vc")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Student4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Student4/Area2D"]
+position = Vector2(750, -11)
+shape = SubResource("RectangleShape2D_2xenf")
+
+[node name="SpeechBubble" type="TextureRect" parent="Student4"]
+offset_left = 653.0
+offset_top = -95.0
+offset_right = 741.0
+offset_bottom = -7.0
+texture = ExtResource("11_c4p5c")
+expand_mode = 1
+
+[node name="SpeechText" type="Label" parent="Student4"]
+offset_left = 665.0
+offset_top = -78.0
+offset_right = 732.0
+offset_bottom = -36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Would you like to purchase from Walk-Ons?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="yesButton" type="TextureButton" parent="Student4"]
+offset_left = 679.0
+offset_top = -36.0
+offset_right = 690.0
+offset_bottom = -25.0
+texture_normal = ExtResource("19_abw3k")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -8572,6 +8759,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -8597,6 +8785,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="BurgersAndFries/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -8829,6 +9018,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -8854,6 +9044,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="RoseMarket/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9108,6 +9299,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9133,6 +9325,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="SushiBoss/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9401,6 +9594,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9426,6 +9620,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="TendersLoveAndChicken/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9621,6 +9816,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9646,6 +9842,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="WalkOns/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
@@ -9841,6 +10038,7 @@ offset_bottom = 37.0
 text = "You bought an item!"
 
 [node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/Purchased"]
+layout_mode = 0
 offset_left = 178.0
 offset_top = 10.0
 offset_right = 212.0
@@ -9866,6 +10064,7 @@ text = "Not enough Study Tokens!
 "
 
 [node name="CloseButton" type="TextureButton" parent="Zen/CanvasLayer/NotEnough"]
+layout_mode = 0
 offset_left = 230.0
 offset_top = 6.0
 offset_right = 264.0
