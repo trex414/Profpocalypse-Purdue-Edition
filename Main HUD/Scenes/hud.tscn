@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dpbhwh0np56k0" path="res://menu_sound_effects/health-gain.wav" id="4_pm12q"]
 [ext_resource type="AudioStream" uid="uid://chbpgu2c322kd" path="res://menu_sound_effects/ring_inventory.wav" id="6_mcdkk"]
 [ext_resource type="AudioStream" uid="uid://bth8sm4lqrecc" path="res://menu_sound_effects/EXP-loss.wav" id="7_6441y"]
-[ext_resource type="Texture2D" uid="uid://cbm3do06va5xi" path="res://Settings/assets/pixel-art-ancient-scroll.jpg" id="8_6048b"]
+[ext_resource type="Texture2D" uid="uid://cbm3do06va5xi" path="res://BuildingInteriors/ELLTHall/Assets/pixel-art-ancient-scroll.jpg" id="8_6048b"]
 [ext_resource type="AudioStream" uid="uid://iunu3uby3wl5" path="res://menu_sound_effects/whoosh-motion-243505.mp3" id="8_f58gb"]
 [ext_resource type="AudioStream" uid="uid://bc0e3qvmo0t6d" path="res://menu_sound_effects/sword-clash-241729.mp3" id="9_3h2x0"]
 [ext_resource type="AudioStream" uid="uid://d4fmsirq23ycq" path="res://menu_sound_effects/stun.wav" id="10_j0hkp"]

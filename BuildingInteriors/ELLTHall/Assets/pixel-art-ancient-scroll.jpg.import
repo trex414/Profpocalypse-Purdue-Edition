@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbm3do06va5xi"
-path="res://.godot/imported/pixel-art-ancient-scroll.jpg-8f9b970a76bf286eb5218304ac16a887.ctex"
+path="res://.godot/imported/pixel-art-ancient-scroll.jpg-e76714eaf82478bb6c0bcb8d3e40e916.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Settings/assets/pixel-art-ancient-scroll.jpg"
-dest_files=["res://.godot/imported/pixel-art-ancient-scroll.jpg-8f9b970a76bf286eb5218304ac16a887.ctex"]
+source_file="res://BuildingInteriors/ELLTHall/Assets/pixel-art-ancient-scroll.jpg"
+dest_files=["res://.godot/imported/pixel-art-ancient-scroll.jpg-e76714eaf82478bb6c0bcb8d3e40e916.ctex"]
 
 [params]
 
