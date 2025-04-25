@@ -16,7 +16,7 @@ amount = 1
 
 [resource]
 script = ExtResource("1_fwmts")
-quest_name = "Main Story: Prof Sel-key"
+quest_name = "Main Story: Prof Sel-Key"
 description = " To unlock the next stage, outsmart Prof. Sel-key’s logic puzzle and conquer his memory-based challenges."
 prerequisites = Array[ExtResource("1_fwmts")]([ExtResource("2_2qysd")])
 rewards = Array[ExtResource("2_diah6")]([SubResource("Resource_ihs6m"), SubResource("Resource_bdlrq")])

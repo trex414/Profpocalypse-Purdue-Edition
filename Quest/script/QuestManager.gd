@@ -64,7 +64,9 @@ func _ready():
 	add_quest(landmark)
 	add_quest(prof_res)
 	
-	
+	for quest_name in PlayerData.ready_to_complete:
+		ready_to_complete[quest_name] = true
+
 
 	
 	for quest in all_quests.values():

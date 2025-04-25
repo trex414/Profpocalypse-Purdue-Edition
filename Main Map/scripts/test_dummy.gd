@@ -35,7 +35,7 @@ func _on_body_entered(body):
 
 	# Sel-key → requires Doomsmore
 	elif enemy_name == "Prof Sel-Key":
-		print("inininin")
+		print(PlayerData.completed_quests)
 		if QuestManager.is_quest_completed("Main Story: Prof Doomsmore"):
 			trigger_cutscene()
 		else:

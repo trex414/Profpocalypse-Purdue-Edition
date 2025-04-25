@@ -78,6 +78,8 @@ var visited_hicks_notes := false
 var active_potion_type: String = ""
 var active_speed_boost: float = 0.0
 var temp_strength_bonus: int = 0
+var enemies_defeated: int = 0
+
 
 
 #NPC Rewards
@@ -111,6 +113,7 @@ func get_game_state():
 			"active_potion_type": active_potion_type,
 			"active_speed_boost": active_speed_boost,
 			"temp_strength_bonus": temp_strength_bonus,
+			"enemies_defeated": enemies_defeated,
 
 		},
 		"keybindings": {
@@ -249,6 +252,10 @@ func apply_game_state(data):
 		if "npc_rewards" in data:
 			npc_rewards = data.npc_rewards
 			
+		if "enemies_defeated" in player_data:
+			enemies_defeated = player_data.enemies_defeated
+
+			
 	if "keybindings" in data:
 		var key_bindings = data["keybindings"]
 		
@@ -266,6 +273,7 @@ func apply_game_state(data):
 			
 		if "move_left" in key_bindings:
 			move_left = key_bindings.move_left
+		
 
 
 
@@ -322,6 +330,8 @@ func set_default_values():
 	active_potion_type = ""
 	active_speed_boost = 0.0
 	temp_strength_bonus = 0
+	enemies_defeated = 0
+
 
 	
 	#NPC Rewards
