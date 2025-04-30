@@ -5,12 +5,12 @@
 
 [sub_resource type="Resource" id="Resource_d6b3d"]
 script = ExtResource("2_swyso")
-item_name = "Large Speed Potion"
+item_name = "Axe"
 amount = 1
 
 [sub_resource type="Resource" id="Resource_pnuts"]
 script = ExtResource("2_swyso")
-item_name = "Medium Strength Potion"
+item_name = "Wooden Spear"
 amount = 1
 
 [resource]

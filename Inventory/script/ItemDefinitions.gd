@@ -19,10 +19,10 @@ const ITEM_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Weapons/Pickaxe.png",
 		"stackable": false,
 		"count": 1,
-		"damage": 4,
+		"damage": 15,
 		"stun_chance": 0.0,
 		"miss_chance": 0.00,
-		"crit_chance": 0.00,
+		"crit_chance": 0.3,
 		"break_chance": 0.00,
 		"rarity": "common"  # Typically common
 	},
@@ -37,7 +37,7 @@ const ITEM_DEFINITIONS = {
 		"stun_chance": 0.00,
 		"miss_chance": 0.00,
 		"crit_chance": 0.12,
-		"break_chance": 0.90,
+		"break_chance": 0.1,
 		"rarity": "common"
 	},
 	"Rusty Sword": {
@@ -62,11 +62,11 @@ const ITEM_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Weapons/Wooden Spear.png",
 		"stackable": false,
 		"count": 1,
-		"damage": 7,
-		"stun_chance": 0.00,
+		"damage": 25,
+		"stun_chance": 0.8,
 		"miss_chance": 0.30,
 		"crit_chance": 0.30,
-		"break_chance": 0.20,
+		"break_chance": 0.0,
 		"rarity": "common"
 	},
 	#Uncommon
@@ -77,12 +77,16 @@ const ITEM_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Weapons/Spiked Mace.png",
 		"stackable": false,
 		"count": 1,
-		"damage": 13,
-		"stun_chance": 1,
-		"miss_chance": 0.0,
-		"crit_chance": 0.0,
+		"damage": 35,
+		"stun_chance": 0.00,
+		"miss_chance": 0.04,
+		"crit_chance": 0.1,
 		"break_chance": 0.0,
-		"rarity": "uncommon"
+		"rarity": "uncommon",
+		"effect_type": "bleed",
+		"effect_chance": 1,  # 10% chance to apply
+		"effect_damage_range": Vector2i(8, 15),
+		"effect_turns_range": Vector2i(3, 6)
 	},
 	"Flame Dagger": {
 		"type": 0,
@@ -217,9 +221,9 @@ const ITEM_DEFINITIONS = {
 		"texture_path": "res://Inventory/assets/Weapons/Staff of Elements.png",
 		"stackable": false,
 		"count": 1,
-		"damage": 65,
+		"damage": 45,
 		"stun_chance": 0.80,
-		"miss_chance": 0.05,
+		"miss_chance": 0.00,
 		"crit_chance": 0.30,
 		"break_chance": 0.0,
 		"rarity": "legendary"

@@ -1,16 +1,21 @@
-[gd_resource type="Resource" script_class="Quest" load_steps=5 format=3 uid="uid://crhgb8fqeu1ij"]
+[gd_resource type="Resource" script_class="Quest" load_steps=6 format=3 uid="uid://crhgb8fqeu1ij"]
 
 [ext_resource type="Script" path="res://Quest/script/Quest.gd" id="1_6k7er"]
 [ext_resource type="Script" path="res://Quest/script/Reward.gd" id="3_5ndst"]
 
 [sub_resource type="Resource" id="Resource_fedw4"]
 script = ExtResource("3_5ndst")
-item_name = "Axe"
-amount = 1
+item_name = "Small Health Potion"
+amount = 2
 
 [sub_resource type="Resource" id="Resource_qjikh"]
 script = ExtResource("3_5ndst")
-item_name = "Large Health Potion"
+item_name = "Medium Strength Potion"
+amount = 1
+
+[sub_resource type="Resource" id="Resource_01a4b"]
+script = ExtResource("3_5ndst")
+item_name = "Pickaxe"
 amount = 1
 
 [resource]
@@ -18,7 +23,7 @@ script = ExtResource("1_6k7er")
 quest_name = "Main Story: Prof Doomsmore"
 description = "Is near the starting point"
 prerequisites = Array[ExtResource("1_6k7er")]([])
-rewards = Array[ExtResource("3_5ndst")]([SubResource("Resource_fedw4"), SubResource("Resource_qjikh")])
+rewards = Array[ExtResource("3_5ndst")]([SubResource("Resource_fedw4"), SubResource("Resource_qjikh"), SubResource("Resource_01a4b")])
 is_completed = false
 pinned = false
 priority = 0
