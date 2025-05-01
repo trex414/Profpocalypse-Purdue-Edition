@@ -344,7 +344,7 @@ func set_default_values():
 		"npc_business": false
 	}
 	
-	SaveManager.set_volume(0.1)
+	SaveManager.set_volume(0.05)
 
 
 
