@@ -104,6 +104,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Add Item" type="Button" parent="CanvasLayer/Panel"]
+visible = false
 layout_mode = 0
 offset_left = 304.0
 offset_top = -148.0
